@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -66,3 +67,7 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `yarn build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+=======
+# Proyecto-1-DB
+Desarrollo y Consulta de Base de Datos. El proyecto general consiste en la implementación de una base de datos relacional para soportar un servicio de música en st reaming colaborativo, que funciona bajo un modelo de suscripción de usuarios pagando una membresía de forma mensual, semestral y/o anual. 
+>>>>>>> 315bcaa93f5d65ebf4f4f9b5c2ca230ae3a4cb81

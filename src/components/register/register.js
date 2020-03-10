@@ -4,7 +4,7 @@ import './styles.css';
 
 import * as actions from '../../actions/auth'
 
-const Login = ({ onClick }) => {
+const Register = ({ onClick }) => {
 
     const [firstName, changefirstName] = useState('');
     const [lastName, changelastName] = useState('');
@@ -50,7 +50,9 @@ export default connect(
     undefined,
     dispatch => ({
         onClick(formInfo){
-            dispatch(actions.loadUser(formInfo.email, formInfo.password))
+            console.log('Llega')
+            dispatch(actions.loadUser());
+            dispatch(actions.registerUser(formInfo.email, formInfo.password));
         }
     })
-)(Login);
+)(Register);

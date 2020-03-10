@@ -1,2 +1,9 @@
 PostgreSQL  y NODE.JS
 https://node-postgres.com/
+
+Express 
+https://expressjs.com/es/api.html
+
+Connection Pooling with PostgresSQL and NodeJS
+https://www.youtube.com/watch?v=GTeCtIoV2Tw
+

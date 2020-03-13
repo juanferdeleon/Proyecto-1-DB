@@ -33,39 +33,45 @@ const getUserById = async (req, res) => {
 };
 
 const createUser = async (req, res) => {
+
+    console.log(req)
     //Info enviada
-    const { usuario, password } = req.body;
+    const { emailAddress, password } = req.body;
 
     console.log('Llega a API');
 
     //Verificamos si el usuario ya existe
-    await  pool.query('INSERT INTO usuario VALUES($1, $2)', [usuario, password])
+    await  pool.query('INSERT INTO usuario VALUES($1, $2)', [emailAddress, password])
     //pool.query('select * from usuario where usuario.usuario = $1', [usuario])
         .then(() => {//En casi si existe
             
             res.json({
-                action: { type: 'REGISTER_FAIL' }
+                action: { type: 'REGISTER_SUCCESS' }
             })
 
         })
         .catch(() => {//En caso el usuario no existe lo ingresamos
             
-            pool.query('INSERT INTO usuario VALUES($1, $2)', [usuario, password])
-                .then(() => {
 
-                    res.json({
-                        message: 'User Added successfully',
-                        action: { type: 'REGISTER_SUCCES', payload: usuario }
-                    })
+            res.json({
+                action: { type: 'REGISTER_FAIL' }
+            })
+            // pool.query('INSERT INTO usuario VALUES($1, $2)', [usuario, password])
+            //     .then(() => {
 
-                })
-                .catch(() => {
+            //         res.json({
+            //             message: 'User Added successfully',
+            //             action: { type: 'REGISTER_SUCCES', payload: usuario }
+            //         })
 
-                    res.json({
-                        action: { type: 'REGISTER_FAIL' }
-                    })
+            //     })
+            //     .catch(() => {
 
-                })
+            //         res.json({
+            //             action: { type: 'REGISTER_FAIL' }
+            //         })
+
+            //     })
         })
 
 };

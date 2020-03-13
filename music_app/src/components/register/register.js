@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { reduxForm, Field, isSubmitting } from 'redux-form';
 import './styles.css';
 
+import makeRequest from '../requests/index';
+
 import * as actions from '../../actions/auth'
 
 const Register = ({ handleSubmit, submitting }) => {
@@ -80,55 +82,10 @@ const renderInput = ({ input, meta }) =>
 export default reduxForm({
     form: 'registerForm',
     onSubmit(values, dispatch){
-        // const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
-        // await sleep(500) // simulate server latency
-        //window.alert(`You submitted:\n\n${JSON.stringify(values, null, 2)}`)
-
         console.log('Llega a submit');
         dispatch(actions.loadUser());
-
-        const body = JSON.stringify({ usuario: values.emailAddress, password: values.password });
-
-        console.log(body);
-
-        const options = {
-            hostname: 'localhost',
-            port: 4000,
-            path: '/users',
-            method: 'POST',
-            headers: {
-                'Content-Length': Buffer.byteLength(body),
-                'Content-Type': 'application/json',
-            },
-        }
-
-        // const response = fetch('http://localhost:4000/users', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-type': 'application/json'
-        //     },
-        //     body: body,
-        // });
-
-        const http = require('http');
-
-        const response = http.request(options, res => {
-            let data = '';
-            res.on('data', chunk =>{
-                data += chunk;
-            });
-            res.on('end', () => {
-                let request = JSON.parse(data);
-                console.log('REQUEST')
-                console.log(request);
-                // dispatch(actions.registerUser(request.action));
-            })
-        });
-
-        response.write(body);
-
-        console.log('RESPONSE')
-        console.log(response);
+        makeRequest(values)
+        //.then(res => console.log('Esta es la response', res))
     },
     validate
 })(Register)

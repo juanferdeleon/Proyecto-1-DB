@@ -7,3 +7,10 @@ https://expressjs.com/es/api.html
 Connection Pooling with PostgresSQL and NodeJS
 https://www.youtube.com/watch?v=GTeCtIoV2Tw
 
+
+Axios Documentation
+https://github.com/axios/axios
+
+Sending JavaScript Http Requests with Axios
+https://www.youtube.com/watch?v=qM4G1Ai2ZpE
+

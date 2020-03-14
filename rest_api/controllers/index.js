@@ -34,44 +34,47 @@ const getUserById = async (req, res) => {
 
 const createUser = async (req, res) => {
 
-    console.log(req)
-    //Info enviada
+    //Informacion recibida
     const { emailAddress, password } = req.body;
 
-    console.log('Llega a API');
-
     //Verificamos si el usuario ya existe
-    await  pool.query('INSERT INTO usuario VALUES($1, $2)', [emailAddress, password])
-    //pool.query('select * from usuario where usuario.usuario = $1', [usuario])
-        .then(() => {//En casi si existe
+    await  pool.query('SELECT * FROM usuario WHERE usuario.usuario = $1', [emailAddress])
+        .then(response => {//Se recibe informacion de PostgreSQL
             
-            res.json({
-                action: { type: 'REGISTER_SUCCESS' }
-            })
+            //En caso no existe
+            if(response.rows){
+                pool.query('INSERT INTO usuario VALUES($1, $2)', [usuario, password])//Insertamos a la base de datos
+                .then(() => {
+
+                    res.json({
+                        message: 'User Added successfully',
+                        action: { type: 'REGISTER_SUCCES', payload: { user: emailAddress } }
+                    })
+
+                })
+                .catch(() => {//En caso hay algun inconveniente con PostgreSQL
+
+                    res.json({
+                        action: { type: 'REGISTER_FAIL' }
+                    })
+
+                })
+            } else {//En caso el usuario ya existe
+
+                res.json({
+                    message: 'User already exists',
+                    action: { type: 'REGISTER_FAIL' }
+                })
+
+            }
 
         })
-        .catch(() => {//En caso el usuario no existe lo ingresamos
-            
+        .catch(() => {//En caso hay algun inconveniente con PostgreSQL
 
             res.json({
                 action: { type: 'REGISTER_FAIL' }
             })
-            // pool.query('INSERT INTO usuario VALUES($1, $2)', [usuario, password])
-            //     .then(() => {
 
-            //         res.json({
-            //             message: 'User Added successfully',
-            //             action: { type: 'REGISTER_SUCCES', payload: usuario }
-            //         })
-
-            //     })
-            //     .catch(() => {
-
-            //         res.json({
-            //             action: { type: 'REGISTER_FAIL' }
-            //         })
-
-            //     })
         })
 
 };

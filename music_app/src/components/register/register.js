@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 //import { connect } from 'react-redux';
-import { reduxForm, Field, isSubmitting } from 'redux-form';
+import { reduxForm, Field } from 'redux-form';
+import isValidEmail from 'sane-email-validation';
 import './styles.css';
 
 import makeRequest from '../requests/index';
@@ -13,21 +14,12 @@ const Register = ({ handleSubmit, submitting }) => {
         <div className = "form-wrapper">
             <h1>Crea tu cuenta</h1>
             <form onSubmit={handleSubmit}>
-                <div className="firstName">
-                    <label>Nombre</label>
-                    <Field name="firstName" label="Nombre" component="input"/>
-                </div>
-                <div className="lastName">
-                    <label>Apellido</label>
-                    <Field name="lastName" label="Apellido" component="input"/>
-                </div>
-                <div className="email">
-                    <label>Correo Electronico</label>
-                    <Field name="emailAddress" type="email" label="Correo Electronico" component="input"/>
-                </div>
-                <div className="password">
+                <Field name="firstName" className="firstName" label="Nombre" component={renderInput}/>
+                <Field name="lastName" className="firstName" label="Apellido" component={renderInput}/>
+                <Field name="emailAddress" type="email" label="Correo Electronico" component={renderInput}/>
+                <div className="field">
                     <label>Contraseña</label>
-                    <Field name="password" type="password" label="Contraseña"component="input"/>
+                    <Field name="password" type="password" label="Contraseña" component="input" placeholder="Contraseña"/>
                 </div>
                 <div className="createAccount">
                     <button type="submit" disabled={submitting}>Crear Cuenta</button>
@@ -39,10 +31,8 @@ const Register = ({ handleSubmit, submitting }) => {
     )
 };
 
-const createUser = async (values) => {
-}
+const validate = values => {//Validacion del Register Form
 
-const validate = values => {
     const error = {}
 
     if(!values.firstName){
@@ -53,6 +43,8 @@ const validate = values => {
     }
     if(!values.emailAddress){
         error.emailAddress = 'Campo requerido'
+    } else if(!isValidEmail(values.emailAddress)){
+        error.emailAddress = 'Correo electronico invalido'
     }
     if(!values.password){
         error.password = 'Campo requerido'
@@ -61,31 +53,21 @@ const validate = values => {
     return error
 }
 
-// export default connect(
-//     undefined,
-//     dispatch => ({
-//         onClick(formInfo){
-//         }
-//     })
-// )(Register);
-
-const renderInput = ({ input, meta }) =>
-    <div>
-        <pre>
-            {JSON.stringify(meta, 0, 2)}
-            {console.log(JSON.stringify(meta, 0, 2))}            
-        </pre>
-        <input {...input}/>
-        {meta.error && (<span className="errorMessage">{'*Minimum 3 characters required'}</span>)}
+const renderInput = ({ input, meta, label }) =>
+    <div className="field" >
+        <label>{label}</label>
+        <input {...input} className={[meta.active ? 'active' : '', meta.error && meta.touched ? 'error' : '', meta.active && meta.error ? 'active' : ''].join('')} placeholder={label}/>
+        {meta.error && meta.touched && <span className="errorMessage">{meta.error}</span>}
     </div>
 
 export default reduxForm({
     form: 'registerForm',
+    destroyOnUnmount: false,
     onSubmit(values, dispatch){
-        console.log('Llega a submit');
         dispatch(actions.loadUser());
-        makeRequest(values)
-        //.then(res => console.log('Esta es la response', res))
+        makeRequest(values, res => {
+            dispatch(actions.registerUser(res.action));
+        });
     },
     validate
 })(Register)

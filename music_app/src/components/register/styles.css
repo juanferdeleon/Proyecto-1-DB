@@ -66,36 +66,20 @@ light green: #A3C4BC
     border: 1px solid red;
   }
   
+  input.active {
+    border: 1px solid blue;
+  }
+
   .errorMessage {
     color: red;
     font-size: 0.75em;
     display: relative;
   }
   
-  .firstName {
-    margin-right: 1%;
-  }
-  
-  .lastName {
-    margin-left: 1%;
-  }
-  
-  .firstName,
-  .lastName,
-  .email,
-  .password {
+  .field {
     display: flex;
     flex-direction: column;
     margin-bottom: 15px;
-  }
-  
-  .firstName,
-  .lastName {
-    width: 100%;
-  }
-  
-  .email,
-  .password {
     width: 100%;
   }
   

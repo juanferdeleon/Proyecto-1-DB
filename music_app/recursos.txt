@@ -1,16 +1,21 @@
-PostgreSQL  y NODE.JS
+Documentacion de PostgreSQL  y NODE.JS
 https://node-postgres.com/
 
-Express 
+Documentacion de Express 
 https://expressjs.com/es/api.html
 
-Connection Pooling with PostgresSQL and NodeJS
+Tutorial de como realizar consultas PostgresSQL and NodeJS
 https://www.youtube.com/watch?v=GTeCtIoV2Tw
-
 
 Axios Documentation
 https://github.com/axios/axios
 
 Sending JavaScript Http Requests with Axios
 https://www.youtube.com/watch?v=qM4G1Ai2ZpE
+
+TUTORIAL MUY BUENO
+React Router Tutorial | React For Beginners
+ESTO ES PARA NAVEGAR ENTRE LAS PANTALLAS 
+https://www.youtube.com/watch?v=Law7wfdg_ls
+
 

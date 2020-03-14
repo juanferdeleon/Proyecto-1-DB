@@ -19,7 +19,7 @@ const { getUsers, getUserById, createUser, updateUser, deleteUser } = require('.
 //Mediante router se define que tipo de REQUEST es .get, .post, .put, .delete, etc.
 
 router.get('/users', getUsers);
-router.get('/users/:id', getUserById);
+router.get('/user/:emailAddress/:password', getUserById);
 router.post('/users', createUser);
 router.put('/users/:id', updateUser)
 router.delete('/users/:id', deleteUser);

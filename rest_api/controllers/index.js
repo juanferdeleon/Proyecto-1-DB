@@ -1,15 +1,17 @@
 /*
 
-        Consultas de Postgres
+            Consultas de Postgres
+
+    Aqui se escribiran todas las consultas a PostgreSQL
 
 */
 
 //Todas las variables de entorno se pueden acceder con proces.env.LAVARIABLE
-
 require('dotenv').config();
 
 const { Pool } = require('pg');
 
+//Configuracion de PostgreSQL en caso no usen archivo .env
 // const config = {
 //     host: 'localhost',
 //     user: 'postgres',
@@ -20,19 +22,47 @@ const { Pool } = require('pg');
 const pool = new Pool();
 
 const getUsers = async (req, res) => {
-    //console.log(req);
     const response = await pool.query('SELECT * FROM usuario ORDER BY usuario ASC');
     res.status(200).json(response.rows);
 };
 
-const getUserById = async (req, res) => {
-    const id = req.params.id;
-    const response = await pool.query('SELECT * FROM usuario WHERE usuario.usuario = $1', [id]);
-    res.json(response);
-    console.log(response);
+const getUserById = async (req, res) => {//Accede a la DB y verifica si existe el usuario
+
+    const { emailAddress, password } = req.params;
+    
+    //await pool.query('SELECT * FROM usuario where usuario.usuario = $1', ['admin'])
+    await pool.query('SELECT * FROM usuario WHERE usuario.usuario = $1', [emailAddress])
+        .then(response => {//Recibimos la informacion de PostgreSQL
+
+            if(response.rows.length == 0){//Verificamos si existe el usuario
+                res.json({
+                    message: 'User does not exists',
+                    action: { type: 'LOGIN_FAIL' }
+                })
+            } else {//Si existe
+
+                if(response.rows[0].password == password){//Verificamos la contraseña
+                    res.json({
+                        action: { type: 'REGISTER_SUCCES', payload: { user: emailAddress } }
+                    })
+                } else {//Si la contraseña no es valida
+                    res.json({
+                        message: 'Credenciales Invalidas',
+                        action: { type: 'AUTH_ERROR' }
+                    })
+                }
+            }
+        })
+        .catch(() => {//En caso hay algun inconveniente con PostgreSQL
+
+            res.json({
+                action: { type: 'LOGIN_FAIL' }
+            })
+
+        });
 };
 
-const createUser = async (req, res) => {
+const createUser = async (req, res) => {//Accede a la DB y crea el usuario
 
     //Informacion recibida
     const { emailAddress, password } = req.body;
@@ -42,23 +72,23 @@ const createUser = async (req, res) => {
         .then(response => {//Se recibe informacion de PostgreSQL
             
             //En caso no existe
-            if(response.rows){
-                pool.query('INSERT INTO usuario VALUES($1, $2)', [usuario, password])//Insertamos a la base de datos
-                .then(() => {
+            if(response.rows.length == 0){
+                pool.query('INSERT INTO usuario VALUES($1, $2)', [emailAddress, password])//Insertamos a la base de datos
+                    .then(() => {
 
-                    res.json({
-                        message: 'User Added successfully',
-                        action: { type: 'REGISTER_SUCCES', payload: { user: emailAddress } }
+                        res.json({
+                            message: 'User Added successfully',
+                            action: { type: 'REGISTER_SUCCES', payload: { user: emailAddress } }
+                        })
+
                     })
+                    .catch(() => {//En caso hay algun inconveniente con PostgreSQL
 
-                })
-                .catch(() => {//En caso hay algun inconveniente con PostgreSQL
+                        res.json({
+                            action: { type: 'REGISTER_FAIL' }
+                        })
 
-                    res.json({
-                        action: { type: 'REGISTER_FAIL' }
                     })
-
-                })
             } else {//En caso el usuario ya existe
 
                 res.json({

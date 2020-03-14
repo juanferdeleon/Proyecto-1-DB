@@ -5,6 +5,9 @@ export const loadUser = () => ({
 })
 
 export const registerUser = (action) => ({
-        ...action
+    ...action
 })
 
+export const loginUser = (action) => ({
+    ...action
+})

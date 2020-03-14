@@ -8,22 +8,20 @@ import makeRequest from '../requests/index';
 
 import * as actions from '../../actions/auth'
 
-const Register = ({ handleSubmit, submitting }) => {
+const Login = ({ handleSubmit, submitting }) => {
     return (
     <div className = "wrapper">
         <div className = "form-wrapper">
-            <h1>Crea tu cuenta</h1>
+            <h1>Ingresa a tu cuenta</h1>
             <form onSubmit={handleSubmit}>
-                <Field name="firstName" className="firstName" label="Nombre" component={renderInput}/>
-                <Field name="lastName" className="firstName" label="Apellido" component={renderInput}/>
                 <Field name="emailAddress" type="email" label="Correo Electronico" component={renderInput}/>
                 <div className="field">
                     <label>Contraseña</label>
                     <Field name="password" type="password" label="Contraseña" component="input" placeholder="Contraseña"/>
                 </div>
                 <div className="createAccount">
-                    <button type="submit" disabled={submitting}>Crear Cuenta</button>
-                    <small>¿Ya tienes una cuenta?</small>
+                    <button type="submit" disabled={submitting}>Login</button>
+                    <small>¿No tienes una cuenta?</small>
                 </div>
             </form>
         </div>
@@ -35,12 +33,6 @@ const validate = values => {//Validacion del Register Form
 
     const error = {}
 
-    if(!values.firstName){
-        error.firstName = 'Campo requerido'
-    }
-    if(!values.lastName){
-        error.lastName = 'Campo requerido'
-    }
     if(!values.emailAddress){
         error.emailAddress = 'Campo requerido'
     } else if(!isValidEmail(values.emailAddress)){
@@ -61,14 +53,14 @@ const renderInput = ({ input, meta, label }) =>
     </div>
 
 export default reduxForm({
-    form: 'registerForm',
+    form: 'loginForm',
     destroyOnUnmount: false,
     onSubmit(values, dispatch){
         dispatch(actions.loadUser());
-        const requestInfo = { uri: 'http://localhost:8000/users', type: 'POST' };
+        const requestInfo = { uri: `http://localhost:8000/user/${values.emailAddress}/${values.password}`, type: 'GET' };
         makeRequest(values, requestInfo, (res) => {
-            dispatch(actions.registerUser(res.action));
+            dispatch(actions.loginUser(res.action));
         });
     },
     validate
-})(Register)
+})(Login)

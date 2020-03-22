@@ -1,4 +1,15 @@
 <<<<<<< HEAD
+
+# Music App
+
+Para poder ejecutar esta aplicacion es necesario tener instalado lo siguiente:<br/>
+
+<ul>
+    <li>[Nodejs](https://nodejs.org/es/)</li>
+    <li>[Yarn](https://classic.yarnpkg.com/en/docs/install/#windows-stable)</li>
+</ul>
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

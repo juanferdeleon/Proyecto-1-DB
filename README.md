@@ -4,11 +4,10 @@ Desarrollo y Consulta de Base de Datos. El proyecto general consiste en la imple
 
 ## Creado por: 
 
-<ul>
-    <li>Juan Fernando De León Quezada</li>
-    <li>Diego Estrada</li>
-    <li>Andreé Toledo</li>
-</ul>
+Juan Fernando De León Quezada @juanferdeleon
+Diego Estrada @diegoestradaXO
+Andreé Toledo @andreetoledo
+
 
 Para poder ejecutar esta aplicacion es necesario tener instalado lo siguiente:<br/>
 

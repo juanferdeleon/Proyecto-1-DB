@@ -1,14 +1,17 @@
 import React from 'react';
-//import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 import isValidEmail from 'sane-email-validation';
+import { Link } from 'react-router-dom';
+import { Alert } from 'reactstrap';
 import './styles.css';
 
 import makeRequest from '../requests/index';
+import * as selectors from '../../reducers/index';
 
 import * as actions from '../../actions/auth'
 
-const Login = ({ handleSubmit, submitting }) => {
+const Login = ({ handleSubmit, submitting, error, onClick }) => {
     return (
     <div className = "wrapper">
         <div className = "form-wrapper">
@@ -19,9 +22,12 @@ const Login = ({ handleSubmit, submitting }) => {
                     <label>Contraseña</label>
                     <Field name="password" type="password" label="Contraseña" component="input" placeholder="Contraseña"/>
                 </div>
+                {
+                    error ? <div  className="alert" ><Alert color="danger">Ups! {error}</Alert></div> : null
+                }
                 <div className="createAccount">
                     <button type="submit" disabled={submitting}>Login</button>
-                    <small>¿No tienes una cuenta?</small>
+                    <Link to='/register' onClick={onClick}><small>¿No tienes una cuenta?</small></Link>
                 </div>
             </form>
         </div>
@@ -63,4 +69,13 @@ export default reduxForm({
         });
     },
     validate
-})(Login)
+})(connect(
+    state => ({
+        error: selectors.getAuthMsg(state)
+    }),
+    dispatch => ({
+        onClick(){
+            dispatch(actions.clearError())
+        }
+    })
+)(Login))

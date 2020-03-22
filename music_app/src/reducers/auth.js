@@ -1,6 +1,6 @@
 import * as types from '../types/auth';
 
-const auth = (state = {user: null, isAuthenticated: false, isLoading: false}, action) => {
+const auth = (state = {user: null, isAuthenticated: false, isLoading: false, msg: ''}, action) => {
     switch(action.type) {
         case types.USER_LOADING:
             return {
@@ -27,9 +27,15 @@ const auth = (state = {user: null, isAuthenticated: false, isLoading: false}, ac
         case types.REGISTER_FAIL:
             return {
                 ...state,
+                ...action.payload,
                 user: null,
                 isAuthenticated: false,
-                isLoading: false
+                isLoading: false,
+            }
+        case types.CLEAR_ERRORS:
+            return{
+                ...state,
+                msg: null
             }
         default: return state;
     }
@@ -38,3 +44,5 @@ const auth = (state = {user: null, isAuthenticated: false, isLoading: false}, ac
 export default auth;
 
 export const getUser = state => state.user
+
+export const getMsg = state => state.msg

@@ -36,8 +36,7 @@ const getUserById = async (req, res) => {//Accede a la DB y verifica si existe e
 
             if(response.rows.length == 0){//Verificamos si existe el usuario
                 res.json({
-                    message: 'User does not exists',
-                    action: { type: 'LOGIN_FAIL' }
+                    action: { type: 'LOGIN_FAIL', payload: { msg: 'User does not exists' } }
                 })
             } else {//Si existe
 
@@ -47,8 +46,7 @@ const getUserById = async (req, res) => {//Accede a la DB y verifica si existe e
                     })
                 } else {//Si la contraseña no es valida
                     res.json({
-                        message: 'Credenciales Invalidas',
-                        action: { type: 'AUTH_ERROR' }
+                        action: { type: 'AUTH_ERROR', payload: { msg: 'Wrong password' } }
                     })
                 }
             }
@@ -56,7 +54,7 @@ const getUserById = async (req, res) => {//Accede a la DB y verifica si existe e
         .catch(() => {//En caso hay algun inconveniente con PostgreSQL
 
             res.json({
-                action: { type: 'LOGIN_FAIL' }
+                action: { type: 'LOGIN_FAIL', payload: { msg: 'Server Issues' } }
             })
 
         });
@@ -77,23 +75,21 @@ const createUser = async (req, res) => {//Accede a la DB y crea el usuario
                     .then(() => {
 
                         res.json({
-                            message: 'User Added successfully',
-                            action: { type: 'REGISTER_SUCCES', payload: { user: emailAddress } }
+                            action: { type: 'REGISTER_SUCCES', payload: { user: emailAddress, msg: 'User Added successfully'} }
                         })
 
                     })
                     .catch(() => {//En caso hay algun inconveniente con PostgreSQL
 
                         res.json({
-                            action: { type: 'REGISTER_FAIL' }
+                            action: { type: 'REGISTER_FAIL', payload: { msg: 'Server Issues. Try again later.' } }
                         })
 
                     })
             } else {//En caso el usuario ya existe
 
                 res.json({
-                    message: 'User already exists',
-                    action: { type: 'REGISTER_FAIL' }
+                    action: { type: 'REGISTER_FAIL', payload: { msg: 'User already exists' }}
                 })
 
             }
@@ -102,7 +98,7 @@ const createUser = async (req, res) => {//Accede a la DB y crea el usuario
         .catch(() => {//En caso hay algun inconveniente con PostgreSQL
 
             res.json({
-                action: { type: 'REGISTER_FAIL' }
+                action: { type: 'REGISTER_FAIL', payload: { msg: 'Server Issues. Try again later.' } }
             })
 
         })

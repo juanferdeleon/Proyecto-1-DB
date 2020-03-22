@@ -1,15 +1,19 @@
 import React from 'react';
 import { Provider } from 'react-redux';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import { configureStore } from '../../store';
-//import Register from '../register/register';
+import Register from '../register/register';
 import Login from '../login/login';
 
 const store = configureStore();
 
 const App = () => (
     <Provider store = {store}>
-      <Login />
+      <Router>
+        <Route path='/' exact component={Login}/>
+        <Route path='/register' component={Register}/>
+      </Router>
     </Provider>
 )
 

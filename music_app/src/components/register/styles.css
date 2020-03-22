@@ -113,3 +113,13 @@ light green: #A3C4BC
     color: #999;
     font-weight: lighter;
   }
+
+  .alert{
+    background-color: #CD5C5C;
+    color: white;
+    padding: 0.2em;
+    border: tomato;
+    border-radius: 0.3em;
+    position: relative;
+    width: auto;
+  }

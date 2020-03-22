@@ -11,3 +11,7 @@ export const registerUser = (action) => ({
 export const loginUser = (action) => ({
     ...action
 })
+
+export const clearError = () => ({
+    type: types.CLEAR_ERRORS
+})

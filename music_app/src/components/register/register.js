@@ -11,14 +11,21 @@ import makeRequest from '../requests/index';
 import * as actions from '../../actions/auth';
 import * as selectors from '../../reducers/index';
 
-const Register = ({ handleSubmit, submitting, error, onClick }) => {
+//Variables de entorno
+require('dotenv').config({ path: '../../../.env' });
+//Encriptacion de password del usuario
+const Cryptr = require('cryptr');
+const cryptr = new Cryptr('proyecto-1-db');
+
+const Register = ({ handleSubmit, submitting, error, onClick }, props) => {
+    console.log(props);
     return (
     <div className = "wrapper">
         <div className = "form-wrapper">
             <h1>Crea tu cuenta</h1>
             <form onSubmit={handleSubmit}>
-                <Field name="firstName" className="firstName" label="Nombre" component={renderInput}/>
-                <Field name="lastName" className="firstName" label="Apellido" component={renderInput}/>
+                <Field name="firstname" className="firstName" label="Nombre" component={renderInput}/>
+                <Field name="lastname" className="firstName" label="Apellido" component={renderInput}/>
                 <Field name="emailAddress" type="email" label="Correo Electronico" component={renderInput}/>
                 <div className="field">
                     <label>Contraseña</label>
@@ -71,6 +78,7 @@ export default reduxForm({
     destroyOnUnmount: false,
     onSubmit(values, dispatch){
         dispatch(actions.loadUser());
+        values.password = cryptr.encrypt(values.password);//Envia password encriptado a API
         const requestInfo = { uri: 'http://localhost:8000/users', type: 'POST' };
         makeRequest(values, requestInfo, (res) => {
             console.log('Action',res.action)

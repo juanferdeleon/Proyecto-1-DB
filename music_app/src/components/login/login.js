@@ -9,7 +9,13 @@ import './styles.css';
 import makeRequest from '../requests/index';
 import * as selectors from '../../reducers/index';
 
-import * as actions from '../../actions/auth'
+import * as actions from '../../actions/auth';
+
+//Variables de entorno
+require('dotenv').config({ path: '../../../.env' });
+//Encriptacion de password del usuario
+const Cryptr = require('cryptr');
+const cryptr = new Cryptr('proyecto-1-db');
 
 const Login = ({ handleSubmit, submitting, error, onClick }) => {
     return (
@@ -63,7 +69,7 @@ export default reduxForm({
     destroyOnUnmount: false,
     onSubmit(values, dispatch){
         dispatch(actions.loadUser());
-        const requestInfo = { uri: `http://localhost:8000/user/${values.emailAddress}/${values.password}`, type: 'GET' };
+        const requestInfo = { uri: `http://localhost:8000/user/${values.emailAddress}/${cryptr.encrypt(values.password)}`, type: 'GET' };
         makeRequest(values, requestInfo, (res) => {
             dispatch(actions.loginUser(res.action));
         });

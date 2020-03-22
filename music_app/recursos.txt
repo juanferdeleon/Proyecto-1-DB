@@ -18,4 +18,6 @@ React Router Tutorial | React For Beginners
 ESTO ES PARA NAVEGAR ENTRE LAS PANTALLAS 
 https://www.youtube.com/watch?v=Law7wfdg_ls
 
+PSQL COMMANDS
+https://gist.github.com/Kartones/dd3ff5ec5ea238d4c546
 

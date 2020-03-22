@@ -9,6 +9,9 @@
 //Todas las variables de entorno se pueden acceder con proces.env.LAVARIABLE
 require('dotenv').config();
 
+const Cryptr = require('cryptr');
+cryptr = new Cryptr(process.env.CRYPTRKEY);
+
 const { Pool } = require('pg');
 
 //Configuracion de PostgreSQL en caso no usen archivo .env
@@ -21,8 +24,8 @@ const { Pool } = require('pg');
 
 const pool = new Pool();
 
-const getUsers = async (req, res) => {
-    const response = await pool.query('SELECT * FROM usuario ORDER BY usuario ASC');
+const getUsers = async (req, res) => {//Esto es para pruebas con el api y ver lo que devuelve
+    const response = await pool.query('SELECT * FROM customer ORDER BY email ASC');
     res.status(200).json(response.rows);
 };
 
@@ -31,7 +34,7 @@ const getUserById = async (req, res) => {//Accede a la DB y verifica si existe e
     const { emailAddress, password } = req.params;
     
     //await pool.query('SELECT * FROM usuario where usuario.usuario = $1', ['admin'])
-    await pool.query('SELECT * FROM usuario WHERE usuario.usuario = $1', [emailAddress])
+    await pool.query('SELECT * FROM customer WHERE customer.email = $1', [emailAddress])
         .then(response => {//Recibimos la informacion de PostgreSQL
 
             if(response.rows.length == 0){//Verificamos si existe el usuario
@@ -40,7 +43,7 @@ const getUserById = async (req, res) => {//Accede a la DB y verifica si existe e
                 })
             } else {//Si existe
 
-                if(response.rows[0].password == password){//Verificamos la contraseña
+                if(cryptr.decrypt(response.rows[0].password) == cryptr.decrypt(password)){//Verificamos la contraseña
                     res.json({
                         action: { type: 'REGISTER_SUCCES', payload: { user: emailAddress } }
                     })
@@ -63,15 +66,15 @@ const getUserById = async (req, res) => {//Accede a la DB y verifica si existe e
 const createUser = async (req, res) => {//Accede a la DB y crea el usuario
 
     //Informacion recibida
-    const { emailAddress, password } = req.body;
+    const { emailAddress, password, firstname, lastname } = req.body;
 
     //Verificamos si el usuario ya existe
-    await  pool.query('SELECT * FROM usuario WHERE usuario.usuario = $1', [emailAddress])
+    await  pool.query('SELECT * FROM customer WHERE customer.email = $1', [emailAddress])
         .then(response => {//Se recibe informacion de PostgreSQL
             
             //En caso no existe
             if(response.rows.length == 0){
-                pool.query('INSERT INTO usuario VALUES($1, $2)', [emailAddress, password])//Insertamos a la base de datos
+                pool.query('INSERT INTO customer(email, password, firstname, lastname) VALUES($1, $2, $3, $4)', [emailAddress, password, firstname, lastname])//Insertamos a la base de datos
                     .then(() => {
 
                         res.json({

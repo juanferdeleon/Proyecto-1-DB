@@ -33,14 +33,40 @@ const getUserById = async (req, res) => {//Accede a la DB y verifica si existe e
 
     const { emailAddress, password } = req.params;
     
-    //await pool.query('SELECT * FROM usuario where usuario.usuario = $1', ['admin'])
     await pool.query('SELECT * FROM customer WHERE customer.email = $1', [emailAddress])
         .then(response => {//Recibimos la informacion de PostgreSQL
 
-            if(response.rows.length == 0){//Verificamos si existe el usuario
-                res.json({
-                    action: { type: 'LOGIN_FAIL', payload: { msg: 'User does not exists' } }
-                })
+            if(response.rows.length == 0){//Verificamos si existe el usuario en CUSTOMER
+                
+                pool.query('SELECT * FROM employee WHERE employee.email = $1', [emailAddress])
+                    .then(response2 => {
+
+                        if(response2.rows.length == 0){//Verificamos si existe el usuario en EMPLOYEE
+                            res.json({
+                                action: { type: 'LOGIN_FAIL', payload: { msg: 'User does not exists' } }
+                            })
+                        } else {
+
+                            if(cryptr.decrypt(response2.rows[0].password) == cryptr.decrypt(password)){//Verificamos la contraseña
+                                res.json({
+                                    action: { type: 'REGISTER_SUCCES', payload: { user: emailAddress, isAdminUser: true } }
+                                })
+                            } else {//Si la contraseña no es valida
+                                res.json({
+                                    action: { type: 'AUTH_ERROR', payload: { msg: 'Wrong password' } }
+                                })
+                            }
+
+                        }
+
+                    }).catch(() => {//En caso hay algun inconveniente con PostgreSQL
+
+                        res.json({
+                            action: { type: 'LOGIN_FAIL', payload: { msg: 'Server Issues' } }
+                        })
+            
+                    });
+                
             } else {//Si existe
 
                 if(cryptr.decrypt(response.rows[0].password) == cryptr.decrypt(password)){//Verificamos la contraseña

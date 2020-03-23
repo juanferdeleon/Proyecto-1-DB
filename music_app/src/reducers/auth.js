@@ -1,6 +1,6 @@
 import * as types from '../types/auth';
 
-const auth = (state = {user: null, isAuthenticated: false, isLoading: false, msg: ''}, action) => {
+const auth = (state = {user: null, isAuthenticated: false, isLoading: false, msg: '', isAdminUser: false}, action) => {
     switch(action.type) {
         case types.USER_LOADING:
             return {

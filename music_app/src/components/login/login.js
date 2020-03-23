@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 import isValidEmail from 'sane-email-validation';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Alert } from 'reactstrap';
 import './styles.css';
 
@@ -17,7 +17,7 @@ require('dotenv').config({ path: '../../../.env' });
 const Cryptr = require('cryptr');
 const cryptr = new Cryptr('proyecto-1-db');
 
-const Login = ({ handleSubmit, submitting, error, onClick }) => {
+const Login = ({ handleSubmit, submitting, error, onClick, isAdminUser, isAuthenticated }) => {
     return (
     <div className = "wrapper">
         <div className = "form-wrapper">
@@ -36,6 +36,8 @@ const Login = ({ handleSubmit, submitting, error, onClick }) => {
                     <Link to='/register' onClick={onClick}><small>¿No tienes una cuenta?</small></Link>
                 </div>
             </form>
+            { isAdminUser && isAuthenticated ? <Redirect to='/admin-home'/> : null}
+            { !isAdminUser && isAuthenticated ? <Redirect to='/user-home'/> : null}
         </div>
     </div>
     )
@@ -77,7 +79,9 @@ export default reduxForm({
     validate
 })(connect(
     state => ({
-        error: selectors.getAuthMsg(state)
+        error: selectors.getAuthMsg(state),
+        isAdminUser: selectors.getIsAdminUser(state),
+        isAuthenticated: selectors.getIsAuth(state),
     }),
     dispatch => ({
         onClick(){

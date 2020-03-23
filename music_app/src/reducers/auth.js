@@ -48,3 +48,5 @@ export const getUser = state => state.user
 export const getMsg = state => state.msg
 
 export const getIsAuth = state => state.isAuthenticated
+
+export const getIsAdminUser = state => state.isAdminUser

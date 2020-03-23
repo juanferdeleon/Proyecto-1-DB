@@ -15,3 +15,5 @@ export const getUser = state => authSelectors.getUser(state.auth)
 export const getAuthMsg = state => authSelectors.getMsg(state.auth)
 
 export const getIsAuth = state => authSelectors.getIsAuth(state.auth)
+
+export const getIsAdminUser = state => authSelectors.getIsAdminUser(state.auth)

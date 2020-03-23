@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 import isValidEmail from 'sane-email-validation';
 import { Alert } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import './styles.css';
 
 import makeRequest from '../requests/index';
@@ -17,8 +17,7 @@ require('dotenv').config({ path: '../../../.env' });
 const Cryptr = require('cryptr');
 const cryptr = new Cryptr('proyecto-1-db');
 
-const Register = ({ handleSubmit, submitting, error, onClick }, props) => {
-    console.log(props);
+const Register = ({ handleSubmit, submitting, error, isAuth, onClick }, props) => {
     return (
     <div className = "wrapper">
         <div className = "form-wrapper">
@@ -39,6 +38,7 @@ const Register = ({ handleSubmit, submitting, error, onClick }, props) => {
                     <Link to='/' onClick={onClick}><small>¿Ya tienes una cuenta?</small></Link>
                 </div>
             </form>
+            { isAuth ? <Redirect to='/select-your-plan'/> : null }
         </div>
     </div>
     )
@@ -78,17 +78,19 @@ export default reduxForm({
     destroyOnUnmount: false,
     onSubmit(values, dispatch){
         dispatch(actions.loadUser());
-        values.password = cryptr.encrypt(values.password);//Envia password encriptado a API
+        //Envia password encriptado a API
+        values.password = cryptr.encrypt(values.password);
+        //Info de la request
         const requestInfo = { uri: 'http://localhost:8000/users', type: 'POST' };
         makeRequest(values, requestInfo, (res) => {
-            console.log('Action',res.action)
             dispatch(actions.registerUser(res.action));
         });
     },
     validate
 })(connect(
     state => ({
-        error: selectors.getAuthMsg(state)
+        error: selectors.getAuthMsg(state),
+        isAuth: selectors.getIsAuth(state)
     }),
     dispatch => ({
         onClick(){

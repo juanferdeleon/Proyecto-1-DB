@@ -13,3 +13,5 @@ export default reducer;
 export const getUser = state => authSelectors.getUser(state.auth)
 
 export const getAuthMsg = state => authSelectors.getMsg(state.auth)
+
+export const getIsAuth = state => authSelectors.getIsAuth(state.auth)

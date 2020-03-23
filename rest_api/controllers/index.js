@@ -109,15 +109,23 @@ const createUser = async (req, res) => {//Accede a la DB y crea el usuario
 };
 
 const updateUser = async (req, res) => {
-    const id = parseInt(req.params.id);
-    const { name, email } = req.body;
 
-    await pool.query('UPDATE users SET name = $1, email = $2 WHERE id = $3', [
-        name,
-        email,
-        id
-    ]);
-    res.json('User Updated Successfully');
+    const { emailAddress } = req.params;
+
+    const { plan, ccnumber, cvv } = req.body;
+
+    await pool.query('UPDATE customer SET plan = $1, ccnumber = $2, cvv = $3 WHERE email = $4', [plan, ccnumber, cvv, emailAddress])
+        .then(() => {
+            res.json({
+                action: { type: 'REGISTER_SUCCES', payload: { msg: 'Credit Card Added successfully' } }
+            })
+        })
+        .catch(() => {
+            res.json({
+                action: { type: 'REGISTER_FAIL', payload: { msg: 'Server Issues. Try again later.' } }
+            }) 
+        });
+
 };
 
 const deleteUser = async (req, res) => {

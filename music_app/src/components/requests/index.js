@@ -39,7 +39,7 @@ const makeRequest = (values, requestInfo, res) => {
                     res(error.data)
                 });
             break;
-
+            
         case 'DELETE':
             axios.delete(requestInfo.uri, values)
                 .then(function (response) {

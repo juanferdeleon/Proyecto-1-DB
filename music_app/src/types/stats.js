@@ -1,0 +1,3 @@
+export const STATS_LOADING = 'STATS_LOADING';
+export const STATS_LOADED = 'STATS_LOADED';
+export const STATS_ERROR = 'STATS_ERROR';

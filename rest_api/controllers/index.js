@@ -162,10 +162,24 @@ const deleteUser = async (req, res) => {
     res.json(`User ${id} deleted Successfully`);
 };
 
+const getStats = async (req, res) => {//Hace consultas de estadisticas
+    // const graph1 = await pool.query('');
+    const graph2 = await pool.query('SELECT COUNT(genre.genreid), genre.name FROM genre INNER JOIN track ON genre.genreid = track.genreid GROUP BY genre.genreid ORDER BY COUNT(genre.genreid) DESC');
+    const graph3 = await pool.query('SELECT COUNT(*), artist.name FROM artist INNER JOIN album ON artist.artistid = album.artistid GROUP BY artist.artistid ORDER BY COUNT(*) DESC LIMIT 5');
+    // const graph4 = await pool.query('');
+    // const graph5 = await pool.query('');
+    const graph6 = await pool.query('SELECT genre.name, SUM(track.milliseconds)/COUNT(*) as avarage FROM track INNER JOIN genre ON track.genreid = genre.genreid GROUP BY genre.genreid');
+    // const graph7 = await pool.query('');
+    // const graph8 = await pool.query('');
+    res.json({ action: {type: 'STATS_LOADED', payload: { graph2: graph2.rows, graph3: graph3.rows, graph6: graph6.rows }} })
+    // res.status(200);
+};
+
 module.exports = {
     getUsers,
     getUserById,
     createUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    getStats,
 };

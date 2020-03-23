@@ -17,7 +17,7 @@ require('dotenv').config({ path: '../../../.env' });
 const Cryptr = require('cryptr');
 const cryptr = new Cryptr('proyecto-1-db');
 
-const Register = ({ handleSubmit, submitting, error, isAuth, onClick }, props) => {
+const Register = ({ handleSubmit, submitting, error, isAuth, onClick }) => {
     return (
     <div className = "wrapper">
         <div className = "form-wrapper">

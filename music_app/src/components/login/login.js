@@ -10,6 +10,7 @@ import makeRequest from '../requests/index';
 import * as selectors from '../../reducers/index';
 
 import * as actions from '../../actions/auth';
+import * as actions2 from '../../actions/stats';
 
 //Variables de entorno
 require('dotenv').config({ path: '../../../.env' });
@@ -70,11 +71,18 @@ export default reduxForm({
     form: 'loginForm',
     destroyOnUnmount: false,
     onSubmit(values, dispatch){
+        dispatch(actions2.loadStats());
+        const requestInfo2 = { uri: `http://localhost:8000/stats`, type: 'GET' };
+        makeRequest(null, requestInfo2, (res2) => {
+            dispatch(actions2.loadedStats(res2.action));
+        })
+
         dispatch(actions.loadUser());
         const requestInfo = { uri: `http://localhost:8000/user/${values.emailAddress}/${cryptr.encrypt(values.password)}`, type: 'GET' };
         makeRequest(values, requestInfo, (res) => {
             dispatch(actions.loginUser(res.action));
         });
+
     },
     validate
 })(connect(

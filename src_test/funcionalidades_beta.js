@@ -165,8 +165,8 @@ function prevTrack() {
 function updateInfo() {
     titulo.textContent = cancion.titulo;
     artista.textContent = cancion.artista;
-    imagen.src = cancion.imagen;
-    imagen.onload = function () {
+    album.src = cancion.album;
+    album.onload = function () {
         audio.play();
     }
 }

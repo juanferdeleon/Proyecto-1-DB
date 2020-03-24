@@ -79,3 +79,83 @@ $(document).ready(function () {
     $('#contenido').html(canciones_html)
     init()
 })
+
+function CancionSelect(id) {
+    current_track = id
+    cancion = canciones[current_track];
+    audio.src = cancion.audio;
+    audio.onloadeddata = function () {
+        updateInfo();
+        $('#play').removeClass('fa-play-circle')
+        $('#play').addClass('fa-pause-circle')
+        for (var i = 0; i <= canciones.length; i++) {
+            $('#play' + i + '').removeClass('fa-pause-circle')
+            $('#play' + i + '').addClass('fa-play-circle')
+        }
+        $('#play' + id + '').removeClass('fa-play-circle')
+        $('#play' + id + '').addClass('fa-pause-circle')
+        audio.addEventListener('timeupdate', initProgressBar, false);
+    }
+}
+
+function init() {
+    cancion = canciones[current_track]
+    audio = new Audio()
+    album.src = cancion.album
+    audio.src = cancion.audio
+    titulo.textContent = cancion.titulo
+    artista.textContent = cancion.artista
+}
+
+function playTrack() {
+    if ($('#play').hasClass('fa-pause-circle')) {
+        $('#play').removeClass('fa-pause-circle')
+        $('#play').addClass('fa-play-circle')
+        $('#play' + current_track + '').removeClass('fa-pause-circle')
+        $('#play' + current_track + '').addClass('fa-play-circle')
+        audio.pause()
+    } else {
+        $('#play').removeClass('fa-play-circle')
+        $('#play').addClass('fa-pause-circle')
+        $('#play' + current_track + '').removeClass('fa-play-circle')
+        $('#play' + current_track + '').addClass('fa-pause-circle')
+        audio.play()
+        audio.addEventListener('timeupdate', initProgressBar, false);
+    }
+}
+
+function nextTrack() {
+    current_track++;
+    current_track = current_track % (canciones.length);
+    cancion = canciones[current_track];
+    audio.src = cancion.audio;
+    audio.onloadeddata = function () {
+        $('#play').removeClass('fa-play-circle')
+        $('#play').addClass('fa-pause-circle')
+        for (var i = 0; i <= canciones.length; i++) {
+            $('#play' + i + '').removeClass('fa-pause-circle')
+            $('#play' + i + '').addClass('fa-play-circle')
+        }
+        $('#play' + current_track + '').removeClass('fa-play-circle')
+        $('#play' + current_track + '').addClass('fa-pause-circle')
+        updateInfo();
+    }
+}
+
+function prevTrack() {
+    current_track--;
+    current_track = (current_track == -1 ? (canciones.length - 1) : current_track);
+    cancion = canciones[current_track];
+    audio.src = cancion.audio;
+    audio.onloadeddata = function () {
+        $('#play').removeClass('fa-play-circle')
+        $('#play').addClass('fa-pause-circle')
+        for (var i = 0; i <= canciones.length; i++) {
+            $('#play' + i + '').removeClass('fa-pause-circle')
+            $('#play' + i + '').addClass('fa-play-circle')
+        }
+        $('#play' + current_track + '').removeClass('fa-play-circle')
+        $('#play' + current_track + '').addClass('fa-pause-circle')
+        updateInfo();
+    }
+	

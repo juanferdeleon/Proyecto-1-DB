@@ -1,6 +1,7 @@
 import * as types from '../types/auth';
+import { combineReducers } from 'redux';
 
-const auth = (state = {user: null, isAuthenticated: false, isLoading: false, msg: '', isAdminUser: false}, action) => {
+const authInfo = (state = {user: null, isAuthenticated: false, isLoading: false, msg: '', isAdminUser: false}, action) => {
     switch(action.type) {
         case types.USER_LOADING:
             return {
@@ -41,12 +42,28 @@ const auth = (state = {user: null, isAuthenticated: false, isLoading: false, msg
     }
 }
 
+const creditCard = (state = false, action) => {
+    switch(action.type){
+        case types.CREDITCARD_ADDED:
+            return true
+        default:
+            return state
+    }
+}
+
+const auth = combineReducers({
+    authInfo,
+    creditCard,
+})
+
 export default auth;
 
-export const getUser = state => state.user
+export const getUser = state => state.authInfo.user
 
-export const getMsg = state => state.msg
+export const getMsg = state => state.authInfo.msg
 
-export const getIsAuth = state => state.isAuthenticated
+export const getIsAuth = state => state.authInfo.isAuthenticated
 
-export const getIsAdminUser = state => state.isAdminUser
+export const getIsAdminUser = state => state.authInfo.isAdminUser
+
+export const getCreditCard = state => state.creditCard

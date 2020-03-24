@@ -12,6 +12,10 @@ export const loginUser = (action) => ({
     ...action
 })
 
+export const addCreditCard = () => ({
+    type: types.CREDITCARD_ADDED
+})
+
 export const clearError = () => ({
     type: types.CLEAR_ERRORS
 })

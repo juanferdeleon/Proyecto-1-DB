@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
-import { Alert } from 'reactstrap';
+import { Redirect } from 'react-router-dom';
 
 import './styles.css';
 
@@ -18,7 +18,7 @@ const cryptr = new Cryptr('proyecto-1-db');
 
 const plans = [0, 3, 6, 12];
 
-const CreditCardForm = ({ handleSubmit, submitting, emailAddress, onSubmit, dispatch }) => {
+const CreditCardForm = ({ handleSubmit, submitting, emailAddress, onSubmit, dispatch, creditCardAdded }) => {
     return (
     <div className = "wrapper">
         <div className = "form-wrapper">
@@ -40,6 +40,7 @@ const CreditCardForm = ({ handleSubmit, submitting, emailAddress, onSubmit, disp
                     <button type="submit" disabled={submitting}>Agregar Tarjeta</button>
                 </div>
             </form>
+            { creditCardAdded ? <Redirect to="/user-home"/> : null}
         </div>
     </div>
     )
@@ -88,12 +89,13 @@ export default reduxForm({
         dispatch(actions.loadUser());
         const requestInfo = { uri: `http://localhost:8000/user/${values.emailAddress}`, type: 'PUT' };
         makeRequest(values, requestInfo, (res) => {
-            dispatch(actions.loginUser(res.action));
+            dispatch(actions.addCreditCard());
         });
     },
     validate,
 })(connect(
     state => ({
-        emailAddress: selectors.getUser(state)
+        emailAddress: selectors.getUser(state),
+        creditCardAdded: selectors.getCreditCard(state),
     }),
 )(CreditCardForm))

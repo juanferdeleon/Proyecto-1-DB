@@ -20,6 +20,8 @@ export const getIsAuth = state => authSelectors.getIsAuth(state.auth)
 
 export const getIsAdminUser = state => authSelectors.getIsAdminUser(state.auth)
 
+export const getCreditCard = (state) => authSelectors.getCreditCard(state.auth)
+
 export const getLoadingStats = state => statsSelectors.getIsLoading(state.stats)
 
 export const getStats = (state, graphNum) => statsSelectors.getStats(state.stats, graphNum)

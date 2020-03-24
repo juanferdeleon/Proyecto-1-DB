@@ -6,7 +6,7 @@ import * as selectors from '../../../reducers/index';
 // import * as actions from '../../../actions/stats';
 // import makeRequest from '../../requests/index';
 
-const Graph2 = ({ stats }) =>{
+const graph6 = ({ stats }) =>{
     const cat = [];
     const info = [];
 
@@ -60,6 +60,6 @@ const Graph2 = ({ stats }) =>{
 
 export default connect(
     state => ({
-        stats: selectors.getStats(state, 'graph2'),
+        stats: selectors.getStats(state, 'graph6'),
     })
-)(Graph2)
+)(graph6)

@@ -1,0 +1,81 @@
+var participante = false
+var pista = document.getElementById('pista')
+var progress = document.getElementById('progress')
+var titulo = document.getElementById('titulo')
+var artista = document.getElementById('artista')
+var album = document.getElementById('album')
+var handler = document.getElementById('handler')
+var current_track = 0
+var cancion, audio, duration
+var canciones_html = ''
+
+var canciones = [
+    {
+        album: 'REALONE',
+        titulo: 'You and Me',
+        artista: 'Disclosure (Flume remix)',
+        audio: 'Disclosure.mp3'
+    },
+    {
+        album: 'MRS',
+        titulo: 'Scared to be lonely',
+        artista: 'Martin Garrix & Dua Lipa',
+        audio: 'ScaredToBeLonely.mp3'
+    },
+    {
+        album: 'FEELS',
+        titulo: 'One kiss',
+        artista: 'Calvin Harris, Dua Lipa',
+        audio: 'OneKiss.mp3'
+    },
+    {
+        album: 'ENCORE',
+        titulo: 'Numb',
+        artista: 'Linkin Park',
+        audio: 'Numb.mp3'
+    },
+    {
+        album: 'GUATE',
+        titulo: 'Anyway',
+        artista: 'Francis Davila',
+        audio: 'Anyway.mp3'
+    },
+    {
+        album: 'STRESS',
+        titulo: "Nico And The Niners",
+        artista: 'Twenty One Pilots',
+        audio: 'Niners.mp3'
+    },
+    {
+        album: 'STARKICK',
+        titulo: 'Rockstar',
+        artista: 'Post Malone',
+        audio: 'rockstar.mp3'
+    },
+    {
+        album: 'REALFORG',
+        titulo: 'Humble',
+        artista: 'Kendrick Lamar',
+        audio: 'HUMBLE.mp3'
+    },
+    {
+        album: 'STARKICK',
+        titulo: 'White Iverson',
+        artista: 'Post Malone',
+        audio: 'White_Iverson.mp3'
+    },
+]
+
+$(document).ready(function () {
+    $.each(canciones, function (index) {
+        canciones_html += '<li class="list-group-item d-flex justify-content-between align-items-center" onclick="CancionSelect(' + index + ')">'
+        canciones_html += '<blockquote class="blockquote">'
+        canciones_html += '<h5>' + canciones[index].titulo + '</h5>'
+        canciones_html += '<footer class="blockquote-footer">' + canciones[index].artista + '</footer>'
+        canciones_html += '</blockquote>'
+        canciones_html += '<h3><i id="play' + index + '" class="fas fa-play-circle"></i></h3>'
+        canciones_html += '</li>'
+    })
+    $('#contenido').html(canciones_html)
+    init()
+})

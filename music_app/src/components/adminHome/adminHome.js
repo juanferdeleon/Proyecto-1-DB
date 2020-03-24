@@ -3,7 +3,7 @@ import Stats from '../adminStats/adminStats';
 
 const AdminHome = () => {
     return (
-    <div className = "wrapper">
+    <div>
         ADMIN HOME PAGE
         <Stats/>
     </div>

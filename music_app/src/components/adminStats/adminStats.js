@@ -9,13 +9,28 @@ import Graph2 from './Graph2/graph';
 // import Graph7 from './Graph7/graph';
 // import Graph8 from './Graph8/graph';
 
+import './styles.css';
+
 const Stats = () => {
 
     return(
-        <div>
+        <div className="stats-wrapper">
             <h1>Estadisticas</h1>
             <div>
-                <div>
+                <h4>Géneros con más canciones</h4>
+                <div className='graph-wrapper'>
+                    <Graph2/>
+                </div>
+            </div>
+            <div>
+                <h4>Géneros con más canciones</h4>
+                <div className='graph-wrapper'>
+                    <Graph2/>
+                </div>
+            </div>
+            <div>
+                <h4>Géneros con más canciones</h4>
+                <div className='graph-wrapper'>
                     <Graph2/>
                 </div>
             </div>

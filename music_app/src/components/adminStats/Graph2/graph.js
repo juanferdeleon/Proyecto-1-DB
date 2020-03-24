@@ -7,8 +7,22 @@ import * as actions from '../../../actions/stats';
 import makeRequest from '../../requests/index';
 
 const Graph2 = ({ stats }) =>{
+    const cat = [];
+    const info = [];
+
+    stats.map(stat => {
+        cat.push(stat.name);
+        info.push(stat.count);
+    })
+
+    console.log(cat, info)
 
     const options = {
+        plotOptions: {
+            bar: {
+                size: 200
+            }
+            },
         chart: {
             background: "#f4f4f4",
             foreColor: "#333"
@@ -20,43 +34,16 @@ const Graph2 = ({ stats }) =>{
             dataLabels: {
                 enabled: false
             },
-            title: {
-                text: "Largest US Cities By Population",
-                align: "center",
-                margin: 20,
-                offsetY: 20,
-                style: {
-                    fontSize: "25px"
-                }
-            },
             categories: [
-                "New York",
-                "Los Angeles",
-                "Chicago",
-                "Houston",
-                "Philadelphia",
-                "Phoenix",
-                "San Antonio",
-                "San Diego",
-                "Dallas",
-                "San Jose"
-              ]
+                ...cat
+                ]
         }
     }
     
     const series = [{
         name: "Population",
         data: [
-            8550405,
-            3971883,
-            2720546,
-            2296224,
-            1567442,
-            1563025,
-            1469845,
-            1394928,
-            1300092,
-            1026908
+            ...info
         ]   
     }]
 

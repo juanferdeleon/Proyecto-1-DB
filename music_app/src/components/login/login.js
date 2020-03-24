@@ -18,7 +18,7 @@ require('dotenv').config({ path: '../../../.env' });
 const Cryptr = require('cryptr');
 const cryptr = new Cryptr('proyecto-1-db');
 
-const Login = ({ handleSubmit, submitting, error, onClick, isAdminUser, isAuthenticated }) => {
+const Login = ({ handleSubmit, submitting, error, onClick, isAdminUser, isAuthenticated, isLoadingStats }) => {
     return (
     <div className = "wrapper">
         <div className = "form-wrapper">
@@ -37,7 +37,7 @@ const Login = ({ handleSubmit, submitting, error, onClick, isAdminUser, isAuthen
                     <Link to='/register' onClick={onClick}><small>¿No tienes una cuenta?</small></Link>
                 </div>
             </form>
-            { isAdminUser && isAuthenticated ? <Redirect to='/admin-home'/> : null}
+            { isAdminUser && isAuthenticated && !isLoadingStats ? <Redirect to='/admin-home'/> : null}
             { !isAdminUser && isAuthenticated ? <Redirect to='/user-home'/> : null}
         </div>
     </div>
@@ -90,6 +90,7 @@ export default reduxForm({
         error: selectors.getAuthMsg(state),
         isAdminUser: selectors.getIsAdminUser(state),
         isAuthenticated: selectors.getIsAuth(state),
+        isLoadingStats: selectors.getLoadingStats(state),
     }),
     dispatch => ({
         onClick(){

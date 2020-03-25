@@ -1,9 +1,55 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import { reduxForm, Field } from 'redux-form'
 import { connect } from 'react-redux';
 import * as actions from '../../../actions/auth';
+import * as actions2 from '../../../actions/searchSong';
 import * as selectors from '../../../reducers/index';
 import './styles.css';
+import makeRequest from '../../requests';
+
+const Search = ({ handleSubmit, submitting }) => {
+    return(
+    <div className="box">
+        <form onSubmit={handleSubmit}>
+            <Field name="searchValue" type="text" className="search-text" placeholder="Search" component={renderInput}/>
+            <button className="search-btn" disabled={submitting}>?</button>
+        </form>
+    </div>)
+}
+
+const renderInput = ({ input }) =>
+    <div >
+        <input {...input} className="search-text"/>
+    </div>
+
+const validate = values => {//Validacion del Register Form
+
+    const error = {}
+
+    if(!values.searchValue){
+        error.searchValue = 'Campo requerido'
+    }
+
+    return error
+}
+
+const SearchBox = reduxForm({
+    form: 'searchForm',
+    destroyOnUnmount: false,
+    onSubmit(values, dispatch){
+        console.log('Input', values.searchValue)
+
+        //CARCARG BUSQUEDA DE CANCION, ALBUM, ETC.
+        const requestInfo = { uri: `http://localhost:8000/search/${values.searchValue}`, type: 'GET' };
+        makeRequest(values, requestInfo, res => {
+            dispatch(actions2.loadSongs(res.action))
+        })
+
+
+    },
+    validate
+})(Search)
 
 const Nav = ({ onClick, isLoggedIn, isAdminUser }) => {
     return(
@@ -12,6 +58,7 @@ const Nav = ({ onClick, isLoggedIn, isAdminUser }) => {
             { isLoggedIn && isAdminUser ? <Link to="/admin-home"><h2>Proyecto 1 DB</h2></Link> : null }
             { isLoggedIn && !isAdminUser ? <Link to="/user-home"><h2>Proyecto 1 DB</h2></Link> : null }            
             <ul className="nav-links">
+                { isLoggedIn && !isAdminUser ? <li><SearchBox/></li> : null }
                 { isLoggedIn && isAdminUser ? <Link to="/admin-home/mods"><li>Modificaciones</li></Link> : null }
                 { isLoggedIn && isAdminUser ? <Link to="/admin-home/stats"><li>Estadisticas</li></Link> : null }
                 { isLoggedIn ? <Link to='/' onClick={onClick}><li>Logout</li></Link>: null }

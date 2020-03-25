@@ -32,7 +32,8 @@ const {
     inacTrack, 
     updateTrack, 
     updateArtist, 
-    updateAlbum 
+    updateAlbum,
+    search
 } = require('../controllers/index');
 
 //Aqui van todas las rutas para hacer las requests al API de Postgres
@@ -44,6 +45,7 @@ router.get('/albums', getAlbums);
 router.get('/artists', getArtists);
 router.get('/tracks', getTracks);
 router.get('/user/:emailAddress/:password', getUserById);
+router.get('/search/:searchValue', search)
 router.post('/users', createUser);
 router.post('/new-artist', newArtist);
 router.post('/new-album', newAlbum);

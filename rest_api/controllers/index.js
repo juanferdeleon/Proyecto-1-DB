@@ -407,6 +407,25 @@ const newTrack = async (req, res) => {
 
 }
 
+const search = async (req, res) => {
+
+    const { searchValue } = req.params;
+
+    let search = '%';
+    search = search + searchValue;
+    search = search + '%'
+
+    console.log('SEARCH VALUE: ', search)
+
+    const albumByArtist = await pool.query('SELECT album.title AS name, artist.name AS artist FROM artist INNER JOIN album ON artist.artistid = album.artistid WHERE artist.name LIKE $1;', [search]);
+    const albumByAlbum = await pool.query('SELECT  album.title AS name, artist.name AS artist FROM album INNER JOIN artist ON album.artistid = artist.artistid WHERE album.title LIKE $1;', [search]);
+    const trackByName = await pool.query('SELECT track1.name AS name, artist1.name AS artist FROM track track1 JOIN album album1 ON track1.albumid = album1.albumid JOIN artist artist1 ON artist1.artistid = album1.artistid WHERE track1.name LIKE $1 ORDER BY (track1.name)', [search]);
+    const trackByGenre = await pool.query('SELECT track1.name AS name, artist1.name AS artist FROM track track1 JOIN genre genre1 ON track1.genreid = genre1.genreid  JOIN album album1 on album1.albumid = track1.albumid JOIN artist artist1 ON artist1.artistid = album1.artistid WHERE genre1.name LIKE $1 ORDER BY (track1.name)', [search]);
+
+    res.json({ action: {type: 'ADD_SEARCHED_SONGS', payload: { albumByArtist: albumByArtist.rows, albumByAlbum: albumByAlbum.rows, trackByName: trackByName.rows, trackByGenre: trackByGenre.rows }} })
+
+}
+
 module.exports = {
     getUsers,
     getAlbums,
@@ -427,4 +446,5 @@ module.exports = {
     newArtist,
     newAlbum,
     newTrack,
+    search,
 };

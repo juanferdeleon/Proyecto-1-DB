@@ -7,6 +7,7 @@ import req, * as reqSelectors from './req';
 import albums, * as albumsSelectors from './albums';
 import artists, * as artistsSelectors from './artists';
 import tracks, * as tracksSelectors from './tracks';
+import searchSongs, * as searchSongsSelectors from './searchSongs';
 
 const reducer = combineReducers({
     auth,
@@ -15,6 +16,7 @@ const reducer = combineReducers({
     albums,
     artists,
     tracks,
+    searchSongs,
     form: formReducer,
 })
 
@@ -51,3 +53,13 @@ export const getArtists = state => artistsSelectors.getArtists(state.artists)
 export const getTracksLoaded = state => tracksSelectors.getTracksLoaded(state.tracks)
 
 export const getTracks = state => tracksSelectors.getTracks(state.tracks)
+
+export const getSongsLoaded = state => searchSongsSelectors.getSongsLoaded(state.searchSongs)
+
+export const getAlbumByArtist = state => searchSongsSelectors.getAlbumByArtist(state.searchSongs)
+
+export const getAlbumByName = state => searchSongsSelectors.getAlbumByName(state.searchSongs)
+
+export const getTrackByName = state => searchSongsSelectors.getTrackByName(state.searchSongs)
+
+export const getTrackByGenre = state => searchSongsSelectors.getTrackByGenre(state.searchSongs)

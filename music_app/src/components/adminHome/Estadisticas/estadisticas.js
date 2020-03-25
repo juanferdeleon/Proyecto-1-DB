@@ -5,7 +5,6 @@ import './styles.css';
 const Stats = () => {
     return(
         <div>
-            <h2>Estadisticas</h2>
             <Graphs/>
         </div>
     )

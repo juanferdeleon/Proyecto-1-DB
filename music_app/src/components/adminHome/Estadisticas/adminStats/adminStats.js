@@ -15,6 +15,7 @@ const Graphs = () => {
 
     return(
         <div className="stats-wrapper">
+            <h2>Estadisticas</h2>
             <div className='graph-wrapper'>
                 <h4>1. Los 5 artistas con más álbumes publicados</h4>
                 <div>

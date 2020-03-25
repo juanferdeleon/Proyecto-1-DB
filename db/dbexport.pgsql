@@ -193,7 +193,7 @@ CREATE TABLE public.track (
     bytes integer,
     unitprice numeric(10,2) NOT NULL,
     employeeid character varying(60),
-    inactive bit(1)
+    inactive integer
 );
 
 
@@ -299,7 +299,6 @@ COPY public.album (albumid, title, artistid) FROM stdin;
 93	Blue Moods	89
 94	A Matter of Life and Death	90
 95	A Real Dead One	90
-96	A Real Live One	90
 97	Brave New World	90
 98	Dance Of Death	90
 99	Fear Of The Dark	90
@@ -342,6 +341,7 @@ COPY public.album (albumid, title, artistid) FROM stdin;
 136	Presence	22
 137	The Song Remains The Same (Disc 1)	22
 138	The Song Remains The Same (Disc 2)	22
+96	A Real Live One	2
 139	A TempestadeTempestade Ou O Livro Dos Dias	99
 140	Mais Do Mesmo	99
 141	Greatest Hits	100
@@ -357,7 +357,6 @@ COPY public.album (albumid, title, artistid) FROM stdin;
 153	ReLoad	50
 154	Ride The Lightning	50
 155	St. Anger	50
-156	...And Justice For All	50
 157	Miles Ahead	68
 158	Milton Nascimento Ao Vivo	42
 159	Minas	42
@@ -404,7 +403,6 @@ COPY public.album (albumid, title, artistid) FROM stdin;
 200	O Samba PoconÃ©	130
 201	Judas 0: B-Sides and Rarities	131
 202	Rotten Apples: Greatest Hits	131
-203	A-Sides	132
 204	Morning Dance	53
 205	In Step	133
 206	Core	134
@@ -552,6 +550,7 @@ COPY public.album (albumid, title, artistid) FROM stdin;
 asdf2134j	Prueba	1
 9355a76b-118b-44c5-bd92-caccde81a62b	Prueba	3
 28e78558-d9e1-4960-8cda-6bffb8e528d7	Prueba2	3
+156	...And Just For All	50
 \.
 
 
@@ -561,7 +560,6 @@ asdf2134j	Prueba	1
 
 COPY public.artist (artistid, name) FROM stdin;
 1	AC/DC
-2	Accept
 3	Aerosmith
 4	Alanis Morissette
 5	Alice In Chains
@@ -835,14 +833,7 @@ COPY public.artist (artistid, name) FROM stdin;
 273	C. Monteverdi, Nigel Rogers - Chiaroscuro; London Baroque; London Cornett & Sackbu
 274	Nash Ensemble
 275	Philip Glass Ensemble
-asdfasdfasdf	David Guetta
-lkjlkjlkj	Afrojack
-12weqwk	Nervo
-b1a40226-9a97-4fa9-b6ec-ec2e6af71e46	Anuel AA
-469b4bbe-2ddf-45a6-8a9a-98ad0bd658a1	Nicky Jam
-00c995ab-1176-492e-a033-314272a9d7e8	A.CHAL
-58050597-6c15-44d8-ad32-21e869d857ff	J Balvin
-78f756a1-221b-4741-acba-1a7d7b30a748	Karol G
+2	Accept
 \.
 
 
@@ -919,6 +910,7 @@ Juan	De Leon	\N	\N	\N	\N	\N	\N	\N	\N	juani@gmail.com	\N	17d05fa63e20698ac9a1a411
 Amparo	Gonzalez	\N	\N	\N	\N	\N	\N	\N	\N	amp@gmail.com	\N	a7efc25a38ce97f503d68ad8da02963fb88d88aea17eb0712f590185e8ad3c73f1a3ad9ed92406bcaf22ef58d121fddea34daaa75e1351d53f77fa6ebdf71ad3a1bca6556c5ed174ce963a851b46cf89bd06f8906cb414d6e43847258ee51ec729a78aaee188	3	cbf98dc6c661b30d742d7e120cd76d0a4c172f459bef7c450f9fe5386793c6033bd7e1d79a1c51d9c04e1c368842548ef04039576d6e3a8eefcd4d3aa65e5ec553e230d2f1435be24e452b6d820391cb4255ba3651b06d716be682b54e6b5d41f582f6f498d99a48b929ddb93f8a479a	58365da7ed50ca9f5e18e1b6d1c0556a969cdc070af12e65a955123a7ffc218d25ca16c30570ff04315102ae0d7683bec748cd3342a20974326976c6eee3272fdf00ad3c5d9d450ccc3d341499d452090c4b1d0013984d3d6eaab5646fa1fca84179db
 Juan	Escamilla	\N	\N	\N	\N	\N	\N	\N	\N	juan@excamilla.com	\N	bed8507ed2206cc18e1cfa39f71b257fcb50f31fbb7f0ba8f7582322ac17ac9e3363544201183dd8cffcaf699f87bde2933cacdb34d6425bf82c98cb3d74cf1a6fb6e600536d6014539620d8a3295c0fa2acae2c773465ad81ecf3f2cf054e0fe867b784d4ef00	6	9ed70cc446ba46802c4236772e96773ab3be598fffe6d63fefd1bf5583e2020fc14953da02cd1d70f8d75a9bc1f28161081426fa67e028d245ccc4dd84654c4a29f0715124df86a78f77bace5759d43fc40ce61fd977a7bfbc7e2a21af55ee6eab35c5b3b6ca82233558f656d46a0c95	b37941b6850cf6cf6aa02707a76bd1635ff3d1fd1ab1edfb330402b3d6ffc481cddb6a66a60189c3590e5ce020ffd8be4f175e50fa63b8a2d50433e86050c2805920316aa5057f708b11498cd432d98191e4032b387e00522bbbcfea8c6121f6454070
 Abraham	De Leon	\N	\N	\N	\N	\N	\N	\N	\N	abdlz@gmail.com	\N	397774c40c5d14b49f0b88f35723dc534a10ea7ac975b763f2df56c07b88a127f1c849375282005e668ea295cb249366537c81d5a16ad4f4abfd59bdfc230a32ec1d5623840693fe277abb76b3b869001749ebcf0298d14e65b9fe09b8127dc10cb25dd51c9b2b	6	a824c6486bafec2f6e1f13c719907e131b134088b011af296c2467628fa52d5a536cfc739f1bc275651a994927bf921ebce0b42ca6927d6d75bfeec8478aeb592bc7526d817b82a6b331cf6eab212780074f778bf6356279c7d8a55f4205e9f5a1fbbfb439cb7475dd57893bdfcee12b	82288c8c08b663a5da507a44dfac095eda2f7a7fc99ffa7573f28f612ea61cacb9f1bbc656f99842f0b9d352543616dfaf467a7d8be56c7c685af29bd8a731d75e614dad7be20e54fd7ca2e138c8918a35c50962d135e824e179717b8bed0a00ecb7cc
+Natalie	Donies	\N	\N	\N	\N	\N	\N	\N	\N	natd@gmail.com	\N	31c19589fa25bff29db9423e5e9920d98bafeefe4a4df4cd4a9848d619f0ef20bde6ce3582e102abad7ad4e6d20e735d5150ed062413c759eaf208ff2d8b21f7c879637b7940e40f0708435c07ae7ab745dbf2d86bffec78fab44c85c311d508b4f27156dca7	3	32482e9032a28d16eb29885c70821c4e5043497a2bf889231fdd8c38328b00f3bf87f0ee07ce2c41541475a1e65d319ab0e9c7d1e401ee440c9a0ac24772cce0362ebe5266fb5cae3cbb3ded39f36058ea672de69e98df27301867512853ab7ee8f4e2b11819e19077adba58c95b3743	49600793e59398195bc767543ee4af682bdc1452edf3633a4c6e52a8a06dba77e935689cf7cde4342cd4626e826d166081421c93c5e56b52ec49e57360d30f14ada3a0f81a001c24239ebfb37af02e7554929890c6231bfe9c0093d86d937ef699caef
 \.
 
 
@@ -12326,3482 +12318,3465 @@ COPY public.playlisttrack (playlistid, trackid) FROM stdin;
 --
 
 COPY public.track (trackid, name, albumid, mediatypeid, genreid, composer, milliseconds, bytes, unitprice, employeeid, inactive) FROM stdin;
-1	For Those About To Rock (We Salute You)	1	1	1	Angus Young, Malcolm Young, Brian Johnson	343719	11170334	0.99	\N	\N
-2	Balls to the Wall	2	2	1	\N	342562	5510424	0.99	\N	\N
-3	Fast As a Shark	3	2	1	F. Baltes, S. Kaufman, U. Dirkscneider & W. Hoffman	230619	3990994	0.99	\N	\N
-4	Restless and Wild	3	2	1	F. Baltes, R.A. Smith-Diesel, S. Kaufman, U. Dirkscneider & W. Hoffman	252051	4331779	0.99	\N	\N
-5	Princess of the Dawn	3	2	1	Deaffy & R.A. Smith-Diesel	375418	6290521	0.99	\N	\N
-6	Put The Finger On You	1	1	1	Angus Young, Malcolm Young, Brian Johnson	205662	6713451	0.99	\N	\N
-7	Let's Get It Up	1	1	1	Angus Young, Malcolm Young, Brian Johnson	233926	7636561	0.99	\N	\N
-8	Inject The Venom	1	1	1	Angus Young, Malcolm Young, Brian Johnson	210834	6852860	0.99	\N	\N
-9	Snowballed	1	1	1	Angus Young, Malcolm Young, Brian Johnson	203102	6599424	0.99	\N	\N
-10	Evil Walks	1	1	1	Angus Young, Malcolm Young, Brian Johnson	263497	8611245	0.99	\N	\N
-11	C.O.D.	1	1	1	Angus Young, Malcolm Young, Brian Johnson	199836	6566314	0.99	\N	\N
-12	Breaking The Rules	1	1	1	Angus Young, Malcolm Young, Brian Johnson	263288	8596840	0.99	\N	\N
-13	Night Of The Long Knives	1	1	1	Angus Young, Malcolm Young, Brian Johnson	205688	6706347	0.99	\N	\N
-14	Spellbound	1	1	1	Angus Young, Malcolm Young, Brian Johnson	270863	8817038	0.99	\N	\N
-15	Go Down	4	1	1	AC/DC	331180	10847611	0.99	\N	\N
-16	Dog Eat Dog	4	1	1	AC/DC	215196	7032162	0.99	\N	\N
-17	Let There Be Rock	4	1	1	AC/DC	366654	12021261	0.99	\N	\N
-18	Bad Boy Boogie	4	1	1	AC/DC	267728	8776140	0.99	\N	\N
-19	Problem Child	4	1	1	AC/DC	325041	10617116	0.99	\N	\N
-20	Overdose	4	1	1	AC/DC	369319	12066294	0.99	\N	\N
-21	Hell Ain't A Bad Place To Be	4	1	1	AC/DC	254380	8331286	0.99	\N	\N
-22	Whole Lotta Rosie	4	1	1	AC/DC	323761	10547154	0.99	\N	\N
-23	Walk On Water	5	1	1	Steven Tyler, Joe Perry, Jack Blades, Tommy Shaw	295680	9719579	0.99	\N	\N
-24	Love In An Elevator	5	1	1	Steven Tyler, Joe Perry	321828	10552051	0.99	\N	\N
-25	Rag Doll	5	1	1	Steven Tyler, Joe Perry, Jim Vallance, Holly Knight	264698	8675345	0.99	\N	\N
-26	What It Takes	5	1	1	Steven Tyler, Joe Perry, Desmond Child	310622	10144730	0.99	\N	\N
-27	Dude (Looks Like A Lady)	5	1	1	Steven Tyler, Joe Perry, Desmond Child	264855	8679940	0.99	\N	\N
-28	Janie's Got A Gun	5	1	1	Steven Tyler, Tom Hamilton	330736	10869391	0.99	\N	\N
-29	Cryin'	5	1	1	Steven Tyler, Joe Perry, Taylor Rhodes	309263	10056995	0.99	\N	\N
-30	Amazing	5	1	1	Steven Tyler, Richie Supa	356519	11616195	0.99	\N	\N
-31	Blind Man	5	1	1	Steven Tyler, Joe Perry, Taylor Rhodes	240718	7877453	0.99	\N	\N
-32	Deuces Are Wild	5	1	1	Steven Tyler, Jim Vallance	215875	7074167	0.99	\N	\N
-33	The Other Side	5	1	1	Steven Tyler, Jim Vallance	244375	7983270	0.99	\N	\N
-34	Crazy	5	1	1	Steven Tyler, Joe Perry, Desmond Child	316656	10402398	0.99	\N	\N
-35	Eat The Rich	5	1	1	Steven Tyler, Joe Perry, Jim Vallance	251036	8262039	0.99	\N	\N
-36	Angel	5	1	1	Steven Tyler, Desmond Child	307617	9989331	0.99	\N	\N
-37	Livin' On The Edge	5	1	1	Steven Tyler, Joe Perry, Mark Hudson	381231	12374569	0.99	\N	\N
-38	All I Really Want	6	1	1	Alanis Morissette & Glenn Ballard	284891	9375567	0.99	\N	\N
-39	You Oughta Know	6	1	1	Alanis Morissette & Glenn Ballard	249234	8196916	0.99	\N	\N
-40	Perfect	6	1	1	Alanis Morissette & Glenn Ballard	188133	6145404	0.99	\N	\N
-41	Hand In My Pocket	6	1	1	Alanis Morissette & Glenn Ballard	221570	7224246	0.99	\N	\N
-42	Right Through You	6	1	1	Alanis Morissette & Glenn Ballard	176117	5793082	0.99	\N	\N
-43	Forgiven	6	1	1	Alanis Morissette & Glenn Ballard	300355	9753256	0.99	\N	\N
-44	You Learn	6	1	1	Alanis Morissette & Glenn Ballard	239699	7824837	0.99	\N	\N
-45	Head Over Feet	6	1	1	Alanis Morissette & Glenn Ballard	267493	8758008	0.99	\N	\N
-46	Mary Jane	6	1	1	Alanis Morissette & Glenn Ballard	280607	9163588	0.99	\N	\N
-47	Ironic	6	1	1	Alanis Morissette & Glenn Ballard	229825	7598866	0.99	\N	\N
-48	Not The Doctor	6	1	1	Alanis Morissette & Glenn Ballard	227631	7604601	0.99	\N	\N
-49	Wake Up	6	1	1	Alanis Morissette & Glenn Ballard	293485	9703359	0.99	\N	\N
-50	You Oughta Know (Alternate)	6	1	1	Alanis Morissette & Glenn Ballard	491885	16008629	0.99	\N	\N
-51	We Die Young	7	1	1	Jerry Cantrell	152084	4925362	0.99	\N	\N
-52	Man In The Box	7	1	1	Jerry Cantrell, Layne Staley	286641	9310272	0.99	\N	\N
-53	Sea Of Sorrow	7	1	1	Jerry Cantrell	349831	11316328	0.99	\N	\N
-54	Bleed The Freak	7	1	1	Jerry Cantrell	241946	7847716	0.99	\N	\N
-55	I Can't Remember	7	1	1	Jerry Cantrell, Layne Staley	222955	7302550	0.99	\N	\N
-56	Love, Hate, Love	7	1	1	Jerry Cantrell, Layne Staley	387134	12575396	0.99	\N	\N
-57	It Ain't Like That	7	1	1	Jerry Cantrell, Michael Starr, Sean Kinney	277577	8993793	0.99	\N	\N
-58	Sunshine	7	1	1	Jerry Cantrell	284969	9216057	0.99	\N	\N
-59	Put You Down	7	1	1	Jerry Cantrell	196231	6420530	0.99	\N	\N
-60	Confusion	7	1	1	Jerry Cantrell, Michael Starr, Layne Staley	344163	11183647	0.99	\N	\N
-61	I Know Somethin (Bout You)	7	1	1	Jerry Cantrell	261955	8497788	0.99	\N	\N
-62	Real Thing	7	1	1	Jerry Cantrell, Layne Staley	243879	7937731	0.99	\N	\N
-63	Desafinado	8	1	2	\N	185338	5990473	0.99	\N	\N
-64	Garota De Ipanema	8	1	2	\N	285048	9348428	0.99	\N	\N
-65	Samba De Uma Nota SÃ³ (One Note Samba)	8	1	2	\N	137273	4535401	0.99	\N	\N
-66	Por Causa De VocÃª	8	1	2	\N	169900	5536496	0.99	\N	\N
-67	Ligia	8	1	2	\N	251977	8226934	0.99	\N	\N
-68	Fotografia	8	1	2	\N	129227	4198774	0.99	\N	\N
-69	Dindi (Dindi)	8	1	2	\N	253178	8149148	0.99	\N	\N
-70	Se Todos Fossem Iguais A VocÃª (Instrumental)	8	1	2	\N	134948	4393377	0.99	\N	\N
-71	Falando De Amor	8	1	2	\N	219663	7121735	0.99	\N	\N
-72	Angela	8	1	2	\N	169508	5574957	0.99	\N	\N
-73	Corcovado (Quiet Nights Of Quiet Stars)	8	1	2	\N	205662	6687994	0.99	\N	\N
-74	Outra Vez	8	1	2	\N	126511	4110053	0.99	\N	\N
-75	O Boto (BÃ´to)	8	1	2	\N	366837	12089673	0.99	\N	\N
-76	Canta, Canta Mais	8	1	2	\N	271856	8719426	0.99	\N	\N
-77	Enter Sandman	9	1	3	Apocalyptica	221701	7286305	0.99	\N	\N
-78	Master Of Puppets	9	1	3	Apocalyptica	436453	14375310	0.99	\N	\N
-79	Harvester Of Sorrow	9	1	3	Apocalyptica	374543	12372536	0.99	\N	\N
-80	The Unforgiven	9	1	3	Apocalyptica	322925	10422447	0.99	\N	\N
-81	Sad But True	9	1	3	Apocalyptica	288208	9405526	0.99	\N	\N
-82	Creeping Death	9	1	3	Apocalyptica	308035	10110980	0.99	\N	\N
-83	Wherever I May Roam	9	1	3	Apocalyptica	369345	12033110	0.99	\N	\N
-84	Welcome Home (Sanitarium)	9	1	3	Apocalyptica	350197	11406431	0.99	\N	\N
-85	Cochise	10	1	1	Audioslave/Chris Cornell	222380	5339931	0.99	\N	\N
-86	Show Me How to Live	10	1	1	Audioslave/Chris Cornell	277890	6672176	0.99	\N	\N
-87	Gasoline	10	1	1	Audioslave/Chris Cornell	279457	6709793	0.99	\N	\N
-88	What You Are	10	1	1	Audioslave/Chris Cornell	249391	5988186	0.99	\N	\N
-89	Like a Stone	10	1	1	Audioslave/Chris Cornell	294034	7059624	0.99	\N	\N
-90	Set It Off	10	1	1	Audioslave/Chris Cornell	263262	6321091	0.99	\N	\N
-91	Shadow on the Sun	10	1	1	Audioslave/Chris Cornell	343457	8245793	0.99	\N	\N
-92	I am the Highway	10	1	1	Audioslave/Chris Cornell	334942	8041411	0.99	\N	\N
-93	Exploder	10	1	1	Audioslave/Chris Cornell	206053	4948095	0.99	\N	\N
-94	Hypnotize	10	1	1	Audioslave/Chris Cornell	206628	4961887	0.99	\N	\N
-95	Bring'em Back Alive	10	1	1	Audioslave/Chris Cornell	329534	7911634	0.99	\N	\N
-96	Light My Way	10	1	1	Audioslave/Chris Cornell	303595	7289084	0.99	\N	\N
-97	Getaway Car	10	1	1	Audioslave/Chris Cornell	299598	7193162	0.99	\N	\N
-98	The Last Remaining Light	10	1	1	Audioslave/Chris Cornell	317492	7622615	0.99	\N	\N
-99	Your Time Has Come	11	1	4	Cornell, Commerford, Morello, Wilk	255529	8273592	0.99	\N	\N
-100	Out Of Exile	11	1	4	Cornell, Commerford, Morello, Wilk	291291	9506571	0.99	\N	\N
-101	Be Yourself	11	1	4	Cornell, Commerford, Morello, Wilk	279484	9106160	0.99	\N	\N
-102	Doesn't Remind Me	11	1	4	Cornell, Commerford, Morello, Wilk	255869	8357387	0.99	\N	\N
-103	Drown Me Slowly	11	1	4	Cornell, Commerford, Morello, Wilk	233691	7609178	0.99	\N	\N
-104	Heaven's Dead	11	1	4	Cornell, Commerford, Morello, Wilk	276688	9006158	0.99	\N	\N
-105	The Worm	11	1	4	Cornell, Commerford, Morello, Wilk	237714	7710800	0.99	\N	\N
-106	Man Or Animal	11	1	4	Cornell, Commerford, Morello, Wilk	233195	7542942	0.99	\N	\N
-107	Yesterday To Tomorrow	11	1	4	Cornell, Commerford, Morello, Wilk	273763	8944205	0.99	\N	\N
-108	Dandelion	11	1	4	Cornell, Commerford, Morello, Wilk	278125	9003592	0.99	\N	\N
-109	#1 Zero	11	1	4	Cornell, Commerford, Morello, Wilk	299102	9731988	0.99	\N	\N
-110	The Curse	11	1	4	Cornell, Commerford, Morello, Wilk	309786	10029406	0.99	\N	\N
-111	Money	12	1	5	Berry Gordy, Jr./Janie Bradford	147591	2365897	0.99	\N	\N
-112	Long Tall Sally	12	1	5	Enotris Johnson/Little Richard/Robert Bumps Blackwell	106396	1707084	0.99	\N	\N
-113	Bad Boy	12	1	5	Larry Williams	116088	1862126	0.99	\N	\N
-114	Twist And Shout	12	1	5	Bert Russell/Phil Medley	161123	2582553	0.99	\N	\N
-115	Please Mr. Postman	12	1	5	Brian Holland/Freddie Gorman/Georgia Dobbins/Robert Bateman/William Garrett	137639	2206986	0.99	\N	\N
-116	C'Mon Everybody	12	1	5	Eddie Cochran/Jerry Capehart	140199	2247846	0.99	\N	\N
-117	Rock 'N' Roll Music	12	1	5	Chuck Berry	141923	2276788	0.99	\N	\N
-118	Slow Down	12	1	5	Larry Williams	163265	2616981	0.99	\N	\N
-119	Roadrunner	12	1	5	Bo Diddley	143595	2301989	0.99	\N	\N
-120	Carol	12	1	5	Chuck Berry	143830	2306019	0.99	\N	\N
-121	Good Golly Miss Molly	12	1	5	Little Richard	106266	1704918	0.99	\N	\N
-122	20 Flight Rock	12	1	5	Ned Fairchild	107807	1299960	0.99	\N	\N
-123	Quadrant	13	1	2	Billy Cobham	261851	8538199	0.99	\N	\N
-124	Snoopy's search-Red baron	13	1	2	Billy Cobham	456071	15075616	0.99	\N	\N
-125	Spanish moss-A sound portrait-Spanish moss	13	1	2	Billy Cobham	248084	8217867	0.99	\N	\N
-126	Moon germs	13	1	2	Billy Cobham	294060	9714812	0.99	\N	\N
-127	Stratus	13	1	2	Billy Cobham	582086	19115680	0.99	\N	\N
-128	The pleasant pheasant	13	1	2	Billy Cobham	318066	10630578	0.99	\N	\N
-129	Solo-Panhandler	13	1	2	Billy Cobham	246151	8230661	0.99	\N	\N
-130	Do what cha wanna	13	1	2	George Duke	274155	9018565	0.99	\N	\N
-131	Intro/ Low Down	14	1	3	\N	323683	10642901	0.99	\N	\N
-132	13 Years Of Grief	14	1	3	\N	246987	8137421	0.99	\N	\N
-133	Stronger Than Death	14	1	3	\N	300747	9869647	0.99	\N	\N
-134	All For You	14	1	3	\N	235833	7726948	0.99	\N	\N
-135	Super Terrorizer	14	1	3	\N	319373	10513905	0.99	\N	\N
-136	Phoney Smile Fake Hellos	14	1	3	\N	273606	9011701	0.99	\N	\N
-137	Lost My Better Half	14	1	3	\N	284081	9355309	0.99	\N	\N
-138	Bored To Tears	14	1	3	\N	247327	8130090	0.99	\N	\N
-139	A.N.D.R.O.T.A.Z.	14	1	3	\N	266266	8574746	0.99	\N	\N
-140	Born To Booze	14	1	3	\N	282122	9257358	0.99	\N	\N
-141	World Of Trouble	14	1	3	\N	359157	11820932	0.99	\N	\N
-142	No More Tears	14	1	3	\N	555075	18041629	0.99	\N	\N
-143	The Begining... At Last	14	1	3	\N	365662	11965109	0.99	\N	\N
-144	Heart Of Gold	15	1	3	\N	194873	6417460	0.99	\N	\N
-145	Snowblind	15	1	3	\N	420022	13842549	0.99	\N	\N
-146	Like A Bird	15	1	3	\N	276532	9115657	0.99	\N	\N
-147	Blood In The Wall	15	1	3	\N	284368	9359475	0.99	\N	\N
-148	The Beginning...At Last	15	1	3	\N	271960	8975814	0.99	\N	\N
-149	Black Sabbath	16	1	3	\N	382066	12440200	0.99	\N	\N
-150	The Wizard	16	1	3	\N	264829	8646737	0.99	\N	\N
-151	Behind The Wall Of Sleep	16	1	3	\N	217573	7169049	0.99	\N	\N
-152	N.I.B.	16	1	3	\N	368770	12029390	0.99	\N	\N
-153	Evil Woman	16	1	3	\N	204930	6655170	0.99	\N	\N
-154	Sleeping Village	16	1	3	\N	644571	21128525	0.99	\N	\N
-155	Warning	16	1	3	\N	212062	6893363	0.99	\N	\N
-156	Wheels Of Confusion / The Straightener	17	1	3	Tony Iommi, Bill Ward, Geezer Butler, Ozzy Osbourne	494524	16065830	0.99	\N	\N
-157	Tomorrow's Dream	17	1	3	Tony Iommi, Bill Ward, Geezer Butler, Ozzy Osbourne	192496	6252071	0.99	\N	\N
-158	Changes	17	1	3	Tony Iommi, Bill Ward, Geezer Butler, Ozzy Osbourne	286275	9175517	0.99	\N	\N
-159	FX	17	1	3	Tony Iommi, Bill Ward, Geezer Butler, Ozzy Osbourne	103157	3331776	0.99	\N	\N
-160	Supernaut	17	1	3	Tony Iommi, Bill Ward, Geezer Butler, Ozzy Osbourne	285779	9245971	0.99	\N	\N
-161	Snowblind	17	1	3	Tony Iommi, Bill Ward, Geezer Butler, Ozzy Osbourne	331676	10813386	0.99	\N	\N
-162	Cornucopia	17	1	3	Tony Iommi, Bill Ward, Geezer Butler, Ozzy Osbourne	234814	7653880	0.99	\N	\N
-163	Laguna Sunrise	17	1	3	Tony Iommi, Bill Ward, Geezer Butler, Ozzy Osbourne	173087	5671374	0.99	\N	\N
-164	St. Vitus Dance	17	1	3	Tony Iommi, Bill Ward, Geezer Butler, Ozzy Osbourne	149655	4884969	0.99	\N	\N
-165	Under The Sun/Every Day Comes and Goes	17	1	3	Tony Iommi, Bill Ward, Geezer Butler, Ozzy Osbourne	350458	11360486	0.99	\N	\N
-166	Smoked Pork	18	1	4	\N	47333	1549074	0.99	\N	\N
-167	Body Count's In The House	18	1	4	\N	204251	6715413	0.99	\N	\N
-168	Now Sports	18	1	4	\N	4884	161266	0.99	\N	\N
-169	Body Count	18	1	4	\N	317936	10489139	0.99	\N	\N
-170	A Statistic	18	1	4	\N	6373	211997	0.99	\N	\N
-171	Bowels Of The Devil	18	1	4	\N	223216	7324125	0.99	\N	\N
-172	The Real Problem	18	1	4	\N	11650	387360	0.99	\N	\N
-173	KKK Bitch	18	1	4	\N	173008	5709631	0.99	\N	\N
-174	D Note	18	1	4	\N	95738	3067064	0.99	\N	\N
-175	Voodoo	18	1	4	\N	300721	9875962	0.99	\N	\N
-176	The Winner Loses	18	1	4	\N	392254	12843821	0.99	\N	\N
-177	There Goes The Neighborhood	18	1	4	\N	350171	11443471	0.99	\N	\N
-178	Oprah	18	1	4	\N	6635	224313	0.99	\N	\N
-179	Evil Dick	18	1	4	\N	239020	7828873	0.99	\N	\N
-180	Body Count Anthem	18	1	4	\N	166426	5463690	0.99	\N	\N
-181	Momma's Gotta Die Tonight	18	1	4	\N	371539	12122946	0.99	\N	\N
-182	Freedom Of Speech	18	1	4	\N	281234	9337917	0.99	\N	\N
-183	King In Crimson	19	1	3	Roy Z	283167	9218499	0.99	\N	\N
-184	Chemical Wedding	19	1	3	Roy Z	246177	8022764	0.99	\N	\N
-185	The Tower	19	1	3	Roy Z	285257	9435693	0.99	\N	\N
-186	Killing Floor	19	1	3	Adrian Smith	269557	8854240	0.99	\N	\N
-187	Book Of Thel	19	1	3	Eddie Casillas/Roy Z	494393	16034404	0.99	\N	\N
-188	Gates Of Urizen	19	1	3	Roy Z	265351	8627004	0.99	\N	\N
-189	Jerusalem	19	1	3	Roy Z	402390	13194463	0.99	\N	\N
-190	Trupets Of Jericho	19	1	3	Roy Z	359131	11820908	0.99	\N	\N
-191	Machine Men	19	1	3	Adrian Smith	341655	11138147	0.99	\N	\N
-192	The Alchemist	19	1	3	Roy Z	509413	16545657	0.99	\N	\N
-193	Realword	19	1	3	Roy Z	237531	7802095	0.99	\N	\N
-194	First Time I Met The Blues	20	1	6	Eurreal Montgomery	140434	4604995	0.99	\N	\N
-195	Let Me Love You Baby	20	1	6	Willie Dixon	175386	5716994	0.99	\N	\N
-196	Stone Crazy	20	1	6	Buddy Guy	433397	14184984	0.99	\N	\N
-197	Pretty Baby	20	1	6	Willie Dixon	237662	7848282	0.99	\N	\N
-198	When My Left Eye Jumps	20	1	6	Al Perkins/Willie Dixon	235311	7685363	0.99	\N	\N
-199	Leave My Girl Alone	20	1	6	Buddy Guy	204721	6859518	0.99	\N	\N
-200	She Suits Me To A Tee	20	1	6	Buddy Guy	136803	4456321	0.99	\N	\N
-201	Keep It To Myself (Aka Keep It To Yourself)	20	1	6	Sonny Boy Williamson [I]	166060	5487056	0.99	\N	\N
-202	My Time After Awhile	20	1	6	Robert Geddins/Ron Badger/Sheldon Feinberg	182491	6022698	0.99	\N	\N
-203	Too Many Ways (Alternate)	20	1	6	Willie Dixon	135053	4459946	0.99	\N	\N
-204	Talkin' 'Bout Women Obviously	20	1	6	Amos Blakemore/Buddy Guy	589531	19161377	0.99	\N	\N
-205	Jorge Da CapadÃ³cia	21	1	7	Jorge Ben	177397	5842196	0.99	\N	\N
-206	Prenda Minha	21	1	7	Tradicional	99369	3225364	0.99	\N	\N
-207	MeditaÃ§Ã£o	21	1	7	Tom Jobim - Newton MendoÃ§a	148793	4865597	0.99	\N	\N
-208	Terra	21	1	7	Caetano Veloso	482429	15889054	0.99	\N	\N
-209	Eclipse Oculto	21	1	7	Caetano Veloso	221936	7382703	0.99	\N	\N
-210	Texto Verdade Tropical	21	1	7	Caetano Veloso	84088	2752161	0.99	\N	\N
-211	Bem Devagar	21	1	7	Gilberto Gil	133172	4333651	0.99	\N	\N
-212	DrÃ£o	21	1	7	Gilberto Gil	156264	5065932	0.99	\N	\N
-213	Saudosismo	21	1	7	Caetano Veloso	144326	4726981	0.99	\N	\N
-214	Carolina	21	1	7	Chico Buarque	181812	5924159	0.99	\N	\N
-215	Sozinho	21	1	7	Peninha	190589	6253200	0.99	\N	\N
-216	Esse Cara	21	1	7	Caetano Veloso	223111	7217126	0.99	\N	\N
-217	Mel	21	1	7	Caetano Veloso - Waly SalomÃ£o	294765	9854062	0.99	\N	\N
-218	Linha Do Equador	21	1	7	Caetano Veloso - Djavan	299337	10003747	0.99	\N	\N
-219	Odara	21	1	7	Caetano Veloso	141270	4704104	0.99	\N	\N
-220	A Luz De Tieta	21	1	7	Caetano Veloso	251742	8507446	0.99	\N	\N
-221	AtrÃ¡s Da Verd-E-Rosa SÃ³ NÃ£o Vai Quem JÃ¡ Morreu	21	1	7	David CorrÃªa - Paulinho Carvalho - Carlos Sena - Bira do Ponto	307252	10364247	0.99	\N	\N
-222	Vida Boa	21	1	7	Fausto Nilo - Armandinho	281730	9411272	0.99	\N	\N
-223	Sozinho (Hitmakers Classic Mix)	22	1	7	\N	436636	14462072	0.99	\N	\N
-224	Sozinho (Hitmakers Classic Radio Edit)	22	1	7	\N	195004	6455134	0.99	\N	\N
-225	Sozinho (CaÃªdrum 'n' Bass)	22	1	7	\N	328071	10975007	0.99	\N	\N
-226	Carolina	23	1	7	\N	163056	5375395	0.99	\N	\N
-227	Essa MoÃ§a Ta Diferente	23	1	7	\N	167235	5568574	0.99	\N	\N
-228	Vai Passar	23	1	7	\N	369763	12359161	0.99	\N	\N
-229	Samba De Orly	23	1	7	\N	162429	5431854	0.99	\N	\N
-230	Bye, Bye Brasil	23	1	7	\N	283402	9499590	0.99	\N	\N
-231	Atras Da Porta	23	1	7	\N	189675	6132843	0.99	\N	\N
-232	Tatuagem	23	1	7	\N	172120	5645703	0.99	\N	\N
-233	O Que SerÃ¡ (Ã€ Flor Da Terra)	23	1	7	\N	167288	5574848	0.99	\N	\N
-234	Morena De Angola	23	1	7	\N	186801	6373932	0.99	\N	\N
-235	Apesar De VocÃª	23	1	7	\N	234501	7886937	0.99	\N	\N
-236	A Banda	23	1	7	\N	132493	4349539	0.99	\N	\N
-237	Minha Historia	23	1	7	\N	182256	6029673	0.99	\N	\N
-238	Com AÃ§Ãºcar E Com Afeto	23	1	7	\N	175386	5846442	0.99	\N	\N
-239	Brejo Da Cruz	23	1	7	\N	214099	7270749	0.99	\N	\N
-240	Meu Caro Amigo	23	1	7	\N	260257	8778172	0.99	\N	\N
-241	Geni E O Zepelim	23	1	7	\N	317570	10342226	0.99	\N	\N
-242	Trocando Em MiÃºdos	23	1	7	\N	169717	5461468	0.99	\N	\N
-243	Vai Trabalhar Vagabundo	23	1	7	\N	139154	4693941	0.99	\N	\N
-244	Gota D'Ã¡gua	23	1	7	\N	153208	5074189	0.99	\N	\N
-245	ConstruÃ§Ã£o / Deus Lhe Pague	23	1	7	\N	383059	12675305	0.99	\N	\N
-246	Mateus Enter	24	1	7	Chico Science	33149	1103013	0.99	\N	\N
-247	O CidadÃ£o Do Mundo	24	1	7	Chico Science	200933	6724966	0.99	\N	\N
-248	Etnia	24	1	7	Chico Science	152555	5061413	0.99	\N	\N
-249	Quilombo Groove [Instrumental]	24	1	7	Chico Science	151823	5042447	0.99	\N	\N
-250	MacÃ´	24	1	7	Chico Science	249600	8253934	0.99	\N	\N
-251	Um Passeio No Mundo Livre	24	1	7	Chico Science	240091	7984291	0.99	\N	\N
-252	Samba Do Lado	24	1	7	Chico Science	227317	7541688	0.99	\N	\N
-253	Maracatu AtÃ´mico	24	1	7	Chico Science	284264	9670057	0.99	\N	\N
-254	O Encontro De Isaac Asimov Com Santos Dumont No CÃ©u	24	1	7	Chico Science	99108	3240816	0.99	\N	\N
-255	Corpo De Lama	24	1	7	Chico Science	232672	7714954	0.99	\N	\N
-256	Sobremesa	24	1	7	Chico Science	240091	7960868	0.99	\N	\N
-257	Manguetown	24	1	7	Chico Science	194560	6475159	0.99	\N	\N
-258	Um SatÃ©lite Na CabeÃ§a	24	1	7	Chico Science	126615	4272821	0.99	\N	\N
-259	BaiÃ£o Ambiental [Instrumental]	24	1	7	Chico Science	152659	5198539	0.99	\N	\N
-260	Sangue De Bairro	24	1	7	Chico Science	132231	4415557	0.99	\N	\N
-261	Enquanto O Mundo Explode	24	1	7	Chico Science	88764	2968650	0.99	\N	\N
-262	Interlude Zumbi	24	1	7	Chico Science	71627	2408550	0.99	\N	\N
-263	CrianÃ§a De Domingo	24	1	7	Chico Science	208222	6984813	0.99	\N	\N
-264	Amor De Muito	24	1	7	Chico Science	175333	5881293	0.99	\N	\N
-265	Samidarish [Instrumental]	24	1	7	Chico Science	272431	8911641	0.99	\N	\N
-266	Maracatu AtÃ´mico [Atomic Version]	24	1	7	Chico Science	273084	9019677	0.99	\N	\N
-267	Maracatu AtÃ´mico [Ragga Mix]	24	1	7	Chico Science	210155	6986421	0.99	\N	\N
-268	Maracatu AtÃ´mico [Trip Hop]	24	1	7	Chico Science	221492	7380787	0.99	\N	\N
-269	Banditismo Por Uma Questa	25	1	7	\N	307095	10251097	0.99	\N	\N
-270	Banditismo Por Uma Questa	25	1	7	\N	243644	8147224	0.99	\N	\N
-271	Rios Pontes & Overdrives	25	1	7	\N	286720	9659152	0.99	\N	\N
-272	Cidade	25	1	7	\N	216346	7241817	0.99	\N	\N
-273	Praiera	25	1	7	\N	183640	6172781	0.99	\N	\N
-274	Samba Makossa	25	1	7	\N	271856	9095410	0.99	\N	\N
-275	Da Lama Ao Caos	25	1	7	\N	251559	8378065	0.99	\N	\N
-276	Maracatu De Tiro Certeiro	25	1	7	\N	88868	2901397	0.99	\N	\N
-277	Salustiano Song	25	1	7	\N	215405	7183969	0.99	\N	\N
-278	Antene Se	25	1	7	\N	248372	8253618	0.99	\N	\N
-279	Risoflora	25	1	7	\N	105586	3536938	0.99	\N	\N
-280	Lixo Do Mangue	25	1	7	\N	193253	6534200	0.99	\N	\N
-281	Computadores Fazem Arte	25	1	7	\N	404323	13702771	0.99	\N	\N
-282	Girassol	26	1	8	Bino Farias/Da Gama/LazÃ£o/Pedro Luis/Toni Garrido	249808	8327676	0.99	\N	\N
-283	A Sombra Da Maldade	26	1	8	Da Gama/Toni Garrido	230922	7697230	0.99	\N	\N
-284	Johnny B. Goode	26	1	8	Chuck Berry	254615	8505985	0.99	\N	\N
-285	Soldado Da Paz	26	1	8	Herbert Vianna	194220	6455080	0.99	\N	\N
-286	Firmamento	26	1	8	Bino Farias/Da Gama/Henry Lawes/LazÃ£o/Toni Garrido/Winston Foser-Vers	222145	7402658	0.99	\N	\N
-287	Extra	26	1	8	Gilberto Gil	304352	10078050	0.99	\N	\N
-288	O ErÃª	26	1	8	Bernardo Vilhena/Bino Farias/Da Gama/LazÃ£o/Toni Garrido	236382	7866924	0.99	\N	\N
-289	Podes Crer	26	1	8	Bino Farias/Da Gama/LazÃ£o/Toni Garrido	232280	7747747	0.99	\N	\N
-290	A Estrada	26	1	8	Bino Farias/Da Gama/LazÃ£o/Toni Garrido	248842	8275673	0.99	\N	\N
-291	Berlim	26	1	8	Da Gama/Toni Garrido	207542	6920424	0.99	\N	\N
-292	JÃ¡ Foi	26	1	8	Bino Farias/Da Gama/LazÃ£o/Toni Garrido	221544	7388466	0.99	\N	\N
-293	Onde VocÃª Mora?	26	1	8	Marisa Monte/Nando Reis	256026	8502588	0.99	\N	\N
-294	Pensamento	26	1	8	Bino Farias/Da Gamma/LazÃ£o/RÃ¡s Bernard	173008	5748424	0.99	\N	\N
-295	ConciliaÃ§Ã£o	26	1	8	Da Gama/LazÃ£o/RÃ¡s Bernardo	257619	8552474	0.99	\N	\N
-296	Realidade Virtual	26	1	8	Bino Farias/Da Gama/LazÃ£o/Toni Garrido	195239	6503533	0.99	\N	\N
-297	Mensagem	26	1	8	Bino Farias/Da Gama/LazÃ£o/RÃ¡s Bernardo	225332	7488852	0.99	\N	\N
-298	A Cor Do Sol	26	1	8	Bernardo Vilhena/Da Gama/LazÃ£o	231392	7663348	0.99	\N	\N
-299	Onde VocÃª Mora?	27	1	8	Marisa Monte/Nando Reis	298396	10056970	0.99	\N	\N
-300	O ErÃª	27	1	8	Bernardo Vilhena/Bino/Da Gama/Lazao/Toni Garrido	206942	6950332	0.99	\N	\N
-301	A Sombra Da Maldade	27	1	8	Da Gama/Toni Garrido	285231	9544383	0.99	\N	\N
-302	A Estrada	27	1	8	Da Gama/Lazao/Toni Garrido	282174	9344477	0.99	\N	\N
-303	Falar A Verdade	27	1	8	Bino/Da Gama/Ras Bernardo	244950	8189093	0.99	\N	\N
-304	Firmamento	27	1	8	Harry Lawes/Winston Foster-Vers	225488	7507866	0.99	\N	\N
-305	Pensamento	27	1	8	Bino/Da Gama/Ras Bernardo	192391	6399761	0.99	\N	\N
-306	Realidade Virtual	27	1	8	Bino/Da Gamma/Lazao/Toni Garrido	240300	8069934	0.99	\N	\N
-307	Doutor	27	1	8	Bino/Da Gama/Toni Garrido	178155	5950952	0.99	\N	\N
-308	Na Frente Da TV	27	1	8	Bino/Da Gama/Lazao/Ras Bernardo	289750	9633659	0.99	\N	\N
-309	Downtown	27	1	8	Cidade Negra	239725	8024386	0.99	\N	\N
-310	SÃ¡bado A Noite	27	1	8	Lulu Santos	267363	8895073	0.99	\N	\N
-311	A Cor Do Sol	27	1	8	Bernardo Vilhena/Da Gama/Lazao	273031	9142937	0.99	\N	\N
-312	Eu TambÃ©m Quero Beijar	27	1	8	Fausto Nilo/Moraes Moreira/Pepeu Gomes	211147	7029400	0.99	\N	\N
-313	Noite Do Prazer	28	1	7	\N	311353	10309980	0.99	\N	\N
-314	Ã€ Francesa	28	1	7	\N	244532	8150846	0.99	\N	\N
-315	Cada Um Cada Um (A Namoradeira)	28	1	7	\N	253492	8441034	0.99	\N	\N
-316	Linha Do Equador	28	1	7	\N	244715	8123466	0.99	\N	\N
-317	Amor Demais	28	1	7	\N	254040	8420093	0.99	\N	\N
-318	FÃ©rias	28	1	7	\N	264202	8731945	0.99	\N	\N
-319	Gostava Tanto De VocÃª	28	1	7	\N	230452	7685326	0.99	\N	\N
-320	Flor Do Futuro	28	1	7	\N	275748	9205941	0.99	\N	\N
-321	Felicidade Urgente	28	1	7	\N	266605	8873358	0.99	\N	\N
-322	Livre Pra Viver	28	1	7	\N	214595	7111596	0.99	\N	\N
-323	Dig-Dig, Lambe-Lambe (Ao Vivo)	29	1	9	Cassiano Costa/Cintia Maviane/J.F./Lucas Costa	205479	6892516	0.99	\N	\N
-324	PererÃª	29	1	9	Augusto ConceiÃ§Ã£o/Chiclete Com Banana	198661	6643207	0.99	\N	\N
-325	TriboTchan	29	1	9	Cal Adan/Paulo Levi	194194	6507950	0.99	\N	\N
-326	Tapa Aqui, Descobre Ali	29	1	9	Paulo Levi/W. Rangel	188630	6327391	0.99	\N	\N
-327	Daniela	29	1	9	Jorge Cardoso/Pierre Onasis	230791	7748006	0.99	\N	\N
-328	Bate Lata	29	1	9	FÃ¡bio Nolasco/Gal Sales/Ivan Brasil	206733	7034985	0.99	\N	\N
-329	Garotas do Brasil	29	1	9	Garay, Ricardo Engels/Luca Predabom/Ludwig, Carlos Henrique/MaurÃ­cio Vieira	210155	6973625	0.99	\N	\N
-330	Levada do Amor (Ailoviu)	29	1	9	Luiz Wanderley/Paulo Levi	190093	6457752	0.99	\N	\N
-331	Lavadeira	29	1	9	Do Vale, Valverde/Gal Oliveira/Luciano Pinto	214256	7254147	0.99	\N	\N
-332	Reboladeira	29	1	9	Cal Adan/Ferrugem/Julinho Carioca/TrÃ­ona NÃ­ Dhomhnaill	210599	7027525	0.99	\N	\N
-333	Ã‰ que Nessa EncarnaÃ§Ã£o Eu Nasci Manga	29	1	9	Lucina/Luli	196519	6568081	0.99	\N	\N
-334	Reggae Tchan	29	1	9	Cal Adan/Del Rey, Tension/Edu Casanova	206654	6931328	0.99	\N	\N
-335	My Love	29	1	9	Jauperi/Zeu GÃ³es	203493	6772813	0.99	\N	\N
-336	Latinha de Cerveja	29	1	9	Adriano Bernandes/Edmar Neves	166687	5532564	0.99	\N	\N
-337	You Shook Me	30	1	1	J B Lenoir/Willie Dixon	315951	10249958	0.99	\N	\N
-338	I Can't Quit You Baby	30	1	1	Willie Dixon	263836	8581414	0.99	\N	\N
-339	Communication Breakdown	30	1	1	Jimmy Page/John Bonham/John Paul Jones	192653	6287257	0.99	\N	\N
-340	Dazed and Confused	30	1	1	Jimmy Page	401920	13035765	0.99	\N	\N
-341	The Girl I Love She Got Long Black Wavy Hair	30	1	1	Jimmy Page/John Bonham/John Estes/John Paul Jones/Robert Plant	183327	5995686	0.99	\N	\N
-342	What is and Should Never Be	30	1	1	Jimmy Page/Robert Plant	260675	8497116	0.99	\N	\N
-343	Communication Breakdown(2)	30	1	1	Jimmy Page/John Bonham/John Paul Jones	161149	5261022	0.99	\N	\N
-344	Travelling Riverside Blues	30	1	1	Jimmy Page/Robert Johnson/Robert Plant	312032	10232581	0.99	\N	\N
-345	Whole Lotta Love	30	1	1	Jimmy Page/John Bonham/John Paul Jones/Robert Plant/Willie Dixon	373394	12258175	0.99	\N	\N
-346	Somethin' Else	30	1	1	Bob Cochran/Sharon Sheeley	127869	4165650	0.99	\N	\N
-347	Communication Breakdown(3)	30	1	1	Jimmy Page/John Bonham/John Paul Jones	185260	6041133	0.99	\N	\N
-348	I Can't Quit You Baby(2)	30	1	1	Willie Dixon	380551	12377615	0.99	\N	\N
-349	You Shook Me(2)	30	1	1	J B Lenoir/Willie Dixon	619467	20138673	0.99	\N	\N
-350	How Many More Times	30	1	1	Chester Burnett/Jimmy Page/John Bonham/John Paul Jones/Robert Plant	711836	23092953	0.99	\N	\N
-351	Debra Kadabra	31	1	1	Frank Zappa	234553	7649679	0.99	\N	\N
-352	Carolina Hard-Core Ecstasy	31	1	1	Frank Zappa	359680	11731061	0.99	\N	\N
-353	Sam With The Showing Scalp Flat Top	31	1	1	Don Van Vliet	171284	5572993	0.99	\N	\N
-354	Poofter's Froth Wyoming Plans Ahead	31	1	1	Frank Zappa	183902	6007019	0.99	\N	\N
-355	200 Years Old	31	1	1	Frank Zappa	272561	8912465	0.99	\N	\N
-356	Cucamonga	31	1	1	Frank Zappa	144483	4728586	0.99	\N	\N
-357	Advance Romance	31	1	1	Frank Zappa	677694	22080051	0.99	\N	\N
-358	Man With The Woman Head	31	1	1	Don Van Vliet	88894	2922044	0.99	\N	\N
-359	Muffin Man	31	1	1	Frank Zappa	332878	10891682	0.99	\N	\N
-360	Vai-Vai 2001	32	1	10	\N	276349	9402241	0.99	\N	\N
-361	X-9 2001	32	1	10	\N	273920	9310370	0.99	\N	\N
-362	Gavioes 2001	32	1	10	\N	282723	9616640	0.99	\N	\N
-363	Nene 2001	32	1	10	\N	284969	9694508	0.99	\N	\N
-364	Rosas De Ouro 2001	32	1	10	\N	284342	9721084	0.99	\N	\N
-365	Mocidade Alegre 2001	32	1	10	\N	282488	9599937	0.99	\N	\N
-366	Camisa Verde 2001	32	1	10	\N	283454	9633755	0.99	\N	\N
-367	Leandro De Itaquera 2001	32	1	10	\N	274808	9451845	0.99	\N	\N
-368	Tucuruvi 2001	32	1	10	\N	287921	9883335	0.99	\N	\N
-369	Aguia De Ouro 2001	32	1	10	\N	284160	9698729	0.99	\N	\N
-370	Ipiranga 2001	32	1	10	\N	248293	8522591	0.99	\N	\N
-371	Morro Da Casa Verde 2001	32	1	10	\N	284708	9718778	0.99	\N	\N
-372	Perola Negra 2001	32	1	10	\N	281626	9619196	0.99	\N	\N
-373	Sao Lucas 2001	32	1	10	\N	296254	10020122	0.99	\N	\N
-374	Guanabara	33	1	7	Marcos Valle	247614	8499591	0.99	\N	\N
-375	Mas Que Nada	33	1	7	Jorge Ben	248398	8255254	0.99	\N	\N
-376	VÃ´o Sobre o Horizonte	33	1	7	J.r.Bertami/Parana	225097	7528825	0.99	\N	\N
-377	A Paz	33	1	7	Donato/Gilberto Gil	263183	8619173	0.99	\N	\N
-378	Wave (Vou te Contar)	33	1	7	Antonio Carlos Jobim	271647	9057557	0.99	\N	\N
-380	Samba da BenÃ§aco	33	1	7	Baden Powell/Vinicius de Moraes	282200	9440676	0.99	\N	\N
-381	Pode Parar	33	1	7	Jorge Vercilo/Jota Maranhao	179408	6046678	0.99	\N	\N
-382	Menino do Rio	33	1	7	Caetano Veloso	262713	8737489	0.99	\N	\N
-383	Ando Meio Desligado	33	1	7	Caetano Veloso	195813	6547648	0.99	\N	\N
-384	MistÃ©rio da RaÃ§a	33	1	7	Luiz Melodia/Ricardo Augusto	184320	6191752	0.99	\N	\N
-385	All Star	33	1	7	Nando Reis	176326	5891697	0.99	\N	\N
-386	Menina Bonita	33	1	7	Alexandre Brazil/Pedro Luis/Rodrigo Cabelo	237087	7938246	0.99	\N	\N
-387	Pescador de IlusÃµes	33	1	7	Macelo Yuka/O Rappa	245524	8267067	0.99	\N	\N
-388	Ã€ Vontade (Live Mix)	33	1	7	Bombom/Ed Motta	180636	5972430	0.99	\N	\N
-389	Maria FumaÃ§a	33	1	7	Luiz Carlos/Oberdan	141008	4743149	0.99	\N	\N
-390	Sambassim (dj patife remix)	33	1	7	Alba Carvalho/Fernando Porto	213655	7243166	0.99	\N	\N
-391	Garota De Ipanema	34	1	7	VÃ¡rios	279536	9141343	0.99	\N	\N
-392	Tim Tim Por Tim Tim	34	1	7	VÃ¡rios	213237	7143328	0.99	\N	\N
-393	Tarde Em ItapoÃ£	34	1	7	VÃ¡rios	313704	10344491	0.99	\N	\N
-394	Tanto Tempo	34	1	7	VÃ¡rios	170292	5572240	0.99	\N	\N
-395	Eu Vim Da Bahia - Live	34	1	7	VÃ¡rios	157988	5115428	0.99	\N	\N
-396	AlÃ´ AlÃ´ Marciano	34	1	7	VÃ¡rios	238106	8013065	0.99	\N	\N
-397	Linha Do Horizonte	34	1	7	VÃ¡rios	279484	9275929	0.99	\N	\N
-398	Only A Dream In Rio	34	1	7	VÃ¡rios	371356	12192989	0.99	\N	\N
-399	Abrir A Porta	34	1	7	VÃ¡rios	271960	8991141	0.99	\N	\N
-400	Alice	34	1	7	VÃ¡rios	165982	5594341	0.99	\N	\N
-401	Momentos Que Marcam	34	1	7	VÃ¡rios	280137	9313740	0.99	\N	\N
-402	Um Jantar Pra Dois	34	1	7	VÃ¡rios	237714	7819755	0.99	\N	\N
-403	Bumbo Da Mangueira	34	1	7	VÃ¡rios	270158	9073350	0.99	\N	\N
-404	Mr Funk Samba	34	1	7	VÃ¡rios	213890	7102545	0.99	\N	\N
-405	Santo Antonio	34	1	7	VÃ¡rios	162716	5492069	0.99	\N	\N
-406	Por VocÃª	34	1	7	VÃ¡rios	205557	6792493	0.99	\N	\N
-407	SÃ³ Tinha De Ser Com VocÃª	34	1	7	VÃ¡rios	389642	13085596	0.99	\N	\N
-408	Free Speech For The Dumb	35	1	3	Molaney/Morris/Roberts/Wainwright	155428	5076048	0.99	\N	\N
-409	It's Electric	35	1	3	Harris/Tatler	213995	6978601	0.99	\N	\N
-410	Sabbra Cadabra	35	1	3	Black Sabbath	380342	12418147	0.99	\N	\N
-411	Turn The Page	35	1	3	Seger	366524	11946327	0.99	\N	\N
-412	Die Die My Darling	35	1	3	Danzig	149315	4867667	0.99	\N	\N
-413	Loverman	35	1	3	Cave	472764	15446975	0.99	\N	\N
-414	Mercyful Fate	35	1	3	Diamond/Shermann	671712	21942829	0.99	\N	\N
-415	Astronomy	35	1	3	A.Bouchard/J.Bouchard/S.Pearlman	397531	13065612	0.99	\N	\N
-416	Whiskey In The Jar	35	1	3	Traditional	305005	9943129	0.99	\N	\N
-417	Tuesday's Gone	35	1	3	Collins/Van Zandt	545750	17900787	0.99	\N	\N
-418	The More I See	35	1	3	Molaney/Morris/Roberts/Wainwright	287973	9378873	0.99	\N	\N
-419	A Kind Of Magic	36	1	1	Roger Taylor	262608	8689618	0.99	\N	\N
-420	Under Pressure	36	1	1	Queen & David Bowie	236617	7739042	0.99	\N	\N
-421	Radio GA GA	36	1	1	Roger Taylor	343745	11358573	0.99	\N	\N
-422	I Want It All	36	1	1	Queen	241684	7876564	0.99	\N	\N
-423	I Want To Break Free	36	1	1	John Deacon	259108	8552861	0.99	\N	\N
-424	Innuendo	36	1	1	Queen	387761	12664591	0.99	\N	\N
-425	It's A Hard Life	36	1	1	Freddie Mercury	249417	8112242	0.99	\N	\N
-426	Breakthru	36	1	1	Queen	249234	8150479	0.99	\N	\N
-427	Who Wants To Live Forever	36	1	1	Brian May	297691	9577577	0.99	\N	\N
-428	Headlong	36	1	1	Queen	273057	8921404	0.99	\N	\N
-429	The Miracle	36	1	1	Queen	294974	9671923	0.99	\N	\N
-430	I'm Going Slightly Mad	36	1	1	Queen	248032	8192339	0.99	\N	\N
-431	The Invisible Man	36	1	1	Queen	238994	7920353	0.99	\N	\N
-432	Hammer To Fall	36	1	1	Brian May	220316	7255404	0.99	\N	\N
-433	Friends Will Be Friends	36	1	1	Freddie Mercury & John Deacon	248920	8114582	0.99	\N	\N
-434	The Show Must Go On	36	1	1	Queen	263784	8526760	0.99	\N	\N
-435	One Vision	36	1	1	Queen	242599	7936928	0.99	\N	\N
-436	Detroit Rock City	37	1	1	Paul Stanley, B. Ezrin	218880	7146372	0.99	\N	\N
-437	Black Diamond	37	1	1	Paul Stanley	314148	10266007	0.99	\N	\N
-438	Hard Luck Woman	37	1	1	Paul Stanley	216032	7109267	0.99	\N	\N
-439	Sure Know Something	37	1	1	Paul Stanley, Vincent Poncia	242468	7939886	0.99	\N	\N
-440	Love Gun	37	1	1	Paul Stanley	196257	6424915	0.99	\N	\N
-441	Deuce	37	1	1	Gene Simmons	185077	6097210	0.99	\N	\N
-442	Goin' Blind	37	1	1	Gene Simmons, S. Coronel	216215	7045314	0.99	\N	\N
-443	Shock Me	37	1	1	Ace Frehley	227291	7529336	0.99	\N	\N
-444	Do You Love Me	37	1	1	Paul Stanley, B. Ezrin, K. Fowley	214987	6976194	0.99	\N	\N
-445	She	37	1	1	Gene Simmons, S. Coronel	248346	8229734	0.99	\N	\N
-446	I Was Made For Loving You	37	1	1	Paul Stanley, Vincent Poncia, Desmond Child	271360	9018078	0.99	\N	\N
-447	Shout It Out Loud	37	1	1	Paul Stanley, Gene Simmons, B. Ezrin	219742	7194424	0.99	\N	\N
-448	God Of Thunder	37	1	1	Paul Stanley	255791	8309077	0.99	\N	\N
-449	Calling Dr. Love	37	1	1	Gene Simmons	225332	7395034	0.99	\N	\N
-450	Beth	37	1	1	S. Penridge, Bob Ezrin, Peter Criss	166974	5360574	0.99	\N	\N
-451	Strutter	37	1	1	Paul Stanley, Gene Simmons	192496	6317021	0.99	\N	\N
-452	Rock And Roll All Nite	37	1	1	Paul Stanley, Gene Simmons	173609	5735902	0.99	\N	\N
-453	Cold Gin	37	1	1	Ace Frehley	262243	8609783	0.99	\N	\N
-454	Plaster Caster	37	1	1	Gene Simmons	207333	6801116	0.99	\N	\N
-455	God Gave Rock 'n' Roll To You	37	1	1	Paul Stanley, Gene Simmons, Rus Ballard, Bob Ezrin	320444	10441590	0.99	\N	\N
-456	Heart of the Night	38	1	2	\N	273737	9098263	0.99	\N	\N
-457	De La Luz	38	1	2	\N	315219	10518284	0.99	\N	\N
-458	Westwood Moon	38	1	2	\N	295627	9765802	0.99	\N	\N
-459	Midnight	38	1	2	\N	266866	8851060	0.99	\N	\N
-460	Playtime	38	1	2	\N	273580	9070880	0.99	\N	\N
-461	Surrender	38	1	2	\N	287634	9422926	0.99	\N	\N
-462	Valentino's	38	1	2	\N	296124	9848545	0.99	\N	\N
-463	Believe	38	1	2	\N	310778	10317185	0.99	\N	\N
-464	As We Sleep	38	1	2	\N	316865	10429398	0.99	\N	\N
-465	When Evening Falls	38	1	2	\N	298135	9863942	0.99	\N	\N
-466	J Squared	38	1	2	\N	288757	9480777	0.99	\N	\N
-467	Best Thing	38	1	2	\N	274259	9069394	0.99	\N	\N
-468	Maria	39	1	4	Billie Joe Armstrong -Words Green Day -Music	167262	5484747	0.99	\N	\N
-469	Poprocks And Coke	39	1	4	Billie Joe Armstrong -Words Green Day -Music	158354	5243078	0.99	\N	\N
-470	Longview	39	1	4	Billie Joe Armstrong -Words Green Day -Music	234083	7714939	0.99	\N	\N
-471	Welcome To Paradise	39	1	4	Billie Joe Armstrong -Words Green Day -Music	224208	7406008	0.99	\N	\N
-472	Basket Case	39	1	4	Billie Joe Armstrong -Words Green Day -Music	181629	5951736	0.99	\N	\N
-473	When I Come Around	39	1	4	Billie Joe Armstrong -Words Green Day -Music	178364	5839426	0.99	\N	\N
-474	She	39	1	4	Billie Joe Armstrong -Words Green Day -Music	134164	4425128	0.99	\N	\N
-475	J.A.R. (Jason Andrew Relva)	39	1	4	Mike Dirnt -Words Green Day -Music	170997	5645755	0.99	\N	\N
-476	Geek Stink Breath	39	1	4	Billie Joe Armstrong -Words Green Day -Music	135888	4408983	0.99	\N	\N
-477	Brain Stew	39	1	4	Billie Joe Armstrong -Words Green Day -Music	193149	6305550	0.99	\N	\N
-478	Jaded	39	1	4	Billie Joe Armstrong -Words Green Day -Music	90331	2950224	0.99	\N	\N
-479	Walking Contradiction	39	1	4	Billie Joe Armstrong -Words Green Day -Music	151170	4932366	0.99	\N	\N
-480	Stuck With Me	39	1	4	Billie Joe Armstrong -Words Green Day -Music	135523	4431357	0.99	\N	\N
-481	Hitchin' A Ride	39	1	4	Billie Joe Armstrong -Words Green Day -Music	171546	5616891	0.99	\N	\N
-482	Good Riddance (Time Of Your Life)	39	1	4	Billie Joe Armstrong -Words Green Day -Music	153600	5075241	0.99	\N	\N
-483	Redundant	39	1	4	Billie Joe Armstrong -Words Green Day -Music	198164	6481753	0.99	\N	\N
-484	Nice Guys Finish Last	39	1	4	Billie Joe Armstrong -Words Green Day -Music	170187	5604618	0.99	\N	\N
-485	Minority	39	1	4	Billie Joe Armstrong -Words Green Day -Music	168803	5535061	0.99	\N	\N
-486	Warning	39	1	4	Billie Joe Armstrong -Words Green Day -Music	221910	7343176	0.99	\N	\N
-487	Waiting	39	1	4	Billie Joe Armstrong -Words Green Day -Music	192757	6316430	0.99	\N	\N
-488	Macy's Day Parade	39	1	4	Billie Joe Armstrong -Words Green Day -Music	213420	7075573	0.99	\N	\N
-489	Into The Light	40	1	1	David Coverdale	76303	2452653	0.99	\N	\N
-490	River Song	40	1	1	David Coverdale	439510	14359478	0.99	\N	\N
-491	She Give Me ...	40	1	1	David Coverdale	252551	8385478	0.99	\N	\N
-492	Don't You Cry	40	1	1	David Coverdale	347036	11269612	0.99	\N	\N
-493	Love Is Blind	40	1	1	David Coverdale/Earl Slick	344999	11409720	0.99	\N	\N
-494	Slave	40	1	1	David Coverdale/Earl Slick	291892	9425200	0.99	\N	\N
-495	Cry For Love	40	1	1	Bossi/David Coverdale/Earl Slick	293015	9567075	0.99	\N	\N
-496	Living On Love	40	1	1	Bossi/David Coverdale/Earl Slick	391549	12785876	0.99	\N	\N
-497	Midnight Blue	40	1	1	David Coverdale/Earl Slick	298631	9750990	0.99	\N	\N
-498	Too Many Tears	40	1	1	Adrian Vanderberg/David Coverdale	359497	11810238	0.99	\N	\N
-499	Don't Lie To Me	40	1	1	David Coverdale/Earl Slick	283585	9288007	0.99	\N	\N
-500	Wherever You May Go	40	1	1	David Coverdale	239699	7803074	0.99	\N	\N
-501	Grito De Alerta	41	1	7	Gonzaga Jr.	202213	6539422	0.99	\N	\N
-502	NÃ£o DÃ¡ Mais Pra Segurar (Explode CoraÃ§Ã£o)	41	1	7	\N	219768	7083012	0.99	\N	\N
-503	ComeÃ§aria Tudo Outra Vez	41	1	7	\N	196545	6473395	0.99	\N	\N
-504	O Que Ã‰ O Que Ã‰ ?	41	1	7	\N	259291	8650647	0.99	\N	\N
-505	Sangrando	41	1	7	Gonzaga Jr/Gonzaguinha	169717	5494406	0.99	\N	\N
-506	Diga LÃ¡, CoraÃ§Ã£o	41	1	7	\N	255921	8280636	0.99	\N	\N
-507	Lindo Lago Do Amor	41	1	7	Gonzaga Jr.	249678	8353191	0.99	\N	\N
-508	Eu Apenas Queria Que VoÃ§Ãª Soubesse	41	1	7	\N	155637	5130056	0.99	\N	\N
-509	Com A Perna No Mundo	41	1	7	Gonzaga Jr.	227448	7747108	0.99	\N	\N
-510	E Vamos Ã€ Luta	41	1	7	\N	222406	7585112	0.99	\N	\N
-511	Um Homem TambÃ©m Chora (Guerreiro Menino)	41	1	7	\N	207229	6854219	0.99	\N	\N
-512	Comportamento Geral	41	1	7	Gonzaga Jr	181577	5997444	0.99	\N	\N
-513	Ponto De InterrogaÃ§Ã£o	41	1	7	\N	180950	5946265	0.99	\N	\N
-514	Espere Por Mim, Morena	41	1	7	Gonzaguinha	207072	6796523	0.99	\N	\N
-515	Meia-Lua Inteira	23	1	7	\N	222093	7466288	0.99	\N	\N
-516	Voce e Linda	23	1	7	\N	242938	8050268	0.99	\N	\N
-517	Um Indio	23	1	7	\N	195944	6453213	0.99	\N	\N
-518	Podres Poderes	23	1	7	\N	259761	8622495	0.99	\N	\N
-519	Voce Nao Entende Nada - Cotidiano	23	1	7	\N	421982	13885612	0.99	\N	\N
-520	O Estrangeiro	23	1	7	\N	374700	12472890	0.99	\N	\N
-521	Menino Do Rio	23	1	7	\N	147670	4862277	0.99	\N	\N
-522	Qualquer Coisa	23	1	7	\N	193410	6372433	0.99	\N	\N
-523	Sampa	23	1	7	\N	185051	6151831	0.99	\N	\N
-524	Queixa	23	1	7	\N	299676	9953962	0.99	\N	\N
-525	O Leaozinho	23	1	7	\N	184398	6098150	0.99	\N	\N
-526	Fora Da Ordem	23	1	7	\N	354011	11746781	0.99	\N	\N
-527	Terra	23	1	7	\N	401319	13224055	0.99	\N	\N
-528	Alegria, Alegria	23	1	7	\N	169221	5497025	0.99	\N	\N
-529	Balada Do Louco	42	1	4	Arnaldo Baptista - Rita Lee	241057	7852328	0.99	\N	\N
-530	Ando Meio Desligado	42	1	4	Arnaldo Baptista - Rita Lee -  SÃ©rgio Dias	287817	9484504	0.99	\N	\N
-531	Top Top	42	1	4	Os Mutantes - Arnolpho Lima Filho	146938	4875374	0.99	\N	\N
-532	Baby	42	1	4	Caetano Veloso	177188	5798202	0.99	\N	\N
-533	A E O Z	42	1	4	Mutantes	518556	16873005	0.99	\N	\N
-534	Panis Et Circenses	42	1	4	Caetano Veloso - Gilberto Gil	125152	4069688	0.99	\N	\N
-535	ChÃ£o De Estrelas	42	1	4	Orestes Barbosa-SÃ­lvio Caldas	284813	9433620	0.99	\N	\N
-536	Vida De Cachorro	42	1	4	Rita Lee - Arnaldo Baptista - SÃ©rgio Baptista	195186	6411149	0.99	\N	\N
-537	Bat Macumba	42	1	4	Gilberto Gil - Caetano Veloso	187794	6295223	0.99	\N	\N
-538	Desculpe Babe	42	1	4	Arnaldo Baptista - Rita Lee	170422	5637959	0.99	\N	\N
-539	Rita Lee	42	1	4	Arnaldo Baptista/Rita Lee/SÃ©rgio Dias	189257	6270503	0.99	\N	\N
-540	Posso Perder Minha Mulher, Minha MÃ£e, Desde Que Eu Tenha O Rock And Roll	42	1	4	Arnaldo Baptista - Rita Lee - Arnolpho Lima Filho	222955	7346254	0.99	\N	\N
-541	Banho De Lua	42	1	4	B. de Filippi - F. Migliaci - VersÃ£o: Fred Jorge	221831	7232123	0.99	\N	\N
-542	Meu Refrigerador NÃ£o Funciona	42	1	4	Arnaldo Baptista - Rita Lee - SÃ©rgio Dias	382981	12495906	0.99	\N	\N
-543	Burn	43	1	1	Coverdale/Lord/Paice	453955	14775708	0.99	\N	\N
-544	Stormbringer	43	1	1	Coverdale	277133	9050022	0.99	\N	\N
-545	Gypsy	43	1	1	Coverdale/Hughes/Lord/Paice	339173	11046952	0.99	\N	\N
-546	Lady Double Dealer	43	1	1	Coverdale	233586	7608759	0.99	\N	\N
-547	Mistreated	43	1	1	Coverdale	758648	24596235	0.99	\N	\N
-548	Smoke On The Water	43	1	1	Gillan/Glover/Lord/Paice	618031	20103125	0.99	\N	\N
-549	You Fool No One	43	1	1	Coverdale/Lord/Paice	804101	26369966	0.99	\N	\N
-550	Custard Pie	44	1	1	Jimmy Page/Robert Plant	253962	8348257	0.99	\N	\N
-551	The Rover	44	1	1	Jimmy Page/Robert Plant	337084	11011286	0.99	\N	\N
-552	In My Time Of Dying	44	1	1	John Bonham/John Paul Jones	666017	21676727	0.99	\N	\N
-553	Houses Of The Holy	44	1	1	Jimmy Page/Robert Plant	242494	7972503	0.99	\N	\N
-554	Trampled Under Foot	44	1	1	John Paul Jones	336692	11154468	0.99	\N	\N
-555	Kashmir	44	1	1	John Bonham	508604	16686580	0.99	\N	\N
-556	Imperatriz	45	1	7	Guga/Marquinho Lessa/Tuninho Professor	339173	11348710	0.99	\N	\N
-557	Beija-Flor	45	1	7	Caruso/Cleber/Deo/Osmar	327000	10991159	0.99	\N	\N
-558	Viradouro	45	1	7	Dadinho/Gilbreto Gomes/Gustavo/P.C. Portugal/R. Mocoto	344320	11484362	0.99	\N	\N
-559	Mocidade	45	1	7	Domenil/J. Brito/Joaozinho/Rap, Marcelo Do	261720	8817757	0.99	\N	\N
-560	Unidos Da Tijuca	45	1	7	Douglas/Neves, Vicente Das/Silva, Gilmar L./Toninho Gentil/Wantuir	338834	11440689	0.99	\N	\N
-561	Salgueiro	45	1	7	Augusto/Craig Negoescu/Rocco Filho/Saara, Ze Carlos Da	305920	10294741	0.99	\N	\N
-562	Mangueira	45	1	7	Bizuca/ClÃ³vis PÃª/Gilson Bernini/Marelo D'Aguia	298318	9999506	0.99	\N	\N
-563	UniÃ£o Da Ilha	45	1	7	Dito/Djalma Falcao/Ilha, Almir Da/MÃ¡rcio AndrÃ©	330945	11100945	0.99	\N	\N
-564	Grande Rio	45	1	7	Carlos Santos/Ciro/Claudio Russo/ZÃ© Luiz	307252	10251428	0.99	\N	\N
-565	Portela	45	1	7	Flavio Bororo/Paulo Apparicio/Wagner Alves/Zeca Sereno	319608	10712216	0.99	\N	\N
-566	Caprichosos	45	1	7	Gule/Jorge 101/Lequinho/Luiz Piao	351320	11870956	0.99	\N	\N
-567	TradiÃ§Ã£o	45	1	7	Adalto Magalha/Lourenco	269165	9114880	0.99	\N	\N
-568	ImpÃ©rio Serrano	45	1	7	Arlindo Cruz/Carlos Sena/Elmo Caetano/Mauricao	334942	11161196	0.99	\N	\N
-569	Tuiuti	45	1	7	Claudio Martins/David Lima/Kleber Rodrigues/Livre, Cesare Som	259657	8749492	0.99	\N	\N
-570	(Da Le) Yaleo	46	1	1	Santana	353488	11769507	0.99	\N	\N
-571	Love Of My Life	46	1	1	Carlos Santana & Dave Matthews	347820	11634337	0.99	\N	\N
-572	Put Your Lights On	46	1	1	E. Shrody	285178	9394769	0.99	\N	\N
-573	Africa Bamba	46	1	1	I. Toure, S. Tidiane Toure, Carlos Santana & K. Perazzo	282827	9492487	0.99	\N	\N
-574	Smooth	46	1	1	M. Itaal Shur & Rob Thomas	298161	9867455	0.99	\N	\N
-575	Do You Like The Way	46	1	1	L. Hill	354899	11741062	0.99	\N	\N
-576	Maria Maria	46	1	1	W. Jean, J. Duplessis, Carlos Santana, K. Perazzo & R. Rekow	262635	8664601	0.99	\N	\N
-577	Migra	46	1	1	R. Taha, Carlos Santana & T. Lindsay	329064	10963305	0.99	\N	\N
-578	Corazon Espinado	46	1	1	F. Olivera	276114	9206802	0.99	\N	\N
-579	Wishing It Was	46	1	1	Eale-Eye Cherry, M. Simpson, J. King & M. Nishita	292832	9771348	0.99	\N	\N
-580	El Farol	46	1	1	Carlos Santana & KC Porter	291160	9599353	0.99	\N	\N
-581	Primavera	46	1	1	KC Porter & JB Eckl	378618	12504234	0.99	\N	\N
-582	The Calling	46	1	1	Carlos Santana & C. Thompson	747755	24703884	0.99	\N	\N
-583	SoluÃ§Ã£o	47	1	7	\N	247431	8100449	0.99	\N	\N
-584	Manuel	47	1	7	\N	230269	7677671	0.99	\N	\N
-585	Entre E OuÃ§a	47	1	7	\N	286302	9391004	0.99	\N	\N
-586	Um Contrato Com Deus	47	1	7	\N	202501	6636465	0.99	\N	\N
-587	Um Jantar Pra Dois	47	1	7	\N	244009	8021589	0.99	\N	\N
-588	Vamos DanÃ§ar	47	1	7	\N	226194	7617432	0.99	\N	\N
-589	Um Love	47	1	7	\N	181603	6095524	0.99	\N	\N
-590	Seis Da Tarde	47	1	7	\N	238445	7935898	0.99	\N	\N
-591	Baixo Rio	47	1	7	\N	198008	6521676	0.99	\N	\N
-592	Sombras Do Meu Destino	47	1	7	\N	280685	9161539	0.99	\N	\N
-593	Do You Have Other Loves?	47	1	7	\N	295235	9604273	0.99	\N	\N
-594	Agora Que O Dia Acordou	47	1	7	\N	323213	10572752	0.99	\N	\N
-595	JÃ¡!!!	47	1	7	\N	217782	7103608	0.99	\N	\N
-596	A Rua	47	1	7	\N	238027	7930264	0.99	\N	\N
-597	Now's The Time	48	1	2	Miles Davis	197459	6358868	0.99	\N	\N
-598	Jeru	48	1	2	Miles Davis	193410	6222536	0.99	\N	\N
-599	Compulsion	48	1	2	Miles Davis	345025	11254474	0.99	\N	\N
-600	Tempus Fugit	48	1	2	Miles Davis	231784	7548434	0.99	\N	\N
-601	Walkin'	48	1	2	Miles Davis	807392	26411634	0.99	\N	\N
-602	'Round Midnight	48	1	2	Miles Davis	357459	11590284	0.99	\N	\N
-603	Bye Bye Blackbird	48	1	2	Miles Davis	476003	15549224	0.99	\N	\N
-604	New Rhumba	48	1	2	Miles Davis	277968	9018024	0.99	\N	\N
-605	Generique	48	1	2	Miles Davis	168777	5437017	0.99	\N	\N
-606	Summertime	48	1	2	Miles Davis	200437	6461370	0.99	\N	\N
-607	So What	48	1	2	Miles Davis	564009	18360449	0.99	\N	\N
-608	The Pan Piper	48	1	2	Miles Davis	233769	7593713	0.99	\N	\N
-609	Someday My Prince Will Come	48	1	2	Miles Davis	544078	17890773	0.99	\N	\N
-610	My Funny Valentine (Live)	49	1	2	Miles Davis	907520	29416781	0.99	\N	\N
-611	E.S.P.	49	1	2	Miles Davis	330684	11079866	0.99	\N	\N
-612	Nefertiti	49	1	2	Miles Davis	473495	15478450	0.99	\N	\N
-613	Petits Machins (Little Stuff)	49	1	2	Miles Davis	487392	16131272	0.99	\N	\N
-614	Miles Runs The Voodoo Down	49	1	2	Miles Davis	843964	27967919	0.99	\N	\N
-615	Little Church (Live)	49	1	2	Miles Davis	196101	6273225	0.99	\N	\N
-616	Black Satin	49	1	2	Miles Davis	316682	10529483	0.99	\N	\N
-617	Jean Pierre (Live)	49	1	2	Miles Davis	243461	7955114	0.99	\N	\N
-618	Time After Time	49	1	2	Miles Davis	220734	7292197	0.99	\N	\N
-619	Portia	49	1	2	Miles Davis	378775	12520126	0.99	\N	\N
-620	Space Truckin'	50	1	1	Blackmore/Gillan/Glover/Lord/Paice	1196094	39267613	0.99	\N	\N
-621	Going Down / Highway Star	50	1	1	Gillan/Glover/Lord/Nix - Blackmore/Paice	913658	29846063	0.99	\N	\N
-622	Mistreated (Alternate Version)	50	1	1	Blackmore/Coverdale	854700	27775442	0.99	\N	\N
-623	You Fool No One (Alternate Version)	50	1	1	Blackmore/Coverdale/Lord/Paice	763924	24887209	0.99	\N	\N
-624	Jeepers Creepers	51	1	2	\N	185965	5991903	0.99	\N	\N
-625	Blue Rythm Fantasy	51	1	2	\N	348212	11204006	0.99	\N	\N
-626	Drum Boogie	51	1	2	\N	191555	6185636	0.99	\N	\N
-627	Let Me Off Uptown	51	1	2	\N	187637	6034685	0.99	\N	\N
-628	Leave Us Leap	51	1	2	\N	182726	5898810	0.99	\N	\N
-629	Opus No.1	51	1	2	\N	179800	5846041	0.99	\N	\N
-630	Boogie Blues	51	1	2	\N	204199	6603153	0.99	\N	\N
-631	How High The Moon	51	1	2	\N	201430	6529487	0.99	\N	\N
-632	Disc Jockey Jump	51	1	2	\N	193149	6260820	0.99	\N	\N
-633	Up An' Atom	51	1	2	\N	179565	5822645	0.99	\N	\N
-634	Bop Boogie	51	1	2	\N	189596	6093124	0.99	\N	\N
-635	Lemon Drop	51	1	2	\N	194089	6287531	0.99	\N	\N
-636	Coronation Drop	51	1	2	\N	176222	5899898	0.99	\N	\N
-637	Overtime	51	1	2	\N	163030	5432236	0.99	\N	\N
-638	Imagination	51	1	2	\N	289306	9444385	0.99	\N	\N
-639	Don't Take Your Love From Me	51	1	2	\N	282331	9244238	0.99	\N	\N
-640	Midget	51	1	2	\N	217025	7257663	0.99	\N	\N
-641	I'm Coming Virginia	51	1	2	\N	280163	9209827	0.99	\N	\N
-642	Payin' Them Dues Blues	51	1	2	\N	198556	6536918	0.99	\N	\N
-643	Jungle Drums	51	1	2	\N	199627	6546063	0.99	\N	\N
-644	Showcase	51	1	2	\N	201560	6697510	0.99	\N	\N
-645	Swedish Schnapps	51	1	2	\N	191268	6359750	0.99	\N	\N
-646	Samba Da BÃªnÃ§Ã£o	52	1	11	\N	409965	13490008	0.99	\N	\N
-647	Pot-Pourri N.Âº 4	52	1	11	\N	392437	13125975	0.99	\N	\N
-648	Onde Anda VocÃª	52	1	11	\N	168437	5550356	0.99	\N	\N
-649	Samba Da Volta	52	1	11	\N	170631	5676090	0.99	\N	\N
-650	Canto De Ossanha	52	1	11	\N	204956	6771624	0.99	\N	\N
-651	Pot-Pourri N.Âº 5	52	1	11	\N	219898	7117769	0.99	\N	\N
-652	Formosa	52	1	11	\N	137482	4560873	0.99	\N	\N
-653	Como Ã‰ Duro Trabalhar	52	1	11	\N	226168	7541177	0.99	\N	\N
-654	Minha Namorada	52	1	11	\N	244297	7927967	0.99	\N	\N
-655	Por Que SerÃ¡	52	1	11	\N	162142	5371483	0.99	\N	\N
-656	Berimbau	52	1	11	\N	190667	6335548	0.99	\N	\N
-657	Deixa	52	1	11	\N	179826	5932799	0.99	\N	\N
-658	Pot-Pourri N.Âº 2	52	1	11	\N	211748	6878359	0.99	\N	\N
-659	Samba Em PrelÃºdio	52	1	11	\N	212636	6923473	0.99	\N	\N
-660	Carta Ao Tom 74	52	1	11	\N	162560	5382354	0.99	\N	\N
-661	Linha de Passe (JoÃ£o Bosco)	53	1	7	\N	230948	7902328	0.99	\N	\N
-662	Pela Luz dos Olhos Teus (MiÃºcha e Tom Jobim)	53	1	7	\N	163970	5399626	0.99	\N	\N
-663	ChÃ£o de Giz (Elba Ramalho)	53	1	7	\N	274834	9016916	0.99	\N	\N
-664	Marina (Dorival Caymmi)	53	1	7	\N	172643	5523628	0.99	\N	\N
-665	Aquarela (Toquinho)	53	1	7	\N	259944	8480140	0.99	\N	\N
-666	CoraÃ§Ã£o do Agreste (FafÃ¡ de BelÃ©m)	53	1	7	\N	258194	8380320	0.99	\N	\N
-667	Dona (Roupa Nova)	53	1	7	\N	243356	7991295	0.99	\N	\N
-668	ComeÃ§aria Tudo Outra Vez (Maria Creuza)	53	1	7	\N	206994	6851151	0.99	\N	\N
-669	CaÃ§ador de Mim (SÃ¡ & Guarabyra)	53	1	7	\N	238341	7751360	0.99	\N	\N
-670	Romaria (Renato Teixeira)	53	1	7	\N	244793	8033885	0.99	\N	\N
-671	As Rosas NÃ£o Falam (Beth Carvalho)	53	1	7	\N	116767	3836641	0.99	\N	\N
-672	Wave (Os Cariocas)	53	1	7	\N	130063	4298006	0.99	\N	\N
-673	Garota de Ipanema (Dick Farney)	53	1	7	\N	174367	5767474	0.99	\N	\N
-674	Preciso Apender a Viver SÃ³ (Maysa)	53	1	7	\N	143464	4642359	0.99	\N	\N
-675	Susie Q	54	1	1	Hawkins-Lewis-Broadwater	275565	9043825	0.99	\N	\N
-676	I Put A Spell On You	54	1	1	Jay Hawkins	272091	8943000	0.99	\N	\N
-677	Proud Mary	54	1	1	J. C. Fogerty	189022	6229590	0.99	\N	\N
-678	Bad Moon Rising	54	1	1	J. C. Fogerty	140146	4609835	0.99	\N	\N
-679	Lodi	54	1	1	J. C. Fogerty	191451	6260214	0.99	\N	\N
-680	Green River	54	1	1	J. C. Fogerty	154279	5105874	0.99	\N	\N
-681	Commotion	54	1	1	J. C. Fogerty	162899	5354252	0.99	\N	\N
-682	Down On The Corner	54	1	1	J. C. Fogerty	164858	5521804	0.99	\N	\N
-683	Fortunate Son	54	1	1	J. C. Fogerty	140329	4617559	0.99	\N	\N
-684	Travelin' Band	54	1	1	J. C. Fogerty	129358	4270414	0.99	\N	\N
-685	Who'll Stop The Rain	54	1	1	J. C. Fogerty	149394	4899579	0.99	\N	\N
-686	Up Around The Bend	54	1	1	J. C. Fogerty	162429	5368701	0.99	\N	\N
-687	Run Through The Jungle	54	1	1	J. C. Fogerty	186044	6156567	0.99	\N	\N
-688	Lookin' Out My Back Door	54	1	1	J. C. Fogerty	152946	5034670	0.99	\N	\N
-689	Long As I Can See The Light	54	1	1	J. C. Fogerty	213237	6924024	0.99	\N	\N
-690	I Heard It Through The Grapevine	54	1	1	Whitfield-Strong	664894	21947845	0.99	\N	\N
-691	Have You Ever Seen The Rain?	54	1	1	J. C. Fogerty	160052	5263675	0.99	\N	\N
-692	Hey Tonight	54	1	1	J. C. Fogerty	162847	5343807	0.99	\N	\N
-693	Sweet Hitch-Hiker	54	1	1	J. C. Fogerty	175490	5716603	0.99	\N	\N
-694	Someday Never Comes	54	1	1	J. C. Fogerty	239360	7945235	0.99	\N	\N
-695	Walking On The Water	55	1	1	J.C. Fogerty	281286	9302129	0.99	\N	\N
-696	Suzie-Q, Pt. 2	55	1	1	J.C. Fogerty	244114	7986637	0.99	\N	\N
-697	Born On The Bayou	55	1	1	J.C. Fogerty	316630	10361866	0.99	\N	\N
-698	Good Golly Miss Molly	55	1	1	J.C. Fogerty	163604	5348175	0.99	\N	\N
-699	Tombstone Shadow	55	1	1	J.C. Fogerty	218880	7209080	0.99	\N	\N
-700	Wrote A Song For Everyone	55	1	1	J.C. Fogerty	296385	9675875	0.99	\N	\N
-701	Night Time Is The Right Time	55	1	1	J.C. Fogerty	190119	6211173	0.99	\N	\N
-702	Cotton Fields	55	1	1	J.C. Fogerty	178181	5919224	0.99	\N	\N
-703	It Came Out Of The Sky	55	1	1	J.C. Fogerty	176718	5807474	0.99	\N	\N
-704	Don't Look Now	55	1	1	J.C. Fogerty	131918	4366455	0.99	\N	\N
-705	The Midnight Special	55	1	1	J.C. Fogerty	253596	8297482	0.99	\N	\N
-706	Before You Accuse Me	55	1	1	J.C. Fogerty	207804	6815126	0.99	\N	\N
-707	My Baby Left Me	55	1	1	J.C. Fogerty	140460	4633440	0.99	\N	\N
-708	Pagan Baby	55	1	1	J.C. Fogerty	385619	12713813	0.99	\N	\N
-709	(Wish I Could) Hideaway	55	1	1	J.C. Fogerty	228466	7432978	0.99	\N	\N
-710	It's Just A Thought	55	1	1	J.C. Fogerty	237374	7778319	0.99	\N	\N
-711	Molina	55	1	1	J.C. Fogerty	163239	5390811	0.99	\N	\N
-712	Born To Move	55	1	1	J.C. Fogerty	342804	11260814	0.99	\N	\N
-713	Lookin' For A Reason	55	1	1	J.C. Fogerty	209789	6933135	0.99	\N	\N
-714	Hello Mary Lou	55	1	1	J.C. Fogerty	132832	4476563	0.99	\N	\N
-715	Gatas ExtraordinÃ¡rias	56	1	7	\N	212506	7095702	0.99	\N	\N
-716	Brasil	56	1	7	\N	243696	7911683	0.99	\N	\N
-717	Eu Sou Neguinha (Ao Vivo)	56	1	7	\N	251768	8376000	0.99	\N	\N
-718	GeraÃ§Ã£o Coca-Cola (Ao Vivo)	56	1	7	\N	228153	7573301	0.99	\N	\N
-719	Lanterna Dos Afogados	56	1	7	\N	204538	6714582	0.99	\N	\N
-720	CoronÃ© Antonio Bento	56	1	7	\N	200437	6713066	0.99	\N	\N
-721	VocÃª Passa, Eu Acho GraÃ§a (Ao Vivo)	56	1	7	\N	206733	6943576	0.99	\N	\N
-722	Meu Mundo Fica Completo (Com VocÃª)	56	1	7	\N	247771	8322240	0.99	\N	\N
-723	1Â° De Julho	56	1	7	\N	270262	9017535	0.99	\N	\N
-724	MÃºsica Urbana 2	56	1	7	\N	194899	6383472	0.99	\N	\N
-725	Vida Bandida (Ao Vivo)	56	1	7	\N	192626	6360785	0.99	\N	\N
-726	Palavras Ao Vento	56	1	7	\N	212453	7048676	0.99	\N	\N
-727	NÃ£o Sei O Que Eu Quero Da Vida	56	1	7	\N	151849	5024963	0.99	\N	\N
-728	Woman Is The Nigger Of The World (Ao Vivo)	56	1	7	\N	298919	9724145	0.99	\N	\N
-729	Juventude Transviada (Ao Vivo)	56	1	7	\N	278622	9183808	0.99	\N	\N
-730	Malandragem	57	1	7	\N	247588	8165048	0.99	\N	\N
-731	O Segundo Sol	57	1	7	\N	252133	8335629	0.99	\N	\N
-732	Smells Like Teen Spirit (Ao Vivo)	57	1	7	\N	316865	10384506	0.99	\N	\N
-733	E.C.T.	57	1	7	\N	227500	7571834	0.99	\N	\N
-734	Todo Amor Que Houver Nesta Vida	57	1	7	\N	227160	7420347	0.99	\N	\N
-735	MetrÃ´. Linha 743	57	1	7	\N	174654	5837495	0.99	\N	\N
-736	NÃ³s (Ao Vivo)	57	1	7	\N	193828	6498661	0.99	\N	\N
-737	Na CadÃªncia Do Samba	57	1	7	\N	196075	6483952	0.99	\N	\N
-738	AdmirÃ¡vel Gado Novo	57	1	7	\N	274390	9144031	0.99	\N	\N
-739	Eleanor Rigby	57	1	7	\N	189466	6303205	0.99	\N	\N
-740	Socorro	57	1	7	\N	258586	8549393	0.99	\N	\N
-741	Blues Da Piedade	57	1	7	\N	257123	8472964	0.99	\N	\N
-742	Rubens	57	1	7	\N	211853	7026317	0.99	\N	\N
-743	NÃ£o Deixe O Samba Morrer - Cassia Eller e Alcione	57	1	7	\N	268173	8936345	0.99	\N	\N
-744	Mis Penas Lloraba Yo (Ao Vivo) Soy Gitano (Tangos)	57	1	7	\N	188473	6195854	0.99	\N	\N
-745	Comin' Home	58	1	1	Bolin/Coverdale/Paice	235781	7644604	0.99	\N	\N
-746	Lady Luck	58	1	1	Cook/Coverdale	168202	5501379	0.99	\N	\N
-747	Gettin' Tighter	58	1	1	Bolin/Hughes	218044	7176909	0.99	\N	\N
-748	Dealer	58	1	1	Bolin/Coverdale	230922	7591066	0.99	\N	\N
-749	I Need Love	58	1	1	Bolin/Coverdale	263836	8701064	0.99	\N	\N
-750	Drifter	58	1	1	Bolin/Coverdale	242834	8001505	0.99	\N	\N
-751	Love Child	58	1	1	Bolin/Coverdale	188160	6173806	0.99	\N	\N
-752	This Time Around / Owed to 'G' [Instrumental]	58	1	1	Bolin/Hughes/Lord	370102	11995679	0.99	\N	\N
-753	You Keep On Moving	58	1	1	Coverdale/Hughes	319111	10447868	0.99	\N	\N
-754	Speed King	59	1	1	Blackmore, Gillan, Glover, Lord, Paice	264385	8587578	0.99	\N	\N
-755	Bloodsucker	59	1	1	Blackmore, Gillan, Glover, Lord, Paice	256261	8344405	0.99	\N	\N
-756	Child In Time	59	1	1	Blackmore, Gillan, Glover, Lord, Paice	620460	20230089	0.99	\N	\N
-757	Flight Of The Rat	59	1	1	Blackmore, Gillan, Glover, Lord, Paice	478302	15563967	0.99	\N	\N
-758	Into The Fire	59	1	1	Blackmore, Gillan, Glover, Lord, Paice	210259	6849310	0.99	\N	\N
-759	Living Wreck	59	1	1	Blackmore, Gillan, Glover, Lord, Paice	274886	8993056	0.99	\N	\N
-760	Hard Lovin' Man	59	1	1	Blackmore, Gillan, Glover, Lord, Paice	431203	13931179	0.99	\N	\N
-761	Fireball	60	1	1	Ritchie Blackmore, Ian Gillan, Roger Glover, Jon Lord, Ian Paice	204721	6714807	0.99	\N	\N
-762	No No No	60	1	1	Ritchie Blackmore, Ian Gillan, Roger Glover, Jon Lord, Ian Paice	414902	13646606	0.99	\N	\N
-763	Strange Kind Of Woman	60	1	1	Ritchie Blackmore, Ian Gillan, Roger Glover, Jon Lord, Ian Paice	247092	8072036	0.99	\N	\N
-764	Anyone's Daughter	60	1	1	Ritchie Blackmore, Ian Gillan, Roger Glover, Jon Lord, Ian Paice	284682	9354480	0.99	\N	\N
-765	The Mule	60	1	1	Ritchie Blackmore, Ian Gillan, Roger Glover, Jon Lord, Ian Paice	322063	10638390	0.99	\N	\N
-766	Fools	60	1	1	Ritchie Blackmore, Ian Gillan, Roger Glover, Jon Lord, Ian Paice	500427	16279366	0.99	\N	\N
-767	No One Came	60	1	1	Ritchie Blackmore, Ian Gillan, Roger Glover, Jon Lord, Ian Paice	385880	12643813	0.99	\N	\N
-768	Knocking At Your Back Door	61	1	1	Richie Blackmore, Ian Gillian, Roger Glover	424829	13779332	0.99	\N	\N
-769	Bad Attitude	61	1	1	Richie Blackmore, Ian Gillian, Roger Glover, Jon Lord	307905	10035180	0.99	\N	\N
-770	Child In Time (Son Of Aleric - Instrumental)	61	1	1	Richie Blackmore, Ian Gillian, Roger Glover, Jon Lord, Ian Paice	602880	19712753	0.99	\N	\N
-771	Nobody's Home	61	1	1	Richie Blackmore, Ian Gillian, Roger Glover, Jon Lord, Ian Paice	243017	7929493	0.99	\N	\N
-772	Black Night	61	1	1	Richie Blackmore, Ian Gillian, Roger Glover, Jon Lord, Ian Paice	368770	12058906	0.99	\N	\N
-773	Perfect Strangers	61	1	1	Richie Blackmore, Ian Gillian, Roger Glover	321149	10445353	0.99	\N	\N
-774	The Unwritten Law	61	1	1	Richie Blackmore, Ian Gillian, Roger Glover, Ian Paice	295053	9740361	0.99	\N	\N
-775	Call Of The Wild	61	1	1	Richie Blackmore, Ian Gillian, Roger Glover, Jon Lord	293851	9575295	0.99	\N	\N
-776	Hush	61	1	1	South	213054	6944928	0.99	\N	\N
-777	Smoke On The Water	61	1	1	Richie Blackmore, Ian Gillian, Roger Glover, Jon Lord, Ian Paice	464378	15180849	0.99	\N	\N
-778	Space Trucking	61	1	1	Richie Blackmore, Ian Gillian, Roger Glover, Jon Lord, Ian Paice	341185	11122183	0.99	\N	\N
-779	Highway Star	62	1	1	Ian Gillan/Ian Paice/Jon Lord/Ritchie Blckmore/Roger Glover	368770	12012452	0.99	\N	\N
-780	Maybe I'm A Leo	62	1	1	Ian Gillan/Ian Paice/Jon Lord/Ritchie Blckmore/Roger Glover	290455	9502646	0.99	\N	\N
-781	Pictures Of Home	62	1	1	Ian Gillan/Ian Paice/Jon Lord/Ritchie Blckmore/Roger Glover	303777	9903835	0.99	\N	\N
-782	Never Before	62	1	1	Ian Gillan/Ian Paice/Jon Lord/Ritchie Blckmore/Roger Glover	239830	7832790	0.99	\N	\N
-783	Smoke On The Water	62	1	1	Ian Gillan/Ian Paice/Jon Lord/Ritchie Blckmore/Roger Glover	340871	11246496	0.99	\N	\N
-784	Lazy	62	1	1	Ian Gillan/Ian Paice/Jon Lord/Ritchie Blckmore/Roger Glover	442096	14397671	0.99	\N	\N
-785	Space Truckin'	62	1	1	Ian Gillan/Ian Paice/Jon Lord/Ritchie Blckmore/Roger Glover	272796	8981030	0.99	\N	\N
-786	Vavoom : Ted The Mechanic	63	1	1	Ian Gillan, Roger Glover, Jon Lord, Steve Morse, Ian Paice	257384	8510755	0.99	\N	\N
-787	Loosen My Strings	63	1	1	Ian Gillan, Roger Glover, Jon Lord, Steve Morse, Ian Paice	359680	11702232	0.99	\N	\N
-788	Soon Forgotten	63	1	1	Ian Gillan, Roger Glover, Jon Lord, Steve Morse, Ian Paice	287791	9401383	0.99	\N	\N
-789	Sometimes I Feel Like Screaming	63	1	1	Ian Gillan, Roger Glover, Jon Lord, Steve Morse, Ian Paice	451840	14789410	0.99	\N	\N
-790	Cascades : I'm Not Your Lover	63	1	1	Ian Gillan, Roger Glover, Jon Lord, Steve Morse, Ian Paice	283689	9209693	0.99	\N	\N
-791	The Aviator	63	1	1	Ian Gillan, Roger Glover, Jon Lord, Steve Morse, Ian Paice	320992	10532053	0.99	\N	\N
-792	Rosa's Cantina	63	1	1	Ian Gillan, Roger Glover, Jon Lord, Steve Morse, Ian Paice	312372	10323804	0.99	\N	\N
-793	A Castle Full Of Rascals	63	1	1	Ian Gillan, Roger Glover, Jon Lord, Steve Morse, Ian Paice	311693	10159566	0.99	\N	\N
-794	A Touch Away	63	1	1	Ian Gillan, Roger Glover, Jon Lord, Steve Morse, Ian Paice	276323	9098561	0.99	\N	\N
-795	Hey Cisco	63	1	1	Ian Gillan, Roger Glover, Jon Lord, Steve Morse, Ian Paice	354089	11600029	0.99	\N	\N
-796	Somebody Stole My Guitar	63	1	1	Ian Gillan, Roger Glover, Jon Lord, Steve Morse, Ian Paice	249443	8180421	0.99	\N	\N
-797	The Purpendicular Waltz	63	1	1	Ian Gillan, Roger Glover, Jon Lord, Steve Morse, Ian Paice	283924	9299131	0.99	\N	\N
-798	King Of Dreams	64	1	1	Blackmore, Glover, Turner	328385	10733847	0.99	\N	\N
-799	The Cut Runs Deep	64	1	1	Blackmore, Glover, Turner, Lord, Paice	342752	11191650	0.99	\N	\N
-800	Fire In The Basement	64	1	1	Blackmore, Glover, Turner, Lord, Paice	283977	9267550	0.99	\N	\N
-801	Truth Hurts	64	1	1	Blackmore, Glover, Turner	314827	10224612	0.99	\N	\N
-802	Breakfast In Bed	64	1	1	Blackmore, Glover, Turner	317126	10323804	0.99	\N	\N
-803	Love Conquers All	64	1	1	Blackmore, Glover, Turner	227186	7328516	0.99	\N	\N
-804	Fortuneteller	64	1	1	Blackmore, Glover, Turner, Lord, Paice	349335	11369671	0.99	\N	\N
-805	Too Much Is Not Enough	64	1	1	Turner, Held, Greenwood	257724	8382800	0.99	\N	\N
-806	Wicked Ways	64	1	1	Blackmore, Glover, Turner, Lord, Paice	393691	12826582	0.99	\N	\N
-807	Stormbringer	65	1	1	D.Coverdale/R.Blackmore/Ritchie Blackmore	246413	8044864	0.99	\N	\N
-808	Love Don't Mean a Thing	65	1	1	D.Coverdale/G.Hughes/Glenn Hughes/I.Paice/Ian Paice/J.Lord/John Lord/R.Blackmore/Ritchie Blackmore	263862	8675026	0.99	\N	\N
-809	Holy Man	65	1	1	D.Coverdale/G.Hughes/Glenn Hughes/J.Lord/John Lord	270236	8818093	0.99	\N	\N
-810	Hold On	65	1	1	D.Coverdal/G.Hughes/Glenn Hughes/I.Paice/Ian Paice/J.Lord/John Lord	306860	10022428	0.99	\N	\N
-811	Lady Double Dealer	65	1	1	D.Coverdale/R.Blackmore/Ritchie Blackmore	201482	6554330	0.99	\N	\N
-812	You Can't Do it Right (With the One You Love)	65	1	1	D.Coverdale/G.Hughes/Glenn Hughes/R.Blackmore/Ritchie Blackmore	203755	6709579	0.99	\N	\N
-813	High Ball Shooter	65	1	1	D.Coverdale/G.Hughes/Glenn Hughes/I.Paice/Ian Paice/J.Lord/John Lord/R.Blackmore/Ritchie Blackmore	267833	8772471	0.99	\N	\N
-814	The Gypsy	65	1	1	D.Coverdale/G.Hughes/Glenn Hughes/I.Paice/Ian Paice/J.Lord/John Lord/R.Blackmore/Ritchie Blackmore	242886	7946614	0.99	\N	\N
-815	Soldier Of Fortune	65	1	1	D.Coverdale/R.Blackmore/Ritchie Blackmore	193750	6315321	0.99	\N	\N
-816	The Battle Rages On	66	1	1	ian paice/jon lord	356963	11626228	0.99	\N	\N
-817	Lick It Up	66	1	1	roger glover	240274	7792604	0.99	\N	\N
-818	Anya	66	1	1	jon lord/roger glover	392437	12754921	0.99	\N	\N
-819	Talk About Love	66	1	1	roger glover	247823	8072171	0.99	\N	\N
-820	Time To Kill	66	1	1	roger glover	351033	11354742	0.99	\N	\N
-821	Ramshackle Man	66	1	1	roger glover	334445	10874679	0.99	\N	\N
-822	A Twist In The Tail	66	1	1	roger glover	257462	8413103	0.99	\N	\N
-823	Nasty Piece Of Work	66	1	1	jon lord/roger glover	276662	9076997	0.99	\N	\N
-824	Solitaire	66	1	1	roger glover	282226	9157021	0.99	\N	\N
-825	One Man's Meat	66	1	1	roger glover	278804	9068960	0.99	\N	\N
-826	Pour Some Sugar On Me	67	1	1	\N	292519	9518842	0.99	\N	\N
-827	Photograph	67	1	1	\N	248633	8108507	0.99	\N	\N
-828	Love Bites	67	1	1	\N	346853	11305791	0.99	\N	\N
-829	Let's Get Rocked	67	1	1	\N	296019	9724150	0.99	\N	\N
-830	Two Steps Behind [Acoustic Version]	67	1	1	\N	259787	8523388	0.99	\N	\N
-831	Animal	67	1	1	\N	244741	7985133	0.99	\N	\N
-832	Heaven Is	67	1	1	\N	214021	6988128	0.99	\N	\N
-833	Rocket	67	1	1	\N	247248	8092463	0.99	\N	\N
-834	When Love & Hate Collide	67	1	1	\N	257280	8364633	0.99	\N	\N
-835	Action	67	1	1	\N	220604	7130830	0.99	\N	\N
-836	Make Love Like A Man	67	1	1	\N	255660	8309725	0.99	\N	\N
-837	Armageddon It	67	1	1	\N	322455	10522352	0.99	\N	\N
-838	Have You Ever Needed Someone So Bad	67	1	1	\N	319320	10400020	0.99	\N	\N
-839	Rock Of Ages	67	1	1	\N	248424	8150318	0.99	\N	\N
-840	Hysteria	67	1	1	\N	355056	11622738	0.99	\N	\N
-841	Bringin' On The Heartbreak	67	1	1	\N	272457	8853324	0.99	\N	\N
-842	Roll Call	68	1	2	Jim Beard	321358	10653494	0.99	\N	\N
-843	Otay	68	1	2	John Scofield, Robert Aries, Milton Chambers and Gary Grainger	423653	14176083	0.99	\N	\N
-844	Groovus Interruptus	68	1	2	Jim Beard	319373	10602166	0.99	\N	\N
-845	Paris On Mine	68	1	2	Jon Herington	368875	12059507	0.99	\N	\N
-846	In Time	68	1	2	Sylvester Stewart	368953	12287103	0.99	\N	\N
-847	Plan B	68	1	2	Dean Brown, Dennis Chambers & Jim Beard	272039	9032315	0.99	\N	\N
-848	Outbreak	68	1	2	Jim Beard & Jon Herington	659226	21685807	0.99	\N	\N
-849	Baltimore, DC	68	1	2	John Scofield	346932	11394473	0.99	\N	\N
-850	Talkin Loud and Saying Nothin	68	1	2	James Brown & Bobby Byrd	360411	11994859	0.99	\N	\N
-851	PÃ©tala	69	1	7	\N	270080	8856165	0.99	\N	\N
-852	Meu Bem-Querer	69	1	7	\N	255608	8330047	0.99	\N	\N
-853	Cigano	69	1	7	\N	304692	10037362	0.99	\N	\N
-854	Boa Noite	69	1	7	\N	338755	11283582	0.99	\N	\N
-855	Fato Consumado	69	1	7	\N	211565	7018586	0.99	\N	\N
-856	Faltando Um PedaÃ§o	69	1	7	\N	267728	8788760	0.99	\N	\N
-858	Esquinas	69	1	7	\N	280999	9096726	0.99	\N	\N
-859	Se...	69	1	7	\N	286432	9413777	0.99	\N	\N
-860	Eu Te Devoro	69	1	7	\N	311614	10312775	0.99	\N	\N
-861	LilÃ¡s	69	1	7	\N	274181	9049542	0.99	\N	\N
-862	Acelerou	69	1	7	\N	284081	9396942	0.99	\N	\N
-863	Um Amor Puro	69	1	7	\N	327784	10687311	0.99	\N	\N
-864	Samurai	70	1	7	Djavan	330997	10872787	0.99	\N	\N
-865	Nem Um Dia	70	1	7	Djavan	337423	11181446	0.99	\N	\N
-866	Oceano	70	1	7	Djavan	217338	7026441	0.99	\N	\N
-867	AÃ§ai	70	1	7	Djavan	270968	8893682	0.99	\N	\N
-868	Serrado	70	1	7	Djavan	295314	9842240	0.99	\N	\N
-869	Flor De Lis	70	1	7	Djavan	236355	7801108	0.99	\N	\N
-870	Amar Ã‰ Tudo	70	1	7	Djavan	211617	7073899	0.99	\N	\N
-871	Azul	70	1	7	Djavan	253962	8381029	0.99	\N	\N
-872	Seduzir	70	1	7	Djavan	277524	9163253	0.99	\N	\N
-873	A Carta	70	1	7	Djavan - Gabriel, O Pensador	347297	11493463	0.99	\N	\N
-874	Sina	70	1	7	Djavan	268173	8906539	0.99	\N	\N
-875	Acelerou	70	1	7	Djavan	284133	9391439	0.99	\N	\N
-876	Um Amor Puro	70	1	7	Djavan	327105	10664698	0.99	\N	\N
-877	O BÃªbado e a Equilibrista	71	1	7	\N	223059	7306143	0.99	\N	\N
-878	O Mestre-Sala dos Mares	71	1	7	\N	186226	6180414	0.99	\N	\N
-879	AtrÃ¡s da Porta	71	1	7	\N	166608	5432518	0.99	\N	\N
-880	Dois Pra LÃ¡, Dois Pra CÃ¡	71	1	7	\N	263026	8684639	0.99	\N	\N
-881	Casa no Campo	71	1	7	\N	170788	5531841	0.99	\N	\N
-882	Romaria	71	1	7	\N	242834	7968525	0.99	\N	\N
-883	AlÃ´, AlÃ´, Marciano	71	1	7	\N	241397	8137254	0.99	\N	\N
-884	Me Deixas Louca	71	1	7	\N	214831	6888030	0.99	\N	\N
-885	FascinaÃ§Ã£o	71	1	7	\N	180793	5793959	0.99	\N	\N
-886	Saudosa Maloca	71	1	7	\N	278125	9059416	0.99	\N	\N
-887	As AparÃªncias Enganam	71	1	7	\N	247379	8014346	0.99	\N	\N
-888	Madalena	71	1	7	\N	157387	5243721	0.99	\N	\N
-889	Maria Rosa	71	1	7	\N	232803	7592504	0.99	\N	\N
-890	Aprendendo A Jogar	71	1	7	\N	290664	9391041	0.99	\N	\N
-891	Layla	72	1	6	Clapton/Gordon	430733	14115792	0.99	\N	\N
-892	Badge	72	1	6	Clapton/Harrison	163552	5322942	0.99	\N	\N
-893	I Feel Free	72	1	6	Bruce/Clapton	174576	5725684	0.99	\N	\N
-894	Sunshine Of Your Love	72	1	6	Bruce/Clapton	252891	8225889	0.99	\N	\N
-895	Crossroads	72	1	6	Clapton/Robert Johnson Arr: Eric Clapton	253335	8273540	0.99	\N	\N
-896	Strange Brew	72	1	6	Clapton/Collins/Pappalardi	167810	5489787	0.99	\N	\N
-897	White Room	72	1	6	Bruce/Clapton	301583	9872606	0.99	\N	\N
-898	Bell Bottom Blues	72	1	6	Clapton	304744	9946681	0.99	\N	\N
-899	Cocaine	72	1	6	Cale/Clapton	215928	7138399	0.99	\N	\N
-900	I Shot The Sheriff	72	1	6	Marley	263862	8738973	0.99	\N	\N
-901	After Midnight	72	1	6	Clapton/J. J. Cale	191320	6460941	0.99	\N	\N
-902	Swing Low Sweet Chariot	72	1	6	Clapton/Trad. Arr. Clapton	208143	6896288	0.99	\N	\N
-903	Lay Down Sally	72	1	6	Clapton/Levy	231732	7774207	0.99	\N	\N
-904	Knockin On Heavens Door	72	1	6	Clapton/Dylan	264411	8758819	0.99	\N	\N
-905	Wonderful Tonight	72	1	6	Clapton	221387	7326923	0.99	\N	\N
-906	Let It Grow	72	1	6	Clapton	297064	9742568	0.99	\N	\N
-907	Promises	72	1	6	Clapton/F.eldman/Linn	180401	6006154	0.99	\N	\N
-908	I Can't Stand It	72	1	6	Clapton	249730	8271980	0.99	\N	\N
-909	Signe	73	1	6	Eric Clapton	193515	6475042	0.99	\N	\N
-910	Before You Accuse Me	73	1	6	Eugene McDaniel	224339	7456807	0.99	\N	\N
-911	Hey Hey	73	1	6	Big Bill Broonzy	196466	6543487	0.99	\N	\N
-912	Tears In Heaven	73	1	6	Eric Clapton, Will Jennings	274729	9032835	0.99	\N	\N
-913	Lonely Stranger	73	1	6	Eric Clapton	328724	10894406	0.99	\N	\N
-914	Nobody Knows You When You're Down & Out	73	1	6	Jimmy Cox	231836	7669922	0.99	\N	\N
-915	Layla	73	1	6	Eric Clapton, Jim Gordon	285387	9490542	0.99	\N	\N
-916	Running On Faith	73	1	6	Jerry Lynn Williams	378984	12536275	0.99	\N	\N
-917	Walkin' Blues	73	1	6	Robert Johnson	226429	7435192	0.99	\N	\N
-918	Alberta	73	1	6	Traditional	222406	7412975	0.99	\N	\N
-919	San Francisco Bay Blues	73	1	6	Jesse Fuller	203363	6724021	0.99	\N	\N
-920	Malted Milk	73	1	6	Robert Johnson	216528	7096781	0.99	\N	\N
-921	Old Love	73	1	6	Eric Clapton, Robert Cray	472920	15780747	0.99	\N	\N
-922	Rollin' And Tumblin'	73	1	6	McKinley Morgenfield (Muddy Waters)	251768	8407355	0.99	\N	\N
-923	Collision	74	1	4	Jon Hudson/Mike Patton	204303	6656596	0.99	\N	\N
-924	Stripsearch	74	1	4	Jon Hudson/Mike Bordin/Mike Patton	270106	8861119	0.99	\N	\N
-925	Last Cup Of Sorrow	74	1	4	Bill Gould/Mike Patton	251663	8221247	0.99	\N	\N
-926	Naked In Front Of The Computer	74	1	4	Mike Patton	128757	4225077	0.99	\N	\N
-927	Helpless	74	1	4	Bill Gould/Mike Bordin/Mike Patton	326217	10753135	0.99	\N	\N
-928	Mouth To Mouth	74	1	4	Bill Gould/Jon Hudson/Mike Bordin/Mike Patton	228493	7505887	0.99	\N	\N
-929	Ashes To Ashes	74	1	4	Bill Gould/Jon Hudson/Mike Bordin/Mike Patton/Roddy Bottum	217391	7093746	0.99	\N	\N
-930	She Loves Me Not	74	1	4	Bill Gould/Mike Bordin/Mike Patton	209867	6887544	0.99	\N	\N
-931	Got That Feeling	74	1	4	Mike Patton	140852	4643227	0.99	\N	\N
-932	Paths Of Glory	74	1	4	Bill Gould/Jon Hudson/Mike Bordin/Mike Patton/Roddy Bottum	257253	8436300	0.99	\N	\N
-933	Home Sick Home	74	1	4	Mike Patton	119040	3898976	0.99	\N	\N
-934	Pristina	74	1	4	Bill Gould/Mike Patton	232698	7497361	0.99	\N	\N
-935	Land Of Sunshine	75	1	4	\N	223921	7353567	0.99	\N	\N
-936	Caffeine	75	1	4	\N	267937	8747367	0.99	\N	\N
-937	Midlife Crisis	75	1	4	\N	263235	8628841	0.99	\N	\N
-938	RV	75	1	4	\N	223242	7288162	0.99	\N	\N
-939	Smaller And Smaller	75	1	4	\N	310831	10180103	0.99	\N	\N
-940	Everything's Ruined	75	1	4	\N	273658	9010917	0.99	\N	\N
-941	Malpractice	75	1	4	\N	241371	7900683	0.99	\N	\N
-942	Kindergarten	75	1	4	\N	270680	8853647	0.99	\N	\N
-943	Be Aggressive	75	1	4	\N	222432	7298027	0.99	\N	\N
-944	A Small Victory	75	1	4	\N	297168	9733572	0.99	\N	\N
-945	Crack Hitler	75	1	4	\N	279144	9162435	0.99	\N	\N
-946	Jizzlobber	75	1	4	\N	398341	12926140	0.99	\N	\N
-947	Midnight Cowboy	75	1	4	\N	251924	8242626	0.99	\N	\N
-948	Easy	75	1	4	\N	185835	6073008	0.99	\N	\N
-949	Get Out	76	1	1	Mike Bordin, Billy Gould, Mike Patton	137482	4524972	0.99	\N	\N
-950	Ricochet	76	1	1	Mike Bordin, Billy Gould, Mike Patton	269400	8808812	0.99	\N	\N
-951	Evidence	76	1	1	Mike Bordin, Billy Gould, Mike Patton, Trey Spruance	293590	9626136	0.99	\N	\N
-952	The Gentle Art Of Making Enemies	76	1	1	Mike Bordin, Billy Gould, Mike Patton	209319	6908609	0.99	\N	\N
-953	Star A.D.	76	1	1	Mike Bordin, Billy Gould, Mike Patton	203807	6747658	0.99	\N	\N
-954	Cuckoo For Caca	76	1	1	Mike Bordin, Billy Gould, Mike Patton, Trey Spruance	222902	7388369	0.99	\N	\N
-955	Caralho Voador	76	1	1	Mike Bordin, Billy Gould, Mike Patton, Trey Spruance	242102	8029054	0.99	\N	\N
-956	Ugly In The Morning	76	1	1	Mike Bordin, Billy Gould, Mike Patton	186435	6224997	0.99	\N	\N
-1113	Sampa	73	1	7	Gilberto Gil	225697	7469905	0.99	\N	\N
-957	Digging The Grave	76	1	1	Mike Bordin, Billy Gould, Mike Patton	185129	6109259	0.99	\N	\N
-958	Take This Bottle	76	1	1	Mike Bordin, Billy Gould, Mike Patton, Trey Spruance	298997	9779971	0.99	\N	\N
-959	King For A Day	76	1	1	Mike Bordin, Billy Gould, Mike Patton, Trey Spruance	395859	13163733	0.99	\N	\N
-960	What A Day	76	1	1	Mike Bordin, Billy Gould, Mike Patton	158275	5203430	0.99	\N	\N
-961	The Last To Know	76	1	1	Mike Bordin, Billy Gould, Mike Patton	267833	8736776	0.99	\N	\N
-962	Just A Man	76	1	1	Mike Bordin, Billy Gould, Mike Patton	336666	11031254	0.99	\N	\N
-963	Absolute Zero	76	1	1	Mike Bordin, Billy Gould, Mike Patton	181995	5929427	0.99	\N	\N
-964	From Out Of Nowhere	77	1	4	Faith No More	202527	6587802	0.99	\N	\N
-965	Epic	77	1	4	Faith No More	294008	9631296	0.99	\N	\N
-966	Falling To Pieces	77	1	4	Faith No More	316055	10333123	0.99	\N	\N
-967	Surprise! You're Dead!	77	1	4	Faith No More	147226	4823036	0.99	\N	\N
-968	Zombie Eaters	77	1	4	Faith No More	360881	11835367	0.99	\N	\N
-969	The Real Thing	77	1	4	Faith No More	493635	16233080	0.99	\N	\N
-970	Underwater Love	77	1	4	Faith No More	231993	7634387	0.99	\N	\N
-971	The Morning After	77	1	4	Faith No More	223764	7355898	0.99	\N	\N
-972	Woodpecker From Mars	77	1	4	Faith No More	340532	11174250	0.99	\N	\N
-973	War Pigs	77	1	4	Tony Iommi, Bill Ward, Geezer Butler, Ozzy Osbourne	464770	15267802	0.99	\N	\N
-974	Edge Of The World	77	1	4	Faith No More	250357	8235607	0.99	\N	\N
-975	Deixa Entrar	78	1	7	\N	33619	1095012	0.99	\N	\N
-976	Falamansa Song	78	1	7	\N	237165	7921313	0.99	\N	\N
-977	Xote Dos Milagres	78	1	7	\N	269557	8897778	0.99	\N	\N
-978	Rindo Ã€ Toa	78	1	7	\N	222066	7365321	0.99	\N	\N
-979	ConfidÃªncia	78	1	7	\N	222197	7460829	0.99	\N	\N
-980	ForrÃ³ De TÃ³quio	78	1	7	\N	169273	5588756	0.99	\N	\N
-981	Zeca Violeiro	78	1	7	\N	143673	4781949	0.99	\N	\N
-982	Avisa	78	1	7	\N	355030	11844320	0.99	\N	\N
-983	Principiando/Decolagem	78	1	7	\N	116767	3923789	0.99	\N	\N
-984	Asas	78	1	7	\N	231915	7711669	0.99	\N	\N
-985	Medo De Escuro	78	1	7	\N	213760	7056323	0.99	\N	\N
-986	OraÃ§Ã£o	78	1	7	\N	271072	9003882	0.99	\N	\N
-987	Minha Gata	78	1	7	\N	181838	6039502	0.99	\N	\N
-988	Desaforo	78	1	7	\N	174524	5853561	0.99	\N	\N
-989	In Your Honor	79	1	1	Dave Grohl, Taylor Hawkins, Nate Mendel, Chris Shiflett	230191	7468463	0.99	\N	\N
-990	No Way Back	79	1	1	Dave Grohl, Taylor Hawkins, Nate Mendel, Chris Shiflett	196675	6421400	0.99	\N	\N
-991	Best Of You	79	1	1	Dave Grohl, Taylor Hawkins, Nate Mendel, Chris Shiflett	255712	8363467	0.99	\N	\N
-992	DOA	79	1	1	Dave Grohl, Taylor Hawkins, Nate Mendel, Chris Shiflett	252186	8232342	0.99	\N	\N
-993	Hell	79	1	1	Dave Grohl, Taylor Hawkins, Nate Mendel, Chris Shiflett	117080	3819255	0.99	\N	\N
-994	The Last Song	79	1	1	Dave Grohl, Taylor Hawkins, Nate Mendel, Chris Shiflett	199523	6496742	0.99	\N	\N
-995	Free Me	79	1	1	Dave Grohl, Taylor Hawkins, Nate Mendel, Chris Shiflett	278700	9109340	0.99	\N	\N
-996	Resolve	79	1	1	Dave Grohl, Taylor Hawkins, Nate Mendel, Chris Shiflett	288731	9416186	0.99	\N	\N
-997	The Deepest Blues Are Black	79	1	1	Dave Grohl, Taylor Hawkins, Nate Mendel, Chris Shiflett	238419	7735473	0.99	\N	\N
-998	End Over End	79	1	1	Dave Grohl, Taylor Hawkins, Nate Mendel, Chris Shiflett	352078	11395296	0.99	\N	\N
-999	Still	80	1	1	Dave Grohl, Taylor Hawkins, Nate Mendel, Chris Shiflett/FOO FIGHTERS	313182	10323157	0.99	\N	\N
-1000	What If I Do?	80	1	1	Dave Grohl, Taylor Hawkins, Nate Mendel, Chris Shiflett/FOO FIGHTERS	302994	9929799	0.99	\N	\N
-1001	Miracle	80	1	1	Dave Grohl, Taylor Hawkins, Nate Mendel, Chris Shiflett/FOO FIGHTERS	209684	6877994	0.99	\N	\N
-1002	Another Round	80	1	1	Dave Grohl, Taylor Hawkins, Nate Mendel, Chris Shiflett/FOO FIGHTERS	265848	8752670	0.99	\N	\N
-1003	Friend Of A Friend	80	1	1	Dave Grohl, Taylor Hawkins, Nate Mendel, Chris Shiflett/FOO FIGHTERS	193280	6355088	0.99	\N	\N
-1004	Over And Out	80	1	1	Dave Grohl, Taylor Hawkins, Nate Mendel, Chris Shiflett/FOO FIGHTERS	316264	10428382	0.99	\N	\N
-1005	On The Mend	80	1	1	Dave Grohl, Taylor Hawkins, Nate Mendel, Chris Shiflett/FOO FIGHTERS	271908	9071997	0.99	\N	\N
-1006	Virginia Moon	80	1	1	Dave Grohl, Taylor Hawkins, Nate Mendel, Chris Shiflett/FOO FIGHTERS	229198	7494639	0.99	\N	\N
-1007	Cold Day In The Sun	80	1	1	Dave Grohl, Taylor Hawkins, Nate Mendel, Chris Shiflett/FOO FIGHTERS	200724	6596617	0.99	\N	\N
-1008	Razor	80	1	1	Dave Grohl, Taylor Hawkins, Nate Mendel, Chris Shiflett/FOO FIGHTERS	293276	9721373	0.99	\N	\N
-1009	All My Life	81	1	4	Foo Fighters	263653	8665545	0.99	\N	\N
-1010	Low	81	1	4	Foo Fighters	268120	8847196	0.99	\N	\N
-1011	Have It All	81	1	4	Foo Fighters	298057	9729292	0.99	\N	\N
-1012	Times Like These	81	1	4	Foo Fighters	266370	8624691	0.99	\N	\N
-1013	Disenchanted Lullaby	81	1	4	Foo Fighters	273528	8919111	0.99	\N	\N
-1014	Tired Of You	81	1	4	Foo Fighters	311353	10094743	0.99	\N	\N
-1015	Halo	81	1	4	Foo Fighters	306442	10026371	0.99	\N	\N
-1016	Lonely As You	81	1	4	Foo Fighters	277185	9022628	0.99	\N	\N
-1017	Overdrive	81	1	4	Foo Fighters	270550	8793187	0.99	\N	\N
-1018	Burn Away	81	1	4	Foo Fighters	298396	9678073	0.99	\N	\N
-1019	Come Back	81	1	4	Foo Fighters	469968	15371980	0.99	\N	\N
-1020	Doll	82	1	1	Dave, Taylor, Nate, Chris	83487	2702572	0.99	\N	\N
-1021	Monkey Wrench	82	1	1	Dave, Taylor, Nate, Chris	231523	7527531	0.99	\N	\N
-1022	Hey, Johnny Park!	82	1	1	Dave, Taylor, Nate, Chris	248528	8079480	0.99	\N	\N
-1023	My Poor Brain	82	1	1	Dave, Taylor, Nate, Chris	213446	6973746	0.99	\N	\N
-1024	Wind Up	82	1	1	Dave, Taylor, Nate, Chris	152163	4950667	0.99	\N	\N
-1025	Up In Arms	82	1	1	Dave, Taylor, Nate, Chris	135732	4406227	0.99	\N	\N
-1026	My Hero	82	1	1	Dave, Taylor, Nate, Chris	260101	8472365	0.99	\N	\N
-1027	See You	82	1	1	Dave, Taylor, Nate, Chris	146782	4888173	0.99	\N	\N
-1028	Enough Space	82	1	1	Dave Grohl	157387	5169280	0.99	\N	\N
-1029	February Stars	82	1	1	Dave, Taylor, Nate, Chris	289306	9344875	0.99	\N	\N
-1030	Everlong	82	1	1	Dave Grohl	250749	8270816	0.99	\N	\N
-1031	Walking After You	82	1	1	Dave Grohl	303856	9898992	0.99	\N	\N
-1032	New Way Home	82	1	1	Dave, Taylor, Nate, Chris	342230	11205664	0.99	\N	\N
-1033	My Way	83	1	12	claude franÃ§ois/gilles thibault/jacques revaux/paul anka	275879	8928684	0.99	\N	\N
-1034	Strangers In The Night	83	1	12	berthold kaempfert/charles singleton/eddie snyder	155794	5055295	0.99	\N	\N
-1035	New York, New York	83	1	12	fred ebb/john kander	206001	6707993	0.99	\N	\N
-1036	I Get A Kick Out Of You	83	1	12	cole porter	194429	6332441	0.99	\N	\N
-1037	Something Stupid	83	1	12	carson c. parks	158615	5210643	0.99	\N	\N
-1038	Moon River	83	1	12	henry mancini/johnny mercer	198922	6395808	0.99	\N	\N
-1039	What Now My Love	83	1	12	carl sigman/gilbert becaud/pierre leroyer	149995	4913383	0.99	\N	\N
-1040	Summer Love	83	1	12	hans bradtke/heinz meier/johnny mercer	174994	5693242	0.99	\N	\N
-1041	For Once In My Life	83	1	12	orlando murden/ronald miller	171154	5557537	0.99	\N	\N
-1042	Love And Marriage	83	1	12	jimmy van heusen/sammy cahn	89730	2930596	0.99	\N	\N
-1043	They Can't Take That Away From Me	83	1	12	george gershwin/ira gershwin	161227	5240043	0.99	\N	\N
-1044	My Kind Of Town	83	1	12	jimmy van heusen/sammy cahn	188499	6119915	0.99	\N	\N
-1045	Fly Me To The Moon	83	1	12	bart howard	149263	4856954	0.99	\N	\N
-1046	I've Got You Under My Skin	83	1	12	cole porter	210808	6883787	0.99	\N	\N
-1047	The Best Is Yet To Come	83	1	12	carolyn leigh/cy coleman	173583	5633730	0.99	\N	\N
-1048	It Was A Very Good Year	83	1	12	ervin drake	266605	8554066	0.99	\N	\N
-1049	Come Fly With Me	83	1	12	jimmy van heusen/sammy cahn	190458	6231029	0.99	\N	\N
-1050	That's Life	83	1	12	dean kay thompson/kelly gordon	187010	6095727	0.99	\N	\N
-1051	The Girl From Ipanema	83	1	12	antonio carlos jobim/norman gimbel/vinicius de moraes	193750	6410674	0.99	\N	\N
-1052	The Lady Is A Tramp	83	1	12	lorenz hart/richard rodgers	184111	5987372	0.99	\N	\N
-1053	Bad, Bad Leroy Brown	83	1	12	jim croce	169900	5548581	0.99	\N	\N
-1054	Mack The Knife	83	1	12	bert brecht/kurt weill/marc blitzstein	292075	9541052	0.99	\N	\N
-1055	Loves Been Good To Me	83	1	12	rod mckuen	203964	6645365	0.99	\N	\N
-1056	L.A. Is My Lady	83	1	12	alan bergman/marilyn bergman/peggy lipton jones/quincy jones	193175	6378511	0.99	\N	\N
-1057	Entrando Na Sua (Intro)	84	1	7	\N	179252	5840027	0.99	\N	\N
-1058	Nervosa	84	1	7	\N	229537	7680421	0.99	\N	\N
-1059	Funk De Bamba (Com Fernanda Abreu)	84	1	7	\N	237191	7866165	0.99	\N	\N
-1060	Call Me At CleoÂ´s	84	1	7	\N	236617	7920510	0.99	\N	\N
-1061	Olhos Coloridos (Com Sandra De SÃ¡)	84	1	7	\N	321332	10567404	0.99	\N	\N
-1062	ZambaÃ§Ã£o	84	1	7	\N	301113	10030604	0.99	\N	\N
-1063	Funk Hum	84	1	7	\N	244453	8084475	0.99	\N	\N
-1064	Forty Days (Com DJ Hum)	84	1	7	\N	221727	7347172	0.99	\N	\N
-1065	Balada Da Paula	84	1	7	Emerson Villani	322821	10603717	0.99	\N	\N
-1066	Dujji	84	1	7	\N	324597	10833935	0.99	\N	\N
-1067	Meu Guarda-Chuva	84	1	7	\N	248528	8216625	0.99	\N	\N
-1068	MotÃ©is	84	1	7	\N	213498	7041077	0.99	\N	\N
-1069	Whistle Stop	84	1	7	\N	526132	17533664	0.99	\N	\N
-1070	16 Toneladas	84	1	7	\N	191634	6390885	0.99	\N	\N
-1071	Divirta-Se (Saindo Da Sua)	84	1	7	\N	74919	2439206	0.99	\N	\N
-1072	Forty Days Instrumental	84	1	7	\N	292493	9584317	0.99	\N	\N
-1073	Ã“ia Eu Aqui De Novo	85	1	10	\N	219454	7469735	0.99	\N	\N
-1074	BaiÃ£o Da Penha	85	1	10	\N	247928	8393047	0.99	\N	\N
-1075	Esperando Na Janela	85	1	10	Manuca/Raimundinho DoAcordion/Targino Godim	261041	8660617	0.99	\N	\N
-1076	Juazeiro	85	1	10	Humberto Teixeira/Luiz Gonzaga	222275	7349779	0.99	\N	\N
-1077	Ãšltimo Pau-De-Arara	85	1	10	CorumbÃ¡/JosÃ© GumarÃ£es/Venancio	200437	6638563	0.99	\N	\N
-1078	Asa Branca	85	1	10	Humberto Teixeira/Luiz Gonzaga	217051	7387183	0.99	\N	\N
-1079	Qui Nem JilÃ³	85	1	10	Humberto Teixeira/Luiz Gonzaga	204695	6937472	0.99	\N	\N
-1080	Assum Preto	85	1	10	Humberto Teixeira/Luiz Gonzaga	199653	6625000	0.99	\N	\N
-1081	Pau-De-Arara	85	1	10	Guio De Morais E Seus Parentes/Luiz Gonzaga	191660	6340649	0.99	\N	\N
-1082	A Volta Da Asa Branca	85	1	10	Luiz Gonzaga/ZÃ© Dantas	271020	9098093	0.99	\N	\N
-1083	O Amor Daqui De Casa	85	1	10	Gilberto Gil	148636	4888292	0.99	\N	\N
-1084	As Pegadas Do Amor	85	1	10	Gilberto Gil	209136	6899062	0.99	\N	\N
-1085	Lamento Sertanejo	85	1	10	Dominguinhos/Gilberto Gil	260963	8518290	0.99	\N	\N
-1086	Casinha Feliz	85	1	10	Gilberto Gil	32287	1039615	0.99	\N	\N
-1087	IntroduÃ§Ã£o (Live)	86	1	7	\N	154096	5227579	0.99	\N	\N
-1088	Palco (Live)	86	1	7	\N	238315	8026622	0.99	\N	\N
-1089	Is This Love (Live)	86	1	7	\N	295262	9819759	0.99	\N	\N
-1090	Stir It Up (Live)	86	1	7	\N	282409	9594738	0.99	\N	\N
-1091	Refavela (Live)	86	1	7	\N	236695	7985305	0.99	\N	\N
-1092	Vendedor De Caranguejo (Live)	86	1	7	\N	248842	8358128	0.99	\N	\N
-1093	Quanta (Live)	86	1	7	\N	357485	11774865	0.99	\N	\N
-1094	Estrela (Live)	86	1	7	\N	285309	9436411	0.99	\N	\N
-1095	Pela Internet (Live)	86	1	7	\N	263471	8804401	0.99	\N	\N
-1096	CÃ©rebro EletrÃ´nico (Live)	86	1	7	\N	231627	7805352	0.99	\N	\N
-1097	OpachorÃ´ (Live)	86	1	7	\N	259526	8596384	0.99	\N	\N
-1098	Copacabana (Live)	86	1	7	\N	289671	9673672	0.99	\N	\N
-1099	A Novidade (Live)	86	1	7	\N	316969	10508000	0.99	\N	\N
-1100	Ghandi (Live)	86	1	7	\N	222458	7481950	0.99	\N	\N
-1101	De Ouro E Marfim (Live)	86	1	7	\N	234971	7838453	0.99	\N	\N
-1102	Doce De Carnaval (Candy All)	87	1	2	\N	356101	11998470	0.99	\N	\N
-1103	Lamento De Carnaval	87	1	2	\N	294530	9819276	0.99	\N	\N
-1104	Pretinha	87	1	2	\N	265273	8914579	0.99	\N	\N
-1105	A Novidade	73	1	7	Gilberto Gil	324780	10765600	0.99	\N	\N
-1106	Tenho Sede	73	1	7	Gilberto Gil	261616	8708114	0.99	\N	\N
-1107	Refazenda	73	1	7	Gilberto Gil	218305	7237784	0.99	\N	\N
-1108	Realce	73	1	7	Gilberto Gil	264489	8847612	0.99	\N	\N
-1109	EsotÃ©rico	73	1	7	Gilberto Gil	317779	10530533	0.99	\N	\N
-1110	DrÃ£o	73	1	7	Gilberto Gil	301453	9931950	0.99	\N	\N
-1111	A Paz	73	1	7	Gilberto Gil	293093	9593064	0.99	\N	\N
-1112	Beira Mar	73	1	7	Gilberto Gil	295444	9597994	0.99	\N	\N
-1114	ParabolicamarÃ¡	73	1	7	Gilberto Gil	284943	9543435	0.99	\N	\N
-1115	Tempo Rei	73	1	7	Gilberto Gil	302733	10019269	0.99	\N	\N
-1116	Expresso 2222	73	1	7	Gilberto Gil	284760	9690577	0.99	\N	\N
-1117	Aquele AbraÃ§o	73	1	7	Gilberto Gil	263993	8805003	0.99	\N	\N
-1118	Palco	73	1	7	Gilberto Gil	270550	9049901	0.99	\N	\N
-1119	Toda Menina Baiana	73	1	7	Gilberto Gil	278177	9351000	0.99	\N	\N
-1120	SÃ­tio Do Pica-Pau Amarelo	73	1	7	Gilberto Gil	218070	7217955	0.99	\N	\N
-1121	Straight Out Of Line	88	1	3	Sully Erna	259213	8511877	0.99	\N	\N
-1122	Faceless	88	1	3	Sully Erna	216006	6992417	0.99	\N	\N
-1123	Changes	88	1	3	Sully Erna; Tony Rombola	260022	8455835	0.99	\N	\N
-1124	Make Me Believe	88	1	3	Sully Erna	248607	8075050	0.99	\N	\N
-1125	I Stand Alone	88	1	3	Sully Erna	246125	8017041	0.99	\N	\N
-1126	Re-Align	88	1	3	Sully Erna	260884	8513891	0.99	\N	\N
-1127	I Fucking Hate You	88	1	3	Sully Erna	247170	8059642	0.99	\N	\N
-1128	Releasing The Demons	88	1	3	Sully Erna	252760	8276372	0.99	\N	\N
-1129	Dead And Broken	88	1	3	Sully Erna	251454	8206611	0.99	\N	\N
-1130	I Am	88	1	3	Sully Erna	239516	7803270	0.99	\N	\N
-1131	The Awakening	88	1	3	Sully Erna	89547	3035251	0.99	\N	\N
-1132	Serenity	88	1	3	Sully Erna; Tony Rombola	274834	9172976	0.99	\N	\N
-1133	American Idiot	89	1	4	Billie Joe Armstrong, Mike Dirnt, TrÃ© Cool	174419	5705793	0.99	\N	\N
-1134	Jesus Of Suburbia / City Of The Damned / I Don't Care / Dearly Beloved / Tales Of Another Broken Home	89	1	4	Billie Joe Armstrong/Green Day	548336	17875209	0.99	\N	\N
-1135	Holiday	89	1	4	Billie Joe Armstrong, Mike Dirnt, TrÃ© Cool	232724	7599602	0.99	\N	\N
-1136	Boulevard Of Broken Dreams	89	1	4	Mike Dint, Billie Joe, TrÃ© Cool	260858	8485122	0.99	\N	\N
-1137	Are We The Waiting	89	1	4	Green Day	163004	5328329	0.99	\N	\N
-1138	St. Jimmy	89	1	4	Green Day	175307	5716589	0.99	\N	\N
-1139	Give Me Novacaine	89	1	4	Green Day	205871	6752485	0.99	\N	\N
-1140	She's A Rebel	89	1	4	Green Day	120528	3901226	0.99	\N	\N
-1141	Extraordinary Girl	89	1	4	Green Day	214021	6975177	0.99	\N	\N
-1142	Letterbomb	89	1	4	Green Day	246151	7980902	0.99	\N	\N
-1143	Wake Me Up When September Ends	89	1	4	Mike Dint, Billie Joe, TrÃ© Cool	285753	9325597	0.99	\N	\N
-1144	Homecoming / The Death Of St. Jimmy / East 12th St. / Nobody Likes You / Rock And Roll Girlfriend / We're Coming Home Again	89	1	4	Mike Dirnt/TrÃ© Cool	558602	18139840	0.99	\N	\N
-1145	Whatsername	89	1	4	Green Day	252316	8244843	0.99	\N	\N
-1146	Welcome to the Jungle	90	2	1	\N	273552	4538451	0.99	\N	\N
-1147	It's So Easy	90	2	1	\N	202824	3394019	0.99	\N	\N
-1148	Nightrain	90	2	1	\N	268537	4457283	0.99	\N	\N
-1149	Out Ta Get Me	90	2	1	\N	263893	4382147	0.99	\N	\N
-1150	Mr. Brownstone	90	2	1	\N	228924	3816323	0.99	\N	\N
-1151	Paradise City	90	2	1	\N	406347	6687123	0.99	\N	\N
-1152	My Michelle	90	2	1	\N	219961	3671299	0.99	\N	\N
-1153	Think About You	90	2	1	\N	231640	3860275	0.99	\N	\N
-1154	Sweet Child O' Mine	90	2	1	\N	356424	5879347	0.99	\N	\N
-1155	You're Crazy	90	2	1	\N	197135	3301971	0.99	\N	\N
-1156	Anything Goes	90	2	1	\N	206400	3451891	0.99	\N	\N
-1157	Rocket Queen	90	2	1	\N	375349	6185539	0.99	\N	\N
-1158	Right Next Door to Hell	91	2	1	\N	182321	3175950	0.99	\N	\N
-1159	Dust' Bones	91	2	1	\N	298374	5053742	0.99	\N	\N
-1160	Live and Let Die	91	2	1	\N	184016	3203390	0.99	\N	\N
-1161	Don't Cry (Original)	91	2	1	\N	284744	4833259	0.99	\N	\N
-1162	Perfect Crime	91	2	1	\N	143637	2550030	0.99	\N	\N
-1163	You Ain't the First	91	2	1	\N	156268	2754414	0.99	\N	\N
-1164	Bad Obsession	91	2	1	\N	328282	5537678	0.99	\N	\N
-1165	Back off Bitch	91	2	1	\N	303436	5135662	0.99	\N	\N
-1166	Double Talkin' Jive	91	2	1	\N	203637	3520862	0.99	\N	\N
-1167	November Rain	91	2	1	\N	537540	8923566	0.99	\N	\N
-1168	The Garden	91	2	1	\N	322175	5438862	0.99	\N	\N
-1169	Garden of Eden	91	2	1	\N	161539	2839694	0.99	\N	\N
-1170	Don't Damn Me	91	2	1	\N	318901	5385886	0.99	\N	\N
-1171	Bad Apples	91	2	1	\N	268351	4567966	0.99	\N	\N
-1172	Dead Horse	91	2	1	\N	257600	4394014	0.99	\N	\N
-1173	Coma	91	2	1	\N	616511	10201342	0.99	\N	\N
-1174	Civil War	92	1	3	Duff McKagan/Slash/W. Axl Rose	461165	15046579	0.99	\N	\N
-1175	14 Years	92	1	3	Izzy Stradlin'/W. Axl Rose	261355	8543664	0.99	\N	\N
-1176	Yesterdays	92	1	3	Billy/Del James/W. Axl Rose/West Arkeen	196205	6398489	0.99	\N	\N
-1177	Knockin' On Heaven's Door	92	1	3	Bob Dylan	336457	10986716	0.99	\N	\N
-1178	Get In The Ring	92	1	3	Duff McKagan/Slash/W. Axl Rose	341054	11134105	0.99	\N	\N
-1179	Shotgun Blues	92	1	3	W. Axl Rose	203206	6623916	0.99	\N	\N
-1180	Breakdown	92	1	3	W. Axl Rose	424960	13978284	0.99	\N	\N
-1181	Pretty Tied Up	92	1	3	Izzy Stradlin'	287477	9408754	0.99	\N	\N
-1182	Locomotive	92	1	3	Slash/W. Axl Rose	522396	17236842	0.99	\N	\N
-1183	So Fine	92	1	3	Duff McKagan	246491	8039484	0.99	\N	\N
-1184	Estranged	92	1	3	W. Axl Rose	563800	18343787	0.99	\N	\N
-1185	You Could Be Mine	92	1	3	Izzy Stradlin'/W. Axl Rose	343875	11207355	0.99	\N	\N
-1186	Don't Cry	92	1	3	Izzy Stradlin'/W. Axl Rose	284238	9222458	0.99	\N	\N
-1187	My World	92	1	3	W. Axl Rose	84532	2764045	0.99	\N	\N
-1188	Colibri	93	1	2	Richard Bull	361012	12055329	0.99	\N	\N
-1189	Love Is The Colour	93	1	2	R. Carless	251585	8419165	0.99	\N	\N
-1190	Magnetic Ocean	93	1	2	Patrick Claher/Richard Bull	321123	10720741	0.99	\N	\N
-1191	Deep Waters	93	1	2	Richard Bull	396460	13075359	0.99	\N	\N
-1192	L'Arc En Ciel De Miles	93	1	2	Kevin Robinson/Richard Bull	242390	8053997	0.99	\N	\N
-1193	Gypsy	93	1	2	Kevin Robinson	330997	11083374	0.99	\N	\N
-1194	Journey Into Sunlight	93	1	2	Jean Paul Maunick	249756	8241177	0.99	\N	\N
-1195	Sunchild	93	1	2	Graham Harvey	259970	8593143	0.99	\N	\N
-1196	Millenium	93	1	2	Maxton Gig Beesley Jnr.	379167	12511939	0.99	\N	\N
-1197	Thinking 'Bout Tomorrow	93	1	2	Fayyaz Virgi/Richard Bull	355395	11865384	0.99	\N	\N
-1198	Jacob's Ladder	93	1	2	Julian Crampton	367647	12201595	0.99	\N	\N
-1199	She Wears Black	93	1	2	G Harvey/R Hope-Taylor	528666	17617944	0.99	\N	\N
-1200	Dark Side Of The Cog	93	1	2	Jean Paul Maunick	377155	12491122	0.99	\N	\N
-1201	Different World	94	2	1	\N	258692	4383764	0.99	\N	\N
-1202	These Colours Don't Run	94	2	1	\N	412152	6883500	0.99	\N	\N
-1203	Brighter Than a Thousand Suns	94	2	1	\N	526255	8721490	0.99	\N	\N
-1204	The Pilgrim	94	2	1	\N	307593	5172144	0.99	\N	\N
-1205	The Longest Day	94	2	1	\N	467810	7785748	0.99	\N	\N
-1206	Out of the Shadows	94	2	1	\N	336896	5647303	0.99	\N	\N
-1207	The Reincarnation of Benjamin Breeg	94	2	1	\N	442106	7367736	0.99	\N	\N
-1208	For the Greater Good of God	94	2	1	\N	564893	9367328	0.99	\N	\N
-1209	Lord of Light	94	2	1	\N	444614	7393698	0.99	\N	\N
-1210	The Legacy	94	2	1	\N	562966	9314287	0.99	\N	\N
-1211	Hallowed Be Thy Name (Live) [Non Album Bonus Track]	94	2	1	\N	431262	7205816	0.99	\N	\N
-1212	The Number Of The Beast	95	1	3	Steve Harris	294635	4718897	0.99	\N	\N
-1213	The Trooper	95	1	3	Steve Harris	235311	3766272	0.99	\N	\N
-1214	Prowler	95	1	3	Steve Harris	255634	4091904	0.99	\N	\N
-1215	Transylvania	95	1	3	Steve Harris	265874	4255744	0.99	\N	\N
-1216	Remember Tomorrow	95	1	3	Paul Di'Anno/Steve Harris	352731	5648438	0.99	\N	\N
-1217	Where Eagles Dare	95	1	3	Steve Harris	289358	4630528	0.99	\N	\N
-1218	Sanctuary	95	1	3	David Murray/Paul Di'Anno/Steve Harris	293250	4694016	0.99	\N	\N
-1219	Running Free	95	1	3	Paul Di'Anno/Steve Harris	228937	3663872	0.99	\N	\N
-1220	Run To The Hilss	95	1	3	Steve Harris	237557	3803136	0.99	\N	\N
-1221	2 Minutes To Midnight	95	1	3	Adrian Smith/Bruce Dickinson	337423	5400576	0.99	\N	\N
-1222	Iron Maiden	95	1	3	Steve Harris	324623	5195776	0.99	\N	\N
-1223	Hallowed Be Thy Name	95	1	3	Steve Harris	471849	7550976	0.99	\N	\N
-1224	Be Quick Or Be Dead	96	1	3	Bruce Dickinson/Janick Gers	196911	3151872	0.99	\N	\N
-1225	From Here To Eternity	96	1	3	Steve Harris	259866	4159488	0.99	\N	\N
-1226	Can I Play With Madness	96	1	3	Adrian Smith/Bruce Dickinson/Steve Harris	282488	4521984	0.99	\N	\N
-1227	Wasting Love	96	1	3	Bruce Dickinson/Janick Gers	347846	5566464	0.99	\N	\N
-1228	Tailgunner	96	1	3	Bruce Dickinson/Steve Harris	249469	3993600	0.99	\N	\N
-1229	The Evil That Men Do	96	1	3	Adrian Smith/Bruce Dickinson/Steve Harris	325929	5216256	0.99	\N	\N
-1230	Afraid To Shoot Strangers	96	1	3	Steve Harris	407980	6529024	0.99	\N	\N
-1231	Bring Your Daughter... To The Slaughter	96	1	3	Bruce Dickinson	317727	5085184	0.99	\N	\N
-1232	Heaven Can Wait	96	1	3	Steve Harris	448574	7178240	0.99	\N	\N
-1233	The Clairvoyant	96	1	3	Steve Harris	269871	4319232	0.99	\N	\N
-1234	Fear Of The Dark	96	1	3	Steve Harris	431333	6906078	0.99	\N	\N
-1235	The Wicker Man	97	1	1	Adrian Smith/Bruce Dickinson/Steve Harris	275539	11022464	0.99	\N	\N
-1236	Ghost Of The Navigator	97	1	1	Bruce Dickinson/Janick Gers/Steve Harris	410070	16404608	0.99	\N	\N
-1237	Brave New World	97	1	1	Bruce Dickinson/David Murray/Steve Harris	378984	15161472	0.99	\N	\N
-1238	Blood Brothers	97	1	1	Steve Harris	434442	17379456	0.99	\N	\N
-1239	The Mercenary	97	1	1	Janick Gers/Steve Harris	282488	11300992	0.99	\N	\N
-1240	Dream Of Mirrors	97	1	1	Janick Gers/Steve Harris	561162	22448256	0.99	\N	\N
-1241	The Fallen Angel	97	1	1	Adrian Smith/Steve Harris	240718	9629824	0.99	\N	\N
-1242	The Nomad	97	1	1	David Murray/Steve Harris	546115	21846144	0.99	\N	\N
-1243	Out Of The Silent Planet	97	1	1	Bruce Dickinson/Janick Gers/Steve Harris	385541	15423616	0.99	\N	\N
-1244	The Thin Line Between Love & Hate	97	1	1	David Murray/Steve Harris	506801	20273280	0.99	\N	\N
-1245	Wildest Dreams	98	1	13	Adrian Smith/Steve Harris	232777	9312384	0.99	\N	\N
-1246	Rainmaker	98	1	13	Bruce Dickinson/David Murray/Steve Harris	228623	9146496	0.99	\N	\N
-1247	No More Lies	98	1	13	Steve Harris	441782	17672320	0.99	\N	\N
-1248	Montsegur	98	1	13	Bruce Dickinson/Janick Gers/Steve Harris	350484	14020736	0.99	\N	\N
-1249	Dance Of Death	98	1	13	Janick Gers/Steve Harris	516649	20670727	0.99	\N	\N
-1250	Gates Of Tomorrow	98	1	13	Bruce Dickinson/Janick Gers/Steve Harris	312032	12482688	0.99	\N	\N
-1251	New Frontier	98	1	13	Adrian Smith/Bruce Dickinson/Nicko McBrain	304509	12181632	0.99	\N	\N
-1252	Paschendale	98	1	13	Adrian Smith/Steve Harris	508107	20326528	0.99	\N	\N
-1253	Face In The Sand	98	1	13	Adrian Smith/Bruce Dickinson/Steve Harris	391105	15648948	0.99	\N	\N
-1254	Age Of Innocence	98	1	13	David Murray/Steve Harris	370468	14823478	0.99	\N	\N
-1255	Journeyman	98	1	13	Bruce Dickinson/David Murray/Steve Harris	427023	17082496	0.99	\N	\N
-1256	Be Quick Or Be Dead	99	1	1	Bruce Dickinson/Janick Gers	204512	8181888	0.99	\N	\N
-1257	From Here To Eternity	99	1	1	Steve Harris	218357	8739038	0.99	\N	\N
-1258	Afraid To Shoot Strangers	99	1	1	Steve Harris	416496	16664589	0.99	\N	\N
-1259	Fear Is The Key	99	1	1	Bruce Dickinson/Janick Gers	335307	13414528	0.99	\N	\N
-1260	Childhood's End	99	1	1	Steve Harris	280607	11225216	0.99	\N	\N
-1261	Wasting Love	99	1	1	Bruce Dickinson/Janick Gers	350981	14041216	0.99	\N	\N
-1262	The Fugitive	99	1	1	Steve Harris	294112	11765888	0.99	\N	\N
-1263	Chains Of Misery	99	1	1	Bruce Dickinson/David Murray	217443	8700032	0.99	\N	\N
-1264	The Apparition	99	1	1	Janick Gers/Steve Harris	234605	9386112	0.99	\N	\N
-1265	Judas Be My Guide	99	1	1	Bruce Dickinson/David Murray	188786	7553152	0.99	\N	\N
-1266	Weekend Warrior	99	1	1	Janick Gers/Steve Harris	339748	13594678	0.99	\N	\N
-1267	Fear Of The Dark	99	1	1	Steve Harris	436976	17483789	0.99	\N	\N
-1268	01 - Prowler	100	1	6	Steve Harris	236173	5668992	0.99	\N	\N
-1269	02 - Sanctuary	100	1	6	David Murray/Paul Di'Anno/Steve Harris	196284	4712576	0.99	\N	\N
-1270	03 - Remember Tomorrow	100	1	6	Harris/Paul DiÂ´Anno	328620	7889024	0.99	\N	\N
-1271	04 - Running Free	100	1	6	Harris/Paul DiÂ´Anno	197276	4739122	0.99	\N	\N
-1272	05 - Phantom of the Opera	100	1	6	Steve Harris	428016	10276872	0.99	\N	\N
-1273	06 - Transylvania	100	1	6	Steve Harris	259343	6226048	0.99	\N	\N
-1274	07 - Strange World	100	1	6	Steve Harris	332460	7981184	0.99	\N	\N
-1275	08 - Charlotte the Harlot	100	1	6	Murray  Dave	252708	6066304	0.99	\N	\N
-1276	09 - Iron Maiden	100	1	6	Steve Harris	216058	5189891	0.99	\N	\N
-1277	The Ides Of March	101	1	13	Steve Harris	105926	2543744	0.99	\N	\N
-1278	Wrathchild	101	1	13	Steve Harris	174471	4188288	0.99	\N	\N
-1279	Murders In The Rue Morgue	101	1	13	Steve Harris	258377	6205786	0.99	\N	\N
-1280	Another Life	101	1	13	Steve Harris	203049	4874368	0.99	\N	\N
-1281	Genghis Khan	101	1	13	Steve Harris	187141	4493440	0.99	\N	\N
-1282	Innocent Exile	101	1	13	DiÂ´Anno/Harris	232515	5584861	0.99	\N	\N
-1283	Killers	101	1	13	Steve Harris	300956	7227440	0.99	\N	\N
-1284	Prodigal Son	101	1	13	Steve Harris	372349	8937600	0.99	\N	\N
-1285	Purgatory	101	1	13	Steve Harris	200150	4804736	0.99	\N	\N
-1286	Drifter	101	1	13	Steve Harris	288757	6934660	0.99	\N	\N
-1287	Intro- Churchill S Speech	102	1	13	\N	48013	1154488	0.99	\N	\N
-1288	Aces High	102	1	13	\N	276375	6635187	0.99	\N	\N
-1289	2 Minutes To Midnight	102	1	3	Smith/Dickinson	366550	8799380	0.99	\N	\N
-1290	The Trooper	102	1	3	Harris	268878	6455255	0.99	\N	\N
-1291	Revelations	102	1	3	Dickinson	371826	8926021	0.99	\N	\N
-1292	Flight Of Icarus	102	1	3	Smith/Dickinson	229982	5521744	0.99	\N	\N
-1293	Rime Of The Ancient Mariner	102	1	3	\N	789472	18949518	0.99	\N	\N
-1294	Powerslave	102	1	3	\N	454974	10921567	0.99	\N	\N
-1295	The Number Of The Beast	102	1	3	Harris	275121	6605094	0.99	\N	\N
-1296	Hallowed Be Thy Name	102	1	3	Harris	451422	10836304	0.99	\N	\N
-1297	Iron Maiden	102	1	3	Harris	261955	6289117	0.99	\N	\N
-1298	Run To The Hills	102	1	3	Harris	231627	5561241	0.99	\N	\N
-1299	Running Free	102	1	3	Harris/Di Anno	204617	4912986	0.99	\N	\N
-1300	Wrathchild	102	1	13	Steve Harris	183666	4410181	0.99	\N	\N
-1301	Acacia Avenue	102	1	13	\N	379872	9119118	0.99	\N	\N
-1302	Children Of The Damned	102	1	13	Steve Harris	278177	6678446	0.99	\N	\N
-1303	Die With Your Boots On	102	1	13	Adrian Smith/Bruce Dickinson/Steve Harris	314174	7542367	0.99	\N	\N
-1304	Phantom Of The Opera	102	1	13	Steve Harris	441155	10589917	0.99	\N	\N
-1305	Be Quick Or Be Dead	103	1	1	\N	233142	5599853	0.99	\N	\N
-1306	The Number Of The Beast	103	1	1	\N	294008	7060625	0.99	\N	\N
-1307	Wrathchild	103	1	1	\N	174106	4182963	0.99	\N	\N
-1308	From Here To Eternity	103	1	1	\N	284447	6831163	0.99	\N	\N
-1309	Can I Play With Madness	103	1	1	\N	213106	5118995	0.99	\N	\N
-1310	Wasting Love	103	1	1	\N	336953	8091301	0.99	\N	\N
-1311	Tailgunner	103	1	1	\N	247640	5947795	0.99	\N	\N
-1312	The Evil That Men Do	103	1	1	\N	478145	11479913	0.99	\N	\N
-1313	Afraid To Shoot Strangers	103	1	1	\N	412525	9905048	0.99	\N	\N
-1314	Fear Of The Dark	103	1	1	\N	431542	10361452	0.99	\N	\N
-1315	Bring Your Daughter... To The Slaughter...	104	1	1	\N	376711	9045532	0.99	\N	\N
-1316	The Clairvoyant	104	1	1	\N	262426	6302648	0.99	\N	\N
-1317	Heaven Can Wait	104	1	1	\N	440555	10577743	0.99	\N	\N
-1318	Run To The Hills	104	1	1	\N	235859	5665052	0.99	\N	\N
-1319	2 Minutes To Midnight	104	1	1	Adrian Smith/Bruce Dickinson	338233	8122030	0.99	\N	\N
-1320	Iron Maiden	104	1	1	\N	494602	11874875	0.99	\N	\N
-1321	Hallowed Be Thy Name	104	1	1	\N	447791	10751410	0.99	\N	\N
-1322	The Trooper	104	1	1	\N	232672	5588560	0.99	\N	\N
-1323	Sanctuary	104	1	1	\N	318511	7648679	0.99	\N	\N
-1324	Running Free	104	1	1	\N	474017	11380851	0.99	\N	\N
-1325	Tailgunner	105	1	3	Bruce Dickinson/Steve Harris	255582	4089856	0.99	\N	\N
-1326	Holy Smoke	105	1	3	Bruce Dickinson/Steve Harris	229459	3672064	0.99	\N	\N
-1327	No Prayer For The Dying	105	1	3	Steve Harris	263941	4225024	0.99	\N	\N
-1328	Public Enema Number One	105	1	3	Bruce Dickinson/David Murray	254197	4071587	0.99	\N	\N
-1329	Fates Warning	105	1	3	David Murray/Steve Harris	250853	4018088	0.99	\N	\N
-1330	The Assassin	105	1	3	Steve Harris	258768	4141056	0.99	\N	\N
-1331	Run Silent Run Deep	105	1	3	Bruce Dickinson/Steve Harris	275408	4407296	0.99	\N	\N
-1332	Hooks In You	105	1	3	Adrian Smith/Bruce Dickinson	247510	3960832	0.99	\N	\N
-1333	Bring Your Daughter... ...To The Slaughter	105	1	3	Bruce Dickinson	284238	4548608	0.99	\N	\N
-1334	Mother Russia	105	1	3	Steve Harris	332617	5322752	0.99	\N	\N
-1335	Where Eagles Dare	106	1	3	Steve Harris	369554	5914624	0.99	\N	\N
-1336	Revelations	106	1	3	Bruce Dickinson	408607	6539264	0.99	\N	\N
-1337	Flight Of The Icarus	106	1	3	Adrian Smith/Bruce Dickinson	230269	3686400	0.99	\N	\N
-1338	Die With Your Boots On	106	1	3	Adrian Smith/Bruce Dickinson/Steve Harris	325694	5212160	0.99	\N	\N
-1339	The Trooper	106	1	3	Steve Harris	251454	4024320	0.99	\N	\N
-1340	Still Life	106	1	3	David Murray/Steve Harris	294347	4710400	0.99	\N	\N
-1341	Quest For Fire	106	1	3	Steve Harris	221309	3543040	0.99	\N	\N
-1342	Sun And Steel	106	1	3	Adrian Smith/Bruce Dickinson	206367	3306324	0.99	\N	\N
-1343	To Tame A Land	106	1	3	Steve Harris	445283	7129264	0.99	\N	\N
-1344	Aces High	107	1	3	Harris	269531	6472088	0.99	\N	\N
-1345	2 Minutes To Midnight	107	1	3	Smith/Dickinson	359810	8638809	0.99	\N	\N
-1346	Losfer Words	107	1	3	Steve Harris	252891	6074756	0.99	\N	\N
-1347	Flash of The Blade	107	1	3	Dickinson	242729	5828861	0.99	\N	\N
-1348	Duelists	107	1	3	Steve Harris	366471	8800686	0.99	\N	\N
-1349	Back in the Village	107	1	3	Dickinson/Smith	320548	7696518	0.99	\N	\N
-1350	Powerslave	107	1	3	Dickinson	407823	9791106	0.99	\N	\N
-1351	Rime of the Ancient Mariner	107	1	3	Harris	816509	19599577	0.99	\N	\N
-1352	Intro	108	1	3	\N	115931	4638848	0.99	\N	\N
-1353	The Wicker Man	108	1	3	Adrian Smith/Bruce Dickinson/Steve Harris	281782	11272320	0.99	\N	\N
-1354	Ghost Of The Navigator	108	1	3	Bruce Dickinson/Janick Gers/Steve Harris	408607	16345216	0.99	\N	\N
-1355	Brave New World	108	1	3	Bruce Dickinson/David Murray/Steve Harris	366785	14676148	0.99	\N	\N
-1356	Wrathchild	108	1	3	Steve Harris	185808	7434368	0.99	\N	\N
-1357	2 Minutes To Midnight	108	1	3	Adrian Smith/Bruce Dickinson	386821	15474816	0.99	\N	\N
-1358	Blood Brothers	108	1	3	Steve Harris	435513	17422464	0.99	\N	\N
-1359	Sign Of The Cross	108	1	3	Steve Harris	649116	25966720	0.99	\N	\N
-1360	The Mercenary	108	1	3	Janick Gers/Steve Harris	282697	11309184	0.99	\N	\N
-1361	The Trooper	108	1	3	Steve Harris	273528	10942592	0.99	\N	\N
-1362	Dream Of Mirrors	109	1	1	Janick Gers/Steve Harris	578324	23134336	0.99	\N	\N
-1363	The Clansman	109	1	1	Steve Harris	559203	22370432	0.99	\N	\N
-1364	The Evil That Men Do	109	1	3	Adrian Smith/Bruce Dickinson/Steve Harris	280737	11231360	0.99	\N	\N
-1365	Fear Of The Dark	109	1	1	Steve Harris	460695	18430080	0.99	\N	\N
-1366	Iron Maiden	109	1	1	Steve Harris	351869	14076032	0.99	\N	\N
-1367	The Number Of The Beast	109	1	1	Steve Harris	300434	12022107	0.99	\N	\N
-1368	Hallowed Be Thy Name	109	1	1	Steve Harris	443977	17760384	0.99	\N	\N
-1369	Sanctuary	109	1	1	David Murray/Paul Di'Anno/Steve Harris	317335	12695680	0.99	\N	\N
-1370	Run To The Hills	109	1	1	Steve Harris	292179	11688064	0.99	\N	\N
-1371	Moonchild	110	1	3	Adrian Smith; Bruce Dickinson	340767	8179151	0.99	\N	\N
-1372	Infinite Dreams	110	1	3	Steve Harris	369005	8858669	0.99	\N	\N
-1373	Can I Play With Madness	110	1	3	Adrian Smith; Bruce Dickinson; Steve Harris	211043	5067867	0.99	\N	\N
-1374	The Evil That Men Do	110	1	3	Adrian Smith; Bruce Dickinson; Steve Harris	273998	6578930	0.99	\N	\N
-1375	Seventh Son of a Seventh Son	110	1	3	Steve Harris	593580	14249000	0.99	\N	\N
-1376	The Prophecy	110	1	3	Dave Murray; Steve Harris	305475	7334450	0.99	\N	\N
-1377	The Clairvoyant	110	1	3	Adrian Smith; Bruce Dickinson; Steve Harris	267023	6411510	0.99	\N	\N
-1378	Only the Good Die Young	110	1	3	Bruce Dickinson; Harris	280894	6744431	0.99	\N	\N
-1379	Caught Somewhere in Time	111	1	3	Steve Harris	445779	10701149	0.99	\N	\N
-1380	Wasted Years	111	1	3	Adrian Smith	307565	7384358	0.99	\N	\N
-1381	Sea of Madness	111	1	3	Adrian Smith	341995	8210695	0.99	\N	\N
-1382	Heaven Can Wait	111	1	3	Steve Harris	441417	10596431	0.99	\N	\N
-1383	Stranger in a Strange Land	111	1	3	Adrian Smith	344502	8270899	0.99	\N	\N
-1384	Alexander the Great	111	1	3	Steve Harris	515631	12377742	0.99	\N	\N
-1385	De Ja Vu	111	1	3	David Murray/Steve Harris	296176	7113035	0.99	\N	\N
-1386	The Loneliness of the Long Dis	111	1	3	Steve Harris	391314	9393598	0.99	\N	\N
-1387	22 Acacia Avenue	112	1	3	Adrian Smith/Steve Harris	395572	5542516	0.99	\N	\N
-1388	Children of the Damned	112	1	3	Steve Harris	274364	3845631	0.99	\N	\N
-1389	Gangland	112	1	3	Adrian Smith/Clive Burr/Steve Harris	228440	3202866	0.99	\N	\N
-1390	Hallowed Be Thy Name	112	1	3	Steve Harris	428669	6006107	0.99	\N	\N
-1391	Invaders	112	1	3	Steve Harris	203180	2849181	0.99	\N	\N
-1392	Run to the Hills	112	1	3	Steve Harris	228884	3209124	0.99	\N	\N
-1393	The Number Of The Beast	112	1	1	Steve Harris	293407	11737216	0.99	\N	\N
-1394	The Prisoner	112	1	3	Adrian Smith/Steve Harris	361299	5062906	0.99	\N	\N
-1395	Sign Of The Cross	113	1	1	Steve Harris	678008	27121792	0.99	\N	\N
-1396	Lord Of The Flies	113	1	1	Janick Gers/Steve Harris	303699	12148864	0.99	\N	\N
-1397	Man On The Edge	113	1	1	Blaze Bayley/Janick Gers	253413	10137728	0.99	\N	\N
-1398	Fortunes Of War	113	1	1	Steve Harris	443977	17760384	0.99	\N	\N
-1399	Look For The Truth	113	1	1	Blaze Bayley/Janick Gers/Steve Harris	310230	12411008	0.99	\N	\N
-1400	The Aftermath	113	1	1	Blaze Bayley/Janick Gers/Steve Harris	380786	15233152	0.99	\N	\N
-1401	Judgement Of Heaven	113	1	1	Steve Harris	312476	12501120	0.99	\N	\N
-1402	Blood On The World's Hands	113	1	1	Steve Harris	357799	14313600	0.99	\N	\N
-1403	The Edge Of Darkness	113	1	1	Blaze Bayley/Janick Gers/Steve Harris	399333	15974528	0.99	\N	\N
-1404	2 A.M.	113	1	1	Blaze Bayley/Janick Gers/Steve Harris	337658	13511087	0.99	\N	\N
-1405	The Unbeliever	113	1	1	Janick Gers/Steve Harris	490422	19617920	0.99	\N	\N
-1406	Futureal	114	1	1	Blaze Bayley/Steve Harris	175777	7032960	0.99	\N	\N
-1407	The Angel And The Gambler	114	1	1	Steve Harris	592744	23711872	0.99	\N	\N
-1408	Lightning Strikes Twice	114	1	1	David Murray/Steve Harris	290377	11616384	0.99	\N	\N
-1409	The Clansman	114	1	1	Steve Harris	539689	21592327	0.99	\N	\N
-1410	When Two Worlds Collide	114	1	1	Blaze Bayley/David Murray/Steve Harris	377312	15093888	0.99	\N	\N
-1411	The Educated Fool	114	1	1	Steve Harris	404767	16191616	0.99	\N	\N
-1412	Don't Look To The Eyes Of A Stranger	114	1	1	Steve Harris	483657	19347584	0.99	\N	\N
-1413	Como Estais Amigos	114	1	1	Blaze Bayley/Janick Gers	330292	13213824	0.99	\N	\N
-1414	Please Please Please	115	1	14	James Brown/Johnny Terry	165067	5394585	0.99	\N	\N
-1415	Think	115	1	14	Lowman Pauling	166739	5513208	0.99	\N	\N
-1416	Night Train	115	1	14	Jimmy Forrest/Lewis C. Simpkins/Oscar Washington	212401	7027377	0.99	\N	\N
-1417	Out Of Sight	115	1	14	Ted Wright	143725	4711323	0.99	\N	\N
-1418	Papa's Got A Brand New Bag Pt.1	115	1	14	James Brown	127399	4174420	0.99	\N	\N
-1419	I Got You (I Feel Good)	115	1	14	James Brown	167392	5468472	0.99	\N	\N
-1420	It's A Man's Man's Man's World	115	1	14	Betty Newsome/James Brown	168228	5541611	0.99	\N	\N
-1421	Cold Sweat	115	1	14	Alfred Ellis/James Brown	172408	5643213	0.99	\N	\N
-1422	Say It Loud, I'm Black And I'm Proud Pt.1	115	1	14	Alfred Ellis/James Brown	167392	5478117	0.99	\N	\N
-1423	Get Up (I Feel Like Being A) Sex Machine	115	1	14	Bobby Byrd/James Brown/Ron Lenhoff	316551	10498031	0.99	\N	\N
-1424	Hey America	115	1	14	Addie William Jones/Nat Jones	218226	7187857	0.99	\N	\N
-1425	Make It Funky Pt.1	115	1	14	Charles Bobbitt/James Brown	196231	6507782	0.99	\N	\N
-1426	I'm A Greedy Man Pt.1	115	1	14	Charles Bobbitt/James Brown	217730	7251211	0.99	\N	\N
-1427	Get On The Good Foot	115	1	14	Fred Wesley/James Brown/Joseph Mims	215902	7182736	0.99	\N	\N
-1428	Get Up Offa That Thing	115	1	14	Deanna Brown/Deidra Jenkins/Yamma Brown	250723	8355989	0.99	\N	\N
-1429	It's Too Funky In Here	115	1	14	Brad Shapiro/George Jackson/Robert Miller/Walter Shaw	239072	7973979	0.99	\N	\N
-1430	Living In America	115	1	14	Charlie Midnight/Dan Hartman	282880	9432346	0.99	\N	\N
-1431	I'm Real	115	1	14	Full Force/James Brown	334236	11183457	0.99	\N	\N
-1432	Hot Pants Pt.1	115	1	14	Fred Wesley/James Brown	188212	6295110	0.99	\N	\N
-1433	Soul Power (Live)	115	1	14	James Brown	260728	8593206	0.99	\N	\N
-1434	When You Gonna Learn (Digeridoo)	116	1	1	Jay Kay/Kay, Jay	230635	7655482	0.99	\N	\N
-1435	Too Young To Die	116	1	1	Smith, Toby	365818	12391660	0.99	\N	\N
-1436	Hooked Up	116	1	1	Smith, Toby	275879	9301687	0.99	\N	\N
-1437	If I Like It, I Do It	116	1	1	Gelder, Nick van	293093	9848207	0.99	\N	\N
-1438	Music Of The Wind	116	1	1	Smith, Toby	383033	12870239	0.99	\N	\N
-1439	Emergency On Planet Earth	116	1	1	Smith, Toby	245263	8117218	0.99	\N	\N
-1440	Whatever It Is, I Just Can't Stop	116	1	1	Jay Kay/Kay, Jay	247222	8249453	0.99	\N	\N
-1441	Blow Your Mind	116	1	1	Smith, Toby	512339	17089176	0.99	\N	\N
-1442	Revolution 1993	116	1	1	Smith, Toby	616829	20816872	0.99	\N	\N
-1443	Didgin' Out	116	1	1	Buchanan, Wallis	157100	5263555	0.99	\N	\N
-1444	Canned Heat	117	1	14	Jay Kay	331964	11042037	0.99	\N	\N
-1445	Planet Home	117	1	14	Jay Kay/Toby Smith	284447	9566237	0.99	\N	\N
-1446	Black Capricorn Day	117	1	14	Jay Kay	341629	11477231	0.99	\N	\N
-1447	Soul Education	117	1	14	Jay Kay/Toby Smith	255477	8575435	0.99	\N	\N
-1448	Failling	117	1	14	Jay Kay/Toby Smith	225227	7503999	0.99	\N	\N
-1449	Destitute Illusions	117	1	14	Derrick McKenzie/Jay Kay/Toby Smith	340218	11452651	0.99	\N	\N
-1450	Supersonic	117	1	14	Jay Kay	315872	10699265	0.99	\N	\N
-1451	Butterfly	117	1	14	Jay Kay/Toby Smith	268852	8947356	0.99	\N	\N
-1452	Were Do We Go From Here	117	1	14	Jay Kay	313626	10504158	0.99	\N	\N
-1453	King For A Day	117	1	14	Jay Kay/Toby Smith	221544	7335693	0.99	\N	\N
-1454	Deeper Underground	117	1	14	Toby Smith	281808	9351277	0.99	\N	\N
-1455	Just Another Story	118	1	15	Toby Smith	529684	17582818	0.99	\N	\N
-1456	Stillness In Time	118	1	15	Toby Smith	257097	8644290	0.99	\N	\N
-1457	Half The Man	118	1	15	Toby Smith	289854	9577679	0.99	\N	\N
-1458	Light Years	118	1	15	Toby Smith	354560	11796244	0.99	\N	\N
-1459	Manifest Destiny	118	1	15	Toby Smith	382197	12676962	0.99	\N	\N
-1460	The Kids	118	1	15	Toby Smith	309995	10334529	0.99	\N	\N
-1461	Mr. Moon	118	1	15	Stuard Zender/Toby Smith	329534	11043559	0.99	\N	\N
-1462	Scam	118	1	15	Stuart Zender	422321	14019705	0.99	\N	\N
-1463	Journey To Arnhemland	118	1	15	Toby Smith/Wallis Buchanan	322455	10843832	0.99	\N	\N
-1464	Morning Glory	118	1	15	J. Kay/Jay Kay	384130	12777210	0.99	\N	\N
-1465	Space Cowboy	118	1	15	J. Kay/Jay Kay	385697	12906520	0.99	\N	\N
-1466	Last Chance	119	1	4	C. Cester/C. Muncey	112352	3683130	0.99	\N	\N
-1467	Are You Gonna Be My Girl	119	1	4	C. Muncey/N. Cester	213890	6992324	0.99	\N	\N
-1468	Rollover D.J.	119	1	4	C. Cester/N. Cester	196702	6406517	0.99	\N	\N
-1469	Look What You've Done	119	1	4	N. Cester	230974	7517083	0.99	\N	\N
-1470	Get What You Need	119	1	4	C. Cester/C. Muncey/N. Cester	247719	8043765	0.99	\N	\N
-1471	Move On	119	1	4	C. Cester/N. Cester	260623	8519353	0.99	\N	\N
-1472	Radio Song	119	1	4	C. Cester/C. Muncey/N. Cester	272117	8871509	0.99	\N	\N
-1473	Get Me Outta Here	119	1	4	C. Cester/N. Cester	176274	5729098	0.99	\N	\N
-1474	Cold Hard Bitch	119	1	4	C. Cester/C. Muncey/N. Cester	243278	7929610	0.99	\N	\N
-1475	Come Around Again	119	1	4	C. Muncey/N. Cester	270497	8872405	0.99	\N	\N
-1476	Take It Or Leave It	119	1	4	C. Muncey/N. Cester	142889	4643370	0.99	\N	\N
-1477	Lazy Gun	119	1	4	C. Cester/N. Cester	282174	9186285	0.99	\N	\N
-1478	Timothy	119	1	4	C. Cester	270341	8856507	0.99	\N	\N
-1479	Foxy Lady	120	1	1	Jimi Hendrix	199340	6480896	0.99	\N	\N
-1480	Manic Depression	120	1	1	Jimi Hendrix	222302	7289272	0.99	\N	\N
-1481	Red House	120	1	1	Jimi Hendrix	224130	7285851	0.99	\N	\N
-1482	Can You See Me	120	1	1	Jimi Hendrix	153077	4987068	0.99	\N	\N
-1483	Love Or Confusion	120	1	1	Jimi Hendrix	193123	6329408	0.99	\N	\N
-1484	I Don't Live Today	120	1	1	Jimi Hendrix	235311	7661214	0.99	\N	\N
-1485	May This Be Love	120	1	1	Jimi Hendrix	191216	6240028	0.99	\N	\N
-1486	Fire	120	1	1	Jimi Hendrix	164989	5383075	0.99	\N	\N
-1487	Third Stone From The Sun	120	1	1	Jimi Hendrix	404453	13186975	0.99	\N	\N
-1488	Remember	120	1	1	Jimi Hendrix	168150	5509613	0.99	\N	\N
-1489	Are You Experienced?	120	1	1	Jimi Hendrix	254537	8292497	0.99	\N	\N
-1490	Hey Joe	120	1	1	Billy Roberts	210259	6870054	0.99	\N	\N
-1491	Stone Free	120	1	1	Jimi Hendrix	216293	7002331	0.99	\N	\N
-1492	Purple Haze	120	1	1	Jimi Hendrix	171572	5597056	0.99	\N	\N
-1493	51st Anniversary	120	1	1	Jimi Hendrix	196388	6398044	0.99	\N	\N
-1494	The Wind Cries Mary	120	1	1	Jimi Hendrix	200463	6540638	0.99	\N	\N
-1495	Highway Chile	120	1	1	Jimi Hendrix	212453	6887949	0.99	\N	\N
-1496	Surfing with the Alien	121	2	1	\N	263707	4418504	0.99	\N	\N
-1497	Ice 9	121	2	1	\N	239721	4036215	0.99	\N	\N
-1498	Crushing Day	121	2	1	\N	314768	5232158	0.99	\N	\N
-1499	Always With Me, Always With You	121	2	1	\N	202035	3435777	0.99	\N	\N
-1500	Satch Boogie	121	2	1	\N	193560	3300654	0.99	\N	\N
-1501	Hill of the Skull	121	2	1	J. Satriani	108435	1944738	0.99	\N	\N
-1502	Circles	121	2	1	\N	209071	3548553	0.99	\N	\N
-1503	Lords of Karma	121	2	1	J. Satriani	288227	4809279	0.99	\N	\N
-1504	Midnight	121	2	1	J. Satriani	102630	1851753	0.99	\N	\N
-1505	Echo	121	2	1	J. Satriani	337570	5595557	0.99	\N	\N
-1506	Engenho De Dentro	122	1	7	\N	310073	10211473	0.99	\N	\N
-1507	Alcohol	122	1	7	\N	355239	12010478	0.99	\N	\N
-1508	Mama Africa	122	1	7	\N	283062	9488316	0.99	\N	\N
-1509	Salve Simpatia	122	1	7	\N	343484	11314756	0.99	\N	\N
-1510	W/Brasil (Chama O SÃ­ndico)	122	1	7	\N	317100	10599953	0.99	\N	\N
-1511	PaÃ­s Tropical	122	1	7	\N	452519	14946972	0.99	\N	\N
-1512	Os Alquimistas EstÃ£o Chegando	122	1	7	\N	367281	12304520	0.99	\N	\N
-1513	Charles Anjo 45	122	1	7	\N	389276	13022833	0.99	\N	\N
-1514	SelassiÃª	122	1	7	\N	326321	10724982	0.99	\N	\N
-1515	Menina SararÃ¡	122	1	7	\N	191477	6393818	0.99	\N	\N
-1516	Que Maravilha	122	1	7	\N	338076	10996656	0.99	\N	\N
-1517	Santa Clara Clareou	122	1	7	\N	380081	12524725	0.99	\N	\N
-1518	Filho Maravilha	122	1	7	\N	227526	7498259	0.99	\N	\N
-1519	Taj Mahal	122	1	7	\N	289750	9502898	0.99	\N	\N
-1520	Rapidamente	123	1	7	\N	252238	8470107	0.99	\N	\N
-1521	As Dores do Mundo	123	1	7	Hyldon	255477	8537092	0.99	\N	\N
-1522	Vou Pra Ai	123	1	7	\N	300878	10053718	0.99	\N	\N
-1523	My Brother	123	1	7	\N	253231	8431821	0.99	\N	\N
-1524	HÃ¡ Quanto Tempo	123	1	7	\N	270027	9004470	0.99	\N	\N
-1525	VÃ­cio	123	1	7	\N	269897	8887216	0.99	\N	\N
-1526	Encontrar AlguÃ©m	123	1	7	Marco Tulio Lara/Rogerio Flausino	224078	7437935	0.99	\N	\N
-1527	Dance Enquanto Ã© Tempo	123	1	7	\N	229093	7583799	0.99	\N	\N
-1528	A Tarde	123	1	7	\N	266919	8836127	0.99	\N	\N
-1529	Always Be All Right	123	1	7	\N	128078	4299676	0.99	\N	\N
-1530	Sem Sentido	123	1	7	\N	250462	8292108	0.99	\N	\N
-1531	Onibusfobia	123	1	7	\N	315977	10474904	0.99	\N	\N
-1532	Pura Elegancia	124	1	16	JoÃ£o Suplicy	284107	9632269	0.99	\N	\N
-1533	Choramingando	124	1	16	JoÃ£o Suplicy	190484	6400532	0.99	\N	\N
-1534	Por Merecer	124	1	16	JoÃ£o Suplicy	230582	7764601	0.99	\N	\N
-1535	No Futuro	124	1	16	JoÃ£o Suplicy	182308	6056200	0.99	\N	\N
-1536	Voce Inteira	124	1	16	JoÃ£o Suplicy	241084	8077282	0.99	\N	\N
-1537	Cuando A Noite Vai Chegando	124	1	16	JoÃ£o Suplicy	270628	9081874	0.99	\N	\N
-1538	Naquele Dia	124	1	16	JoÃ£o Suplicy	251768	8452654	0.99	\N	\N
-1539	Equinocio	124	1	16	JoÃ£o Suplicy	269008	8871455	0.99	\N	\N
-1540	PapelÃ£o	124	1	16	JoÃ£o Suplicy	213263	7257390	0.99	\N	\N
-1541	Cuando Eu For Pro Ceu	124	1	16	JoÃ£o Suplicy	118804	3948371	0.99	\N	\N
-1542	Do Nosso Amor	124	1	16	JoÃ£o Suplicy	203415	6774566	0.99	\N	\N
-1543	Borogodo	124	1	16	JoÃ£o Suplicy	208457	7104588	0.99	\N	\N
-1544	Cafezinho	124	1	16	JoÃ£o Suplicy	180924	6031174	0.99	\N	\N
-1545	Enquanto O Dia NÃ£o Vem	124	1	16	JoÃ£o Suplicy	220891	7248336	0.99	\N	\N
-1546	The Green Manalishi	125	1	3	\N	205792	6720789	0.99	\N	\N
-1547	Living After Midnight	125	1	3	\N	213289	7056785	0.99	\N	\N
-1548	Breaking The Law (Live)	125	1	3	\N	144195	4728246	0.99	\N	\N
-1549	Hot Rockin'	125	1	3	\N	197328	6509179	0.99	\N	\N
-1550	Heading Out To The Highway (Live)	125	1	3	\N	276427	9006022	0.99	\N	\N
-1551	The Hellion	125	1	3	\N	41900	1351993	0.99	\N	\N
-1552	Electric Eye	125	1	3	\N	222197	7231368	0.99	\N	\N
-1553	You've Got Another Thing Comin'	125	1	3	\N	305162	9962558	0.99	\N	\N
-1554	Turbo Lover	125	1	3	\N	335542	11068866	0.99	\N	\N
-1555	Freewheel Burning	125	1	3	\N	265952	8713599	0.99	\N	\N
-1556	Some Heads Are Gonna Roll	125	1	3	\N	249939	8198617	0.99	\N	\N
-1557	Metal Meltdown	125	1	3	\N	290664	9390646	0.99	\N	\N
-1558	Ram It Down	125	1	3	\N	292179	9554023	0.99	\N	\N
-1559	Diamonds And Rust (Live)	125	1	3	\N	219350	7163147	0.99	\N	\N
-1560	Victim Of Change (Live)	125	1	3	\N	430942	14067512	0.99	\N	\N
-1561	Tyrant (Live)	125	1	3	\N	282253	9190536	0.99	\N	\N
-1562	Comin' Home	126	1	1	Paul Stanley, Ace Frehley	172068	5661120	0.99	\N	\N
-1563	Plaster Caster	126	1	1	Gene Simmons	198060	6528719	0.99	\N	\N
-1564	Goin' Blind	126	1	1	Gene Simmons, Stephen Coronel	217652	7167523	0.99	\N	\N
-1565	Do You Love Me	126	1	1	Paul Stanley, Bob Ezrin, Kim Fowley	193619	6343111	0.99	\N	\N
-1566	Domino	126	1	1	Gene Simmons	226377	7488191	0.99	\N	\N
-1567	Sure Know Something	126	1	1	Paul Stanley, Vincent Poncia	254354	8375190	0.99	\N	\N
-1568	A World Without Heroes	126	1	1	Paul Stanley, Gene Simmons, Bob Ezrin, Lewis Reed	177815	5832524	0.99	\N	\N
-1569	Rock Bottom	126	1	1	Paul Stanley, Ace Frehley	200594	6560818	0.99	\N	\N
-1570	See You Tonight	126	1	1	Gene Simmons	146494	4817521	0.99	\N	\N
-1571	I Still Love You	126	1	1	Paul Stanley	369815	12086145	0.99	\N	\N
-1572	Every Time I Look At You	126	1	1	Paul Stanley, Vincent Cusano	283898	9290948	0.99	\N	\N
-1573	2,000 Man	126	1	1	Mick Jagger, Keith Richard	312450	10292829	0.99	\N	\N
-1574	Beth	126	1	1	Peter Criss, Stan Penridge, Bob Ezrin	170187	5577807	0.99	\N	\N
-1575	Nothin' To Lose	126	1	1	Gene Simmons	222354	7351460	0.99	\N	\N
-1576	Rock And Roll All Nite	126	1	1	Paul Stanley, Gene Simmons	259631	8549296	0.99	\N	\N
-1577	Immigrant Song	127	1	1	Robert Plant	201247	6457766	0.99	\N	\N
-1578	Heartbreaker	127	1	1	John Bonham/John Paul Jones/Robert Plant	316081	10179657	0.99	\N	\N
-1579	Since I've Been Loving You	127	1	1	John Paul Jones/Robert Plant	416365	13471959	0.99	\N	\N
-1580	Black Dog	127	1	1	John Paul Jones/Robert Plant	317622	10267572	0.99	\N	\N
-1581	Dazed And Confused	127	1	1	Jimmy Page/Led Zeppelin	1116734	36052247	0.99	\N	\N
-1582	Stairway To Heaven	127	1	1	Robert Plant	529658	17050485	0.99	\N	\N
-1583	Going To California	127	1	1	Robert Plant	234605	7646749	0.99	\N	\N
-1584	That's The Way	127	1	1	Robert Plant	343431	11248455	0.99	\N	\N
-1585	Whole Lotta Love (Medley)	127	1	1	Arthur Crudup/Bernard Besman/Bukka White/Doc Pomus/John Bonham/John Lee Hooker/John Paul Jones/Mort Shuman/Robert Plant/Willie Dixon	825103	26742545	0.99	\N	\N
-1586	Thank You	127	1	1	Robert Plant	398262	12831826	0.99	\N	\N
-1587	We're Gonna Groove	128	1	1	Ben E.King/James Bethea	157570	5180975	0.99	\N	\N
-1588	Poor Tom	128	1	1	Jimmy Page/Robert Plant	182491	6016220	0.99	\N	\N
-1589	I Can't Quit You Baby	128	1	1	Willie Dixon	258168	8437098	0.99	\N	\N
-1590	Walter's Walk	128	1	1	Jimmy Page, Robert Plant	270785	8712499	0.99	\N	\N
-1591	Ozone Baby	128	1	1	Jimmy Page, Robert Plant	215954	7079588	0.99	\N	\N
-1592	Darlene	128	1	1	Jimmy Page, Robert Plant, John Bonham, John Paul Jones	307226	10078197	0.99	\N	\N
-1593	Bonzo's Montreux	128	1	1	John Bonham	258925	8557447	0.99	\N	\N
-1594	Wearing And Tearing	128	1	1	Jimmy Page, Robert Plant	330004	10701590	0.99	\N	\N
-1595	The Song Remains The Same	129	1	1	Jimmy Page/Jimmy Page & Robert Plant/Robert Plant	330004	10708950	0.99	\N	\N
-1596	The Rain Song	129	1	1	Jimmy Page/Jimmy Page & Robert Plant/Robert Plant	459180	15029875	0.99	\N	\N
-1597	Over The Hills And Far Away	129	1	1	Jimmy Page/Jimmy Page & Robert Plant/Robert Plant	290089	9552829	0.99	\N	\N
-1598	The Crunge	129	1	1	John Bonham/John Paul Jones	197407	6460212	0.99	\N	\N
-1599	Dancing Days	129	1	1	Jimmy Page/Jimmy Page & Robert Plant/Robert Plant	223216	7250104	0.99	\N	\N
-1600	D'Yer Mak'er	129	1	1	John Bonham/John Paul Jones	262948	8645935	0.99	\N	\N
-1601	No Quarter	129	1	1	John Paul Jones	420493	13656517	0.99	\N	\N
-1602	The Ocean	129	1	1	John Bonham/John Paul Jones	271098	8846469	0.99	\N	\N
-1603	In The Evening	130	1	1	Jimmy Page, Robert Plant & John Paul Jones	410566	13399734	0.99	\N	\N
-1604	South Bound Saurez	130	1	1	John Paul Jones & Robert Plant	254406	8420427	0.99	\N	\N
-1605	Fool In The Rain	130	1	1	Jimmy Page, Robert Plant & John Paul Jones	372950	12371433	0.99	\N	\N
-1606	Hot Dog	130	1	1	Jimmy Page & Robert Plant	197198	6536167	0.99	\N	\N
-1607	Carouselambra	130	1	1	John Paul Jones, Jimmy Page & Robert Plant	634435	20858315	0.99	\N	\N
-1608	All My Love	130	1	1	Robert Plant & John Paul Jones	356284	11684862	0.99	\N	\N
-1609	I'm Gonna Crawl	130	1	1	Jimmy Page, Robert Plant & John Paul Jones	329639	10737665	0.99	\N	\N
-1610	Black Dog	131	1	1	Jimmy Page, Robert Plant, John Paul Jones	296672	9660588	0.99	\N	\N
-1611	Rock & Roll	131	1	1	Jimmy Page, Robert Plant, John Paul Jones, John Bonham	220917	7142127	0.99	\N	\N
-1612	The Battle Of Evermore	131	1	1	Jimmy Page, Robert Plant	351555	11525689	0.99	\N	\N
-1613	Stairway To Heaven	131	1	1	Jimmy Page, Robert Plant	481619	15706767	0.99	\N	\N
-1614	Misty Mountain Hop	131	1	1	Jimmy Page, Robert Plant, John Paul Jones	278857	9092799	0.99	\N	\N
-1615	Four Sticks	131	1	1	Jimmy Page, Robert Plant	284447	9481301	0.99	\N	\N
-1616	Going To California	131	1	1	Jimmy Page, Robert Plant	215693	7068737	0.99	\N	\N
-1617	When The Levee Breaks	131	1	1	Jimmy Page, Robert Plant, John Paul Jones, John Bonham, Memphis Minnie	427702	13912107	0.99	\N	\N
-1618	Good Times Bad Times	132	1	1	Jimmy Page/John Bonham/John Paul Jones	166164	5464077	0.99	\N	\N
-1619	Babe I'm Gonna Leave You	132	1	1	Jimmy Page/Robert Plant	401475	13189312	0.99	\N	\N
-1620	You Shook Me	132	1	1	J. B. Lenoir/Willie Dixon	388179	12643067	0.99	\N	\N
-1621	Dazed and Confused	132	1	1	Jimmy Page	386063	12610326	0.99	\N	\N
-1622	Your Time Is Gonna Come	132	1	1	Jimmy Page/John Paul Jones	274860	9011653	0.99	\N	\N
-1623	Black Mountain Side	132	1	1	Jimmy Page	132702	4440602	0.99	\N	\N
-1624	Communication Breakdown	132	1	1	Jimmy Page/John Bonham/John Paul Jones	150230	4899554	0.99	\N	\N
-1625	I Can't Quit You Baby	132	1	1	Willie Dixon	282671	9252733	0.99	\N	\N
-1626	How Many More Times	132	1	1	Jimmy Page/John Bonham/John Paul Jones	508055	16541364	0.99	\N	\N
-1627	Whole Lotta Love	133	1	1	Jimmy Page, Robert Plant, John Paul Jones, John Bonham	334471	11026243	0.99	\N	\N
-1628	What Is And What Should Never Be	133	1	1	Jimmy Page, Robert Plant	287973	9369385	0.99	\N	\N
-1629	The Lemon Song	133	1	1	Jimmy Page, Robert Plant, John Paul Jones, John Bonham	379141	12463496	0.99	\N	\N
-1630	Thank You	133	1	1	Jimmy Page, Robert Plant	287791	9337392	0.99	\N	\N
-1631	Heartbreaker	133	1	1	Jimmy Page, Robert Plant, John Paul Jones, John Bonham	253988	8387560	0.99	\N	\N
-1632	Living Loving Maid (She's Just A Woman)	133	1	1	Jimmy Page, Robert Plant	159216	5219819	0.99	\N	\N
-1633	Ramble On	133	1	1	Jimmy Page, Robert Plant	275591	9199710	0.99	\N	\N
-1634	Moby Dick	133	1	1	John Bonham, John Paul Jones, Jimmy Page	260728	8664210	0.99	\N	\N
-1635	Bring It On Home	133	1	1	Jimmy Page, Robert Plant	259970	8494731	0.99	\N	\N
-1636	Immigrant Song	134	1	1	Jimmy Page, Robert Plant	144875	4786461	0.99	\N	\N
-1637	Friends	134	1	1	Jimmy Page, Robert Plant	233560	7694220	0.99	\N	\N
-1638	Celebration Day	134	1	1	Jimmy Page, Robert Plant, John Paul Jones	209528	6871078	0.99	\N	\N
-1639	Since I've Been Loving You	134	1	1	Jimmy Page, Robert Plant, John Paul Jones	444055	14482460	0.99	\N	\N
-1640	Out On The Tiles	134	1	1	Jimmy Page, Robert Plant, John Bonham	246047	8060350	0.99	\N	\N
-1641	Gallows Pole	134	1	1	Traditional	296228	9757151	0.99	\N	\N
-1642	Tangerine	134	1	1	Jimmy Page	189675	6200893	0.99	\N	\N
-1643	That's The Way	134	1	1	Jimmy Page, Robert Plant	337345	11202499	0.99	\N	\N
-1644	Bron-Y-Aur Stomp	134	1	1	Jimmy Page, Robert Plant, John Paul Jones	259500	8674508	0.99	\N	\N
-1645	Hats Off To (Roy) Harper	134	1	1	Traditional	219376	7236640	0.99	\N	\N
-1646	In The Light	135	1	1	John Paul Jones/Robert Plant	526785	17033046	0.99	\N	\N
-1647	Bron-Yr-Aur	135	1	1	Jimmy Page	126641	4150746	0.99	\N	\N
-1648	Down By The Seaside	135	1	1	Robert Plant	316186	10371282	0.99	\N	\N
-1649	Ten Years Gone	135	1	1	Robert Plant	393116	12756366	0.99	\N	\N
-1650	Night Flight	135	1	1	John Paul Jones/Robert Plant	217547	7160647	0.99	\N	\N
-1651	The Wanton Song	135	1	1	Robert Plant	249887	8180988	0.99	\N	\N
-1652	Boogie With Stu	135	1	1	Ian Stewart/John Bonham/John Paul Jones/Mrs. Valens/Robert Plant	233273	7657086	0.99	\N	\N
-1653	Black Country Woman	135	1	1	Robert Plant	273084	8951732	0.99	\N	\N
-1654	Sick Again	135	1	1	Robert Plant	283036	9279263	0.99	\N	\N
-1655	Achilles Last Stand	136	1	1	Jimmy Page/Robert Plant	625502	20593955	0.99	\N	\N
-1656	For Your Life	136	1	1	Jimmy Page/Robert Plant	384391	12633382	0.99	\N	\N
-1657	Royal Orleans	136	1	1	John Bonham/John Paul Jones	179591	5930027	0.99	\N	\N
-1658	Nobody's Fault But Mine	136	1	1	Jimmy Page/Robert Plant	376215	12237859	0.99	\N	\N
-1659	Candy Store Rock	136	1	1	Jimmy Page/Robert Plant	252055	8397423	0.99	\N	\N
-1660	Hots On For Nowhere	136	1	1	Jimmy Page/Robert Plant	284107	9342342	0.99	\N	\N
-1661	Tea For One	136	1	1	Jimmy Page/Robert Plant	566752	18475264	0.99	\N	\N
-1662	Rock & Roll	137	1	1	John Bonham/John Paul Jones/Robert Plant	242442	7897065	0.99	\N	\N
-1663	Celebration Day	137	1	1	John Paul Jones/Robert Plant	230034	7478487	0.99	\N	\N
-1664	The Song Remains The Same	137	1	1	Robert Plant	353358	11465033	0.99	\N	\N
-1665	Rain Song	137	1	1	Robert Plant	505808	16273705	0.99	\N	\N
-1666	Dazed And Confused	137	1	1	Jimmy Page	1612329	52490554	0.99	\N	\N
-1667	No Quarter	138	1	1	John Paul Jones/Robert Plant	749897	24399285	0.99	\N	\N
-1668	Stairway To Heaven	138	1	1	Robert Plant	657293	21354766	0.99	\N	\N
-1669	Moby Dick	138	1	1	John Bonham/John Paul Jones	766354	25345841	0.99	\N	\N
-1670	Whole Lotta Love	138	1	1	John Bonham/John Paul Jones/Robert Plant/Willie Dixon	863895	28191437	0.99	\N	\N
-1671	NatÃ¡lia	139	1	7	Renato Russo	235728	7640230	0.99	\N	\N
-1672	L'Avventura	139	1	7	Renato Russo	278256	9165769	0.99	\N	\N
-1673	MÃºsica De Trabalho	139	1	7	Renato Russo	260231	8590671	0.99	\N	\N
-1674	Longe Do Meu Lado	139	1	7	Renato Russo - Marcelo BonfÃ¡	266161	8655249	0.99	\N	\N
-1675	A Via LÃ¡ctea	139	1	7	Renato Russo	280084	9234879	0.99	\N	\N
-1676	MÃºsica Ambiente	139	1	7	Renato Russo	247614	8234388	0.99	\N	\N
-1677	Aloha	139	1	7	Renato Russo	325955	10793301	0.99	\N	\N
-1678	Soul Parsifal	139	1	7	Renato Russo - Marisa Monte	295053	9853589	0.99	\N	\N
-1679	Dezesseis	139	1	7	Renato Russo	323918	10573515	0.99	\N	\N
-1680	Mil PedaÃ§os	139	1	7	Renato Russo	203337	6643291	0.99	\N	\N
-1681	Leila	139	1	7	Renato Russo	323056	10608239	0.99	\N	\N
-1682	1Âº De Julho	139	1	7	Renato Russo	290298	9619257	0.99	\N	\N
-1683	Esperando Por Mim	139	1	7	Renato Russo	261668	8844133	0.99	\N	\N
-1684	Quando VocÃª Voltar	139	1	7	Renato Russo	173897	5781046	0.99	\N	\N
-1685	O Livro Dos Dias	139	1	7	Renato Russo	257253	8570929	0.99	\N	\N
-1686	SerÃ¡	140	1	7	Dado Villa-Lobos/Marcelo BonfÃ¡	148401	4826528	0.99	\N	\N
-1687	Ainda Ã‰ Cedo	140	1	7	Dado Villa-Lobos/Ico Ouro-Preto/Marcelo BonfÃ¡	236826	7796400	0.99	\N	\N
-1688	GeraÃ§Ã£o Coca-Cola	140	1	7	Renato Russo	141453	4625731	0.99	\N	\N
-1689	Eduardo E MÃ´nica	140	1	7	Renato Russo	271229	9026691	0.99	\N	\N
-1690	Tempo Perdido	140	1	7	Renato Russo	302158	9963914	0.99	\N	\N
-1691	Indios	140	1	7	Renato Russo	258168	8610226	0.99	\N	\N
-1692	Que PaÃ­s Ã‰ Este	140	1	7	Renato Russo	177606	5822124	0.99	\N	\N
-1693	Faroeste Caboclo	140	1	7	Renato Russo	543007	18092739	0.99	\N	\N
-1694	HÃ¡ Tempos	140	1	7	Dado Villa-Lobos/Marcelo BonfÃ¡	197146	6432922	0.99	\N	\N
-1695	Pais E Filhos	140	1	7	Dado Villa-Lobos/Marcelo BonfÃ¡	308401	10130685	0.99	\N	\N
-1696	Meninos E Meninas	140	1	7	Dado Villa-Lobos/Marcelo BonfÃ¡	203781	6667802	0.99	\N	\N
-1697	Vento No Litoral	140	1	7	Dado Villa-Lobos/Marcelo BonfÃ¡	366445	12063806	0.99	\N	\N
-1698	PerfeiÃ§Ã£o	140	1	7	Dado Villa-Lobos/Marcelo BonfÃ¡	276558	9258489	0.99	\N	\N
-1699	Giz	140	1	7	Dado Villa-Lobos/Marcelo BonfÃ¡	202213	6677671	0.99	\N	\N
-1700	Dezesseis	140	1	7	Dado Villa-Lobos/Marcelo BonfÃ¡	321724	10501773	0.99	\N	\N
-1701	Antes Das Seis	140	1	7	Dado Villa-Lobos	189231	6296531	0.99	\N	\N
-1702	Are You Gonna Go My Way	141	1	1	Craig Ross/Lenny Kravitz	211591	6905135	0.99	\N	\N
-1703	Fly Away	141	1	1	Lenny Kravitz	221962	7322085	0.99	\N	\N
-1704	Rock And Roll Is Dead	141	1	1	Lenny Kravitz	204199	6680312	0.99	\N	\N
-1705	Again	141	1	1	Lenny Kravitz	228989	7490476	0.99	\N	\N
-1706	It Ain't Over 'Til It's Over	141	1	1	Lenny Kravitz	242703	8078936	0.99	\N	\N
-1707	Can't Get You Off My Mind	141	1	1	Lenny Kravitz	273815	8937150	0.99	\N	\N
-1708	Mr. Cab Driver	141	1	1	Lenny Kravitz	230321	7668084	0.99	\N	\N
-1709	American Woman	141	1	1	B. Cummings/G. Peterson/M.J. Kale/R. Bachman	261773	8538023	0.99	\N	\N
-1710	Stand By My Woman	141	1	1	Henry Kirssch/Lenny Kravitz/S. Pasch A. Krizan	259683	8447611	0.99	\N	\N
-1711	Always On The Run	141	1	1	Lenny Kravitz/Slash	232515	7593397	0.99	\N	\N
-1712	Heaven Help	141	1	1	Gerry DeVeaux/Terry Britten	190354	6222092	0.99	\N	\N
-1713	I Belong To You	141	1	1	Lenny Kravitz	257123	8477980	0.99	\N	\N
-1714	Believe	141	1	1	Henry Hirsch/Lenny Kravitz	295131	9661978	0.99	\N	\N
-1715	Let Love Rule	141	1	1	Lenny Kravitz	342648	11298085	0.99	\N	\N
-1716	Black Velveteen	141	1	1	Lenny Kravitz	290899	9531301	0.99	\N	\N
-1745	Pseudo Silk Kimono	144	1	1	Kelly, Mosley, Rothery, Trewaves	134739	4334038	0.99	\N	\N
-1746	Kayleigh	144	1	1	Kelly, Mosley, Rothery, Trewaves	234605	7716005	0.99	\N	\N
-1747	Lavender	144	1	1	Kelly, Mosley, Rothery, Trewaves	153417	4999814	0.99	\N	\N
-1748	Bitter Suite: Brief Encounter / Lost Weekend / Blue Angel	144	1	1	Kelly, Mosley, Rothery, Trewaves	356493	11791068	0.99	\N	\N
-1749	Heart Of Lothian: Wide Boy / Curtain Call	144	1	1	Kelly, Mosley, Rothery, Trewaves	366053	11893723	0.99	\N	\N
-1750	Waterhole (Expresso Bongo)	144	1	1	Kelly, Mosley, Rothery, Trewaves	133093	4378835	0.99	\N	\N
-1751	Lords Of The Backstage	144	1	1	Kelly, Mosley, Rothery, Trewaves	112875	3741319	0.99	\N	\N
-1752	Blind Curve: Vocal Under A Bloodlight / Passing Strangers / Mylo / Perimeter Walk / Threshold	144	1	1	Kelly, Mosley, Rothery, Trewaves	569704	18578995	0.99	\N	\N
-1753	Childhoods End?	144	1	1	Kelly, Mosley, Rothery, Trewaves	272796	9015366	0.99	\N	\N
-1754	White Feather	144	1	1	Kelly, Mosley, Rothery, Trewaves	143595	4711776	0.99	\N	\N
-1755	Arrepio	145	1	7	Carlinhos Brown	136254	4511390	0.99	\N	\N
-1756	Magamalabares	145	1	7	Carlinhos Brown	215875	7183757	0.99	\N	\N
-1757	Chuva No Brejo	145	1	7	Morais	145606	4857761	0.99	\N	\N
-1758	CÃ©rebro EletrÃ´nico	145	1	7	Gilberto Gil	172800	5760864	0.99	\N	\N
-1759	Tempos Modernos	145	1	7	Lulu Santos	183066	6066234	0.99	\N	\N
-1760	MaraÃ§Ã¡	145	1	7	Carlinhos Brown	230008	7621482	0.99	\N	\N
-1761	Blanco	145	1	7	Marisa Monte/poema de Octavio Paz/versÃ£o: Haroldo de Campos	45191	1454532	0.99	\N	\N
-1762	Panis Et Circenses	145	1	7	Caetano Veloso e Gilberto Gil	192339	6318373	0.99	\N	\N
-1763	De Noite Na Cama	145	1	7	Caetano Veloso e Gilberto Gil	209005	7012658	0.99	\N	\N
-1764	Beija Eu	145	1	7	Caetano Veloso e Gilberto Gil	197276	6512544	0.99	\N	\N
-1765	Give Me Love	145	1	7	Caetano Veloso e Gilberto Gil	249808	8196331	0.99	\N	\N
-1766	Ainda Lembro	145	1	7	Caetano Veloso e Gilberto Gil	218801	7211247	0.99	\N	\N
-1767	A Menina DanÃ§a	145	1	7	Caetano Veloso e Gilberto Gil	129410	4326918	0.99	\N	\N
-1768	DanÃ§a Da SolidÃ£o	145	1	7	Caetano Veloso e Gilberto Gil	203520	6699368	0.99	\N	\N
-1769	Ao Meu Redor	145	1	7	Caetano Veloso e Gilberto Gil	275591	9158834	0.99	\N	\N
-1770	Bem Leve	145	1	7	Caetano Veloso e Gilberto Gil	159190	5246835	0.99	\N	\N
-1771	Segue O Seco	145	1	7	Caetano Veloso e Gilberto Gil	178207	5922018	0.99	\N	\N
-1772	O Xote Das Meninas	145	1	7	Caetano Veloso e Gilberto Gil	291866	9553228	0.99	\N	\N
-1773	Wherever I Lay My Hat	146	1	14	\N	136986	4477321	0.99	\N	\N
-1774	Get My Hands On Some Lovin'	146	1	14	\N	149054	4860380	0.99	\N	\N
-1775	No Good Without You	146	1	14	William Mickey Stevenson	161410	5259218	0.99	\N	\N
-1776	You've Been A Long Time Coming	146	1	14	Brian Holland/Eddie Holland/Lamont Dozier	137221	4437949	0.99	\N	\N
-1777	When I Had Your Love	146	1	14	Robert Rogers/Warren Pete Moore/William Mickey Stevenson	152424	4972815	0.99	\N	\N
-1778	You're What's Happening (In The World Today)	146	1	14	Allen Story/George Gordy/Robert Gordy	142027	4631104	0.99	\N	\N
-1779	Loving You Is Sweeter Than Ever	146	1	14	Ivy Hunter/Stevie Wonder	166295	5377546	0.99	\N	\N
-1780	It's A Bitter Pill To Swallow	146	1	14	Smokey Robinson/Warren Pete Moore	194821	6477882	0.99	\N	\N
-1781	Seek And You Shall Find	146	1	14	Ivy Hunter/William Mickey Stevenson	223451	7306719	0.99	\N	\N
-1782	Gonna Keep On Tryin' Till I Win Your Love	146	1	14	Barrett Strong/Norman Whitfield	176404	5789945	0.99	\N	\N
-1783	Gonna Give Her All The Love I've Got	146	1	14	Barrett Strong/Norman Whitfield	210886	6893603	0.99	\N	\N
-1784	I Wish It Would Rain	146	1	14	Barrett Strong/Norman Whitfield/Roger Penzabene	172486	5647327	0.99	\N	\N
-1785	Abraham, Martin And John	146	1	14	Dick Holler	273057	8888206	0.99	\N	\N
-1786	Save The Children	146	1	14	Al Cleveland/Marvin Gaye/Renaldo Benson	194821	6342021	0.99	\N	\N
-1787	You Sure Love To Ball	146	1	14	Marvin Gaye	218540	7217872	0.99	\N	\N
-1788	Ego Tripping Out	146	1	14	Marvin Gaye	314514	10383887	0.99	\N	\N
-1789	Praise	146	1	14	Marvin Gaye	235833	7839179	0.99	\N	\N
-1790	Heavy Love Affair	146	1	14	Marvin Gaye	227892	7522232	0.99	\N	\N
-1791	Down Under	147	1	1	\N	222171	7366142	0.99	\N	\N
-1792	Overkill	147	1	1	\N	225410	7408652	0.99	\N	\N
-1793	Be Good Johnny	147	1	1	\N	216320	7139814	0.99	\N	\N
-1794	Everything I Need	147	1	1	\N	216476	7107625	0.99	\N	\N
-1795	Down by the Sea	147	1	1	\N	408163	13314900	0.99	\N	\N
-1796	Who Can It Be Now?	147	1	1	\N	202396	6682850	0.99	\N	\N
-1797	It's a Mistake	147	1	1	\N	273371	8979965	0.99	\N	\N
-1798	Dr. Heckyll & Mr. Jive	147	1	1	\N	278465	9110403	0.99	\N	\N
-1799	Shakes and Ladders	147	1	1	\N	198008	6560753	0.99	\N	\N
-1800	No Sign of Yesterday	147	1	1	\N	362004	11829011	0.99	\N	\N
-1801	Enter Sandman	148	1	3	James Hetfield, Lars Ulrich and Kirk Hammett	332251	10852002	0.99	\N	\N
-1802	Sad But True	148	1	3	Ulrich	324754	10541258	0.99	\N	\N
-1803	Holier Than Thou	148	1	3	Ulrich	227892	7462011	0.99	\N	\N
-1804	The Unforgiven	148	1	3	James Hetfield, Lars Ulrich and Kirk Hammett	387082	12646886	0.99	\N	\N
-1805	Wherever I May Roam	148	1	3	Ulrich	404323	13161169	0.99	\N	\N
-1806	Don't Tread On Me	148	1	3	Ulrich	240483	7827907	0.99	\N	\N
-1807	Through The Never	148	1	3	James Hetfield, Lars Ulrich and Kirk Hammett	244375	8024047	0.99	\N	\N
-1808	Nothing Else Matters	148	1	3	Ulrich	388832	12606241	0.99	\N	\N
-1809	Of Wolf And Man	148	1	3	James Hetfield, Lars Ulrich and Kirk Hammett	256835	8339785	0.99	\N	\N
-1810	The God That Failed	148	1	3	Ulrich	308610	10055959	0.99	\N	\N
-1811	My Friend Of Misery	148	1	3	James Hetfield, Lars Ulrich and Jason Newsted	409547	13293515	0.99	\N	\N
-1812	The Struggle Within	148	1	3	Ulrich	234240	7654052	0.99	\N	\N
-1813	Helpless	149	1	3	Harris/Tatler	398315	12977902	0.99	\N	\N
-1814	The Small Hours	149	1	3	Holocaust	403435	13215133	0.99	\N	\N
-1815	The Wait	149	1	3	Killing Joke	295418	9688418	0.99	\N	\N
-1816	Crash Course In Brain Surgery	149	1	3	Bourge/Phillips/Shelley	190406	6233729	0.99	\N	\N
-1817	Last Caress/Green Hell	149	1	3	Danzig	209972	6854313	0.99	\N	\N
-1818	Am I Evil?	149	1	3	Harris/Tatler	470256	15387219	0.99	\N	\N
-1819	Blitzkrieg	149	1	3	Jones/Sirotto/Smith	216685	7090018	0.99	\N	\N
-1820	Breadfan	149	1	3	Bourge/Phillips/Shelley	341551	11100130	0.99	\N	\N
-1821	The Prince	149	1	3	Harris/Tatler	265769	8624492	0.99	\N	\N
-1822	Stone Cold Crazy	149	1	3	Deacon/May/Mercury/Taylor	137717	4514830	0.99	\N	\N
-1823	So What	149	1	3	Culmer/Exalt	189152	6162894	0.99	\N	\N
-1824	Killing Time	149	1	3	Sweet Savage	183693	6021197	0.99	\N	\N
-1825	Overkill	149	1	3	Clarke/Kilmister/Tayler	245133	7971330	0.99	\N	\N
-1826	Damage Case	149	1	3	Clarke/Farren/Kilmister/Tayler	220212	7212997	0.99	\N	\N
-1827	Stone Dead Forever	149	1	3	Clarke/Kilmister/Tayler	292127	9556060	0.99	\N	\N
-1828	Too Late Too Late	149	1	3	Clarke/Kilmister/Tayler	192052	6276291	0.99	\N	\N
-1829	Hit The Lights	150	1	3	James Hetfield, Lars Ulrich	257541	8357088	0.99	\N	\N
-1830	The Four Horsemen	150	1	3	James Hetfield, Lars Ulrich, Dave Mustaine	433188	14178138	0.99	\N	\N
-1831	Motorbreath	150	1	3	James Hetfield	188395	6153933	0.99	\N	\N
-1832	Jump In The Fire	150	1	3	James Hetfield, Lars Ulrich, Dave Mustaine	281573	9135755	0.99	\N	\N
-1833	(Anesthesia) Pulling Teeth	150	1	3	Cliff Burton	254955	8234710	0.99	\N	\N
-1834	Whiplash	150	1	3	James Hetfield, Lars Ulrich	249208	8102839	0.99	\N	\N
-1835	Phantom Lord	150	1	3	James Hetfield, Lars Ulrich, Dave Mustaine	302053	9817143	0.99	\N	\N
-1836	No Remorse	150	1	3	James Hetfield, Lars Ulrich	386795	12672166	0.99	\N	\N
-1837	Seek & Destroy	150	1	3	James Hetfield, Lars Ulrich	415817	13452301	0.99	\N	\N
-1838	Metal Militia	150	1	3	James Hetfield, Lars Ulrich, Dave Mustaine	311327	10141785	0.99	\N	\N
-1839	Ain't My Bitch	151	1	3	James Hetfield, Lars Ulrich	304457	9931015	0.99	\N	\N
-1840	2 X 4	151	1	3	James Hetfield, Lars Ulrich, Kirk Hammett	328254	10732251	0.99	\N	\N
-1841	The House Jack Built	151	1	3	James Hetfield, Lars Ulrich, Kirk Hammett	398942	13005152	0.99	\N	\N
-1842	Until It Sleeps	151	1	3	James Hetfield, Lars Ulrich	269740	8837394	0.99	\N	\N
-1843	King Nothing	151	1	3	James Hetfield, Lars Ulrich, Kirk Hammett	328097	10681477	0.99	\N	\N
-1844	Hero Of The Day	151	1	3	James Hetfield, Lars Ulrich, Kirk Hammett	261982	8540298	0.99	\N	\N
-1845	Bleeding Me	151	1	3	James Hetfield, Lars Ulrich, Kirk Hammett	497998	16249420	0.99	\N	\N
-1846	Cure	151	1	3	James Hetfield, Lars Ulrich	294347	9648615	0.99	\N	\N
-1847	Poor Twisted Me	151	1	3	James Hetfield, Lars Ulrich	240065	7854349	0.99	\N	\N
-1848	Wasted My Hate	151	1	3	James Hetfield, Lars Ulrich, Kirk Hammett	237296	7762300	0.99	\N	\N
-1849	Mama Said	151	1	3	James Hetfield, Lars Ulrich	319764	10508310	0.99	\N	\N
-1850	Thorn Within	151	1	3	James Hetfield, Lars Ulrich, Kirk Hammett	351738	11486686	0.99	\N	\N
-1851	Ronnie	151	1	3	James Hetfield, Lars Ulrich	317204	10390947	0.99	\N	\N
-1852	The Outlaw Torn	151	1	3	James Hetfield, Lars Ulrich	588721	19286261	0.99	\N	\N
-1853	Battery	152	1	3	J.Hetfield/L.Ulrich	312424	10229577	0.99	\N	\N
-1854	Master Of Puppets	152	1	3	K.Hammett	515239	16893720	0.99	\N	\N
-1855	The Thing That Should Not Be	152	1	3	K.Hammett	396199	12952368	0.99	\N	\N
-1856	Welcome Home (Sanitarium)	152	1	3	K.Hammett	387186	12679965	0.99	\N	\N
-1857	Disposable Heroes	152	1	3	J.Hetfield/L.Ulrich	496718	16135560	0.99	\N	\N
-1858	Leper Messiah	152	1	3	C.Burton	347428	11310434	0.99	\N	\N
-1859	Orion	152	1	3	K.Hammett	500062	16378477	0.99	\N	\N
-1860	Damage Inc.	152	1	3	K.Hammett	330919	10725029	0.99	\N	\N
-1861	Fuel	153	1	3	Hetfield, Ulrich, Hammett	269557	8876811	0.99	\N	\N
-1862	The Memory Remains	153	1	3	Hetfield, Ulrich	279353	9110730	0.99	\N	\N
-1863	Devil's Dance	153	1	3	Hetfield, Ulrich	318955	10414832	0.99	\N	\N
-1864	The Unforgiven II	153	1	3	Hetfield, Ulrich, Hammett	395520	12886474	0.99	\N	\N
-1865	Better Than You	153	1	3	Hetfield, Ulrich	322899	10549070	0.99	\N	\N
-1866	Slither	153	1	3	Hetfield, Ulrich, Hammett	313103	10199789	0.99	\N	\N
-1867	Carpe Diem Baby	153	1	3	Hetfield, Ulrich, Hammett	372480	12170693	0.99	\N	\N
-1868	Bad Seed	153	1	3	Hetfield, Ulrich, Hammett	245394	8019586	0.99	\N	\N
-1869	Where The Wild Things Are	153	1	3	Hetfield, Ulrich, Newsted	414380	13571280	0.99	\N	\N
-1870	Prince Charming	153	1	3	Hetfield, Ulrich	365061	12009412	0.99	\N	\N
-1871	Low Man's Lyric	153	1	3	Hetfield, Ulrich	457639	14855583	0.99	\N	\N
-1872	Attitude	153	1	3	Hetfield, Ulrich	315898	10335734	0.99	\N	\N
-1873	Fixxxer	153	1	3	Hetfield, Ulrich, Hammett	496065	16190041	0.99	\N	\N
-1874	Fight Fire With Fire	154	1	3	Metallica	285753	9420856	0.99	\N	\N
-1875	Ride The Lightning	154	1	3	Metallica	397740	13055884	0.99	\N	\N
-1876	For Whom The Bell Tolls	154	1	3	Metallica	311719	10159725	0.99	\N	\N
-1877	Fade To Black	154	1	3	Metallica	414824	13531954	0.99	\N	\N
-1878	Trapped Under Ice	154	1	3	Metallica	244532	7975942	0.99	\N	\N
-1879	Escape	154	1	3	Metallica	264359	8652332	0.99	\N	\N
-1880	Creeping Death	154	1	3	Metallica	396878	12955593	0.99	\N	\N
-1881	The Call Of Ktulu	154	1	3	Metallica	534883	17486240	0.99	\N	\N
-1882	Frantic	155	1	3	Bob Rock/James Hetfield/Kirk Hammett/Lars Ulrich	350458	11510849	0.99	\N	\N
-1883	St. Anger	155	1	3	Bob Rock/James Hetfield/Kirk Hammett/Lars Ulrich	441234	14363779	0.99	\N	\N
-1884	Some Kind Of Monster	155	1	3	Bob Rock/James Hetfield/Kirk Hammett/Lars Ulrich	505626	16557497	0.99	\N	\N
-1885	Dirty Window	155	1	3	Bob Rock/James Hetfield/Kirk Hammett/Lars Ulrich	324989	10670604	0.99	\N	\N
-1886	Invisible Kid	155	1	3	Bob Rock/James Hetfield/Kirk Hammett/Lars Ulrich	510197	16591800	0.99	\N	\N
-1887	My World	155	1	3	Bob Rock/James Hetfield/Kirk Hammett/Lars Ulrich	345626	11253756	0.99	\N	\N
-1888	Shoot Me Again	155	1	3	Bob Rock/James Hetfield/Kirk Hammett/Lars Ulrich	430210	14093551	0.99	\N	\N
-1889	Sweet Amber	155	1	3	Bob Rock/James Hetfield/Kirk Hammett/Lars Ulrich	327235	10616595	0.99	\N	\N
-1890	The Unnamed Feeling	155	1	3	Bob Rock/James Hetfield/Kirk Hammett/Lars Ulrich	429479	14014582	0.99	\N	\N
-1891	Purify	155	1	3	Bob Rock/James Hetfield/Kirk Hammett/Lars Ulrich	314017	10232537	0.99	\N	\N
-1892	All Within My Hands	155	1	3	Bob Rock/James Hetfield/Kirk Hammett/Lars Ulrich	527986	17162741	0.99	\N	\N
-1893	Blackened	156	1	3	James Hetfield, Lars Ulrich & Jason Newsted	403382	13254874	0.99	\N	\N
-1894	...And Justice For All	156	1	3	James Hetfield, Lars Ulrich & Kirk Hammett	585769	19262088	0.99	\N	\N
-1895	Eye Of The Beholder	156	1	3	James Hetfield, Lars Ulrich & Kirk Hammett	385828	12747894	0.99	\N	\N
-1896	One	156	1	3	James Hetfield & Lars Ulrich	446484	14695721	0.99	\N	\N
-1897	The Shortest Straw	156	1	3	James Hetfield and Lars Ulrich	395389	13013990	0.99	\N	\N
-1898	Harvester Of Sorrow	156	1	3	James Hetfield and Lars Ulrich	345547	11377339	0.99	\N	\N
-1899	The Frayed Ends Of Sanity	156	1	3	James Hetfield, Lars Ulrich and Kirk Hammett	464039	15198986	0.99	\N	\N
-1900	To Live Is To Die	156	1	3	James Hetfield, Lars Ulrich and Cliff Burton	588564	19243795	0.99	\N	\N
-1901	Dyers Eve	156	1	3	James Hetfield, Lars Ulrich and Kirk Hammett	313991	10302828	0.99	\N	\N
-1902	Springsville	157	1	2	J. Carisi	207725	6776219	0.99	\N	\N
-1903	The Maids Of Cadiz	157	1	2	L. Delibes	233534	7505275	0.99	\N	\N
-1904	The Duke	157	1	2	Dave Brubeck	214961	6977626	0.99	\N	\N
-1905	My Ship	157	1	2	Ira Gershwin, Kurt Weill	268016	8581144	0.99	\N	\N
-1906	Miles Ahead	157	1	2	Miles Davis, Gil Evans	209893	6807707	0.99	\N	\N
-1907	Blues For Pablo	157	1	2	Gil Evans	318328	10218398	0.99	\N	\N
-1908	New Rhumba	157	1	2	A. Jamal	276871	8980400	0.99	\N	\N
-1909	The Meaning Of The Blues	157	1	2	R. Troup, L. Worth	168594	5395412	0.99	\N	\N
-1910	Lament	157	1	2	J.J. Johnson	134191	4293394	0.99	\N	\N
-1911	I Don't Wanna Be Kissed (By Anyone But You)	157	1	2	H. Spina, J. Elliott	191320	6219487	0.99	\N	\N
-1912	Springsville (Alternate Take)	157	1	2	J. Carisi	196388	6382079	0.99	\N	\N
-1913	Blues For Pablo (Alternate Take)	157	1	2	Gil Evans	212558	6900619	0.99	\N	\N
-1914	The Meaning Of The Blues/Lament (Alternate Take)	157	1	2	J.J. Johnson/R. Troup, L. Worth	309786	9912387	0.99	\N	\N
-1915	I Don't Wanna Be Kissed (By Anyone But You) (Alternate Take)	157	1	2	H. Spina, J. Elliott	192078	6254796	0.99	\N	\N
-1916	CoraÃ§Ã£o De Estudante	158	1	7	Wagner Tiso, Milton Nascimento	238550	7797308	0.99	\N	\N
-1917	A Noite Do Meu Bem	158	1	7	Dolores Duran	220081	7125225	0.99	\N	\N
-1918	Paisagem Na Janela	158	1	7	LÃ´ Borges, Fernando Brant	197694	6523547	0.99	\N	\N
-1919	Cuitelinho	158	1	7	Folclore	209397	6803970	0.99	\N	\N
-1920	CaxangÃ¡	158	1	7	Milton Nascimento, Fernando Brant	245551	8144179	0.99	\N	\N
-1921	Nos Bailes Da Vida	158	1	7	Milton Nascimento, Fernando Brant	275748	9126170	0.99	\N	\N
-1922	Menestrel Das Alagoas	158	1	7	Milton Nascimento, Fernando Brant	199758	6542289	0.99	\N	\N
-1923	Brasil	158	1	7	Milton Nascimento, Fernando Brant	155428	5252560	0.99	\N	\N
-1924	CanÃ§Ã£o Do Novo Mundo	158	1	7	Beto Guedes, Ronaldo Bastos	215353	7032626	0.99	\N	\N
-1925	Um Gosto De Sol	158	1	7	Milton Nascimento, Ronaldo Bastos	307200	9893875	0.99	\N	\N
-1926	Solar	158	1	7	Milton Nascimento, Fernando Brant	156212	5098288	0.99	\N	\N
-1927	Para Lennon E McCartney	158	1	7	LÃ´ Borges, MÃ¡rcio Borges, Fernando Brant	321828	10626920	0.99	\N	\N
-1928	Maria, Maria	158	1	7	Milton Nascimento, Fernando Brant	72463	2371543	0.99	\N	\N
-1929	Minas	159	1	7	Milton Nascimento, Caetano Veloso	152293	4921056	0.99	\N	\N
-1930	FÃ© Cega, Faca Amolada	159	1	7	Milton Nascimento, Ronaldo Bastos	278099	9258649	0.99	\N	\N
-1931	Beijo Partido	159	1	7	Toninho Horta	229564	7506969	0.99	\N	\N
-1932	Saudade Dos AviÃµes Da Panair (Conversando No Bar)	159	1	7	Milton Nascimento, Fernando Brant	268721	8805088	0.99	\N	\N
-1933	Gran Circo	159	1	7	Milton Nascimento, MÃ¡rcio Borges	251297	8237026	0.99	\N	\N
-1934	Ponta de Areia	159	1	7	Milton Nascimento, Fernando Brant	272796	8874285	0.99	\N	\N
-1935	Trastevere	159	1	7	Milton Nascimento, Ronaldo Bastos	265665	8708399	0.99	\N	\N
-1936	Idolatrada	159	1	7	Milton Nascimento, Fernando Brant	286249	9426153	0.99	\N	\N
-1937	Leila (Venha Ser Feliz)	159	1	7	Milton Nascimento	209737	6898507	0.99	\N	\N
-1938	Paula E Bebeto	159	1	7	Milton Nascimento, Caetano Veloso	135732	4583956	0.99	\N	\N
-1939	Simples	159	1	7	Nelson Angelo	133093	4326333	0.99	\N	\N
-1940	Norwegian Wood	159	1	7	John Lennon, Paul McCartney	413910	13520382	0.99	\N	\N
-1941	Caso VocÃª Queira Saber	159	1	7	Beto Guedes, MÃ¡rcio Borges	205688	6787901	0.99	\N	\N
-1942	Ace Of Spades	160	1	3	Clarke/Kilmister/Taylor	169926	5523552	0.99	\N	\N
-1943	Love Me Like A Reptile	160	1	3	Clarke/Kilmister/Taylor	203546	6616389	0.99	\N	\N
-1944	Shoot You In The Back	160	1	3	Clarke/Kilmister/Taylor	160026	5175327	0.99	\N	\N
-1945	Live To Win	160	1	3	Clarke/Kilmister/Taylor	217626	7102182	0.99	\N	\N
-1946	Fast And Loose	160	1	3	Clarke/Kilmister/Taylor	203337	6643350	0.99	\N	\N
-1947	(We Are) The Road Crew	160	1	3	Clarke/Kilmister/Taylor	192600	6283035	0.99	\N	\N
-1948	Fire Fire	160	1	3	Clarke/Kilmister/Taylor	164675	5416114	0.99	\N	\N
-1949	Jailbait	160	1	3	Clarke/Kilmister/Taylor	213916	6983609	0.99	\N	\N
-1950	Dance	160	1	3	Clarke/Kilmister/Taylor	158432	5155099	0.99	\N	\N
-1951	Bite The Bullet	160	1	3	Clarke/Kilmister/Taylor	98115	3195536	0.99	\N	\N
-1952	The Chase Is Better Than The Catch	160	1	3	Clarke/Kilmister/Taylor	258403	8393310	0.99	\N	\N
-1953	The Hammer	160	1	3	Clarke/Kilmister/Taylor	168071	5543267	0.99	\N	\N
-1954	Dirty Love	160	1	3	Clarke/Kilmister/Taylor	176457	5805241	0.99	\N	\N
-1955	Please Don't Touch	160	1	3	Heath/Robinson	169926	5557002	0.99	\N	\N
-1956	Emergency	160	1	3	Dufort/Johnson/McAuliffe/Williams	180427	5828728	0.99	\N	\N
-1957	Kir Royal	161	1	16	MÃ´nica Marianno	234788	7706552	0.99	\N	\N
-1958	O Que Vai Em Meu CoraÃ§Ã£o	161	1	16	MÃ´nica Marianno	255373	8366846	0.99	\N	\N
-1959	Aos LeÃµes	161	1	16	MÃ´nica Marianno	234684	7790574	0.99	\N	\N
-1961	Noite Negra	161	1	16	MÃ´nica Marianno	206811	6819584	0.99	\N	\N
-1962	Beijo do Olhar	161	1	16	MÃ´nica Marianno	252682	8369029	0.99	\N	\N
-1963	Ã‰ Fogo	161	1	16	MÃ´nica Marianno	194873	6501520	0.99	\N	\N
-1964	JÃ¡ Foi	161	1	16	MÃ´nica Marianno	245681	8094872	0.99	\N	\N
-1965	SÃ³ Se For Pelo Cabelo	161	1	16	MÃ´nica Marianno	238288	8006345	0.99	\N	\N
-1966	No Clima	161	1	16	MÃ´nica Marianno	249495	8362040	0.99	\N	\N
-1967	A MoÃ§a e a Chuva	161	1	16	MÃ´nica Marianno	274625	8929357	0.99	\N	\N
-1968	Demorou!	161	1	16	MÃ´nica Marianno	39131	1287083	0.99	\N	\N
-1969	Bitter Pill	162	1	3	Mick Mars/Nikki Sixx/Tommy Lee/Vince Neil	266814	8666786	0.99	\N	\N
-1970	Enslaved	162	1	3	Mick Mars/Nikki Sixx/Tommy Lee	269844	8789966	0.99	\N	\N
-1971	Girls, Girls, Girls	162	1	3	Mick Mars/Nikki Sixx/Tommy Lee	270288	8874814	0.99	\N	\N
-1972	Kickstart My Heart	162	1	3	Nikki Sixx	283559	9237736	0.99	\N	\N
-1973	Wild Side	162	1	3	Nikki Sixx/Tommy Lee/Vince Neil	276767	9116997	0.99	\N	\N
-1974	Glitter	162	1	3	Bryan Adams/Nikki Sixx/Scott Humphrey	340114	11184094	0.99	\N	\N
-1975	Dr. Feelgood	162	1	3	Mick Mars/Nikki Sixx	282618	9281875	0.99	\N	\N
-1976	Same Ol' Situation	162	1	3	Mick Mars/Nikki Sixx/Tommy Lee/Vince Neil	254511	8283958	0.99	\N	\N
-1977	Home Sweet Home	162	1	3	Nikki Sixx/Tommy Lee/Vince Neil	236904	7697538	0.99	\N	\N
-1978	Afraid	162	1	3	Nikki Sixx	248006	8077464	0.99	\N	\N
-1979	Don't Go Away Mad (Just Go Away)	162	1	3	Mick Mars/Nikki Sixx	279980	9188156	0.99	\N	\N
-1980	Without You	162	1	3	Mick Mars/Nikki Sixx	268956	8738371	0.99	\N	\N
-1981	Smokin' in The Boys Room	162	1	3	Cub Coda/Michael Lutz	206837	6735408	0.99	\N	\N
-1982	Primal Scream	162	1	3	Mick Mars/Nikki Sixx/Tommy Lee/Vince Neil	286197	9421164	0.99	\N	\N
-1983	Too Fast For Love	162	1	3	Nikki Sixx	200829	6580542	0.99	\N	\N
-1984	Looks That Kill	162	1	3	Nikki Sixx	240979	7831122	0.99	\N	\N
-1985	Shout At The Devil	162	1	3	Nikki Sixx	221962	7281974	0.99	\N	\N
-1986	Intro	163	1	1	Kurt Cobain	52218	1688527	0.99	\N	\N
-1987	School	163	1	1	Kurt Cobain	160235	5234885	0.99	\N	\N
-1988	Drain You	163	1	1	Kurt Cobain	215196	7013175	0.99	\N	\N
-1989	Aneurysm	163	1	1	Nirvana	271516	8862545	0.99	\N	\N
-1990	Smells Like Teen Spirit	163	1	1	Nirvana	287190	9425215	0.99	\N	\N
-1991	Been A Son	163	1	1	Kurt Cobain	127555	4170369	0.99	\N	\N
-1992	Lithium	163	1	1	Kurt Cobain	250017	8148800	0.99	\N	\N
-1993	Sliver	163	1	1	Kurt Cobain	116218	3784567	0.99	\N	\N
-1994	Spank Thru	163	1	1	Kurt Cobain	190354	6186487	0.99	\N	\N
-1995	Scentless Apprentice	163	1	1	Nirvana	211200	6898177	0.99	\N	\N
-1996	Heart-Shaped Box	163	1	1	Kurt Cobain	281887	9210982	0.99	\N	\N
-1997	Milk It	163	1	1	Kurt Cobain	225724	7406945	0.99	\N	\N
-1998	Negative Creep	163	1	1	Kurt Cobain	163761	5354854	0.99	\N	\N
-1999	Polly	163	1	1	Kurt Cobain	149995	4885331	0.99	\N	\N
-2000	Breed	163	1	1	Kurt Cobain	208378	6759080	0.99	\N	\N
-2001	Tourette's	163	1	1	Kurt Cobain	115591	3753246	0.99	\N	\N
-2002	Blew	163	1	1	Kurt Cobain	216346	7096936	0.99	\N	\N
-2003	Smells Like Teen Spirit	164	1	1	Kurt Cobain	301296	9823847	0.99	\N	\N
-2004	In Bloom	164	1	1	Kurt Cobain	254928	8327077	0.99	\N	\N
-2005	Come As You Are	164	1	1	Kurt Cobain	219219	7123357	0.99	\N	\N
-2006	Breed	164	1	1	Kurt Cobain	183928	5984812	0.99	\N	\N
-2007	Lithium	164	1	1	Kurt Cobain	256992	8404745	0.99	\N	\N
-2008	Polly	164	1	1	Kurt Cobain	177031	5788407	0.99	\N	\N
-2009	Territorial Pissings	164	1	1	Kurt Cobain	143281	4613880	0.99	\N	\N
-2010	Drain You	164	1	1	Kurt Cobain	223973	7273440	0.99	\N	\N
-2011	Lounge Act	164	1	1	Kurt Cobain	156786	5093635	0.99	\N	\N
-2012	Stay Away	164	1	1	Kurt Cobain	212636	6956404	0.99	\N	\N
-2013	On A Plain	164	1	1	Kurt Cobain	196440	6390635	0.99	\N	\N
-2014	Something In The Way	164	1	1	Kurt Cobain	230556	7472168	0.99	\N	\N
-2015	Time	165	1	1	\N	96888	3124455	0.99	\N	\N
-2016	P.S.ApareÃ§a	165	1	1	\N	209188	6842244	0.99	\N	\N
-2017	Sangue Latino	165	1	1	\N	223033	7354184	0.99	\N	\N
-2018	Folhas Secas	165	1	1	\N	161253	5284522	0.99	\N	\N
-2019	Poeira	165	1	1	\N	267075	8784141	0.99	\N	\N
-2020	MÃ¡gica	165	1	1	\N	233743	7627348	0.99	\N	\N
-2021	Quem Mata A Mulher Mata O Melhor	165	1	1	\N	262791	8640121	0.99	\N	\N
-2022	MundarÃ©u	165	1	1	\N	217521	7158975	0.99	\N	\N
-2023	O BraÃ§o Da Minha Guitarra	165	1	1	\N	258351	8469531	0.99	\N	\N
-2024	Deus	165	1	1	\N	284160	9188110	0.99	\N	\N
-2025	MÃ£e Terra	165	1	1	\N	306625	9949269	0.99	\N	\N
-2026	Ã€s Vezes	165	1	1	\N	330292	10706614	0.99	\N	\N
-2027	Menino De Rua	165	1	1	\N	329795	10784595	0.99	\N	\N
-2028	Prazer E FÃ©	165	1	1	\N	214831	7031383	0.99	\N	\N
-2029	Elza	165	1	1	\N	199105	6517629	0.99	\N	\N
-2030	Requebra	166	1	7	\N	240744	8010811	0.99	\N	\N
-2031	Nossa Gente (Avisa LÃ )	166	1	7	\N	188212	6233201	0.99	\N	\N
-2032	Olodum - Alegria Geral	166	1	7	\N	233404	7754245	0.99	\N	\N
-2033	MadagÃ¡scar Olodum	166	1	7	\N	252264	8270584	0.99	\N	\N
-2034	FaraÃ³ Divindade Do Egito	166	1	7	\N	228571	7523278	0.99	\N	\N
-2035	Todo Amor (Asas Da Liberdade)	166	1	7	\N	245133	8121434	0.99	\N	\N
-2036	DenÃºncia	166	1	7	\N	159555	5327433	0.99	\N	\N
-2037	Olodum, A Banda Do PelÃ´	166	1	7	\N	146599	4900121	0.99	\N	\N
-2038	Cartao Postal	166	1	7	\N	211565	7082301	0.99	\N	\N
-2039	Jeito Faceiro	166	1	7	\N	217286	7233608	0.99	\N	\N
-2040	Revolta Olodum	166	1	7	\N	230191	7557065	0.99	\N	\N
-2041	Reggae OdoyÃ¡	166	1	7	\N	224470	7499807	0.99	\N	\N
-2042	Protesto Do Olodum (Ao Vivo)	166	1	7	\N	206001	6766104	0.99	\N	\N
-2043	Olodum - Smile (Instrumental)	166	1	7	\N	235833	7871409	0.99	\N	\N
-2044	VulcÃ£o Dub - Fui Eu	167	1	7	Bi Ribeira/Herbert Vianna/JoÃ£o Barone	287059	9495202	0.99	\N	\N
-2045	O Trem Da Juventude	167	1	7	Herbert Vianna	225880	7507655	0.99	\N	\N
-2046	Manguetown	167	1	7	Chico Science/Dengue/LÃºcio Maia	162925	5382018	0.99	\N	\N
-2047	Um Amor, Um Lugar	167	1	7	Herbert Vianna	184555	6090334	0.99	\N	\N
-2048	Bora-Bora	167	1	7	Herbert Vianna	182987	6036046	0.99	\N	\N
-2049	Vai Valer	167	1	7	Herbert Vianna	206524	6899778	0.99	\N	\N
-2050	I Feel Good (I Got You) - Sossego	167	1	7	James Brown/Tim Maia	244976	8091302	0.99	\N	\N
-2051	Uns Dias	167	1	7	Herbert Vianna	240796	7931552	0.99	\N	\N
-2052	Sincero Breu	167	1	7	C. A./C.A./Celso Alvim/Herbert Vianna/MÃ¡rio Moura/Pedro LuÃ­s/Sidon Silva	208013	6921669	0.99	\N	\N
-2053	Meu Erro	167	1	7	Herbert Vianna	188577	6192791	0.99	\N	\N
-2054	Selvagem	167	1	7	Bi Ribeiro/Herbert Vianna/JoÃ£o Barone	148558	4942831	0.99	\N	\N
-2055	BrasÃ­lia 5:31	167	1	7	Herbert Vianna	178337	5857116	0.99	\N	\N
-2056	Tendo A Lua	167	1	7	Herbert Vianna/Tet Tillett	198922	6568180	0.99	\N	\N
-2057	Que PaÃ­s Ã‰ Este	167	1	7	Renato Russo	216685	7137865	0.99	\N	\N
-2058	Navegar Impreciso	167	1	7	Herbert Vianna	262870	8761283	0.99	\N	\N
-2059	Feira Moderna	167	1	7	Beto Guedes/Fernando Brant/L Borges	182517	6001793	0.99	\N	\N
-2060	Tequila - Lourinha Bombril (Parate Y Mira)	167	1	7	Bahiano/Chuck Rio/Diego Blanco/Herbert Vianna	255738	8514961	0.99	\N	\N
-2061	Vamo BatÃª Lata	167	1	7	Herbert Vianna	228754	7585707	0.99	\N	\N
-2062	Life During Wartime	167	1	7	Chris Frantz/David Byrne/Jerry Harrison/Tina Weymouth	259186	8543439	0.99	\N	\N
-2063	Nebulosa Do Amor	167	1	7	Herbert Vianna	203415	6732496	0.99	\N	\N
-2064	CaleidoscÃ³pio	167	1	7	Herbert Vianna	256522	8484597	0.99	\N	\N
-2065	Trac Trac	168	1	7	Fito Paez/Herbert Vianna	231653	7638256	0.99	\N	\N
-2066	Tendo A Lua	168	1	7	Herbert Vianna/TetÃª Tillet	219585	7342776	0.99	\N	\N
-2067	Mensagen De Amor (2000)	168	1	7	Herbert Vianna	183588	6061324	0.99	\N	\N
-2068	Lourinha Bombril	168	1	7	Bahiano/Diego Blanco/Herbert Vianna	159895	5301882	0.99	\N	\N
-2069	La Bella Luna	168	1	7	Herbert Vianna	192653	6428598	0.99	\N	\N
-2070	Busca Vida	168	1	7	Herbert Vianna	176431	5798663	0.99	\N	\N
-2071	Uma Brasileira	168	1	7	Carlinhos Brown/Herbert Vianna	217573	7280574	0.99	\N	\N
-2072	Luis Inacio (300 Picaretas)	168	1	7	Herbert Vianna	198191	6576790	0.99	\N	\N
-2073	Saber Amar	168	1	7	Herbert Vianna	202788	6723733	0.99	\N	\N
-2074	Ela Disse Adeus	168	1	7	Herbert Vianna	226298	7608999	0.99	\N	\N
-2075	O Amor Nao Sabe Esperar	168	1	7	Herbert Vianna	241084	8042534	0.99	\N	\N
-2076	Aonde Quer Que Eu Va	168	1	7	Herbert Vianna/Paulo SÃ©rgio Valle	258089	8470121	0.99	\N	\N
-2077	CaleidoscÃ³pio	169	1	7	\N	211330	7000017	0.99	\N	\N
-2078	Ã“culos	169	1	7	\N	219271	7262419	0.99	\N	\N
-2079	Cinema Mudo	169	1	7	\N	227918	7612168	0.99	\N	\N
-2080	Alagados	169	1	7	\N	302393	10255463	0.99	\N	\N
-2081	Lanterna Dos Afogados	169	1	7	\N	190197	6264318	0.99	\N	\N
-2082	MelÃ´ Do Marinheiro	169	1	7	\N	208352	6905668	0.99	\N	\N
-2083	Vital E Sua Moto	169	1	7	\N	210207	6902878	0.99	\N	\N
-2084	O Beco	169	1	7	\N	189178	6293184	0.99	\N	\N
-2085	Meu Erro	169	1	7	\N	208431	6893533	0.99	\N	\N
-2086	Perplexo	169	1	7	\N	161175	5355013	0.99	\N	\N
-2087	Me Liga	169	1	7	\N	229590	7565912	0.99	\N	\N
-2088	Quase Um Segundo	169	1	7	\N	275644	8971355	0.99	\N	\N
-2089	Selvagem	169	1	7	\N	245890	8141084	0.99	\N	\N
-2090	Romance Ideal	169	1	7	\N	250070	8260477	0.99	\N	\N
-2091	SerÃ¡ Que Vai Chover?	169	1	7	\N	337057	11133830	0.99	\N	\N
-2092	SKA	169	1	7	\N	148871	4943540	0.99	\N	\N
-2093	Bark at the Moon	170	2	1	O. Osbourne	257252	4601224	0.99	\N	\N
-2094	I Don't Know	171	2	1	B. Daisley, O. Osbourne & R. Rhoads	312980	5525339	0.99	\N	\N
-2095	Crazy Train	171	2	1	B. Daisley, O. Osbourne & R. Rhoads	295960	5255083	0.99	\N	\N
-2096	Flying High Again	172	2	1	L. Kerslake, O. Osbourne, R. Daisley & R. Rhoads	290851	5179599	0.99	\N	\N
-2097	Mama, I'm Coming Home	173	2	1	L. Kilmister, O. Osbourne & Z. Wylde	251586	4302390	0.99	\N	\N
-2098	No More Tears	173	2	1	J. Purdell, M. Inez, O. Osbourne, R. Castillo & Z. Wylde	444358	7362964	0.99	\N	\N
-2099	I Don't Know	174	1	3	O. Osbourne, R. Daisley, R. Rhoads	283088	9207869	0.99	\N	\N
-2100	Crazy Train	174	1	3	O. Osbourne, R. Daisley, R. Rhoads	322716	10517408	0.99	\N	\N
-2101	Believer	174	1	3	O. Osbourne, R. Daisley, R. Rhoads	308897	10003794	0.99	\N	\N
-2102	Mr. Crowley	174	1	3	O. Osbourne, R. Daisley, R. Rhoads	344241	11184130	0.99	\N	\N
-2103	Flying High Again	174	1	3	O. Osbourne, R. Daisley, R. Rhoads, L. Kerslake	261224	8481822	0.99	\N	\N
-2104	Relvelation (Mother Earth)	174	1	3	O. Osbourne, R. Daisley, R. Rhoads	349440	11367866	0.99	\N	\N
-2105	Steal Away (The Night)	174	1	3	O. Osbourne, R. Daisley, R. Rhoads	485720	15945806	0.99	\N	\N
-2106	Suicide Solution (With Guitar Solo)	174	1	3	O. Osbourne, R. Daisley, R. Rhoads	467069	15119938	0.99	\N	\N
-2107	Iron Man	174	1	3	A. F. Iommi, W. Ward, T. Butler, J. Osbourne	172120	5609799	0.99	\N	\N
-2108	Children Of The Grave	174	1	3	A. F. Iommi, W. Ward, T. Butler, J. Osbourne	357067	11626740	0.99	\N	\N
-2109	Paranoid	174	1	3	A. F. Iommi, W. Ward, T. Butler, J. Osbourne	176352	5729813	0.99	\N	\N
-2110	Goodbye To Romance	174	1	3	O. Osbourne, R. Daisley, R. Rhoads	334393	10841337	0.99	\N	\N
-2111	No Bone Movies	174	1	3	O. Osbourne, R. Daisley, R. Rhoads	249208	8095199	0.99	\N	\N
-2112	Dee	174	1	3	R. Rhoads	261302	8555963	0.99	\N	\N
-2113	Shining In The Light	175	1	1	Jimmy Page, Robert Plant, Charlie Jones, Michael Lee	240796	7951688	0.99	\N	\N
-2114	When The World Was Young	175	1	1	Jimmy Page, Robert Plant, Charlie Jones, Michael Lee	373394	12198930	0.99	\N	\N
-2115	Upon A Golden Horse	175	1	1	Jimmy Page, Robert Plant, Charlie Jones, Michael Lee	232359	7594829	0.99	\N	\N
-2116	Blue Train	175	1	1	Jimmy Page, Robert Plant, Charlie Jones, Michael Lee	405028	13170391	0.99	\N	\N
-2117	Please Read The Letter	175	1	1	Jimmy Page, Robert Plant, Charlie Jones, Michael Lee	262112	8603372	0.99	\N	\N
-2118	Most High	175	1	1	Jimmy Page, Robert Plant, Charlie Jones, Michael Lee	336535	10999203	0.99	\N	\N
-2119	Heart In Your Hand	175	1	1	Jimmy Page, Robert Plant, Charlie Jones, Michael Lee	230896	7598019	0.99	\N	\N
-2120	Walking Into Clarksdale	175	1	1	Jimmy Page, Robert Plant, Charlie Jones, Michael Lee	318511	10396315	0.99	\N	\N
-2121	Burning Up	175	1	1	Jimmy Page, Robert Plant, Charlie Jones, Michael Lee	321619	10525136	0.99	\N	\N
-2122	When I Was A Child	175	1	1	Jimmy Page, Robert Plant, Charlie Jones, Michael Lee	345626	11249456	0.99	\N	\N
-2123	House Of Love	175	1	1	Jimmy Page, Robert Plant, Charlie Jones, Michael Lee	335699	10990880	0.99	\N	\N
-2124	Sons Of Freedom	175	1	1	Jimmy Page, Robert Plant, Charlie Jones, Michael Lee	246465	8087944	0.99	\N	\N
-2125	United Colours	176	1	10	Brian Eno, Bono, Adam Clayton, The Edge & Larry Mullen Jnr.	330266	10939131	0.99	\N	\N
-2126	Slug	176	1	10	Brian Eno, Bono, Adam Clayton, The Edge & Larry Mullen Jnr.	281469	9295950	0.99	\N	\N
-2127	Your Blue Room	176	1	10	Brian Eno, Bono, Adam Clayton, The Edge & Larry Mullen Jnr.	328228	10867860	0.99	\N	\N
-2128	Always Forever Now	176	1	10	Brian Eno, Bono, Adam Clayton, The Edge & Larry Mullen Jnr.	383764	12727928	0.99	\N	\N
-2129	A Different Kind Of Blue	176	1	10	Brian Eno, Bono, Adam Clayton, The Edge & Larry Mullen Jnr.	120816	3884133	0.99	\N	\N
-2130	Beach Sequence	176	1	10	Brian Eno, Bono, Adam Clayton, The Edge & Larry Mullen Jnr.	212297	6928259	0.99	\N	\N
-2131	Miss Sarajevo	176	1	10	Brian Eno, Bono, Adam Clayton, The Edge & Larry Mullen Jnr.	340767	11064884	0.99	\N	\N
-2132	Ito Okashi	176	1	10	Brian Eno, Bono, Adam Clayton, The Edge & Larry Mullen Jnr.	205087	6572813	0.99	\N	\N
-2133	One Minute Warning	176	1	10	Brian Eno, Bono, Adam Clayton, The Edge & Larry Mullen Jnr.	279693	9335453	0.99	\N	\N
-2134	Corpse (These Chains Are Way Too Long)	176	1	10	Brian Eno, Bono, Adam Clayton, The Edge & Larry Mullen Jnr.	214909	6920451	0.99	\N	\N
-2135	Elvis Ate America	176	1	10	Brian Eno, Bono, Adam Clayton, The Edge & Larry Mullen Jnr.	180166	5851053	0.99	\N	\N
-2136	Plot 180	176	1	10	Brian Eno, Bono, Adam Clayton, The Edge & Larry Mullen Jnr.	221596	7253729	0.99	\N	\N
-2137	Theme From The Swan	176	1	10	Brian Eno, Bono, Adam Clayton, The Edge & Larry Mullen Jnr.	203911	6638076	0.99	\N	\N
-2138	Theme From Let's Go Native	176	1	10	Brian Eno, Bono, Adam Clayton, The Edge & Larry Mullen Jnr.	186723	6179777	0.99	\N	\N
-2139	Wrathchild	177	1	1	Steve Harris	170396	5499390	0.99	\N	\N
-2140	Killers	177	1	1	Paul Di'Anno/Steve Harris	309995	10009697	0.99	\N	\N
-2141	Prowler	177	1	1	Steve Harris	240274	7782963	0.99	\N	\N
-2142	Murders In The Rue Morgue	177	1	1	Steve Harris	258638	8360999	0.99	\N	\N
-2143	Women In Uniform	177	1	1	Greg Macainsh	189936	6139651	0.99	\N	\N
-2144	Remember Tomorrow	177	1	1	Paul Di'Anno/Steve Harris	326426	10577976	0.99	\N	\N
-2145	Sanctuary	177	1	1	David Murray/Paul Di'Anno/Steve Harris	198844	6423543	0.99	\N	\N
-2146	Running Free	177	1	1	Paul Di'Anno/Steve Harris	199706	6483496	0.99	\N	\N
-2147	Phantom Of The Opera	177	1	1	Steve Harris	418168	13585530	0.99	\N	\N
-2148	Iron Maiden	177	1	1	Steve Harris	235232	7600077	0.99	\N	\N
-2149	Corduroy	178	1	1	Pearl Jam & Eddie Vedder	305293	9991106	0.99	\N	\N
-2150	Given To Fly	178	1	1	Eddie Vedder & Mike McCready	233613	7678347	0.99	\N	\N
-2151	Hail, Hail	178	1	1	Stone Gossard & Eddie Vedder & Jeff Ament & Mike McCready	223764	7364206	0.99	\N	\N
-2152	Daughter	178	1	1	Dave Abbruzzese & Jeff Ament & Stone Gossard & Mike McCready & Eddie Vedder	407484	13420697	0.99	\N	\N
-2153	Elderly Woman Behind The Counter In A Small Town	178	1	1	Dave Abbruzzese & Jeff Ament & Stone Gossard & Mike McCready & Eddie Vedder	229328	7509304	0.99	\N	\N
-2154	Untitled	178	1	1	Pearl Jam	122801	3957141	0.99	\N	\N
-2155	MFC	178	1	1	Eddie Vedder	148192	4817665	0.99	\N	\N
-2156	Go	178	1	1	Dave Abbruzzese & Jeff Ament & Stone Gossard & Mike McCready & Eddie Vedder	161541	5290810	0.99	\N	\N
-2157	Red Mosquito	178	1	1	Jeff Ament & Stone Gossard & Jack Irons & Mike McCready & Eddie Vedder	242991	7944923	0.99	\N	\N
-2158	Even Flow	178	1	1	Stone Gossard & Eddie Vedder	317100	10394239	0.99	\N	\N
-2159	Off He Goes	178	1	1	Eddie Vedder	343222	11245109	0.99	\N	\N
-2160	Nothingman	178	1	1	Jeff Ament & Eddie Vedder	278595	9107017	0.99	\N	\N
-2161	Do The Evolution	178	1	1	Eddie Vedder & Stone Gossard	225462	7377286	0.99	\N	\N
-2162	Better Man	178	1	1	Eddie Vedder	246204	8019563	0.99	\N	\N
-2163	Black	178	1	1	Stone Gossard & Eddie Vedder	415712	13580009	0.99	\N	\N
-2164	F*Ckin' Up	178	1	1	Neil Young	377652	12360893	0.99	\N	\N
-2165	Life Wasted	179	1	4	Stone Gossard	234344	7610169	0.99	\N	\N
-2166	World Wide Suicide	179	1	4	Eddie Vedder	209188	6885908	0.99	\N	\N
-2167	Comatose	179	1	4	Mike McCready & Stone Gossard	139990	4574516	0.99	\N	\N
-2168	Severed Hand	179	1	4	Eddie Vedder	270341	8817438	0.99	\N	\N
-2169	Marker In The Sand	179	1	4	Mike McCready	263235	8656578	0.99	\N	\N
-2170	Parachutes	179	1	4	Stone Gossard	216555	7074973	0.99	\N	\N
-2171	Unemployable	179	1	4	Matt Cameron & Mike McCready	184398	6066542	0.99	\N	\N
-2172	Big Wave	179	1	4	Jeff Ament	178573	5858788	0.99	\N	\N
-2173	Gone	179	1	4	Eddie Vedder	249547	8158204	0.99	\N	\N
-2174	Wasted Reprise	179	1	4	Stone Gossard	53733	1731020	0.99	\N	\N
-2175	Army Reserve	179	1	4	Jeff Ament	225567	7393771	0.99	\N	\N
-2176	Come Back	179	1	4	Eddie Vedder & Mike McCready	329743	10768701	0.99	\N	\N
-2177	Inside Job	179	1	4	Eddie Vedder & Mike McCready	428643	14006924	0.99	\N	\N
-2178	Can't Keep	180	1	1	Eddie Vedder	219428	7215713	0.99	\N	\N
-2179	Save You	180	1	1	Eddie Vedder/Jeff Ament/Matt Cameron/Mike McCready/Stone Gossard	230112	7609110	0.99	\N	\N
-2180	Love Boat Captain	180	1	1	Eddie Vedder	276453	9016789	0.99	\N	\N
-2181	Cropduster	180	1	1	Matt Cameron	231888	7588928	0.99	\N	\N
-2182	Ghost	180	1	1	Jeff Ament	195108	6383772	0.99	\N	\N
-2183	I Am Mine	180	1	1	Eddie Vedder	215719	7086901	0.99	\N	\N
-2184	Thumbing My Way	180	1	1	Eddie Vedder	250226	8201437	0.99	\N	\N
-2185	You Are	180	1	1	Matt Cameron	270863	8938409	0.99	\N	\N
-2186	Get Right	180	1	1	Matt Cameron	158589	5223345	0.99	\N	\N
-2187	Green Disease	180	1	1	Eddie Vedder	161253	5375818	0.99	\N	\N
-2188	Help Help	180	1	1	Jeff Ament	215092	7033002	0.99	\N	\N
-2189	Bushleager	180	1	1	Stone Gossard	237479	7849757	0.99	\N	\N
-2190	1/2 Full	180	1	1	Jeff Ament	251010	8197219	0.99	\N	\N
-2191	Arc	180	1	1	Pearl Jam	65593	2099421	0.99	\N	\N
-2192	All or None	180	1	1	Stone Gossard	277655	9104728	0.99	\N	\N
-2193	Once	181	1	1	Stone Gossard	231758	7561555	0.99	\N	\N
-2194	Evenflow	181	1	1	Stone Gossard	293720	9622017	0.99	\N	\N
-2195	Alive	181	1	1	Stone Gossard	341080	11176623	0.99	\N	\N
-2196	Why Go	181	1	1	Jeff Ament	200254	6539287	0.99	\N	\N
-2197	Black	181	1	1	Dave Krusen/Stone Gossard	343823	11213314	0.99	\N	\N
-2198	Jeremy	181	1	1	Jeff Ament	318981	10447222	0.99	\N	\N
-2199	Oceans	181	1	1	Jeff Ament/Stone Gossard	162194	5282368	0.99	\N	\N
-2200	Porch	181	1	1	Eddie Vedder	210520	6877475	0.99	\N	\N
-2201	Garden	181	1	1	Jeff Ament/Stone Gossard	299154	9740738	0.99	\N	\N
-2202	Deep	181	1	1	Jeff Ament/Stone Gossard	258324	8432497	0.99	\N	\N
-2203	Release	181	1	1	Jeff Ament/Mike McCready/Stone Gossard	546063	17802673	0.99	\N	\N
-2204	Go	182	1	1	Dave Abbruzzese/Eddie Vedder/Jeff Ament/Mike McCready/Stone Gossard	193123	6351920	0.99	\N	\N
-2205	Animal	182	1	1	Dave Abbruzzese/Eddie Vedder/Jeff Ament/Mike McCready/Stone Gossard	169325	5503459	0.99	\N	\N
-2206	Daughter	182	1	1	Dave Abbruzzese/Eddie Vedder/Jeff Ament/Mike McCready/Stone Gossard	235598	7824586	0.99	\N	\N
-2207	Glorified G	182	1	1	Dave Abbruzzese/Eddie Vedder/Jeff Ament/Mike McCready/Stone Gossard	206968	6772116	0.99	\N	\N
-2208	Dissident	182	1	1	Dave Abbruzzese/Eddie Vedder/Jeff Ament/Mike McCready/Stone Gossard	215510	7034500	0.99	\N	\N
-2209	W.M.A.	182	1	1	Dave Abbruzzese/Eddie Vedder/Jeff Ament/Mike McCready/Stone Gossard	359262	12037261	0.99	\N	\N
-2210	Blood	182	1	1	Dave Abbruzzese/Eddie Vedder/Jeff Ament/Mike McCready/Stone Gossard	170631	5551478	0.99	\N	\N
-2211	Rearviewmirror	182	1	1	Dave Abbruzzese/Eddie Vedder/Jeff Ament/Mike McCready/Stone Gossard	284186	9321053	0.99	\N	\N
-2212	Rats	182	1	1	Dave Abbruzzese/Eddie Vedder/Jeff Ament/Mike McCready/Stone Gossard	255425	8341934	0.99	\N	\N
-2213	Elderly Woman Behind The Counter In A Small Town	182	1	1	Dave Abbruzzese/Eddie Vedder/Jeff Ament/Mike McCready/Stone Gossard	196336	6499398	0.99	\N	\N
-2214	Leash	182	1	1	Dave Abbruzzese/Eddie Vedder/Jeff Ament/Mike McCready/Stone Gossard	189257	6191560	0.99	\N	\N
-2215	Indifference	182	1	1	Dave Abbruzzese/Eddie Vedder/Jeff Ament/Mike McCready/Stone Gossard	302053	9756133	0.99	\N	\N
-2216	Johnny B. Goode	141	1	8	\N	243200	8092024	0.99	\N	\N
-2217	Don't Look Back	141	1	8	\N	221100	7344023	0.99	\N	\N
-2218	Jah Seh No	141	1	8	\N	276871	9134476	0.99	\N	\N
-2219	I'm The Toughest	141	1	8	\N	230191	7657594	0.99	\N	\N
-2220	Nothing But Love	141	1	8	\N	221570	7335228	0.99	\N	\N
-2221	Buk-In-Hamm Palace	141	1	8	\N	265665	8964369	0.99	\N	\N
-2222	Bush Doctor	141	1	8	\N	239751	7942299	0.99	\N	\N
-2223	Wanted Dread And Alive	141	1	8	\N	260310	8670933	0.99	\N	\N
-2224	Mystic Man	141	1	8	\N	353671	11812170	0.99	\N	\N
-2225	Coming In Hot	141	1	8	\N	213054	7109414	0.99	\N	\N
-2226	Pick Myself Up	141	1	8	\N	234684	7788255	0.99	\N	\N
-2227	Crystal Ball	141	1	8	\N	309733	10319296	0.99	\N	\N
-2228	Equal Rights Downpresser Man	141	1	8	\N	366733	12086524	0.99	\N	\N
-2229	Speak To Me/Breathe	183	1	1	Mason/Waters, Gilmour, Wright	234213	7631305	0.99	\N	\N
-2230	On The Run	183	1	1	Gilmour, Waters	214595	7206300	0.99	\N	\N
-2231	Time	183	1	1	Mason, Waters, Wright, Gilmour	425195	13955426	0.99	\N	\N
-2232	The Great Gig In The Sky	183	1	1	Wright, Waters	284055	9147563	0.99	\N	\N
-2233	Money	183	1	1	Waters	391888	12930070	0.99	\N	\N
-2234	Us And Them	183	1	1	Waters, Wright	461035	15000299	0.99	\N	\N
-2235	Any Colour You Like	183	1	1	Gilmour, Mason, Wright, Waters	205740	6707989	0.99	\N	\N
-2236	Brain Damage	183	1	1	Waters	230556	7497655	0.99	\N	\N
-2237	Eclipse	183	1	1	Waters	125361	4065299	0.99	\N	\N
-2238	ZeroVinteUm	184	1	17	\N	315637	10426550	0.99	\N	\N
-2239	Queimando Tudo	184	1	17	\N	172591	5723677	0.99	\N	\N
-2240	Hip Hop Rio	184	1	17	\N	151536	4991935	0.99	\N	\N
-2241	Bossa	184	1	17	\N	29048	967098	0.99	\N	\N
-2242	100% HardCore	184	1	17	\N	165146	5407744	0.99	\N	\N
-2243	Biruta	184	1	17	\N	213263	7108200	0.99	\N	\N
-2244	MÃ£o Na CabeÃ§a	184	1	17	\N	202631	6642753	0.99	\N	\N
-2245	O Bicho TÃ¡ Pregando	184	1	17	\N	171964	5683369	0.99	\N	\N
-2246	Adoled (Ocean)	184	1	17	\N	185103	6009946	0.99	\N	\N
-2247	Seus Amigos	184	1	17	\N	100858	3304738	0.99	\N	\N
-2248	Paga Pau	184	1	17	\N	197485	6529041	0.99	\N	\N
-2249	Rappers Reais	184	1	17	\N	202004	6684160	0.99	\N	\N
-2250	Nega Do Cabelo Duro	184	1	17	\N	121808	4116536	0.99	\N	\N
-2251	Hemp Family	184	1	17	\N	205923	6806900	0.99	\N	\N
-2252	Quem Me Cobrou?	184	1	17	\N	121704	3947664	0.99	\N	\N
-2253	Se Liga	184	1	17	\N	410409	13559173	0.99	\N	\N
-2254	Bohemian Rhapsody	185	1	1	Mercury, Freddie	358948	11619868	0.99	\N	\N
-2255	Another One Bites The Dust	185	1	1	Deacon, John	216946	7172355	0.99	\N	\N
-2256	Killer Queen	185	1	1	Mercury, Freddie	182099	5967749	0.99	\N	\N
-2257	Fat Bottomed Girls	185	1	1	May, Brian	204695	6630041	0.99	\N	\N
-2258	Bicycle Race	185	1	1	Mercury, Freddie	183823	6012409	0.99	\N	\N
-2259	You're My Best Friend	185	1	1	Deacon, John	172225	5602173	0.99	\N	\N
-2260	Don't Stop Me Now	185	1	1	Mercury, Freddie	211826	6896666	0.99	\N	\N
-2261	Save Me	185	1	1	May, Brian	228832	7444624	0.99	\N	\N
-2262	Crazy Little Thing Called Love	185	1	1	Mercury, Freddie	164231	5435501	0.99	\N	\N
-2263	Somebody To Love	185	1	1	Mercury, Freddie	297351	9650520	0.99	\N	\N
-2264	Now I'm Here	185	1	1	May, Brian	255346	8328312	0.99	\N	\N
-2265	Good Old-Fashioned Lover Boy	185	1	1	Mercury, Freddie	175960	5747506	0.99	\N	\N
-2266	Play The Game	185	1	1	Mercury, Freddie	213368	6915832	0.99	\N	\N
-2267	Flash	185	1	1	May, Brian	168489	5464986	0.99	\N	\N
-2268	Seven Seas Of Rhye	185	1	1	Mercury, Freddie	170553	5539957	0.99	\N	\N
-2269	We Will Rock You	185	1	1	Deacon, John/May, Brian	122880	4026955	0.99	\N	\N
-2270	We Are The Champions	185	1	1	Mercury, Freddie	180950	5880231	0.99	\N	\N
-2271	We Will Rock You	186	1	1	May	122671	4026815	0.99	\N	\N
-2272	We Are The Champions	186	1	1	Mercury	182883	5939794	0.99	\N	\N
-2273	Sheer Heart Attack	186	1	1	Taylor	207386	6642685	0.99	\N	\N
-2274	All Dead, All Dead	186	1	1	May	190119	6144878	0.99	\N	\N
-2275	Spread Your Wings	186	1	1	Deacon	275356	8936992	0.99	\N	\N
-2276	Fight From The Inside	186	1	1	Taylor	184737	6078001	0.99	\N	\N
-2277	Get Down, Make Love	186	1	1	Mercury	231235	7509333	0.99	\N	\N
-2278	Sleep On The Sidewalk	186	1	1	May	187428	6099840	0.99	\N	\N
-2279	Who Needs You	186	1	1	Deacon	186958	6292969	0.99	\N	\N
-2280	It's Late	186	1	1	May	386194	12519388	0.99	\N	\N
-2281	My Melancholy Blues	186	1	1	Mercury	206471	6691838	0.99	\N	\N
-2282	Shiny Happy People	187	1	4	Bill Berry/Michael Stipe/Mike Mills/Peter Buck	226298	7475323	0.99	\N	\N
-2283	Me In Honey	187	1	4	Bill Berry/Michael Stipe/Mike Mills/Peter Buck	246674	8194751	0.99	\N	\N
-2284	Radio Song	187	1	4	Bill Berry/Michael Stipe/Mike Mills/Peter Buck	255477	8421172	0.99	\N	\N
-2285	Pop Song 89	188	1	4	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	185730	6132218	0.99	\N	\N
-2286	Get Up	188	1	4	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	160235	5264376	0.99	\N	\N
-2287	You Are The Everything	188	1	4	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	226298	7373181	0.99	\N	\N
-2288	Stand	188	1	4	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	192862	6349090	0.99	\N	\N
-2289	World Leader Pretend	188	1	4	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	259761	8537282	0.99	\N	\N
-2290	The Wrong Child	188	1	4	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	216633	7065060	0.99	\N	\N
-2291	Orange Crush	188	1	4	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	231706	7742894	0.99	\N	\N
-2292	Turn You Inside-Out	188	1	4	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	257358	8395671	0.99	\N	\N
-2293	Hairshirt	188	1	4	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	235911	7753807	0.99	\N	\N
-2294	I Remember California	188	1	4	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	304013	9950311	0.99	\N	\N
-2295	Untitled	188	1	4	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	191503	6332426	0.99	\N	\N
-2296	How The West Was Won And Where It Got Us	189	1	1	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	271151	8994291	0.99	\N	\N
-2297	The Wake-Up Bomb	189	1	1	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	308532	10077337	0.99	\N	\N
-2298	New Test Leper	189	1	1	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	326791	10866447	0.99	\N	\N
-2299	Undertow	189	1	1	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	309498	10131005	0.99	\N	\N
-2300	E-Bow The Letter	189	1	1	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	324963	10714576	0.99	\N	\N
-2301	Leave	189	1	1	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	437968	14433365	0.99	\N	\N
-2302	Departure	189	1	1	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	209423	6818425	0.99	\N	\N
-2303	Bittersweet Me	189	1	1	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	245812	8114718	0.99	\N	\N
-2304	Be Mine	189	1	1	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	333087	10790541	0.99	\N	\N
-2305	Binky The Doormat	189	1	1	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	301688	9950320	0.99	\N	\N
-2306	Zither	189	1	1	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	154148	5032962	0.99	\N	\N
-2307	So Fast, So Numb	189	1	1	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	252682	8341223	0.99	\N	\N
-2308	Low Desert	189	1	1	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	212062	6989288	0.99	\N	\N
-2309	Electrolite	189	1	1	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	245315	8051199	0.99	\N	\N
-2310	Losing My Religion	187	1	4	Bill Berry/Michael Stipe/Mike Mills/Peter Buck	269035	8885672	0.99	\N	\N
-2311	Low	187	1	4	Bill Berry/Michael Stipe/Mike Mills/Peter Buck	296777	9633860	0.99	\N	\N
-2312	Near Wild Heaven	187	1	4	Bill Berry/Michael Stipe/Mike Mills/Peter Buck	199862	6610009	0.99	\N	\N
-2313	Endgame	187	1	4	Bill Berry/Michael Stipe/Mike Mills/Peter Buck	230687	7664479	0.99	\N	\N
-2314	Belong	187	1	4	Bill Berry/Michael Stipe/Mike Mills/Peter Buck	247013	8219375	0.99	\N	\N
-2315	Half A World Away	187	1	4	Bill Berry/Michael Stipe/Mike Mills/Peter Buck	208431	6837283	0.99	\N	\N
-2316	Texarkana	187	1	4	Bill Berry/Michael Stipe/Mike Mills/Peter Buck	220081	7260681	0.99	\N	\N
-2317	Country Feedback	187	1	4	Bill Berry/Michael Stipe/Mike Mills/Peter Buck	249782	8178943	0.99	\N	\N
-2318	Carnival Of Sorts	190	1	4	R.E.M.	233482	7669658	0.99	\N	\N
-2319	Radio Free Aurope	190	1	4	R.E.M.	245315	8163490	0.99	\N	\N
-2320	Perfect Circle	190	1	4	R.E.M.	208509	6898067	0.99	\N	\N
-2321	Talk About The Passion	190	1	4	R.E.M.	203206	6725435	0.99	\N	\N
-2322	So Central Rain	190	1	4	R.E.M.	194768	6414550	0.99	\N	\N
-2323	Don't Go Back To Rockville	190	1	4	R.E.M.	272352	9010715	0.99	\N	\N
-2324	Pretty Persuasion	190	1	4	R.E.M.	229929	7577754	0.99	\N	\N
-2325	Green Grow The Rushes	190	1	4	R.E.M.	225671	7422425	0.99	\N	\N
-2326	Can't Get There From Here	190	1	4	R.E.M.	220630	7285936	0.99	\N	\N
-2327	Driver 8	190	1	4	R.E.M.	204747	6779076	0.99	\N	\N
-2328	Fall On Me	190	1	4	R.E.M.	172016	5676811	0.99	\N	\N
-2329	I Believe	190	1	4	R.E.M.	227709	7542929	0.99	\N	\N
-2330	Cuyahoga	190	1	4	R.E.M.	260623	8591057	0.99	\N	\N
-2331	The One I Love	190	1	4	R.E.M.	197355	6495125	0.99	\N	\N
-2332	The Finest Worksong	190	1	4	R.E.M.	229276	7574856	0.99	\N	\N
-2333	It's The End Of The World As We Know It (And I Feel Fine)	190	1	4	R.E.M.	244819	7998987	0.99	\N	\N
-2334	Infeliz Natal	191	1	4	Rodolfo	138266	4503299	0.99	\N	\N
-2335	A Sua	191	1	4	Rodolfo	142132	4622064	0.99	\N	\N
-2336	Papeau Nuky Doe	191	1	4	Rodolfo	121652	3995022	0.99	\N	\N
-2337	Merry Christmas	191	1	4	Rodolfo	126040	4166652	0.99	\N	\N
-2338	Bodies	191	1	4	Rodolfo	180035	5873778	0.99	\N	\N
-2339	Puteiro Em JoÃ£o Pessoa	191	1	4	Rodolfo	195578	6395490	0.99	\N	\N
-2340	Esporrei Na Manivela	191	1	4	Rodolfo	293276	9618499	0.99	\N	\N
-2341	BÃª-a-BÃ¡	191	1	4	Rodolfo	249051	8130636	0.99	\N	\N
-2342	Cajueiro	191	1	4	Rodolfo	158589	5164837	0.99	\N	\N
-2343	Palhas Do Coqueiro	191	1	4	Rodolfo	133851	4396466	0.99	\N	\N
-2344	Maluco Beleza	192	1	1	\N	203206	6628067	0.99	\N	\N
-2345	O Dia Em Que A Terra Parou	192	1	1	\N	261720	8586678	0.99	\N	\N
-2346	No Fundo Do Quintal Da Escola	192	1	1	\N	177606	5836953	0.99	\N	\N
-2347	O Segredo Do Universo	192	1	1	\N	192679	6315187	0.99	\N	\N
-2348	As Profecias	192	1	1	\N	232515	7657732	0.99	\N	\N
-2349	Mata Virgem	192	1	1	\N	142602	4690029	0.99	\N	\N
-2350	Sapato 36	192	1	1	\N	196702	6507301	0.99	\N	\N
-2351	Todo Mundo Explica	192	1	1	\N	134896	4449772	0.99	\N	\N
-2352	Que Luz Ã‰ Essa	192	1	1	\N	165067	5620058	0.99	\N	\N
-2353	Diamante De Mendigo	192	1	1	\N	206053	6775101	0.99	\N	\N
-2354	NegÃ³cio Ã‰	192	1	1	\N	175464	5826775	0.99	\N	\N
-2355	Muita Estrela, Pouca ConstelaÃ§Ã£o	192	1	1	\N	268068	8781021	0.99	\N	\N
-2356	SÃ©culo XXI	192	1	1	\N	244897	8040563	0.99	\N	\N
-2357	Rock Das Aranhas (Ao Vivo) (Live)	192	1	1	\N	231836	7591945	0.99	\N	\N
-2358	The Power Of Equality	193	1	4	Anthony Kiedis/Chad Smith/Flea/John Frusciante	243591	8148266	0.99	\N	\N
-2359	If You Have To Ask	193	1	4	Anthony Kiedis/Chad Smith/Flea/John Frusciante	216790	7199175	0.99	\N	\N
-2360	Breaking The Girl	193	1	4	Anthony Kiedis/Chad Smith/Flea/John Frusciante	295497	9805526	0.99	\N	\N
-2361	Funky Monks	193	1	4	Anthony Kiedis/Chad Smith/Flea/John Frusciante	323395	10708168	0.99	\N	\N
-2362	Suck My Kiss	193	1	4	Anthony Kiedis/Chad Smith/Flea/John Frusciante	217234	7129137	0.99	\N	\N
-2363	I Could Have Lied	193	1	4	Anthony Kiedis/Chad Smith/Flea/John Frusciante	244506	8088244	0.99	\N	\N
-2364	Mellowship Slinky In B Major	193	1	4	Anthony Kiedis/Chad Smith/Flea/John Frusciante	240091	7971384	0.99	\N	\N
-2365	The Righteous & The Wicked	193	1	4	Anthony Kiedis/Chad Smith/Flea/John Frusciante	248084	8134096	0.99	\N	\N
-2366	Give It Away	193	1	4	Anthony Kiedis/Chad Smith/Flea/John Frusciante	283010	9308997	0.99	\N	\N
-2367	Blood Sugar Sex Magik	193	1	4	Anthony Kiedis/Chad Smith/Flea/John Frusciante	271229	8940573	0.99	\N	\N
-2368	Under The Bridge	193	1	4	Anthony Kiedis/Chad Smith/Flea/John Frusciante	264359	8682716	0.99	\N	\N
-2369	Naked In The Rain	193	1	4	Anthony Kiedis/Chad Smith/Flea/John Frusciante	265717	8724674	0.99	\N	\N
-2370	Apache Rose Peacock	193	1	4	Anthony Kiedis/Chad Smith/Flea/John Frusciante	282226	9312588	0.99	\N	\N
-2371	The Greeting Song	193	1	4	Anthony Kiedis/Chad Smith/Flea/John Frusciante	193593	6346507	0.99	\N	\N
-2372	My Lovely Man	193	1	4	Anthony Kiedis/Chad Smith/Flea/John Frusciante	279118	9220114	0.99	\N	\N
-2373	Sir Psycho Sexy	193	1	4	Anthony Kiedis/Chad Smith/Flea/John Frusciante	496692	16354362	0.99	\N	\N
-2374	They're Red Hot	193	1	4	Robert Johnson	71941	2382220	0.99	\N	\N
-2375	By The Way	194	1	1	Anthony Kiedis, Flea, John Frusciante, and Chad Smith	218017	7197430	0.99	\N	\N
-2376	Universally Speaking	194	1	1	Anthony Kiedis, Flea, John Frusciante, and Chad Smith	259213	8501904	0.99	\N	\N
-2377	This Is The Place	194	1	1	Anthony Kiedis, Flea, John Frusciante, and Chad Smith	257906	8469765	0.99	\N	\N
-2378	Dosed	194	1	1	Anthony Kiedis, Flea, John Frusciante, and Chad Smith	312058	10235611	0.99	\N	\N
-2379	Don't Forget Me	194	1	1	Anthony Kiedis, Flea, John Frusciante, and Chad Smith	277995	9107071	0.99	\N	\N
-2380	The Zephyr Song	194	1	1	Anthony Kiedis, Flea, John Frusciante, and Chad Smith	232960	7690312	0.99	\N	\N
-2381	Can't Stop	194	1	1	Anthony Kiedis, Flea, John Frusciante, and Chad Smith	269400	8872479	0.99	\N	\N
-2382	I Could Die For You	194	1	1	Anthony Kiedis, Flea, John Frusciante, and Chad Smith	193906	6333311	0.99	\N	\N
-2383	Midnight	194	1	1	Anthony Kiedis, Flea, John Frusciante, and Chad Smith	295810	9702450	0.99	\N	\N
-2384	Throw Away Your Television	194	1	1	Anthony Kiedis, Flea, John Frusciante, and Chad Smith	224574	7483526	0.99	\N	\N
-2385	Cabron	194	1	1	Anthony Kiedis, Flea, John Frusciante, and Chad Smith	218592	7458864	0.99	\N	\N
-2386	Tear	194	1	1	Anthony Kiedis, Flea, John Frusciante, and Chad Smith	317413	10395500	0.99	\N	\N
-2387	On Mercury	194	1	1	Anthony Kiedis, Flea, John Frusciante, and Chad Smith	208509	6834762	0.99	\N	\N
-2388	Minor Thing	194	1	1	Anthony Kiedis, Flea, John Frusciante, and Chad Smith	217835	7148115	0.99	\N	\N
-2389	Warm Tape	194	1	1	Anthony Kiedis, Flea, John Frusciante, and Chad Smith	256653	8358200	0.99	\N	\N
-2390	Venice Queen	194	1	1	Anthony Kiedis, Flea, John Frusciante, and Chad Smith	369110	12280381	0.99	\N	\N
-2391	Around The World	195	1	1	Anthony Kiedis/Chad Smith/Flea/John Frusciante	238837	7859167	0.99	\N	\N
-2392	Parallel Universe	195	1	1	Red Hot Chili Peppers	270654	8958519	0.99	\N	\N
-2393	Scar Tissue	195	1	1	Red Hot Chili Peppers	217469	7153744	0.99	\N	\N
-2394	Otherside	195	1	1	Red Hot Chili Peppers	255973	8357989	0.99	\N	\N
-2395	Get On Top	195	1	1	Red Hot Chili Peppers	198164	6587883	0.99	\N	\N
-2396	Californication	195	1	1	Red Hot Chili Peppers	321671	10568999	0.99	\N	\N
-2397	Easily	195	1	1	Red Hot Chili Peppers	231418	7504534	0.99	\N	\N
-2398	Porcelain	195	1	1	Anthony Kiedis/Chad Smith/Flea/John Frusciante	163787	5278793	0.99	\N	\N
-2399	Emit Remmus	195	1	1	Red Hot Chili Peppers	240300	7901717	0.99	\N	\N
-2400	I Like Dirt	195	1	1	Red Hot Chili Peppers	157727	5225917	0.99	\N	\N
-2401	This Velvet Glove	195	1	1	Red Hot Chili Peppers	225280	7480537	0.99	\N	\N
-2402	Savior	195	1	1	Anthony Kiedis/Chad Smith/Flea/John Frusciante	292493	9551885	0.99	\N	\N
-2403	Purple Stain	195	1	1	Red Hot Chili Peppers	253440	8359971	0.99	\N	\N
-2404	Right On Time	195	1	1	Red Hot Chili Peppers	112613	3722219	0.99	\N	\N
-2405	Road Trippin'	195	1	1	Red Hot Chili Peppers	205635	6685831	0.99	\N	\N
-2406	The Spirit Of Radio	196	1	1	Geddy Lee And Alex Lifeson/Geddy Lee And Neil Peart/Rush	299154	9862012	0.99	\N	\N
-2407	The Trees	196	1	1	Geddy Lee And Alex Lifeson/Geddy Lee And Neil Peart/Rush	285126	9345473	0.99	\N	\N
-2408	Something For Nothing	196	1	1	Geddy Lee And Alex Lifeson/Geddy Lee And Neil Peart/Rush	240770	7898395	0.99	\N	\N
-2409	Freewill	196	1	1	Geddy Lee And Alex Lifeson/Geddy Lee And Neil Peart/Rush	324362	10694110	0.99	\N	\N
-2410	Xanadu	196	1	1	Geddy Lee And Alex Lifeson/Geddy Lee And Neil Peart/Rush	667428	21753168	0.99	\N	\N
-2411	Bastille Day	196	1	1	Geddy Lee And Alex Lifeson/Geddy Lee And Neil Peart/Rush	280528	9264769	0.99	\N	\N
-2412	By-Tor And The Snow Dog	196	1	1	Geddy Lee And Alex Lifeson/Geddy Lee And Neil Peart/Rush	519888	17076397	0.99	\N	\N
-2413	Anthem	196	1	1	Geddy Lee And Alex Lifeson/Geddy Lee And Neil Peart/Rush	264515	8693343	0.99	\N	\N
-2414	Closer To The Heart	196	1	1	Geddy Lee And Alex Lifeson/Geddy Lee And Neil Peart/Rush	175412	5767005	0.99	\N	\N
-2415	2112 Overture	196	1	1	Geddy Lee And Alex Lifeson/Geddy Lee And Neil Peart/Rush	272718	8898066	0.99	\N	\N
-2416	The Temples Of Syrinx	196	1	1	Geddy Lee And Alex Lifeson/Geddy Lee And Neil Peart/Rush	133459	4360163	0.99	\N	\N
-2417	La Villa Strangiato	196	1	1	Geddy Lee And Alex Lifeson/Geddy Lee And Neil Peart/Rush	577488	19137855	0.99	\N	\N
-2418	Fly By Night	196	1	1	Geddy Lee And Alex Lifeson/Geddy Lee And Neil Peart/Rush	202318	6683061	0.99	\N	\N
-2419	Finding My Way	196	1	1	Geddy Lee And Alex Lifeson/Geddy Lee And Neil Peart/Rush	305528	9985701	0.99	\N	\N
-2420	Jingo	197	1	1	M.Babatunde Olantunji	592953	19736495	0.99	\N	\N
-2421	El Corazon Manda	197	1	1	E.Weiss	713534	23519583	0.99	\N	\N
-2422	La Puesta Del Sol	197	1	1	E.Weiss	628062	20614621	0.99	\N	\N
-2423	Persuasion	197	1	1	Carlos Santana	318432	10354751	0.99	\N	\N
-2424	As The Years Go by	197	1	1	Albert King	233064	7566829	0.99	\N	\N
-2425	Soul Sacrifice	197	1	1	Carlos Santana	296437	9801120	0.99	\N	\N
-2426	Fried Neckbones And Home Fries	197	1	1	W.Correa	638563	20939646	0.99	\N	\N
-2427	Santana Jam	197	1	1	Carlos Santana	882834	29207100	0.99	\N	\N
-2428	Evil Ways	198	1	1	\N	475402	15289235	0.99	\N	\N
-2429	We've Got To Get Together/Jingo	198	1	1	\N	1070027	34618222	0.99	\N	\N
-2430	Rock Me	198	1	1	\N	94720	3037596	0.99	\N	\N
-2431	Just Ain't Good Enough	198	1	1	\N	850259	27489067	0.99	\N	\N
-2432	Funky Piano	198	1	1	\N	934791	30200730	0.99	\N	\N
-2433	The Way You Do To Mer	198	1	1	\N	618344	20028702	0.99	\N	\N
-2434	Holding Back The Years	141	1	1	Mick Hucknall and Neil Moss	270053	8833220	0.99	\N	\N
-2435	Money's Too Tight To Mention	141	1	1	John and William Valentine	268408	8861921	0.99	\N	\N
-2436	The Right Thing	141	1	1	Mick Hucknall	262687	8624063	0.99	\N	\N
-2437	It's Only Love	141	1	1	Jimmy and Vella Cameron	232594	7659017	0.99	\N	\N
-2438	A New Flame	141	1	1	Mick Hucknall	237662	7822875	0.99	\N	\N
-2439	You've Got It	141	1	1	Mick Hucknall and Lamont Dozier	235232	7712845	0.99	\N	\N
-2440	If You Don't Know Me By Now	141	1	1	Kenny Gamble and Leon Huff	206524	6712634	0.99	\N	\N
-2441	Stars	141	1	1	Mick Hucknall	248137	8194906	0.99	\N	\N
-2442	Something Got Me Started	141	1	1	Mick Hucknall and Fritz McIntyre	239595	7997139	0.99	\N	\N
-2443	Thrill Me	141	1	1	Mick Hucknall and Fritz McIntyre	303934	10034711	0.99	\N	\N
-2444	Your Mirror	141	1	1	Mick Hucknall	240666	7893821	0.99	\N	\N
-2445	For Your Babies	141	1	1	Mick Hucknall	256992	8408803	0.99	\N	\N
-2446	So Beautiful	141	1	1	Mick Hucknall	298083	9837832	0.99	\N	\N
-2447	Angel	141	1	1	Carolyn Franklin and Sonny Saunders	240561	7880256	0.99	\N	\N
-2448	Fairground	141	1	1	Mick Hucknall	263888	8793094	0.99	\N	\N
-2450	TrÃªs Lados	199	1	1	Chico Amaral/Samuel Rosa	233665	7699609	0.99	\N	\N
-2451	Ela Desapareceu	199	1	1	Chico Amaral/Samuel Rosa	250122	8289200	0.99	\N	\N
-2452	Balada Do Amor InabalÃ¡vel	199	1	1	Fausto Fawcett/Samuel Rosa	240613	8025816	0.99	\N	\N
-2453	CanÃ§Ã£o Noturna	199	1	1	Chico Amaral/Lelo Zanettik	238628	7874774	0.99	\N	\N
-2454	MuÃ§ulmano	199	1	1	LeÃ£o, Rodrigo F./Samuel Rosa	249600	8270613	0.99	\N	\N
-2455	Maquinarama	199	1	1	Chico Amaral/Samuel Rosa	245629	8213710	0.99	\N	\N
-2456	RebeliÃ£o	199	1	1	Chico Amaral/Samuel Rosa	298527	9817847	0.99	\N	\N
-2457	A Ãšltima Guerra	199	1	1	LeÃ£o, Rodrigo F./LÃ´ Borges/Samuel Rosa	314723	10480391	0.99	\N	\N
-2458	Fica	199	1	1	Chico Amaral/Samuel Rosa	272169	8980972	0.99	\N	\N
-2459	Ali	199	1	1	Nando Reis/Samuel Rosa	306390	10110351	0.99	\N	\N
-2460	Preto DamiÃ£o	199	1	1	Chico Amaral/Samuel Rosa	264568	8697658	0.99	\N	\N
-2461	Ã‰ Uma Partida De Futebol	200	1	1	Samuel Rosa	1071	38747	0.99	\N	\N
-2462	Eu Disse A Ela	200	1	1	Samuel Rosa	254223	8479463	0.99	\N	\N
-2463	ZÃ© Trindade	200	1	1	Samuel Rosa	247954	8331310	0.99	\N	\N
-2464	Garota Nacional	200	1	1	Samuel Rosa	317492	10511239	0.99	\N	\N
-2465	TÃ£o Seu	200	1	1	Samuel Rosa	243748	8133126	0.99	\N	\N
-2466	Sem Terra	200	1	1	Samuel Rosa	279353	9196411	0.99	\N	\N
-2467	Os Exilados	200	1	1	Samuel Rosa	245551	8222095	0.99	\N	\N
-2468	Um Dia Qualquer	200	1	1	Samuel Rosa	292414	9805570	0.99	\N	\N
-2469	Los Pretos	200	1	1	Samuel Rosa	239229	8025667	0.99	\N	\N
-2470	Sul Da AmÃ©rica	200	1	1	Samuel Rosa	254928	8484871	0.99	\N	\N
-2471	PoconÃ©	200	1	1	Samuel Rosa	318406	10771610	0.99	\N	\N
-2472	Lucky 13	201	1	4	Billy Corgan	189387	6200617	0.99	\N	\N
-2473	Aeroplane Flies High	201	1	4	Billy Corgan	473391	15408329	0.99	\N	\N
-2474	Because You Are	201	1	4	Billy Corgan	226403	7405137	0.99	\N	\N
-2475	Slow Dawn	201	1	4	Billy Corgan	192339	6269057	0.99	\N	\N
-2476	Believe	201	1	4	James Iha	192940	6320652	0.99	\N	\N
-2477	My Mistake	201	1	4	Billy Corgan	240901	7843477	0.99	\N	\N
-2478	Marquis In Spades	201	1	4	Billy Corgan	192731	6304789	0.99	\N	\N
-2479	Here's To The Atom Bomb	201	1	4	Billy Corgan	266893	8763140	0.99	\N	\N
-2480	Sparrow	201	1	4	Billy Corgan	176822	5696989	0.99	\N	\N
-2481	Waiting	201	1	4	Billy Corgan	228336	7627641	0.99	\N	\N
-2482	Saturnine	201	1	4	Billy Corgan	229877	7523502	0.99	\N	\N
-2483	Rock On	201	1	4	David Cook	366471	12133825	0.99	\N	\N
-2484	Set The Ray To Jerry	201	1	4	Billy Corgan	249364	8215184	0.99	\N	\N
-2485	Winterlong	201	1	4	Billy Corgan	299389	9670616	0.99	\N	\N
-2486	Soot & Stars	201	1	4	Billy Corgan	399986	12866557	0.99	\N	\N
-2487	Blissed & Gone	201	1	4	Billy Corgan	286302	9305998	0.99	\N	\N
-2488	Siva	202	1	4	Billy Corgan	261172	8576622	0.99	\N	\N
-2489	Rhinocerous	202	1	4	Billy Corgan	353462	11526684	0.99	\N	\N
-2490	Drown	202	1	4	Billy Corgan	270497	8883496	0.99	\N	\N
-2491	Cherub Rock	202	1	4	Billy Corgan	299389	9786739	0.99	\N	\N
-2492	Today	202	1	4	Billy Corgan	202213	6596933	0.99	\N	\N
-2493	Disarm	202	1	4	Billy Corgan	198556	6508249	0.99	\N	\N
-2494	Landslide	202	1	4	Stevie Nicks	190275	6187754	0.99	\N	\N
-2495	Bullet With Butterfly Wings	202	1	4	Billy Corgan	257306	8431747	0.99	\N	\N
-2496	1979	202	1	4	Billy Corgan	263653	8728470	0.99	\N	\N
-2497	Zero	202	1	4	Billy Corgan	161123	5267176	0.99	\N	\N
-2498	Tonight, Tonight	202	1	4	Billy Corgan	255686	8351543	0.99	\N	\N
-2499	Eye	202	1	4	Billy Corgan	294530	9784201	0.99	\N	\N
-2500	Ava Adore	202	1	4	Billy Corgan	261433	8590412	0.99	\N	\N
-2501	Perfect	202	1	4	Billy Corgan	203023	6734636	0.99	\N	\N
-2502	The Everlasting Gaze	202	1	4	Billy Corgan	242155	7844404	0.99	\N	\N
-2503	Stand Inside Your Love	202	1	4	Billy Corgan	253753	8270113	0.99	\N	\N
-2504	Real Love	202	1	4	Billy Corgan	250697	8025896	0.99	\N	\N
-2505	[Untitled]	202	1	4	Billy Corgan	231784	7689713	0.99	\N	\N
-2506	Nothing To Say	203	1	1	Chris Cornell/Kim Thayil	238027	7744833	0.99	\N	\N
-2507	Flower	203	1	1	Chris Cornell/Kim Thayil	208822	6830732	0.99	\N	\N
-2508	Loud Love	203	1	1	Chris Cornell	297456	9660953	0.99	\N	\N
-2509	Hands All Over	203	1	1	Chris Cornell/Kim Thayil	362475	11893108	0.99	\N	\N
-2510	Get On The Snake	203	1	1	Chris Cornell/Kim Thayil	225123	7313744	0.99	\N	\N
-2511	Jesus Christ Pose	203	1	1	Ben Shepherd/Chris Cornell/Kim Thayil/Matt Cameron	352966	11739886	0.99	\N	\N
-2512	Outshined	203	1	1	Chris Cornell	312476	10274629	0.99	\N	\N
-2513	Rusty Cage	203	1	1	Chris Cornell	267728	8779485	0.99	\N	\N
-2514	Spoonman	203	1	1	Chris Cornell	248476	8289906	0.99	\N	\N
-2515	The Day I Tried To Live	203	1	1	Chris Cornell	321175	10507137	0.99	\N	\N
-2516	Black Hole Sun	203	1	1	Soundgarden	320365	10425229	0.99	\N	\N
-2517	Fell On Black Days	203	1	1	Chris Cornell	282331	9256082	0.99	\N	\N
-2518	Pretty Noose	203	1	1	Chris Cornell	253570	8317931	0.99	\N	\N
-2519	Burden In My Hand	203	1	1	Chris Cornell	292153	9659911	0.99	\N	\N
-2520	Blow Up The Outside World	203	1	1	Chris Cornell	347898	11379527	0.99	\N	\N
-2521	Ty Cobb	203	1	1	Ben Shepherd/Chris Cornell	188786	6233136	0.99	\N	\N
-2522	Bleed Together	203	1	1	Chris Cornell	232202	7597074	0.99	\N	\N
-2523	Morning Dance	204	1	2	Jay Beckenstein	238759	8101979	0.99	\N	\N
-2524	Jubilee	204	1	2	Jeremy Wall	275147	9151846	0.99	\N	\N
-2525	Rasul	204	1	2	Jeremy Wall	238315	7854737	0.99	\N	\N
-2526	Song For Lorraine	204	1	2	Jay Beckenstein	240091	8101723	0.99	\N	\N
-2527	Starburst	204	1	2	Jeremy Wall	291500	9768399	0.99	\N	\N
-2528	Heliopolis	204	1	2	Jay Beckenstein	338729	11365655	0.99	\N	\N
-2529	It Doesn't Matter	204	1	2	Chet Catallo	270027	9034177	0.99	\N	\N
-2530	Little Linda	204	1	2	Jeremy Wall	264019	8958743	0.99	\N	\N
-2531	End Of Romanticism	204	1	2	Rick Strauss	320078	10553155	0.99	\N	\N
-2532	The House Is Rockin'	205	1	6	Doyle Bramhall/Stevie Ray Vaughan	144352	4706253	0.99	\N	\N
-2533	Crossfire	205	1	6	B. Carter/C. Layton/R. Ellsworth/R. Wynans/T. Shannon	251219	8238033	0.99	\N	\N
-2534	Tightrope	205	1	6	Doyle Bramhall/Stevie Ray Vaughan	281155	9254906	0.99	\N	\N
-2535	Let Me Love You Baby	205	1	6	Willie Dixon	164127	5378455	0.99	\N	\N
-2536	Leave My Girl Alone	205	1	6	B. Guy	256365	8438021	0.99	\N	\N
-2537	Travis Walk	205	1	6	Stevie Ray Vaughan	140826	4650979	0.99	\N	\N
-2538	Wall Of Denial	205	1	6	Doyle Bramhall/Stevie Ray Vaughan	336927	11085915	0.99	\N	\N
-2539	Scratch-N-Sniff	205	1	6	Doyle Bramhall/Stevie Ray Vaughan	163422	5353627	0.99	\N	\N
-2540	Love Me Darlin'	205	1	6	C. Burnett	201586	6650869	0.99	\N	\N
-2541	Riviera Paradise	205	1	6	Stevie Ray Vaughan	528692	17232776	0.99	\N	\N
-2542	Dead And Bloated	206	1	1	R. DeLeo/Weiland	310386	10170433	0.99	\N	\N
-2543	Sex Type Thing	206	1	1	D. DeLeo/Kretz/Weiland	218723	7102064	0.99	\N	\N
-2544	Wicked Garden	206	1	1	D. DeLeo/R. DeLeo/Weiland	245368	7989505	0.99	\N	\N
-2545	No Memory	206	1	1	Dean Deleo	80613	2660859	0.99	\N	\N
-2546	Sin	206	1	1	R. DeLeo/Weiland	364800	12018823	0.99	\N	\N
-2547	Naked Sunday	206	1	1	D. DeLeo/Kretz/R. DeLeo/Weiland	229720	7444201	0.99	\N	\N
-2548	Creep	206	1	1	R. DeLeo/Weiland	333191	10894988	0.99	\N	\N
-2549	Piece Of Pie	206	1	1	R. DeLeo/Weiland	324623	10605231	0.99	\N	\N
-2550	Plush	206	1	1	R. DeLeo/Weiland	314017	10229848	0.99	\N	\N
-2551	Wet My Bed	206	1	1	R. DeLeo/Weiland	96914	3198627	0.99	\N	\N
-2552	Crackerman	206	1	1	Kretz/R. DeLeo/Weiland	194403	6317361	0.99	\N	\N
-2553	Where The River Goes	206	1	1	D. DeLeo/Kretz/Weiland	505991	16468904	0.99	\N	\N
-2554	Soldier Side - Intro	207	1	3	Dolmayan, John/Malakian, Daron/Odadjian, Shavo	63764	2056079	0.99	\N	\N
-2555	B.Y.O.B.	207	1	3	Tankian, Serj	255555	8407935	0.99	\N	\N
-2556	Revenga	207	1	3	Tankian, Serj	228127	7503805	0.99	\N	\N
-2557	Cigaro	207	1	3	Tankian, Serj	131787	4321705	0.99	\N	\N
-2558	Radio/Video	207	1	3	Dolmayan, John/Malakian, Daron/Odadjian, Shavo	249312	8224917	0.99	\N	\N
-2559	This Cocaine Makes Me Feel Like I'm On This Song	207	1	3	Tankian, Serj	128339	4185193	0.99	\N	\N
-2560	Violent Pornography	207	1	3	Dolmayan, John/Malakian, Daron/Odadjian, Shavo	211435	6985960	0.99	\N	\N
-2561	Question!	207	1	3	Tankian, Serj	200698	6616398	0.99	\N	\N
-2562	Sad Statue	207	1	3	Tankian, Serj	205897	6733449	0.99	\N	\N
-2563	Old School Hollywood	207	1	3	Dolmayan, John/Malakian, Daron/Odadjian, Shavo	176953	5830258	0.99	\N	\N
-2564	Lost in Hollywood	207	1	3	Tankian, Serj	320783	10535158	0.99	\N	\N
-2565	The Sun Road	208	1	1	Terry Bozzio, Steve Stevens, Tony Levin	880640	29008407	0.99	\N	\N
-2566	Dark Corners	208	1	1	Terry Bozzio, Steve Stevens, Tony Levin	513541	16839223	0.99	\N	\N
-2567	Duende	208	1	1	Terry Bozzio, Steve Stevens, Tony Levin	447582	14956771	0.99	\N	\N
-2568	Black Light Syndrome	208	1	1	Terry Bozzio, Steve Stevens, Tony Levin	526471	17300835	0.99	\N	\N
-2569	Falling in Circles	208	1	1	Terry Bozzio, Steve Stevens, Tony Levin	549093	18263248	0.99	\N	\N
-2570	Book of Hours	208	1	1	Terry Bozzio, Steve Stevens, Tony Levin	583366	19464726	0.99	\N	\N
-2571	Chaos-Control	208	1	1	Terry Bozzio, Steve Stevens, Tony Levin	529841	17455568	0.99	\N	\N
-2572	Midnight From The Inside Out	209	1	6	Chris Robinson/Rich Robinson	286981	9442157	0.99	\N	\N
-2573	Sting Me	209	1	6	Chris Robinson/Rich Robinson	268094	8813561	0.99	\N	\N
-2574	Thick & Thin	209	1	6	Chris Robinson/Rich Robinson	222720	7284377	0.99	\N	\N
-2575	Greasy Grass River	209	1	6	Chris Robinson/Rich Robinson	218749	7157045	0.99	\N	\N
-2576	Sometimes Salvation	209	1	6	Chris Robinson/Rich Robinson	389146	12749424	0.99	\N	\N
-2577	Cursed Diamonds	209	1	6	Chris Robinson/Rich Robinson	368300	12047978	0.99	\N	\N
-2578	Miracle To Me	209	1	6	Chris Robinson/Rich Robinson	372636	12222116	0.99	\N	\N
-2579	Wiser Time	209	1	6	Chris Robinson/Rich Robinson	459990	15161907	0.99	\N	\N
-2580	Girl From A Pawnshop	209	1	6	Chris Robinson/Rich Robinson	404688	13250848	0.99	\N	\N
-2581	Cosmic Fiend	209	1	6	Chris Robinson/Rich Robinson	308401	10115556	0.99	\N	\N
-2582	Black Moon Creeping	210	1	6	Chris Robinson/Rich Robinson	359314	11740886	0.99	\N	\N
-2583	High Head Blues	210	1	6	Chris Robinson/Rich Robinson	371879	12227998	0.99	\N	\N
-2584	Title Song	210	1	6	Chris Robinson/Rich Robinson	505521	16501316	0.99	\N	\N
-2585	She Talks To Angels	210	1	6	Chris Robinson/Rich Robinson	361978	11837342	0.99	\N	\N
-2586	Twice As Hard	210	1	6	Chris Robinson/Rich Robinson	275565	9008067	0.99	\N	\N
-2587	Lickin'	210	1	6	Chris Robinson/Rich Robinson	314409	10331216	0.99	\N	\N
-2588	Soul Singing	210	1	6	Chris Robinson/Rich Robinson	233639	7672489	0.99	\N	\N
-2589	Hard To Handle	210	1	6	A.Isbell/A.Jones/O.Redding	206994	6786304	0.99	\N	\N
-2590	Remedy	210	1	6	Chris Robinson/Rich Robinson	337084	11049098	0.99	\N	\N
-2591	White Riot	211	1	4	Joe Strummer/Mick Jones	118726	3922819	0.99	\N	\N
-2592	Remote Control	211	1	4	Joe Strummer/Mick Jones	180297	5949647	0.99	\N	\N
-2593	Complete Control	211	1	4	Joe Strummer/Mick Jones	192653	6272081	0.99	\N	\N
-2594	Clash City Rockers	211	1	4	Joe Strummer/Mick Jones	227500	7555054	0.99	\N	\N
-2595	(White Man) In Hammersmith Palais	211	1	4	Joe Strummer/Mick Jones	240640	7883532	0.99	\N	\N
-2596	Tommy Gun	211	1	4	Joe Strummer/Mick Jones	195526	6399872	0.99	\N	\N
-2597	English Civil War	211	1	4	Mick Jones/Traditional arr. Joe Strummer	156708	5111226	0.99	\N	\N
-2598	I Fought The Law	211	1	4	Sonny Curtis	159764	5245258	0.99	\N	\N
-2599	London Calling	211	1	4	Joe Strummer/Mick Jones	199706	6569007	0.99	\N	\N
-2600	Train In Vain	211	1	4	Joe Strummer/Mick Jones	189675	6329877	0.99	\N	\N
-2601	Bankrobber	211	1	4	Joe Strummer/Mick Jones	272431	9067323	0.99	\N	\N
-2602	The Call Up	211	1	4	The Clash	324336	10746937	0.99	\N	\N
-2603	Hitsville UK	211	1	4	The Clash	261433	8606887	0.99	\N	\N
-2604	The Magnificent Seven	211	1	4	The Clash	268486	8889821	0.99	\N	\N
-2605	This Is Radio Clash	211	1	4	The Clash	249756	8366573	0.99	\N	\N
-2606	Know Your Rights	211	1	4	The Clash	217678	7195726	0.99	\N	\N
-2607	Rock The Casbah	211	1	4	The Clash	222145	7361500	0.99	\N	\N
-2608	Should I Stay Or Should I Go	211	1	4	The Clash	187219	6188688	0.99	\N	\N
-2609	War (The Process)	212	1	1	Billy Duffy/Ian Astbury	252630	8254842	0.99	\N	\N
-2610	The Saint	212	1	1	Billy Duffy/Ian Astbury	216215	7061584	0.99	\N	\N
-2611	Rise	212	1	1	Billy Duffy/Ian Astbury	219088	7106195	0.99	\N	\N
-2612	Take The Power	212	1	1	Billy Duffy/Ian Astbury	235755	7650012	0.99	\N	\N
-2613	Breathe	212	1	1	Billy Duffy/Ian Astbury/Marti Frederiksen/Mick Jones	299781	9742361	0.99	\N	\N
-2614	Nico	212	1	1	Billy Duffy/Ian Astbury	289488	9412323	0.99	\N	\N
-2615	American Gothic	212	1	1	Billy Duffy/Ian Astbury	236878	7739840	0.99	\N	\N
-2616	Ashes And Ghosts	212	1	1	Billy Duffy/Bob Rock/Ian Astbury	300591	9787692	0.99	\N	\N
-2617	Shape The Sky	212	1	1	Billy Duffy/Ian Astbury	209789	6885647	0.99	\N	\N
-2618	Speed Of Light	212	1	1	Billy Duffy/Bob Rock/Ian Astbury	262817	8563352	0.99	\N	\N
-2619	True Believers	212	1	1	Billy Duffy/Ian Astbury	308009	9981359	0.99	\N	\N
-2620	My Bridges Burn	212	1	1	Billy Duffy/Ian Astbury	231862	7571370	0.99	\N	\N
-2621	She Sells Sanctuary	213	1	1	\N	253727	8368634	0.99	\N	\N
-2622	Fire Woman	213	1	1	\N	312790	10196995	0.99	\N	\N
-2623	Lil' Evil	213	1	1	\N	165825	5419655	0.99	\N	\N
-2624	Spirit Walker	213	1	1	\N	230060	7555897	0.99	\N	\N
-2625	The Witch	213	1	1	\N	258768	8725403	0.99	\N	\N
-2626	Revolution	213	1	1	\N	256026	8371254	0.99	\N	\N
-2627	Wild Hearted Son	213	1	1	\N	266893	8670550	0.99	\N	\N
-2628	Love Removal Machine	213	1	1	\N	257619	8412167	0.99	\N	\N
-2629	Rain	213	1	1	\N	236669	7788461	0.99	\N	\N
-2630	Edie (Ciao Baby)	213	1	1	\N	241632	7846177	0.99	\N	\N
-2631	Heart Of Soul	213	1	1	\N	274207	8967257	0.99	\N	\N
-2632	Love	213	1	1	\N	326739	10729824	0.99	\N	\N
-2633	Wild Flower	213	1	1	\N	215536	7084321	0.99	\N	\N
-2634	Go West	213	1	1	\N	238158	7777749	0.99	\N	\N
-2635	Resurrection Joe	213	1	1	\N	255451	8532840	0.99	\N	\N
-2636	Sun King	213	1	1	\N	368431	12010865	0.99	\N	\N
-2637	Sweet Soul Sister	213	1	1	\N	212009	6889883	0.99	\N	\N
-2638	Earth Mofo	213	1	1	\N	282200	9204581	0.99	\N	\N
-2639	Break on Through	214	1	1	Robby Krieger, Ray Manzarek, John Densmore, Jim Morrison	149342	4943144	0.99	\N	\N
-2640	Soul Kitchen	214	1	1	Robby Krieger, Ray Manzarek, John Densmore, Jim Morrison	215066	7040865	0.99	\N	\N
-2641	The Crystal Ship	214	1	1	Robby Krieger, Ray Manzarek, John Densmore, Jim Morrison	154853	5052658	0.99	\N	\N
-2642	Twentienth Century Fox	214	1	1	Robby Krieger, Ray Manzarek, John Densmore, Jim Morrison	153913	5069211	0.99	\N	\N
-2643	Alabama Song	214	1	1	Weill-Brecht	200097	6563411	0.99	\N	\N
-2644	Light My Fire	214	1	1	Robby Krieger, Ray Manzarek, John Densmore, Jim Morrison	428329	13963351	0.99	\N	\N
-2645	Back Door Man	214	1	1	Willie Dixon, C. Burnett	214360	7035636	0.99	\N	\N
-2646	I Looked At You	214	1	1	Robby Krieger, Ray Manzarek, John Densmore, Jim Morrison	142080	4663988	0.99	\N	\N
-2647	End Of The Night	214	1	1	Robby Krieger, Ray Manzarek, John Densmore, Jim Morrison	172695	5589732	0.99	\N	\N
-2648	Take It As It Comes	214	1	1	Robby Krieger, Ray Manzarek, John Densmore, Jim Morrison	137168	4512656	0.99	\N	\N
-2649	The End	214	1	1	Robby Krieger, Ray Manzarek, John Densmore, Jim Morrison	701831	22927336	0.99	\N	\N
-2650	Roxanne	215	1	1	G M Sumner	192992	6330159	0.99	\N	\N
-2651	Can't Stand Losing You	215	1	1	G M Sumner	181159	5971983	0.99	\N	\N
-2652	Message in a Bottle	215	1	1	G M Sumner	291474	9647829	0.99	\N	\N
-2653	Walking on the Moon	215	1	1	G M Sumner	302080	10019861	0.99	\N	\N
-2654	Don't Stand so Close to Me	215	1	1	G M Sumner	241031	7956658	0.99	\N	\N
-2655	De Do Do Do, De Da Da Da	215	1	1	G M Sumner	247196	8227075	0.99	\N	\N
-2656	Every Little Thing She Does is Magic	215	1	1	G M Sumner	261120	8646853	0.99	\N	\N
-2657	Invisible Sun	215	1	1	G M Sumner	225593	7304320	0.99	\N	\N
-2658	Spirit's in the Material World	215	1	1	G M Sumner	181133	5986622	0.99	\N	\N
-2659	Every Breath You Take	215	1	1	G M Sumner	254615	8364520	0.99	\N	\N
-2660	King Of Pain	215	1	1	G M Sumner	300512	9880303	0.99	\N	\N
-2661	Wrapped Around Your Finger	215	1	1	G M Sumner	315454	10361490	0.99	\N	\N
-2662	Don't Stand So Close to Me '86	215	1	1	G M Sumner	293590	9636683	0.99	\N	\N
-2663	Message in a Bottle (new classic rock mix)	215	1	1	G M Sumner	290951	9640349	0.99	\N	\N
-2664	Time Is On My Side	216	1	1	Jerry Ragavoy	179983	5855836	0.99	\N	\N
-2665	Heart Of Stone	216	1	1	Jagger/Richards	164493	5329538	0.99	\N	\N
-2666	Play With Fire	216	1	1	Nanker Phelge	132022	4265297	0.99	\N	\N
-2667	Satisfaction	216	1	1	Jagger/Richards	226612	7398766	0.99	\N	\N
-2668	As Tears Go By	216	1	1	Jagger/Richards/Oldham	164284	5357350	0.99	\N	\N
-2669	Get Off Of My Cloud	216	1	1	Jagger/Richards	176013	5719514	0.99	\N	\N
-2670	Mother's Little Helper	216	1	1	Jagger/Richards	167549	5422434	0.99	\N	\N
-2671	19th Nervous Breakdown	216	1	1	Jagger/Richards	237923	7742984	0.99	\N	\N
-2672	Paint It Black	216	1	1	Jagger/Richards	226063	7442888	0.99	\N	\N
-2673	Under My Thumb	216	1	1	Jagger/Richards	221387	7371799	0.99	\N	\N
-2674	Ruby Tuesday	216	1	1	Jagger/Richards	197459	6433467	0.99	\N	\N
-2675	Let's Spend The Night Together	216	1	1	Jagger/Richards	217495	7137048	0.99	\N	\N
-2676	Intro	217	1	1	Jagger/Richards	49737	1618591	0.99	\N	\N
-2677	You Got Me Rocking	217	1	1	Jagger/Richards	205766	6734385	0.99	\N	\N
-2678	Gimmie Shelters	217	1	1	Jagger/Richards	382119	12528764	0.99	\N	\N
-2679	Flip The Switch	217	1	1	Jagger/Richards	252421	8336591	0.99	\N	\N
-2680	Memory Motel	217	1	1	Jagger/Richards	365844	11982431	0.99	\N	\N
-2681	Corinna	217	1	1	Jesse Ed Davis III/Taj Mahal	257488	8449471	0.99	\N	\N
-2682	Saint Of Me	217	1	1	Jagger/Richards	325694	10725160	0.99	\N	\N
-2683	Wainting On A Friend	217	1	1	Jagger/Richards	302497	9978046	0.99	\N	\N
-2684	Sister Morphine	217	1	1	Faithfull/Jagger/Richards	376215	12345289	0.99	\N	\N
-2685	Live With Me	217	1	1	Jagger/Richards	234893	7709006	0.99	\N	\N
-2686	Respectable	217	1	1	Jagger/Richards	215693	7099669	0.99	\N	\N
-2687	Thief In The Night	217	1	1	De Beauport/Jagger/Richards	337266	10952756	0.99	\N	\N
-2688	The Last Time	217	1	1	Jagger/Richards	287294	9498758	0.99	\N	\N
-2689	Out Of Control	217	1	1	Jagger/Richards	479242	15749289	0.99	\N	\N
-2690	Love Is Strong	218	1	1	Jagger/Richards	230896	7639774	0.99	\N	\N
-2691	You Got Me Rocking	218	1	1	Jagger/Richards	215928	7162159	0.99	\N	\N
-2692	Sparks Will Fly	218	1	1	Jagger/Richards	196466	6492847	0.99	\N	\N
-2693	The Worst	218	1	1	Jagger/Richards	144613	4750094	0.99	\N	\N
-2694	New Faces	218	1	1	Jagger/Richards	172146	5689122	0.99	\N	\N
-2695	Moon Is Up	218	1	1	Jagger/Richards	222119	7366316	0.99	\N	\N
-2696	Out Of Tears	218	1	1	Jagger/Richards	327418	10677236	0.99	\N	\N
-2697	I Go Wild	218	1	1	Jagger/Richards	264019	8630833	0.99	\N	\N
-2698	Brand New Car	218	1	1	Jagger/Richards	256052	8459344	0.99	\N	\N
-2699	Sweethearts Together	218	1	1	Jagger/Richards	285492	9550459	0.99	\N	\N
-2700	Suck On The Jugular	218	1	1	Jagger/Richards	268225	8920566	0.99	\N	\N
-2701	Blinded By Rainbows	218	1	1	Jagger/Richards	273946	8971343	0.99	\N	\N
-2702	Baby Break It Down	218	1	1	Jagger/Richards	249417	8197309	0.99	\N	\N
-2703	Thru And Thru	218	1	1	Jagger/Richards	375092	12175406	0.99	\N	\N
-2704	Mean Disposition	218	1	1	Jagger/Richards	249155	8273602	0.99	\N	\N
-2705	Walking Wounded	219	1	4	The Tea Party	277968	9184345	0.99	\N	\N
-2706	Temptation	219	1	4	The Tea Party	205087	6711943	0.99	\N	\N
-2707	The Messenger	219	1	4	Daniel Lanois	212062	6975437	0.99	\N	\N
-2708	Psychopomp	219	1	4	The Tea Party	315559	10295199	0.99	\N	\N
-2709	Sister Awake	219	1	4	The Tea Party	343875	11299407	0.99	\N	\N
-2710	The Bazaar	219	1	4	The Tea Party	222458	7245691	0.99	\N	\N
-2711	Save Me (Remix)	219	1	4	The Tea Party	396303	13053839	0.99	\N	\N
-2712	Fire In The Head	219	1	4	The Tea Party	306337	10005675	0.99	\N	\N
-2713	Release	219	1	4	The Tea Party	244114	8014606	0.99	\N	\N
-2714	Heaven Coming Down	219	1	4	The Tea Party	241867	7846459	0.99	\N	\N
-2715	The River (Remix)	219	1	4	The Tea Party	343170	11193268	0.99	\N	\N
-2716	Babylon	219	1	4	The Tea Party	169795	5568808	0.99	\N	\N
-2717	Waiting On A Sign	219	1	4	The Tea Party	261903	8558590	0.99	\N	\N
-2718	Life Line	219	1	4	The Tea Party	277786	9082773	0.99	\N	\N
-2719	Paint It Black	219	1	4	Keith Richards/Mick Jagger	214752	7101572	0.99	\N	\N
-2720	Temptation	220	1	4	The Tea Party	205244	6719465	0.99	\N	\N
-2721	Army Ants	220	1	4	The Tea Party	215405	7075838	0.99	\N	\N
-2722	Psychopomp	220	1	4	The Tea Party	317231	10351778	0.99	\N	\N
-2723	Gyroscope	220	1	4	The Tea Party	177711	5810323	0.99	\N	\N
-2724	Alarum	220	1	4	The Tea Party	298187	9712545	0.99	\N	\N
-2725	Release	220	1	4	The Tea Party	266292	8725824	0.99	\N	\N
-2726	Transmission	220	1	4	The Tea Party	317257	10351152	0.99	\N	\N
-2727	Babylon	220	1	4	The Tea Party	292466	9601786	0.99	\N	\N
-2728	Pulse	220	1	4	The Tea Party	250253	8183872	0.99	\N	\N
-2729	Emerald	220	1	4	The Tea Party	289750	9543789	0.99	\N	\N
-2730	Aftermath	220	1	4	The Tea Party	343745	11085607	0.99	\N	\N
-2731	I Can't Explain	221	1	1	Pete Townshend	125152	4082896	0.99	\N	\N
-2732	Anyway, Anyhow, Anywhere	221	1	1	Pete Townshend, Roger Daltrey	161253	5234173	0.99	\N	\N
-2733	My Generation	221	1	1	John Entwistle/Pete Townshend	197825	6446634	0.99	\N	\N
-2734	Substitute	221	1	1	Pete Townshend	228022	7409995	0.99	\N	\N
-2735	I'm A Boy	221	1	1	Pete Townshend	157126	5120605	0.99	\N	\N
-2736	Boris The Spider	221	1	1	John Entwistle	149472	4835202	0.99	\N	\N
-2737	Happy Jack	221	1	1	Pete Townshend	132310	4353063	0.99	\N	\N
-2738	Pictures Of Lily	221	1	1	Pete Townshend	164414	5329751	0.99	\N	\N
-2739	I Can See For Miles	221	1	1	Pete Townshend	262791	8604989	0.99	\N	\N
-2740	Magic Bus	221	1	1	Pete Townshend	197224	6452700	0.99	\N	\N
-2741	Pinball Wizard	221	1	1	John Entwistle/Pete Townshend	181890	6055580	0.99	\N	\N
-2742	The Seeker	221	1	1	Pete Townshend	204643	6736866	0.99	\N	\N
-2743	Baba O'Riley	221	1	1	John Entwistle/Pete Townshend	309472	10141660	0.99	\N	\N
-2744	Won't Get Fooled Again (Full Length Version)	221	1	1	John Entwistle/Pete Townshend	513750	16855521	0.99	\N	\N
-2745	Let's See Action	221	1	1	Pete Townshend	243513	8078418	0.99	\N	\N
-2746	5.15	221	1	1	Pete Townshend	289619	9458549	0.99	\N	\N
-2747	Join Together	221	1	1	Pete Townshend	262556	8602485	0.99	\N	\N
-2748	Squeeze Box	221	1	1	Pete Townshend	161280	5256508	0.99	\N	\N
-2749	Who Are You (Single Edit Version)	221	1	1	John Entwistle/Pete Townshend	299232	9900469	0.99	\N	\N
-2750	You Better You Bet	221	1	1	Pete Townshend	338520	11160877	0.99	\N	\N
-2751	Primavera	222	1	7	Genival Cassiano/Silvio Rochael	126615	4152604	0.99	\N	\N
-2752	Chocolate	222	1	7	Tim Maia	194690	6411587	0.99	\N	\N
-2753	Azul Da Cor Do Mar	222	1	7	Tim Maia	197955	6475007	0.99	\N	\N
-2754	O Descobridor Dos Sete Mares	222	1	7	Gilson MendonÃ§a/Michel	262974	8749583	0.99	\N	\N
-2755	AtÃ© Que Enfim Encontrei VocÃª	222	1	7	Tim Maia	105064	3477751	0.99	\N	\N
-2756	CoronÃ© Antonio Bento	222	1	7	Do Vale, JoÃ£o/Luiz Wanderley	131317	4340326	0.99	\N	\N
-2757	New Love	222	1	7	Tim Maia	237897	7786824	0.99	\N	\N
-2758	NÃ£o Vou Ficar	222	1	7	Tim Maia	172068	5642919	0.99	\N	\N
-2759	MÃºsica No Ar	222	1	7	Tim Maia	158511	5184891	0.99	\N	\N
-2760	Salve Nossa Senhora	222	1	7	Carlos Imperial/Edardo AraÃºjo	115461	3827629	0.99	\N	\N
-2761	VocÃª Fugiu	222	1	7	Genival Cassiano	238367	7971147	0.99	\N	\N
-2762	Cristina NÂº 2	222	1	7	Carlos Imperial/Tim Maia	90148	2978589	0.99	\N	\N
-2763	Compadre	222	1	7	Tim Maia	171389	5631446	0.99	\N	\N
-2764	Over Again	222	1	7	Tim Maia	200489	6612634	0.99	\N	\N
-2765	RÃ©u Confesso	222	1	7	Tim Maia	217391	7189874	0.99	\N	\N
-2766	O Que Me Importa	223	1	7	\N	153155	4977852	0.99	\N	\N
-2767	Gostava Tanto De VocÃª	223	1	7	\N	253805	8380077	0.99	\N	\N
-2768	VocÃª	223	1	7	\N	242599	7911702	0.99	\N	\N
-2769	NÃ£o Quero Dinheiro	223	1	7	\N	152607	5031797	0.99	\N	\N
-2770	Eu Amo VocÃª	223	1	7	\N	242782	7914628	0.99	\N	\N
-2771	A Festa Do Santo Reis	223	1	7	\N	159791	5204995	0.99	\N	\N
-2772	I Don't Know What To Do With Myself	223	1	7	\N	221387	7251478	0.99	\N	\N
-2773	Padre CÃ­cero	223	1	7	\N	139598	4581685	0.99	\N	\N
-2774	Nosso Adeus	223	1	7	\N	206471	6793270	0.99	\N	\N
-2775	CanÃ¡rio Do Reino	223	1	7	\N	139337	4552858	0.99	\N	\N
-2776	Preciso Ser Amado	223	1	7	\N	174001	5618895	0.99	\N	\N
-2777	BalanÃ§o	223	1	7	\N	209737	6890327	0.99	\N	\N
-2778	Preciso Aprender A Ser SÃ³	223	1	7	\N	162220	5213894	0.99	\N	\N
-2779	Esta Ã‰ A CanÃ§Ã£o	223	1	7	\N	184450	6069933	0.99	\N	\N
-2780	Formigueiro	223	1	7	\N	252943	8455132	0.99	\N	\N
-2781	Comida	224	1	4	TitÃ£s	322612	10786578	0.99	\N	\N
-2782	Go Back	224	1	4	TitÃ£s	230504	7668899	0.99	\N	\N
-2783	PrÃ¡ Dizer Adeus	224	1	4	TitÃ£s	222484	7382048	0.99	\N	\N
-2784	FamÃ­lia	224	1	4	TitÃ£s	218331	7267458	0.99	\N	\N
-2785	Os Cegos Do Castelo	224	1	4	TitÃ£s	296829	9868187	0.99	\N	\N
-2786	O Pulso	224	1	4	TitÃ£s	199131	6566998	0.99	\N	\N
-2787	Marvin	224	1	4	TitÃ£s	264359	8741444	0.99	\N	\N
-2788	Nem 5 Minutos Guardados	224	1	4	TitÃ£s	245995	8143797	0.99	\N	\N
-2789	Flores	224	1	4	TitÃ£s	215510	7148017	0.99	\N	\N
-2790	Palavras	224	1	4	TitÃ£s	158458	5285715	0.99	\N	\N
-2791	HereditÃ¡rio	224	1	4	TitÃ£s	151693	5020547	0.99	\N	\N
-2792	A Melhor Forma	224	1	4	TitÃ£s	191503	6349938	0.99	\N	\N
-2793	CabeÃ§a Dinossauro	224	1	4	TitÃ£s	37120	1220930	0.99	\N	\N
-2794	32 Dentes	224	1	4	TitÃ£s	184946	6157904	0.99	\N	\N
-2795	Bichos Escrotos (Vinheta)	224	1	4	TitÃ£s	104986	3503755	0.99	\N	\N
-2796	NÃ£o Vou Lutar	224	1	4	TitÃ£s	189988	6308613	0.99	\N	\N
-2797	Homem Primata (Vinheta)	224	1	4	TitÃ£s	34168	1124909	0.99	\N	\N
-2798	Homem Primata	224	1	4	TitÃ£s	195500	6486470	0.99	\N	\N
-2799	PolÃ­cia (Vinheta)	224	1	4	TitÃ£s	56111	1824213	0.99	\N	\N
-2800	Querem Meu Sangue	224	1	4	TitÃ£s	212401	7069773	0.99	\N	\N
-2801	DiversÃ£o	224	1	4	TitÃ£s	285936	9531268	0.99	\N	\N
-2802	TelevisÃ£o	224	1	4	TitÃ£s	293668	9776548	0.99	\N	\N
-2803	Sonifera Ilha	225	1	4	Branco Mello/Carlos Barmack/Ciro Pessoa/Marcelo Fromer/Toni Belloto	170684	5678290	0.99	\N	\N
-2804	Lugar Nenhum	225	1	4	Arnaldo Antunes/Charles Gavin/Marcelo Fromer/SÃ©rgio Britto/Toni Bellotto	195840	6472780	0.99	\N	\N
-2805	Sua Impossivel Chance	225	1	4	Nando Reis	246622	8073248	0.99	\N	\N
-2806	Desordem	225	1	4	Charles Gavin/Marcelo Fromer/SÃ©rgio Britto	213289	7067340	0.99	\N	\N
-2807	NÃ£o Vou Me Adaptar	225	1	4	Arnaldo Antunes	221831	7304656	0.99	\N	\N
-2808	Domingo	225	1	4	SÃ©rgio Britto/Toni Bellotto	208613	6883180	0.99	\N	\N
-2809	AmanhÃ£ NÃ£o Se Sabe	225	1	4	SÃ©rgio Britto	189440	6243967	0.99	\N	\N
-2810	Caras Como Eu	225	1	4	Toni Bellotto	183092	5999048	0.99	\N	\N
-2811	Senhora E Senhor	225	1	4	Arnaldo Anutnes/Marcelo Fromer/Paulo Miklos	203702	6733733	0.99	\N	\N
-2812	Era Uma Vez	225	1	4	Arnaldo Anutnes/Branco Mello/Marcelo Fromer/Sergio Brotto/Toni Bellotto	224261	7453156	0.99	\N	\N
-2813	MisÃ©ria	225	1	4	Arnaldo Antunes/Britto, SergioMiklos, Paulo	262191	8727645	0.99	\N	\N
-2814	InsensÃ­vel	225	1	4	SÃ©rgio Britto	207830	6893664	0.99	\N	\N
-2815	Eu E Ela	225	1	4	Nando Reis	276035	9138846	0.99	\N	\N
-2816	Toda Cor	225	1	4	Ciro Pressoa/Marcelo Fromer	209084	6939176	0.99	\N	\N
-2817	Ã‰ Preciso Saber Viver	225	1	4	Erasmo Carlos/Roberto Carlos	251115	8271418	0.99	\N	\N
-2818	Senhor Delegado/Eu NÃ£o Aguento	225	1	4	Antonio Lopes	156656	5277983	0.99	\N	\N
-2819	Battlestar Galactica: The Story So Far	226	3	18	\N	2622250	490750393	1.99	\N	\N
-2820	Occupation / Precipice	227	3	19	\N	5286953	1054423946	1.99	\N	\N
-2821	Exodus, Pt. 1	227	3	19	\N	2621708	475079441	1.99	\N	\N
-2822	Exodus, Pt. 2	227	3	19	\N	2618000	466820021	1.99	\N	\N
-2823	Collaborators	227	3	19	\N	2626626	483484911	1.99	\N	\N
-2824	Torn	227	3	19	\N	2631291	495262585	1.99	\N	\N
-2825	A Measure of Salvation	227	3	18	\N	2563938	489715554	1.99	\N	\N
-2826	Hero	227	3	18	\N	2713755	506896959	1.99	\N	\N
-2827	Unfinished Business	227	3	18	\N	2622038	528499160	1.99	\N	\N
-2828	The Passage	227	3	18	\N	2623875	490375760	1.99	\N	\N
-2829	The Eye of Jupiter	227	3	18	\N	2618750	517909587	1.99	\N	\N
-2830	Rapture	227	3	18	\N	2624541	508406153	1.99	\N	\N
-2831	Taking a Break from All Your Worries	227	3	18	\N	2624207	492700163	1.99	\N	\N
-2832	The Woman King	227	3	18	\N	2626376	552893447	1.99	\N	\N
-2833	A Day In the Life	227	3	18	\N	2620245	462818231	1.99	\N	\N
-2834	Dirty Hands	227	3	18	\N	2627961	537648614	1.99	\N	\N
-2835	Maelstrom	227	3	18	\N	2622372	514154275	1.99	\N	\N
-2836	The Son Also Rises	227	3	18	\N	2621830	499258498	1.99	\N	\N
-2837	Crossroads, Pt. 1	227	3	20	\N	2622622	486233524	1.99	\N	\N
-2838	Crossroads, Pt. 2	227	3	20	\N	2869953	497335706	1.99	\N	\N
-2839	Genesis	228	3	19	\N	2611986	515671080	1.99	\N	\N
-2840	Don't Look Back	228	3	21	\N	2571154	493628775	1.99	\N	\N
-2841	One Giant Leap	228	3	21	\N	2607649	521616246	1.99	\N	\N
-2842	Collision	228	3	21	\N	2605480	526182322	1.99	\N	\N
-2843	Hiros	228	3	21	\N	2533575	488835454	1.99	\N	\N
-2844	Better Halves	228	3	21	\N	2573031	549353481	1.99	\N	\N
-2845	Nothing to Hide	228	3	19	\N	2605647	510058181	1.99	\N	\N
-2846	Seven Minutes to Midnight	228	3	21	\N	2613988	515590682	1.99	\N	\N
-2847	Homecoming	228	3	21	\N	2601351	516015339	1.99	\N	\N
-2848	Six Months Ago	228	3	19	\N	2602852	505133869	1.99	\N	\N
-2849	Fallout	228	3	21	\N	2594761	501145440	1.99	\N	\N
-2850	The Fix	228	3	21	\N	2600266	507026323	1.99	\N	\N
-2851	Distractions	228	3	21	\N	2590382	537111289	1.99	\N	\N
-2852	Run!	228	3	21	\N	2602602	542936677	1.99	\N	\N
-2853	Unexpected	228	3	21	\N	2598139	511777758	1.99	\N	\N
-2854	Company Man	228	3	21	\N	2601226	493168135	1.99	\N	\N
-2855	Company Man	228	3	21	\N	2601101	503786316	1.99	\N	\N
-2856	Parasite	228	3	21	\N	2602727	487461520	1.99	\N	\N
-2857	A Tale of Two Cities	229	3	19	\N	2636970	513691652	1.99	\N	\N
-2858	Lost (Pilot, Part 1) [Premiere]	230	3	19	\N	2548875	217124866	1.99	\N	\N
-2859	Man of Science, Man of Faith (Premiere)	231	3	19	\N	2612250	543342028	1.99	\N	\N
-2860	Adrift	231	3	19	\N	2564958	502663995	1.99	\N	\N
-2861	Lost (Pilot, Part 2)	230	3	19	\N	2436583	204995876	1.99	\N	\N
-2862	The Glass Ballerina	229	3	21	\N	2637458	535729216	1.99	\N	\N
-2863	Further Instructions	229	3	19	\N	2563980	502041019	1.99	\N	\N
-2864	Orientation	231	3	19	\N	2609083	500600434	1.99	\N	\N
-2865	Tabula Rasa	230	3	19	\N	2627105	210526410	1.99	\N	\N
-2866	Every Man for Himself	229	3	21	\N	2637387	513803546	1.99	\N	\N
-2867	Everybody Hates Hugo	231	3	19	\N	2609192	498163145	1.99	\N	\N
-2868	Walkabout	230	3	19	\N	2587370	207748198	1.99	\N	\N
-2869	...And Found	231	3	19	\N	2563833	500330548	1.99	\N	\N
-2870	The Cost of Living	229	3	19	\N	2637500	505647192	1.99	\N	\N
-2871	White Rabbit	230	3	19	\N	2571965	201654606	1.99	\N	\N
-2872	Abandoned	231	3	19	\N	2587041	537348711	1.99	\N	\N
-2873	House of the Rising Sun	230	3	19	\N	2590032	210379525	1.99	\N	\N
-2874	I Do	229	3	19	\N	2627791	504676825	1.99	\N	\N
-2875	Not In Portland	229	3	21	\N	2637303	499061234	1.99	\N	\N
-2876	Not In Portland	229	3	21	\N	2637345	510546847	1.99	\N	\N
-2877	The Moth	230	3	19	\N	2631327	228896396	1.99	\N	\N
-2878	The Other 48 Days	231	3	19	\N	2610625	535256753	1.99	\N	\N
-2879	Collision	231	3	19	\N	2564916	475656544	1.99	\N	\N
-2880	Confidence Man	230	3	19	\N	2615244	223756475	1.99	\N	\N
-2881	Flashes Before Your Eyes	229	3	21	\N	2636636	537760755	1.99	\N	\N
-2882	Lost Survival Guide	229	3	21	\N	2632590	486675063	1.99	\N	\N
-2883	Solitary	230	3	19	\N	2612894	207045178	1.99	\N	\N
-2884	What Kate Did	231	3	19	\N	2610250	484583988	1.99	\N	\N
-2885	Raised By Another	230	3	19	\N	2590459	223623810	1.99	\N	\N
-2886	Stranger In a Strange Land	229	3	21	\N	2636428	505056021	1.99	\N	\N
-2887	The 23rd Psalm	231	3	19	\N	2610416	487401604	1.99	\N	\N
-2888	All the Best Cowboys Have Daddy Issues	230	3	19	\N	2555492	211743651	1.99	\N	\N
-2889	The Hunting Party	231	3	21	\N	2611333	520350364	1.99	\N	\N
-2890	Tricia Tanaka Is Dead	229	3	21	\N	2635010	548197162	1.99	\N	\N
-2891	Enter 77	229	3	21	\N	2629796	517521422	1.99	\N	\N
-2892	Fire + Water	231	3	21	\N	2600333	488458695	1.99	\N	\N
-2893	Whatever the Case May Be	230	3	19	\N	2616410	183867185	1.99	\N	\N
-2894	Hearts and Minds	230	3	19	\N	2619462	207607466	1.99	\N	\N
-2895	Par Avion	229	3	21	\N	2629879	517079642	1.99	\N	\N
-2896	The Long Con	231	3	19	\N	2679583	518376636	1.99	\N	\N
-2897	One of Them	231	3	21	\N	2698791	542332389	1.99	\N	\N
-2898	Special	230	3	19	\N	2618530	219961967	1.99	\N	\N
-2899	The Man from Tallahassee	229	3	21	\N	2637637	550893556	1.99	\N	\N
-2900	ExposÃ©	229	3	21	\N	2593760	511338017	1.99	\N	\N
-2901	Homecoming	230	3	19	\N	2515882	210675221	1.99	\N	\N
-2902	Maternity Leave	231	3	21	\N	2780416	555244214	1.99	\N	\N
-2903	Left Behind	229	3	21	\N	2635343	538491964	1.99	\N	\N
-2904	Outlaws	230	3	19	\N	2619887	206500939	1.99	\N	\N
-2905	The Whole Truth	231	3	21	\N	2610125	495487014	1.99	\N	\N
-2906	...In Translation	230	3	19	\N	2604575	215441983	1.99	\N	\N
-2907	Lockdown	231	3	21	\N	2610250	543886056	1.99	\N	\N
-2908	One of Us	229	3	21	\N	2638096	502387276	1.99	\N	\N
-2909	Catch-22	229	3	21	\N	2561394	489773399	1.99	\N	\N
-2910	Dave	231	3	19	\N	2825166	574325829	1.99	\N	\N
-2911	Numbers	230	3	19	\N	2609772	214709143	1.99	\N	\N
-2912	D.O.C.	229	3	21	\N	2616032	518556641	1.99	\N	\N
-2913	Deus Ex Machina	230	3	19	\N	2582009	214996732	1.99	\N	\N
-2914	S.O.S.	231	3	19	\N	2639541	517979269	1.99	\N	\N
-2915	Do No Harm	230	3	19	\N	2618487	212039309	1.99	\N	\N
-2916	Two for the Road	231	3	21	\N	2610958	502404558	1.99	\N	\N
-2917	The Greater Good	230	3	19	\N	2617784	214130273	1.99	\N	\N
-2918	?	231	3	19	\N	2782333	528227089	1.99	\N	\N
-2919	Born to Run	230	3	19	\N	2618619	213772057	1.99	\N	\N
-2920	Three Minutes	231	3	19	\N	2763666	531556853	1.99	\N	\N
-2921	Exodus (Part 1)	230	3	19	\N	2620747	213107744	1.99	\N	\N
-2922	Live Together, Die Alone, Pt. 1	231	3	21	\N	2478041	457364940	1.99	\N	\N
-2923	Exodus (Part 2) [Season Finale]	230	3	19	\N	2605557	208667059	1.99	\N	\N
-2924	Live Together, Die Alone, Pt. 2	231	3	19	\N	2656531	503619265	1.99	\N	\N
-2925	Exodus (Part 3) [Season Finale]	230	3	19	\N	2619869	197937785	1.99	\N	\N
-2926	Zoo Station	232	1	1	U2	276349	9056902	0.99	\N	\N
-2927	Even Better Than The Real Thing	232	1	1	U2	221361	7279392	0.99	\N	\N
-2928	One	232	1	1	U2	276192	9158892	0.99	\N	\N
-2929	Until The End Of The World	232	1	1	U2	278700	9132485	0.99	\N	\N
-2930	Who's Gonna Ride Your Wild Horses	232	1	1	U2	316551	10304369	0.99	\N	\N
-2931	So Cruel	232	1	1	U2	349492	11527614	0.99	\N	\N
-2932	The Fly	232	1	1	U2	268982	8825399	0.99	\N	\N
-2933	Mysterious Ways	232	1	1	U2	243826	8062057	0.99	\N	\N
-2934	Tryin' To Throw Your Arms Around The World	232	1	1	U2	232463	7612124	0.99	\N	\N
-2935	Ultraviolet (Light My Way)	232	1	1	U2	330788	10754631	0.99	\N	\N
-2936	Acrobat	232	1	1	U2	270288	8824723	0.99	\N	\N
-2937	Love Is Blindness	232	1	1	U2	263497	8531766	0.99	\N	\N
-2938	Beautiful Day	233	1	1	Adam Clayton, Bono, Larry Mullen, The Edge	248163	8056723	0.99	\N	\N
-2939	Stuck In A Moment You Can't Get Out Of	233	1	1	Adam Clayton, Bono, Larry Mullen, The Edge	272378	8997366	0.99	\N	\N
-2940	Elevation	233	1	1	Adam Clayton, Bono, Larry Mullen, The Edge	227552	7479414	0.99	\N	\N
-2941	Walk On	233	1	1	Adam Clayton, Bono, Larry Mullen, The Edge	296280	9800861	0.99	\N	\N
-2942	Kite	233	1	1	Adam Clayton, Bono, Larry Mullen, The Edge	266893	8765761	0.99	\N	\N
-2943	In A Little While	233	1	1	Adam Clayton, Bono, Larry Mullen, The Edge	219271	7189647	0.99	\N	\N
-2944	Wild Honey	233	1	1	Adam Clayton, Bono, Larry Mullen, The Edge	226768	7466069	0.99	\N	\N
-2945	Peace On Earth	233	1	1	Adam Clayton, Bono, Larry Mullen, The Edge	288496	9476171	0.99	\N	\N
-2946	When I Look At The World	233	1	1	Adam Clayton, Bono, Larry Mullen, The Edge	257776	8500491	0.99	\N	\N
-2947	New York	233	1	1	Adam Clayton, Bono, Larry Mullen, The Edge	330370	10862323	0.99	\N	\N
-2948	Grace	233	1	1	Adam Clayton, Bono, Larry Mullen, The Edge	330657	10877148	0.99	\N	\N
-2949	The Three Sunrises	234	1	1	U2	234788	7717990	0.99	\N	\N
-2950	Spanish Eyes	234	1	1	U2	196702	6392710	0.99	\N	\N
-2951	Sweetest Thing	234	1	1	U2	185103	6154896	0.99	\N	\N
-2952	Love Comes Tumbling	234	1	1	U2	282671	9328802	0.99	\N	\N
-2953	Bass Trap	234	1	1	U2	213289	6834107	0.99	\N	\N
-2954	Dancing Barefoot	234	1	1	Ivan Kral/Patti Smith	287895	9488294	0.99	\N	\N
-2955	Everlasting Love	234	1	1	Buzz Cason/Mac Gayden	202631	6708932	0.99	\N	\N
-2956	Unchained Melody	234	1	1	Alex North/Hy Zaret	294164	9597568	0.99	\N	\N
-2957	Walk To The Water	234	1	1	U2	289253	9523336	0.99	\N	\N
-2958	Luminous Times (Hold On To Love)	234	1	1	Brian Eno/U2	277760	9015513	0.99	\N	\N
-2959	Hallelujah Here She Comes	234	1	1	U2	242364	8027028	0.99	\N	\N
-2960	Silver And Gold	234	1	1	Bono	279875	9199746	0.99	\N	\N
-2961	Endless Deep	234	1	1	U2	179879	5899070	0.99	\N	\N
-2962	A Room At The Heartbreak Hotel	234	1	1	U2	274546	9015416	0.99	\N	\N
-2963	Trash, Trampoline And The Party Girl	234	1	1	U2	153965	5083523	0.99	\N	\N
-2964	Vertigo	235	1	1	Adam Clayton, Bono, Larry Mullen & The Edge	194612	6329502	0.99	\N	\N
-2965	Miracle Drug	235	1	1	Adam Clayton, Bono, Larry Mullen & The Edge	239124	7760916	0.99	\N	\N
-2966	Sometimes You Can't Make It On Your Own	235	1	1	Adam Clayton, Bono, Larry Mullen & The Edge	308976	10112863	0.99	\N	\N
-2967	Love And Peace Or Else	235	1	1	Adam Clayton, Bono, Larry Mullen & The Edge	290690	9476723	0.99	\N	\N
-2968	City Of Blinding Lights	235	1	1	Adam Clayton, Bono, Larry Mullen & The Edge	347951	11432026	0.99	\N	\N
-2969	All Because Of You	235	1	1	Adam Clayton, Bono, Larry Mullen & The Edge	219141	7198014	0.99	\N	\N
-2970	A Man And A Woman	235	1	1	Adam Clayton, Bono, Larry Mullen & The Edge	270132	8938285	0.99	\N	\N
-2971	Crumbs From Your Table	235	1	1	Adam Clayton, Bono, Larry Mullen & The Edge	303568	9892349	0.99	\N	\N
-2972	One Step Closer	235	1	1	Adam Clayton, Bono, Larry Mullen & The Edge	231680	7512912	0.99	\N	\N
-2973	Original Of The Species	235	1	1	Adam Clayton, Bono, Larry Mullen & The Edge	281443	9230041	0.99	\N	\N
-2974	Yahweh	235	1	1	Adam Clayton, Bono, Larry Mullen & The Edge	262034	8636998	0.99	\N	\N
-2975	Discotheque	236	1	1	Bono, The Edge, Adam Clayton, and Larry Mullen	319582	10442206	0.99	\N	\N
-2976	Do You Feel Loved	236	1	1	Bono, The Edge, Adam Clayton, and Larry Mullen	307539	10122694	0.99	\N	\N
-2977	Mofo	236	1	1	Bono, The Edge, Adam Clayton, and Larry Mullen	349178	11583042	0.99	\N	\N
-2978	If God Will Send His Angels	236	1	1	Bono, The Edge, Adam Clayton, and Larry Mullen	322533	10563329	0.99	\N	\N
-2979	Staring At The Sun	236	1	1	Bono, The Edge, Adam Clayton, and Larry Mullen	276924	9082838	0.99	\N	\N
-2980	Last Night On Earth	236	1	1	Bono, The Edge, Adam Clayton, and Larry Mullen	285753	9401017	0.99	\N	\N
-2981	Gone	236	1	1	Bono, The Edge, Adam Clayton, and Larry Mullen	266866	8746301	0.99	\N	\N
-2982	Miami	236	1	1	Bono, The Edge, Adam Clayton, and Larry Mullen	293041	9741603	0.99	\N	\N
-2983	The Playboy Mansion	236	1	1	Bono, The Edge, Adam Clayton, and Larry Mullen	280555	9274144	0.99	\N	\N
-2984	If You Wear That Velvet Dress	236	1	1	Bono, The Edge, Adam Clayton, and Larry Mullen	315167	10227333	0.99	\N	\N
-2985	Please	236	1	1	Bono, The Edge, Adam Clayton, and Larry Mullen	302602	9909484	0.99	\N	\N
-2986	Wake Up Dead Man	236	1	1	Bono, The Edge, Adam Clayton, and Larry Mullen	292832	9515903	0.99	\N	\N
-2987	Helter Skelter	237	1	1	Lennon, John/McCartney, Paul	187350	6097636	0.99	\N	\N
-2988	Van Diemen's Land	237	1	1	Bono/Clayton, Adam/Mullen Jr., Larry/The Edge	186044	5990280	0.99	\N	\N
-2989	Desire	237	1	1	Bono/Clayton, Adam/Mullen Jr., Larry/The Edge	179226	5874535	0.99	\N	\N
-2990	Hawkmoon 269	237	1	1	Bono/Clayton, Adam/Mullen Jr., Larry/The Edge	382458	12494987	0.99	\N	\N
-2991	All Along The Watchtower	237	1	1	Dylan, Bob	264568	8623572	0.99	\N	\N
-2992	I Still Haven't Found What I'm Looking for	237	1	1	Bono/Clayton, Adam/Mullen Jr., Larry/The Edge	353567	11542247	0.99	\N	\N
-2993	Freedom For My People	237	1	1	Mabins, Macie/Magee, Sterling/Robinson, Bobby	38164	1249764	0.99	\N	\N
-2994	Silver And Gold	237	1	1	Bono/Clayton, Adam/Mullen Jr., Larry/The Edge	349831	11450194	0.99	\N	\N
-2995	Pride (In The Name Of Love)	237	1	1	Bono/Clayton, Adam/Mullen Jr., Larry/The Edge	267807	8806361	0.99	\N	\N
-2996	Angel Of Harlem	237	1	1	Bono/Clayton, Adam/Mullen Jr., Larry/The Edge	229276	7498022	0.99	\N	\N
-2997	Love Rescue Me	237	1	1	Bono/Clayton, Adam/Dylan, Bob/Mullen Jr., Larry/The Edge	384522	12508716	0.99	\N	\N
-2998	When Love Comes To Town	237	1	1	Bono/Clayton, Adam/Mullen Jr., Larry/The Edge	255869	8340954	0.99	\N	\N
-2999	Heartland	237	1	1	Bono/Clayton, Adam/Mullen Jr., Larry/The Edge	303360	9867748	0.99	\N	\N
-3000	God Part II	237	1	1	Bono/Clayton, Adam/Mullen Jr., Larry/The Edge	195604	6497570	0.99	\N	\N
-3001	The Star Spangled Banner	237	1	1	Hendrix, Jimi	43232	1385810	0.99	\N	\N
-3002	Bullet The Blue Sky	237	1	1	Bono/Clayton, Adam/Mullen Jr., Larry/The Edge	337005	10993607	0.99	\N	\N
-3003	All I Want Is You	237	1	1	Bono/Clayton, Adam/Mullen Jr., Larry/The Edge	390243	12729820	0.99	\N	\N
-3004	Pride (In The Name Of Love)	238	1	1	U2	230243	7549085	0.99	\N	\N
-3005	New Year's Day	238	1	1	U2	258925	8491818	0.99	\N	\N
-3006	With Or Without You	238	1	1	U2	299023	9765188	0.99	\N	\N
-3007	I Still Haven't Found What I'm Looking For	238	1	1	U2	280764	9306737	0.99	\N	\N
-3008	Sunday Bloody Sunday	238	1	1	U2	282174	9269668	0.99	\N	\N
-3009	Bad	238	1	1	U2	351817	11628058	0.99	\N	\N
-3010	Where The Streets Have No Name	238	1	1	U2	276218	9042305	0.99	\N	\N
-3011	I Will Follow	238	1	1	U2	218253	7184825	0.99	\N	\N
-3012	The Unforgettable Fire	238	1	1	U2	295183	9684664	0.99	\N	\N
-3013	Sweetest Thing	238	1	1	U2 & Daragh O'Toole	183066	6071385	0.99	\N	\N
-3014	Desire	238	1	1	U2	179853	5893206	0.99	\N	\N
-3015	When Love Comes To Town	238	1	1	U2	258194	8479525	0.99	\N	\N
-3016	Angel Of Harlem	238	1	1	U2	230217	7527339	0.99	\N	\N
-3017	All I Want Is You	238	1	1	U2 & Van Dyke Parks	591986	19202252	0.99	\N	\N
-3018	Sunday Bloody Sunday	239	1	1	U2	278204	9140849	0.99	\N	\N
-3019	Seconds	239	1	1	U2	191582	6352121	0.99	\N	\N
-3020	New Year's Day	239	1	1	U2	336274	11054732	0.99	\N	\N
-3021	Like A Song...	239	1	1	U2	287294	9365379	0.99	\N	\N
-3022	Drowning Man	239	1	1	U2	254458	8457066	0.99	\N	\N
-3023	The Refugee	239	1	1	U2	221283	7374043	0.99	\N	\N
-3024	Two Hearts Beat As One	239	1	1	U2	243487	7998323	0.99	\N	\N
-3025	Red Light	239	1	1	U2	225854	7453704	0.99	\N	\N
-3026	Surrender	239	1	1	U2	333505	11221406	0.99	\N	\N
-3027	40	239	1	1	U2	157962	5251767	0.99	\N	\N
-3028	Zooropa	240	1	1	U2; Bono	392359	12807979	0.99	\N	\N
-3029	Babyface	240	1	1	U2; Bono	241998	7942573	0.99	\N	\N
-3030	Numb	240	1	1	U2; Edge, The	260284	8577861	0.99	\N	\N
-3031	Lemon	240	1	1	U2; Bono	418324	13988878	0.99	\N	\N
-3032	Stay (Faraway, So Close!)	240	1	1	U2; Bono	298475	9785480	0.99	\N	\N
-3033	Daddy's Gonna Pay For Your Crashed Car	240	1	1	U2; Bono	320287	10609581	0.99	\N	\N
-3034	Some Days Are Better Than Others	240	1	1	U2; Bono	257436	8417690	0.99	\N	\N
-3035	The First Time	240	1	1	U2; Bono	225697	7247651	0.99	\N	\N
-3036	Dirty Day	240	1	1	U2; Bono & Edge, The	324440	10652877	0.99	\N	\N
-3037	The Wanderer	240	1	1	U2; Bono	283951	9258717	0.99	\N	\N
-3038	Breakfast In Bed	241	1	8	\N	196179	6513325	0.99	\N	\N
-3039	Where Did I Go Wrong	241	1	8	\N	226742	7485054	0.99	\N	\N
-3040	I Would Do For You	241	1	8	\N	334524	11193602	0.99	\N	\N
-3041	Homely Girl	241	1	8	\N	203833	6790788	0.99	\N	\N
-3042	Here I Am (Come And Take Me)	241	1	8	\N	242102	8106249	0.99	\N	\N
-3043	Kingston Town	241	1	8	\N	226951	7638236	0.99	\N	\N
-3044	Wear You To The Ball	241	1	8	\N	213342	7159527	0.99	\N	\N
-3045	(I Can't Help) Falling In Love With You	241	1	8	\N	207568	6905623	0.99	\N	\N
-3046	Higher Ground	241	1	8	\N	260179	8665244	0.99	\N	\N
-3047	Bring Me Your Cup	241	1	8	\N	341498	11346114	0.99	\N	\N
-3048	C'est La Vie	241	1	8	\N	270053	9031661	0.99	\N	\N
-3049	Reggae Music	241	1	8	\N	245106	8203931	0.99	\N	\N
-3050	Superstition	241	1	8	\N	319582	10728099	0.99	\N	\N
-3051	Until My Dying Day	241	1	8	\N	235807	7886195	0.99	\N	\N
-3052	Where Have All The Good Times Gone?	242	1	1	Ray Davies	186723	6063937	0.99	\N	\N
-3053	Hang 'Em High	242	1	1	Alex Van Halen/David Lee Roth/Edward Van Halen/Michael Anthony	210259	6872314	0.99	\N	\N
-3054	Cathedral	242	1	1	Alex Van Halen/David Lee Roth/Edward Van Halen/Michael Anthony	82860	2650998	0.99	\N	\N
-3055	Secrets	242	1	1	Alex Van Halen/David Lee Roth/Edward Van Halen/Michael Anthony	206968	6803255	0.99	\N	\N
-3056	Intruder	242	1	1	Alex Van Halen/David Lee Roth/Edward Van Halen/Michael Anthony	100153	3282142	0.99	\N	\N
-3057	(Oh) Pretty Woman	242	1	1	Bill Dees/Roy Orbison	174680	5665828	0.99	\N	\N
-3058	Dancing In The Street	242	1	1	Ivy Jo Hunter/Marvin Gaye/William Stevenson	225985	7461499	0.99	\N	\N
-3059	Little Guitars (Intro)	242	1	1	Alex Van Halen/David Lee Roth/Edward Van Halen/Michael Anthony	42240	1439530	0.99	\N	\N
-3060	Little Guitars	242	1	1	Alex Van Halen/David Lee Roth/Edward Van Halen/Michael Anthony	228806	7453043	0.99	\N	\N
-3061	Big Bad Bill (Is Sweet William Now)	242	1	1	Jack Yellen/Milton Ager	165146	5489609	0.99	\N	\N
-3062	The Full Bug	242	1	1	Alex Van Halen/David Lee Roth/Edward Van Halen/Michael Anthony	201116	6551013	0.99	\N	\N
-3063	Happy Trails	242	1	1	Dale Evans	65488	2111141	0.99	\N	\N
-3064	Eruption	243	1	1	Edward Van Halen, Alex Van Halen, David Lee Roth, Michael Anthony	102164	3272891	0.99	\N	\N
-3065	Ain't Talkin' 'bout Love	243	1	1	Edward Van Halen, Alex Van Halen, David Lee Roth, Michael Anthony	228336	7569506	0.99	\N	\N
-3066	Runnin' With The Devil	243	1	1	Edward Van Halen, Alex Van Halen, David Lee Roth, Michael Anthony	215902	7061901	0.99	\N	\N
-3067	Dance the Night Away	243	1	1	Edward Van Halen, Alex Van Halen, David Lee Roth, Michael Anthony	185965	6087433	0.99	\N	\N
-3068	And the Cradle Will Rock...	243	1	1	Edward Van Halen, Alex Van Halen, David Lee Roth, Michael Anthony	213968	7011402	0.99	\N	\N
-3069	Unchained	243	1	1	Edward Van Halen, Alex Van Halen, David Lee Roth, Michael Anthony	208953	6777078	0.99	\N	\N
-3070	Jump	243	1	1	Edward Van Halen, Alex Van Halen, David Lee Roth	241711	7911090	0.99	\N	\N
-3071	Panama	243	1	1	Edward Van Halen, Alex Van Halen, David Lee Roth	211853	6921784	0.99	\N	\N
-3072	Why Can't This Be Love	243	1	1	Van Halen	227761	7457655	0.99	\N	\N
-3073	Dreams	243	1	1	Edward Van Halen, Alex Van Halen, Michael Anthony,/Edward Van Halen, Alex Van Halen, Michael Anthony, Sammy Hagar	291813	9504119	0.99	\N	\N
-3074	When It's Love	243	1	1	Edward Van Halen, Alex Van Halen, Michael Anthony,/Edward Van Halen, Alex Van Halen, Michael Anthony, Sammy Hagar	338991	11049966	0.99	\N	\N
-3075	Poundcake	243	1	1	Edward Van Halen, Alex Van Halen, Michael Anthony,/Edward Van Halen, Alex Van Halen, Michael Anthony, Sammy Hagar	321854	10366978	0.99	\N	\N
-3076	Right Now	243	1	1	Van Halen	321828	10503352	0.99	\N	\N
-3077	Can't Stop Loving You	243	1	1	Van Halen	248502	8107896	0.99	\N	\N
-3078	Humans Being	243	1	1	Edward Van Halen, Alex Van Halen, Michael Anthony,/Edward Van Halen, Alex Van Halen, Michael Anthony, Sammy Hagar	308950	10014683	0.99	\N	\N
-3079	Can't Get This Stuff No More	243	1	1	Edward Van Halen, Alex Van Halen, Michael Anthony,/Edward Van Halen, Alex Van Halen, Michael Anthony, David Lee Roth	315376	10355753	0.99	\N	\N
-3080	Me Wise Magic	243	1	1	Edward Van Halen, Alex Van Halen, Michael Anthony,/Edward Van Halen, Alex Van Halen, Michael Anthony, David Lee Roth	366053	12013467	0.99	\N	\N
-3081	Runnin' With The Devil	244	1	1	Edward Van Halen, Alex Van Halen, Michael Anthony and David Lee Roth	216032	7056863	0.99	\N	\N
-3082	Eruption	244	1	1	Edward Van Halen, Alex Van Halen, Michael Anthony and David Lee Roth	102556	3286026	0.99	\N	\N
-3083	You Really Got Me	244	1	1	Ray Davies	158589	5194092	0.99	\N	\N
-3084	Ain't Talkin' 'Bout Love	244	1	1	Edward Van Halen, Alex Van Halen, Michael Anthony and David Lee Roth	230060	7617284	0.99	\N	\N
-3085	I'm The One	244	1	1	Edward Van Halen, Alex Van Halen, Michael Anthony and David Lee Roth	226507	7373922	0.99	\N	\N
-3086	Jamie's Cryin'	244	1	1	Edward Van Halen, Alex Van Halen, Michael Anthony and David Lee Roth	210546	6946086	0.99	\N	\N
-3087	Atomic Punk	244	1	1	Edward Van Halen, Alex Van Halen, Michael Anthony and David Lee Roth	182073	5908861	0.99	\N	\N
-3088	Feel Your Love Tonight	244	1	1	Edward Van Halen, Alex Van Halen, Michael Anthony and David Lee Roth	222850	7293608	0.99	\N	\N
-3089	Little Dreamer	244	1	1	Edward Van Halen, Alex Van Halen, Michael Anthony and David Lee Roth	203258	6648122	0.99	\N	\N
-3090	Ice Cream Man	244	1	1	John Brim	200306	6573145	0.99	\N	\N
-3091	On Fire	244	1	1	Edward Van Halen, Alex Van Halen, Michael Anthony and David Lee Roth	180636	5879235	0.99	\N	\N
-3092	Neworld	245	1	1	Van Halen	105639	3495897	0.99	\N	\N
-3093	Without You	245	1	1	Van Halen	390295	12619558	0.99	\N	\N
-3094	One I Want	245	1	1	Van Halen	330788	10743970	0.99	\N	\N
-3095	From Afar	245	1	1	Van Halen	324414	10524554	0.99	\N	\N
-3096	Dirty Water Dog	245	1	1	Van Halen	327392	10709202	0.99	\N	\N
-3097	Once	245	1	1	Van Halen	462837	15378082	0.99	\N	\N
-3098	Fire in the Hole	245	1	1	Van Halen	331728	10846768	0.99	\N	\N
-3099	Josephina	245	1	1	Van Halen	342491	11161521	0.99	\N	\N
-3100	Year to the Day	245	1	1	Van Halen	514612	16621333	0.99	\N	\N
-3101	Primary	245	1	1	Van Halen	86987	2812555	0.99	\N	\N
-3102	Ballot or the Bullet	245	1	1	Van Halen	342282	11212955	0.99	\N	\N
-3103	How Many Say I	245	1	1	Van Halen	363937	11716855	0.99	\N	\N
-3104	Sucker Train Blues	246	1	1	Dave Kushner, Duff, Matt Sorum, Scott Weiland & Slash	267859	8738780	0.99	\N	\N
-3105	Do It For The Kids	246	1	1	Dave Kushner, Duff, Matt Sorum, Scott Weiland & Slash	235911	7693331	0.99	\N	\N
-3106	Big Machine	246	1	1	Dave Kushner, Duff, Matt Sorum, Scott Weiland & Slash	265613	8673442	0.99	\N	\N
-3107	Illegal I Song	246	1	1	Dave Kushner, Duff, Matt Sorum, Scott Weiland & Slash	257750	8483347	0.99	\N	\N
-3108	Spectacle	246	1	1	Dave Kushner, Duff, Matt Sorum, Scott Weiland & Slash	221701	7252876	0.99	\N	\N
-3109	Fall To Pieces	246	1	1	Dave Kushner, Duff, Matt Sorum, Scott Weiland & Slash	270889	8823096	0.99	\N	\N
-3110	Headspace	246	1	1	Dave Kushner, Duff, Matt Sorum, Scott Weiland & Slash	223033	7237986	0.99	\N	\N
-3111	Superhuman	246	1	1	Dave Kushner, Duff, Matt Sorum, Scott Weiland & Slash	255921	8365328	0.99	\N	\N
-3112	Set Me Free	246	1	1	Dave Kushner, Duff, Matt Sorum, Scott Weiland & Slash	247954	8053388	0.99	\N	\N
-3113	You Got No Right	246	1	1	Dave Kushner, Duff, Matt Sorum, Scott Weiland & Slash	335412	10991094	0.99	\N	\N
-3114	Slither	246	1	1	Dave Kushner, Duff, Matt Sorum, Scott Weiland & Slash	248398	8118785	0.99	\N	\N
-3115	Dirty Little Thing	246	1	1	Dave Kushner, Duff, Keith Nelson, Matt Sorum, Scott Weiland & Slash	237844	7732982	0.99	\N	\N
-3116	Loving The Alien	246	1	1	Dave Kushner, Duff, Matt Sorum, Scott Weiland & Slash	348786	11412762	0.99	\N	\N
-3117	Pela Luz Dos Olhos Teus	247	1	7	\N	119196	3905715	0.99	\N	\N
-3118	A Bencao E Outros	247	1	7	\N	421093	14234427	0.99	\N	\N
-3119	Tudo Na Mais Santa Paz	247	1	7	\N	222406	7426757	0.99	\N	\N
-3120	O Velho E Aflor	247	1	7	\N	275121	9126828	0.99	\N	\N
-3121	Cotidiano N 2	247	1	7	\N	55902	1805797	0.99	\N	\N
-3122	Adeus	247	1	7	\N	221884	7259351	0.99	\N	\N
-3123	Samba Pra Endrigo	247	1	7	\N	259265	8823551	0.99	\N	\N
-3124	So Por Amor	247	1	7	\N	236591	7745764	0.99	\N	\N
-3125	Meu Pranto Rolou	247	1	7	\N	181760	6003345	0.99	\N	\N
-3126	Mulher Carioca	247	1	7	\N	191686	6395048	0.99	\N	\N
-3127	Um Homem Chamado Alfredo	247	1	7	\N	151640	4976227	0.99	\N	\N
-3128	Samba Do Jato	247	1	7	\N	220813	7357840	0.99	\N	\N
-3129	Oi, La	247	1	7	\N	167053	5562700	0.99	\N	\N
-3130	Vinicius, Poeta Do Encontro	247	1	7	\N	336431	10858776	0.99	\N	\N
-3131	Soneto Da Separacao	247	1	7	\N	193880	6277511	0.99	\N	\N
-3132	Still Of The Night	141	1	3	Sykes	398210	13043817	0.99	\N	\N
-3133	Here I Go Again	141	1	3	Marsden	233874	7652473	0.99	\N	\N
-3134	Is This Love	141	1	3	Sykes	283924	9262360	0.99	\N	\N
-3135	Love Ain't No Stranger	141	1	3	Galley	259395	8490428	0.99	\N	\N
-3136	Looking For Love	141	1	3	Sykes	391941	12769847	0.99	\N	\N
-3137	Now You're Gone	141	1	3	Vandenberg	251141	8162193	0.99	\N	\N
-3138	Slide It In	141	1	3	Coverdale	202475	6615152	0.99	\N	\N
-3139	Slow An' Easy	141	1	3	Moody	367255	11961332	0.99	\N	\N
-3140	Judgement Day	141	1	3	Vandenberg	317074	10326997	0.99	\N	\N
-3141	You're Gonna Break My Hart Again	141	1	3	Sykes	250853	8176847	0.99	\N	\N
-3142	The Deeper The Love	141	1	3	Vandenberg	262791	8606504	0.99	\N	\N
-3143	Crying In The Rain	141	1	3	Coverdale	337005	10931921	0.99	\N	\N
-3144	Fool For Your Loving	141	1	3	Marsden/Moody	250801	8129820	0.99	\N	\N
-3145	Sweet Lady Luck	141	1	3	Vandenberg	273737	8919163	0.99	\N	\N
-3146	Faixa Amarela	248	1	7	Beto Gogo/JessÃ© Pai/Luiz Carlos/Zeca Pagodinho	240692	8082036	0.99	\N	\N
-3147	Posso AtÃ© Me Apaixonar	248	1	7	Dudu Nobre	200698	6735526	0.99	\N	\N
-3148	NÃ£o Sou Mais Disso	248	1	7	Jorge AragÃ£o/Zeca Pagodinho	225985	7613817	0.99	\N	\N
-3149	Vivo Isolado Do Mundo	248	1	7	Alcides Dias Lopes	180035	6073995	0.99	\N	\N
-3150	CoraÃ§Ã£o Em Desalinho	248	1	7	Mauro Diniz/Ratino Sigem	185208	6225948	0.99	\N	\N
-3151	Seu BalancÃª	248	1	7	Paulinho Rezende/Toninho Geraes	219454	7311219	0.99	\N	\N
-3152	Vai Adiar	248	1	7	Alcino CorrÃªa/Monarco	270393	9134882	0.99	\N	\N
-3153	Rugas	248	1	7	Augusto Garcez/Nelson Cavaquinho	140930	4703182	0.99	\N	\N
-3154	Feirinha da Pavuna/Luz do Repente/BagaÃ§o da Laranja	248	1	7	Arlindo Cruz/Franco/Marquinhos PQD/Negro, Jovelina PÃ©rolo/Zeca Pagodinho	107206	3593684	0.99	\N	\N
-3155	Sem Essa de Malandro Agulha	248	1	7	Aldir Blanc/Jayme Vignoli	158484	5332668	0.99	\N	\N
-3156	Chico NÃ£o Vai na Corimba	248	1	7	Dudu Nobre/Zeca Pagodinho	269374	9122188	0.99	\N	\N
-3157	Papel Principal	248	1	7	Almir Guineto/DedÃ© Paraiso/Luverci Ernesto	217495	7325302	0.99	\N	\N
-3158	Saudade Louca	248	1	7	Acyr Marques/Arlindo Cruz/Franco	243591	8136475	0.99	\N	\N
-3159	CamarÃ£o que Dorme e Onda Leva	248	1	7	Acyi Marques/Arlindo Bruz/BraÃ§o, Beto Sem/Zeca Pagodinho	299102	10012231	0.99	\N	\N
-3160	Sapopemba e Maxambomba	248	1	7	Nei Lopes/Wilson Moreira	245394	8268712	0.99	\N	\N
-3161	Minha FÃ©	248	1	7	MurilÃ£o	206994	6981474	0.99	\N	\N
-3162	Lua de Ogum	248	1	7	Ratinho/Zeca Pagodinho	168463	5719129	0.99	\N	\N
-3163	Samba pras moÃ§as	248	1	7	Grazielle/Roque Ferreira	152816	5121366	0.99	\N	\N
-3164	Verdade	248	1	7	Carlinhos Santana/Nelson Rufino	332826	11120708	0.99	\N	\N
-3165	The Brig	229	3	21	\N	2617325	488919543	1.99	\N	\N
-3166	.07%	228	3	21	\N	2585794	541715199	1.99	\N	\N
-3167	Five Years Gone	228	3	21	\N	2587712	530551890	1.99	\N	\N
-3168	The Hard Part	228	3	21	\N	2601017	475996611	1.99	\N	\N
-3169	The Man Behind the Curtain	229	3	21	\N	2615990	493951081	1.99	\N	\N
-3170	Greatest Hits	229	3	21	\N	2617117	522102916	1.99	\N	\N
-3171	Landslide	228	3	21	\N	2600725	518677861	1.99	\N	\N
-3172	The Office: An American Workplace (Pilot)	249	3	19	\N	1380833	290482361	1.99	\N	\N
-3173	Diversity Day	249	3	19	\N	1306416	257879716	1.99	\N	\N
-3174	Health Care	249	3	19	\N	1321791	260493577	1.99	\N	\N
-3175	The Alliance	249	3	19	\N	1317125	266203162	1.99	\N	\N
-3176	Basketball	249	3	19	\N	1323541	267464180	1.99	\N	\N
-3177	Hot Girl	249	3	19	\N	1325458	267836576	1.99	\N	\N
-3178	The Dundies	250	3	19	\N	1253541	246845576	1.99	\N	\N
-3179	Sexual Harassment	250	3	19	\N	1294541	273069146	1.99	\N	\N
-3180	Office Olympics	250	3	19	\N	1290458	256247623	1.99	\N	\N
-3181	The Fire	250	3	19	\N	1288166	266856017	1.99	\N	\N
-3182	Halloween	250	3	19	\N	1315333	249205209	1.99	\N	\N
-3183	The Fight	250	3	19	\N	1320028	277149457	1.99	\N	\N
-3184	The Client	250	3	19	\N	1299341	253836788	1.99	\N	\N
-3185	Performance Review	250	3	19	\N	1292458	256143822	1.99	\N	\N
-3186	Email Surveillance	250	3	19	\N	1328870	265101113	1.99	\N	\N
-3187	Christmas Party	250	3	19	\N	1282115	260891300	1.99	\N	\N
-3188	Booze Cruise	250	3	19	\N	1267958	252518021	1.99	\N	\N
-3189	The Injury	250	3	19	\N	1275275	253912762	1.99	\N	\N
-3190	The Secret	250	3	19	\N	1264875	253143200	1.99	\N	\N
-3191	The Carpet	250	3	19	\N	1264375	256477011	1.99	\N	\N
-3192	Boys and Girls	250	3	19	\N	1278333	255245729	1.99	\N	\N
-3193	Valentine's Day	250	3	19	\N	1270375	253552710	1.99	\N	\N
-3194	Dwight's Speech	250	3	19	\N	1278041	255001728	1.99	\N	\N
-3195	Take Your Daughter to Work Day	250	3	19	\N	1268333	253451012	1.99	\N	\N
-3196	Michael's Birthday	250	3	19	\N	1237791	247238398	1.99	\N	\N
-3197	Drug Testing	250	3	19	\N	1278625	244626927	1.99	\N	\N
-3198	Conflict Resolution	250	3	19	\N	1274583	253808658	1.99	\N	\N
-3199	Casino Night - Season Finale	250	3	19	\N	1712791	327642458	1.99	\N	\N
-3200	Gay Witch Hunt	251	3	19	\N	1326534	276942637	1.99	\N	\N
-3201	The Convention	251	3	19	\N	1297213	255117055	1.99	\N	\N
-3202	The Coup	251	3	19	\N	1276526	267205501	1.99	\N	\N
-3203	Grief Counseling	251	3	19	\N	1282615	256912833	1.99	\N	\N
-3204	The Initiation	251	3	19	\N	1280113	251728257	1.99	\N	\N
-3205	Diwali	251	3	19	\N	1279904	252726644	1.99	\N	\N
-3206	Branch Closing	251	3	19	\N	1822781	358761786	1.99	\N	\N
-3207	The Merger	251	3	19	\N	1801926	345960631	1.99	\N	\N
-3208	The Convict	251	3	22	\N	1273064	248863427	1.99	\N	\N
-3209	A Benihana Christmas, Pts. 1 & 2	251	3	22	\N	2519436	515301752	1.99	\N	\N
-3210	Back from Vacation	251	3	22	\N	1271688	245378749	1.99	\N	\N
-3211	Traveling Salesmen	251	3	22	\N	1289039	250822697	1.99	\N	\N
-3212	Producer's Cut: The Return	251	3	22	\N	1700241	337219980	1.99	\N	\N
-3213	Ben Franklin	251	3	22	\N	1271938	264168080	1.99	\N	\N
-3214	Phyllis's Wedding	251	3	22	\N	1271521	258561054	1.99	\N	\N
-3215	Business School	251	3	22	\N	1302093	254402605	1.99	\N	\N
-3216	Cocktails	251	3	22	\N	1272522	259011909	1.99	\N	\N
-3217	The Negotiation	251	3	22	\N	1767851	371663719	1.99	\N	\N
-3218	Safety Training	251	3	22	\N	1271229	253054534	1.99	\N	\N
-3219	Product Recall	251	3	22	\N	1268268	251208610	1.99	\N	\N
-3220	Women's Appreciation	251	3	22	\N	1732649	338778844	1.99	\N	\N
-3221	Beach Games	251	3	22	\N	1676134	333671149	1.99	\N	\N
-3222	The Job	251	3	22	\N	2541875	501060138	1.99	\N	\N
-3223	How to Stop an Exploding Man	228	3	21	\N	2687103	487881159	1.99	\N	\N
-3224	Through a Looking Glass	229	3	21	\N	5088838	1059546140	1.99	\N	\N
-3225	Your Time Is Gonna Come	252	2	1	Page, Jones	310774	5126563	0.99	\N	\N
-3226	Battlestar Galactica, Pt. 1	253	3	20	\N	2952702	541359437	1.99	\N	\N
-3227	Battlestar Galactica, Pt. 2	253	3	20	\N	2956081	521387924	1.99	\N	\N
-3228	Battlestar Galactica, Pt. 3	253	3	20	\N	2927802	554509033	1.99	\N	\N
-3229	Lost Planet of the Gods, Pt. 1	253	3	20	\N	2922547	537812711	1.99	\N	\N
-3230	Lost Planet of the Gods, Pt. 2	253	3	20	\N	2914664	534343985	1.99	\N	\N
-3231	The Lost Warrior	253	3	20	\N	2920045	558872190	1.99	\N	\N
-3232	The Long Patrol	253	3	20	\N	2925008	513122217	1.99	\N	\N
-3233	The Gun On Ice Planet Zero, Pt. 1	253	3	20	\N	2907615	540980196	1.99	\N	\N
-3234	The Gun On Ice Planet Zero, Pt. 2	253	3	20	\N	2924341	546542281	1.99	\N	\N
-3235	The Magnificent Warriors	253	3	20	\N	2924716	570152232	1.99	\N	\N
-3236	The Young Lords	253	3	20	\N	2863571	587051735	1.99	\N	\N
-3237	The Living Legend, Pt. 1	253	3	20	\N	2924507	503641007	1.99	\N	\N
-3238	The Living Legend, Pt. 2	253	3	20	\N	2923298	515632754	1.99	\N	\N
-3239	Fire In Space	253	3	20	\N	2926593	536784757	1.99	\N	\N
-3240	War of the Gods, Pt. 1	253	3	20	\N	2922630	505761343	1.99	\N	\N
-3241	War of the Gods, Pt. 2	253	3	20	\N	2923381	487899692	1.99	\N	\N
-3242	The Man With Nine Lives	253	3	20	\N	2956998	577829804	1.99	\N	\N
-3243	Murder On the Rising Star	253	3	20	\N	2935894	551759986	1.99	\N	\N
-3244	Greetings from Earth, Pt. 1	253	3	20	\N	2960293	536824558	1.99	\N	\N
-3245	Greetings from Earth, Pt. 2	253	3	20	\N	2903778	527842860	1.99	\N	\N
-3246	Baltar's Escape	253	3	20	\N	2922088	525564224	1.99	\N	\N
-3247	Experiment In Terra	253	3	20	\N	2923548	547982556	1.99	\N	\N
-3248	Take the Celestra	253	3	20	\N	2927677	512381289	1.99	\N	\N
-3249	The Hand of God	253	3	20	\N	2924007	536583079	1.99	\N	\N
-3250	Pilot	254	3	19	\N	2484567	492670102	1.99	\N	\N
-3251	Through the Looking Glass, Pt. 2	229	3	21	\N	2617117	550943353	1.99	\N	\N
-3252	Through the Looking Glass, Pt. 1	229	3	21	\N	2610860	493211809	1.99	\N	\N
-3253	Instant Karma	255	2	9	\N	193188	3150090	0.99	\N	\N
-3254	#9 Dream	255	2	9	\N	278312	4506425	0.99	\N	\N
-3255	Mother	255	2	9	\N	287740	4656660	0.99	\N	\N
-3256	Give Peace a Chance	255	2	9	\N	274644	4448025	0.99	\N	\N
-3257	Cold Turkey	255	2	9	\N	281424	4556003	0.99	\N	\N
-3258	Whatever Gets You Thru the Night	255	2	9	\N	215084	3499018	0.99	\N	\N
-3259	I'm Losing You	255	2	9	\N	240719	3907467	0.99	\N	\N
-3260	Gimme Some Truth	255	2	9	\N	232778	3780807	0.99	\N	\N
-3261	Oh, My Love	255	2	9	\N	159473	2612788	0.99	\N	\N
-3262	Imagine	255	2	9	\N	192329	3136271	0.99	\N	\N
-3263	Nobody Told Me	255	2	9	\N	210348	3423395	0.99	\N	\N
-3264	Jealous Guy	255	2	9	\N	239094	3881620	0.99	\N	\N
-3265	Working Class Hero	255	2	9	\N	265449	4301430	0.99	\N	\N
-3266	Power to the People	255	2	9	\N	213018	3466029	0.99	\N	\N
-3267	Imagine	255	2	9	\N	219078	3562542	0.99	\N	\N
-3268	Beautiful Boy	255	2	9	\N	227995	3704642	0.99	\N	\N
-3269	Isolation	255	2	9	\N	156059	2558399	0.99	\N	\N
-3270	Watching the Wheels	255	2	9	\N	198645	3237063	0.99	\N	\N
-3271	Grow Old With Me	255	2	9	\N	149093	2447453	0.99	\N	\N
-3272	Gimme Some Truth	255	2	9	\N	187546	3060083	0.99	\N	\N
-3273	[Just Like] Starting Over	255	2	9	\N	215549	3506308	0.99	\N	\N
-3274	God	255	2	9	\N	260410	4221135	0.99	\N	\N
-3275	Real Love	255	2	9	\N	236911	3846658	0.99	\N	\N
-3276	Sympton of the Universe	256	2	1	\N	340890	5489313	0.99	\N	\N
-3277	Snowblind	256	2	1	\N	295960	4773171	0.99	\N	\N
-3278	Black Sabbath	256	2	1	\N	364180	5860455	0.99	\N	\N
-3279	Fairies Wear Boots	256	2	1	\N	392764	6315916	0.99	\N	\N
-3280	War Pigs	256	2	1	\N	515435	8270194	0.99	\N	\N
-3281	The Wizard	256	2	1	\N	282678	4561796	0.99	\N	\N
-3282	N.I.B.	256	2	1	\N	335248	5399456	0.99	\N	\N
-3283	Sweet Leaf	256	2	1	\N	354706	5709700	0.99	\N	\N
-3284	Never Say Die	256	2	1	\N	258343	4173799	0.99	\N	\N
-3285	Sabbath, Bloody Sabbath	256	2	1	\N	333622	5373633	0.99	\N	\N
-3286	Iron Man/Children of the Grave	256	2	1	\N	552308	8858616	0.99	\N	\N
-3287	Paranoid	256	2	1	\N	189171	3071042	0.99	\N	\N
-3288	Rock You Like a Hurricane	257	2	1	\N	255766	4300973	0.99	\N	\N
-3289	No One Like You	257	2	1	\N	240325	4050259	0.99	\N	\N
-3290	The Zoo	257	2	1	\N	332740	5550779	0.99	\N	\N
-3291	Loving You Sunday Morning	257	2	1	\N	339125	5654493	0.99	\N	\N
-3292	Still Loving You	257	2	1	\N	390674	6491444	0.99	\N	\N
-3293	Big City Nights	257	2	1	\N	251865	4237651	0.99	\N	\N
-3294	Believe in Love	257	2	1	\N	325774	5437651	0.99	\N	\N
-3295	Rhythm of Love	257	2	1	\N	231246	3902834	0.99	\N	\N
-3296	I Can't Explain	257	2	1	\N	205332	3482099	0.99	\N	\N
-3297	Tease Me Please Me	257	2	1	\N	287229	4811894	0.99	\N	\N
-3298	Wind of Change	257	2	1	\N	315325	5268002	0.99	\N	\N
-3299	Send Me an Angel	257	2	1	\N	273041	4581492	0.99	\N	\N
-3300	Jump Around	258	1	17	E. Schrody/L. Muggerud	217835	8715653	0.99	\N	\N
-3301	Salutations	258	1	17	E. Schrody/L. Dimant	69120	2767047	0.99	\N	\N
-3302	Put Your Head Out	258	1	17	E. Schrody/L. Freese/L. Muggerud	182230	7291473	0.99	\N	\N
-3303	Top O' The Morning To Ya	258	1	17	E. Schrody/L. Dimant	216633	8667599	0.99	\N	\N
-3304	Commercial 1	258	1	17	L. Muggerud	7941	319888	0.99	\N	\N
-3305	House And The Rising Sun	258	1	17	E. Schrody/J. Vasquez/L. Dimant	219402	8778369	0.99	\N	\N
-3306	Shamrocks And Shenanigans	258	1	17	E. Schrody/L. Dimant	218331	8735518	0.99	\N	\N
-3307	House Of Pain Anthem	258	1	17	E. Schrody/L. Dimant	155611	6226713	0.99	\N	\N
-3308	Danny Boy, Danny Boy	258	1	17	E. Schrody/L. Muggerud	114520	4583091	0.99	\N	\N
-3309	Guess Who's Back	258	1	17	E. Schrody/L. Muggerud	238393	9537994	0.99	\N	\N
-3310	Commercial 2	258	1	17	L. Muggerud	21211	850698	0.99	\N	\N
-3311	Put On Your Shit Kickers	258	1	17	E. Schrody/L. Muggerud	190432	7619569	0.99	\N	\N
-3312	Come And Get Some Of This	258	1	17	E. Schrody/L. Muggerud/R. Medrano	170475	6821279	0.99	\N	\N
-3313	Life Goes On	258	1	17	E. Schrody/R. Medrano	163030	6523458	0.99	\N	\N
-3314	One For The Road	258	1	17	E. Schrody/L. Dimant/L. Muggerud	170213	6810820	0.99	\N	\N
-3315	Feel It	258	1	17	E. Schrody/R. Medrano	239908	9598588	0.99	\N	\N
-3316	All My Love	258	1	17	E. Schrody/L. Dimant	200620	8027065	0.99	\N	\N
-3317	Jump Around (Pete Rock Remix)	258	1	17	E. Schrody/L. Muggerud	236120	9447101	0.99	\N	\N
-3318	Shamrocks And Shenanigans (Boom Shalock Lock Boom/Butch Vig Mix)	258	1	17	E. Schrody/L. Dimant	237035	9483705	0.99	\N	\N
-3319	Instinto Colectivo	259	1	15	\N	300564	12024875	0.99	\N	\N
-3320	Chapa o Coco	259	1	15	\N	143830	5755478	0.99	\N	\N
-3321	Prostituta	259	1	15	\N	359000	14362307	0.99	\N	\N
-3322	Eu So Queria Sumir	259	1	15	\N	269740	10791921	0.99	\N	\N
-3323	Tres Reis	259	1	15	\N	304143	12168015	0.99	\N	\N
-3324	Um Lugar ao Sol	259	1	15	\N	212323	8495217	0.99	\N	\N
-3325	Batalha Naval	259	1	15	\N	285727	11431382	0.99	\N	\N
-3326	Todo o Carnaval tem seu Fim	259	1	15	\N	237426	9499371	0.99	\N	\N
-3327	O Misterio do Samba	259	1	15	\N	226142	9047970	0.99	\N	\N
-3328	Armadura	259	1	15	\N	232881	9317533	0.99	\N	\N
-3329	Na Ladeira	259	1	15	\N	221570	8865099	0.99	\N	\N
-3330	Carimbo	259	1	15	\N	328751	13152314	0.99	\N	\N
-3331	Catimbo	259	1	15	\N	254484	10181692	0.99	\N	\N
-3332	Funk de Bamba	259	1	15	\N	237322	9495184	0.99	\N	\N
-3333	Chega no Suingue	259	1	15	\N	221805	8874509	0.99	\N	\N
-3334	Mun-Ra	259	1	15	\N	274651	10988338	0.99	\N	\N
-3335	Freestyle Love	259	1	15	\N	318484	12741680	0.99	\N	\N
-3336	War Pigs	260	4	23	\N	234013	8052374	0.99	\N	\N
-3337	Past, Present, and Future	261	3	21	\N	2492867	490796184	1.99	\N	\N
-3338	The Beginning of the End	261	3	21	\N	2611903	526865050	1.99	\N	\N
-3339	LOST Season 4 Trailer	261	3	21	\N	112712	20831818	1.99	\N	\N
-3340	LOST In 8:15	261	3	21	\N	497163	98460675	1.99	\N	\N
-3341	Confirmed Dead	261	3	21	\N	2611986	512168460	1.99	\N	\N
-3342	The Economist	261	3	21	\N	2609025	516934914	1.99	\N	\N
-3343	Eggtown	261	3	19	\N	2608817	501061240	1.99	\N	\N
-3344	The Constant	261	3	21	\N	2611569	520209363	1.99	\N	\N
-3345	The Other Woman	261	3	21	\N	2605021	513246663	1.99	\N	\N
-3346	Ji Yeon	261	3	19	\N	2588797	506458858	1.99	\N	\N
-3347	Meet Kevin Johnson	261	3	19	\N	2612028	504132981	1.99	\N	\N
-3348	The Shape of Things to Come	261	3	21	\N	2591299	502284266	1.99	\N	\N
-3349	Amanda	262	5	2	Luca Gusella	246503	4011615	0.99	\N	\N
-3350	Despertar	262	5	2	Andrea Dulbecco	307385	4821485	0.99	\N	\N
-3351	Din Din Wo (Little Child)	263	5	16	Habib KoitÃ©	285837	4615841	0.99	\N	\N
-3352	Distance	264	5	15	Karsh Kale/Vishal Vaid	327122	5327463	0.99	\N	\N
-3353	I Guess You're Right	265	5	1	Darius Take One Minwalla/Jon Auer/Ken Stringfellow/Matt Harris	212044	3453849	0.99	\N	\N
-3354	I Ka Barra (Your Work)	263	5	16	Habib KoitÃ©	300605	4855457	0.99	\N	\N
-3355	Love Comes	265	5	1	Darius Take One Minwalla/Jon Auer/Ken Stringfellow/Matt Harris	199923	3240609	0.99	\N	\N
-3356	Muita Bobeira	266	5	7	Luciana Souza	172710	2775071	0.99	\N	\N
-3357	OAM's Blues	267	5	2	Aaron Goldberg	266936	4292028	0.99	\N	\N
-3358	One Step Beyond	264	5	15	Karsh Kale	366085	6034098	0.99	\N	\N
-3359	Symphony No. 3 in E-flat major, Op. 55, Eroica - Scherzo: Allegro Vivace	268	5	24	Ludwig van Beethoven	356426	5817216	0.99	\N	\N
-3360	Something Nice Back Home	261	3	21	\N	2612779	484711353	1.99	\N	\N
-3361	Cabin Fever	261	3	21	\N	2612028	477733942	1.99	\N	\N
-3362	There's No Place Like Home, Pt. 1	261	3	21	\N	2609526	522919189	1.99	\N	\N
-3363	There's No Place Like Home, Pt. 2	261	3	21	\N	2497956	523748920	1.99	\N	\N
-3364	There's No Place Like Home, Pt. 3	261	3	21	\N	2582957	486161766	1.99	\N	\N
-3365	Say Hello 2 Heaven	269	2	23	\N	384497	6477217	0.99	\N	\N
-3366	Reach Down	269	2	23	\N	672773	11157785	0.99	\N	\N
-3367	Hunger Strike	269	2	23	\N	246292	4233212	0.99	\N	\N
-3368	Pushin Forward Back	269	2	23	\N	225278	3892066	0.99	\N	\N
-3369	Call Me a Dog	269	2	23	\N	304458	5177612	0.99	\N	\N
-3370	Times of Trouble	269	2	23	\N	342539	5795951	0.99	\N	\N
-3371	Wooden Jesus	269	2	23	\N	250565	4302603	0.99	\N	\N
-3372	Your Savior	269	2	23	\N	244226	4199626	0.99	\N	\N
-3373	Four Walled World	269	2	23	\N	414474	6964048	0.99	\N	\N
-3374	All Night Thing	269	2	23	\N	231803	3997982	0.99	\N	\N
-3375	No Such Thing	270	2	23	Chris Cornell	224837	3691272	0.99	\N	\N
-3376	Poison Eye	270	2	23	Chris Cornell	237120	3890037	0.99	\N	\N
-3377	Arms Around Your Love	270	2	23	Chris Cornell	214016	3516224	0.99	\N	\N
-3378	Safe and Sound	270	2	23	Chris Cornell	256764	4207769	0.99	\N	\N
-3379	She'll Never Be Your Man	270	2	23	Chris Cornell	204078	3355715	0.99	\N	\N
-3380	Ghosts	270	2	23	Chris Cornell	231547	3799745	0.99	\N	\N
-3381	Killing Birds	270	2	23	Chris Cornell	218498	3588776	0.99	\N	\N
-3382	Billie Jean	270	2	23	Michael Jackson	281401	4606408	0.99	\N	\N
-3383	Scar On the Sky	270	2	23	Chris Cornell	220193	3616618	0.99	\N	\N
-3384	Your Soul Today	270	2	23	Chris Cornell	205959	3385722	0.99	\N	\N
-3385	Finally Forever	270	2	23	Chris Cornell	217035	3565098	0.99	\N	\N
-3386	Silence the Voices	270	2	23	Chris Cornell	267376	4379597	0.99	\N	\N
-3387	Disappearing Act	270	2	23	Chris Cornell	273320	4476203	0.99	\N	\N
-3388	You Know My Name	270	2	23	Chris Cornell	240255	3940651	0.99	\N	\N
-3389	Revelations	271	2	23	\N	252376	4111051	0.99	\N	\N
-3390	One and the Same	271	2	23	\N	217732	3559040	0.99	\N	\N
-3391	Sound of a Gun	271	2	23	\N	260154	4234990	0.99	\N	\N
-3392	Until We Fall	271	2	23	\N	230758	3766605	0.99	\N	\N
-3393	Original Fire	271	2	23	\N	218916	3577821	0.99	\N	\N
-3394	Broken City	271	2	23	\N	228366	3728955	0.99	\N	\N
-3395	Somedays	271	2	23	\N	213831	3497176	0.99	\N	\N
-3396	Shape of Things to Come	271	2	23	\N	274597	4465399	0.99	\N	\N
-3397	Jewel of the Summertime	271	2	23	\N	233242	3806103	0.99	\N	\N
-3398	Wide Awake	271	2	23	\N	266308	4333050	0.99	\N	\N
-3399	Nothing Left to Say But Goodbye	271	2	23	\N	213041	3484335	0.99	\N	\N
-3400	Moth	271	2	23	\N	298049	4838884	0.99	\N	\N
-3401	Show Me How to Live (Live at the Quart Festival)	271	2	23	\N	301974	4901540	0.99	\N	\N
-3402	Band Members Discuss Tracks from Revelations	271	3	23	\N	294294	61118891	0.99	\N	\N
-3403	Intoitus: Adorate Deum	272	2	24	Anonymous	245317	4123531	0.99	\N	\N
-3404	Miserere mei, Deus	273	2	24	Gregorio Allegri	501503	8285941	0.99	\N	\N
-3405	Canon and Gigue in D Major: I. Canon	274	2	24	Johann Pachelbel	271788	4438393	0.99	\N	\N
-3406	Concerto No. 1 in E Major, RV 269 Spring: I. Allegro	275	2	24	Antonio Vivaldi	199086	3347810	0.99	\N	\N
-3407	Concerto for 2 Violins in D Minor, BWV 1043: I. Vivace	276	2	24	Johann Sebastian Bach	193722	3192890	0.99	\N	\N
-3408	Aria Mit 30 VerÃ¤nderungen, BWV 988 Goldberg Variations: Aria	277	2	24	Johann Sebastian Bach	120463	2081895	0.99	\N	\N
-3409	Suite for Solo Cello No. 1 in G Major, BWV 1007: I. PrÃ©lude	278	2	24	Johann Sebastian Bach	143288	2315495	0.99	\N	\N
-3410	The Messiah: Behold, I Tell You a Mystery... The Trumpet Shall Sound	279	2	24	George Frideric Handel	582029	9553140	0.99	\N	\N
-3411	Solomon HWV 67: The Arrival of the Queen of Sheba	280	2	24	George Frideric Handel	197135	3247914	0.99	\N	\N
-3412	Eine Kleine Nachtmusik Serenade In G, K. 525: I. Allegro	281	2	24	Wolfgang Amadeus Mozart	348971	5760129	0.99	\N	\N
-3413	Concerto for Clarinet in A Major, K. 622: II. Adagio	282	2	24	Wolfgang Amadeus Mozart	394482	6474980	0.99	\N	\N
-3414	Symphony No. 104 in D Major London: IV. Finale: Spiritoso	283	4	24	Franz Joseph Haydn	306687	10085867	0.99	\N	\N
-3415	Symphony No.5 in C Minor: I. Allegro con brio	284	2	24	Ludwig van Beethoven	392462	6419730	0.99	\N	\N
-3416	Ave Maria	285	2	24	Franz Schubert	338243	5605648	0.99	\N	\N
-3417	Nabucco: Chorus, Va, Pensiero, Sull'ali Dorate	286	2	24	Giuseppe Verdi	274504	4498583	0.99	\N	\N
-3418	Die WalkÃ¼re: The Ride of the Valkyries	287	2	24	Richard Wagner	189008	3114209	0.99	\N	\N
-3419	Requiem, Op.48: 4. Pie Jesu	288	2	24	Gabriel FaurÃ©	258924	4314850	0.99	\N	\N
-3420	The Nutcracker, Op. 71a, Act II: Scene 14: Pas de deux: Dance of the Prince & the Sugar-Plum Fairy	289	2	24	Peter Ilyich Tchaikovsky	304226	5184289	0.99	\N	\N
-3421	Nimrod (Adagio) from Variations On an Original Theme, Op. 36 Enigma	290	2	24	Edward Elgar	250031	4124707	0.99	\N	\N
-3422	Madama Butterfly: Un Bel DÃ¬ Vedremo	291	2	24	Giacomo Puccini	277639	4588197	0.99	\N	\N
-3423	Jupiter, the Bringer of Jollity	292	2	24	Gustav Holst	522099	8547876	0.99	\N	\N
-3424	Turandot, Act III, Nessun dorma!	293	2	24	Giacomo Puccini	176911	2920890	0.99	\N	\N
-3425	Adagio for Strings from the String Quartet, Op. 11	294	2	24	Samuel Barber	596519	9585597	0.99	\N	\N
-3426	Carmina Burana: O Fortuna	295	2	24	Carl Orff	156710	2630293	0.99	\N	\N
-3427	Fanfare for the Common Man	296	2	24	Aaron Copland	198064	3211245	0.99	\N	\N
-3428	Branch Closing	251	3	22	\N	1814855	360331351	1.99	\N	\N
-3429	The Return	251	3	22	\N	1705080	343877320	1.99	\N	\N
-3430	Toccata and Fugue in D Minor, BWV 565: I. Toccata	297	2	24	Johann Sebastian Bach	153901	2649938	0.99	\N	\N
-3431	Symphony No.1 in D Major, Op.25 Classical, Allegro Con Brio	298	2	24	Sergei Prokofiev	254001	4195542	0.99	\N	\N
-3432	Scheherazade, Op. 35: I. The Sea and Sindbad's Ship	299	2	24	Nikolai Rimsky-Korsakov	545203	8916313	0.99	\N	\N
-3433	Concerto No.2 in F Major, BWV1047, I. Allegro	300	2	24	Johann Sebastian Bach	307244	5064553	0.99	\N	\N
-3434	Concerto for Piano No. 2 in F Minor, Op. 21: II. Larghetto	301	2	24	FrÃ©dÃ©ric Chopin	560342	9160082	0.99	\N	\N
-3435	Cavalleria Rusticana \\ Act \\ Intermezzo Sinfonico	302	2	24	Pietro Mascagni	243436	4001276	0.99	\N	\N
-3436	Karelia Suite, Op.11: 2. Ballade (Tempo Di Menuetto)	303	2	24	Jean Sibelius	406000	5908455	0.99	\N	\N
-3437	Piano Sonata No. 14 in C Sharp Minor, Op. 27, No. 2, Moonlight: I. Adagio sostenuto	304	2	24	Ludwig van Beethoven	391000	6318740	0.99	\N	\N
-3438	Fantasia On Greensleeves	280	2	24	Ralph Vaughan Williams	268066	4513190	0.99	\N	\N
-3439	Das Lied Von Der Erde, Von Der Jugend	305	2	24	Gustav Mahler	223583	3700206	0.99	\N	\N
-3440	Concerto for Cello and Orchestra in E minor, Op. 85: I. Adagio - Moderato	306	2	24	Edward Elgar	483133	7865479	0.99	\N	\N
-3441	Two Fanfares for Orchestra: II. Short Ride in a Fast Machine	307	2	24	John Adams	254930	4310896	0.99	\N	\N
-3442	Wellington's Victory or the Battle Symphony, Op.91: 2. Symphony of Triumph	308	2	24	Ludwig van Beethoven	412000	6965201	0.99	\N	\N
-3443	Missa Papae Marcelli: Kyrie	309	2	24	Giovanni Pierluigi da Palestrina	240666	4244149	0.99	\N	\N
-3444	Romeo et Juliette: No. 11 - Danse des Chevaliers	310	2	24	\N	275015	4519239	0.99	\N	\N
-3445	On the Beautiful Blue Danube	311	2	24	Johann Strauss II	526696	8610225	0.99	\N	\N
-3446	Symphonie Fantastique, Op. 14: V. Songe d'une nuit du sabbat	312	2	24	Hector Berlioz	561967	9173344	0.99	\N	\N
-3447	Carmen: Overture	313	2	24	Georges Bizet	132932	2189002	0.99	\N	\N
-3448	Lamentations of Jeremiah, First Set \\ Incipit Lamentatio	314	2	24	Thomas Tallis	69194	1208080	0.99	\N	\N
-3449	Music for the Royal Fireworks, HWV351 (1749): La RÃ©jouissance	315	2	24	George Frideric Handel	120000	2193734	0.99	\N	\N
-3450	Peer Gynt Suite No.1, Op.46: 1. Morning Mood	316	2	24	Edvard Grieg	253422	4298769	0.99	\N	\N
-3451	Die ZauberflÃ¶te, K.620: Der HÃ¶lle Rache Kocht in Meinem Herze	317	2	25	Wolfgang Amadeus Mozart	174813	2861468	0.99	\N	\N
-3452	SCRIABIN: Prelude in B Major, Op. 11, No. 11	318	4	24	\N	101293	3819535	0.99	\N	\N
-3453	Pavan, Lachrimae Antiquae	319	2	24	John Dowland	253281	4211495	0.99	\N	\N
-3454	Symphony No. 41 in C Major, K. 551, Jupiter: IV. Molto allegro	320	2	24	Wolfgang Amadeus Mozart	362933	6173269	0.99	\N	\N
-3455	Rehab	321	2	14	\N	213240	3416878	0.99	\N	\N
-3456	You Know I'm No Good	321	2	14	\N	256946	4133694	0.99	\N	\N
-3457	Me & Mr. Jones	321	2	14	\N	151706	2449438	0.99	\N	\N
-3458	Just Friends	321	2	14	\N	191933	3098906	0.99	\N	\N
-3459	Back to Black	321	2	14	Mark Ronson	240320	3852953	0.99	\N	\N
-3460	Love Is a Losing Game	321	2	14	\N	154386	2509409	0.99	\N	\N
-3461	Tears Dry On Their Own	321	2	14	Nickolas Ashford & Valerie Simpson	185293	2996598	0.99	\N	\N
-3462	Wake Up Alone	321	2	14	Paul O'duffy	221413	3576773	0.99	\N	\N
-3463	Some Unholy War	321	2	14	\N	141520	2304465	0.99	\N	\N
-3464	He Can Only Hold Her	321	2	14	Richard Poindexter & Robert Poindexter	166680	2666531	0.99	\N	\N
-3465	You Know I'm No Good (feat. Ghostface Killah)	321	2	14	\N	202320	3260658	0.99	\N	\N
-3466	Rehab (Hot Chip Remix)	321	2	14	\N	418293	6670600	0.99	\N	\N
-3467	Intro / Stronger Than Me	322	2	9	\N	234200	3832165	0.99	\N	\N
-3468	You Sent Me Flying / Cherry	322	2	9	\N	409906	6657517	0.99	\N	\N
-3469	F**k Me Pumps	322	2	9	Salaam Remi	200253	3324343	0.99	\N	\N
-3470	I Heard Love Is Blind	322	2	9	\N	129666	2190831	0.99	\N	\N
-3471	(There Is) No Greater Love (Teo Licks)	322	2	9	Isham Jones & Marty Symes	167933	2773507	0.99	\N	\N
-3472	In My Bed	322	2	9	Salaam Remi	315960	5211774	0.99	\N	\N
-3473	Take the Box	322	2	9	Luke Smith	199160	3281526	0.99	\N	\N
-3474	October Song	322	2	9	Matt Rowe & Stefan Skarbek	204846	3358125	0.99	\N	\N
-3475	What Is It About Men	322	2	9	Delroy Chris Cooper, Donovan Jackson, Earl Chinna Smith, Felix Howard, Gordon Williams, Luke Smith, Paul Watson & Wilburn Squiddley Cole	209573	3426106	0.99	\N	\N
-3476	Help Yourself	322	2	9	Freddy James, Jimmy hogarth & Larry Stock	300884	5029266	0.99	\N	\N
-3477	Amy Amy Amy (Outro)	322	2	9	Astor Campbell, Delroy Chris Cooper, Donovan Jackson, Dorothy Fields, Earl Chinna Smith, Felix Howard, Gordon Williams, James Moody, Jimmy McHugh, Matt Rowe, Salaam Remi & Stefan Skarbek	663426	10564704	0.99	\N	\N
-3478	Slowness	323	2	23	\N	215386	3644793	0.99	\N	\N
-3479	Prometheus Overture, Op. 43	324	4	24	Ludwig van Beethoven	339567	10887931	0.99	\N	\N
-3480	Sonata for Solo Violin: IV: Presto	325	4	24	BÃ©la BartÃ³k	299350	9785346	0.99	\N	\N
-3481	A Midsummer Night's Dream, Op.61 Incidental Music: No.7 Notturno	326	2	24	\N	387826	6497867	0.99	\N	\N
-3482	Suite No. 3 in D, BWV 1068: III. Gavotte I & II	327	2	24	Johann Sebastian Bach	225933	3847164	0.99	\N	\N
-3483	Concert pour 4 Parties de V**les, H. 545: I. Prelude	328	2	24	Marc-Antoine Charpentier	110266	1973559	0.99	\N	\N
-3484	Adios nonino	329	2	24	Astor Piazzolla	289388	4781384	0.99	\N	\N
-3485	Symphony No. 3 Op. 36 for Orchestra and Soprano Symfonia Piesni Zalosnych \\ Lento E Largo - Tranquillissimo	330	2	24	Henryk GÃ³recki	567494	9273123	0.99	\N	\N
-3486	Act IV, Symphony	331	2	24	Henry Purcell	364296	5987695	0.99	\N	\N
-3487	3 GymnopÃ©dies: No.1 - Lent Et Grave, No.3 - Lent Et Douloureux	332	2	24	Erik Satie	385506	6458501	0.99	\N	\N
-3488	Music for the Funeral of Queen Mary: VI. Thou Knowest, Lord, the Secrets of Our Hearts	333	2	24	Henry Purcell	142081	2365930	0.99	\N	\N
-3489	Symphony No. 2: III. Allegro vivace	334	2	24	Kurt Weill	376510	6129146	0.99	\N	\N
-3490	Partita in E Major, BWV 1006A: I. Prelude	335	2	24	Johann Sebastian Bach	285673	4744929	0.99	\N	\N
-3491	Le Sacre Du Printemps: I.iv. Spring Rounds	336	2	24	Igor Stravinsky	234746	4072205	0.99	\N	\N
-3492	Sing Joyfully	314	2	24	William Byrd	133768	2256484	0.99	\N	\N
-3493	Metopes, Op. 29: Calypso	337	2	24	Karol Szymanowski	333669	5548755	0.99	\N	\N
-3494	Symphony No. 2, Op. 16 -  The Four Temperaments: II. Allegro Comodo e Flemmatico	338	2	24	Carl Nielsen	286998	4834785	0.99	\N	\N
-3495	24 Caprices, Op. 1, No. 24, for Solo Violin, in A Minor	339	2	24	NiccolÃ² Paganini	265541	4371533	0.99	\N	\N
-3496	Ã‰tude 1, In C Major - Preludio (Presto) - Liszt	340	4	24	\N	51780	2229617	0.99	\N	\N
-3497	Erlkonig, D.328	341	2	24	\N	261849	4307907	0.99	\N	\N
-3498	Concerto for Violin, Strings and Continuo in G Major, Op. 3, No. 9: I. Allegro	342	4	24	Pietro Antonio Locatelli	493573	16454937	0.99	\N	\N
-3499	Pini Di Roma (Pinien Von Rom) \\ I Pini Della Via Appia	343	2	24	\N	286741	4718950	0.99	\N	\N
-3500	String Quartet No. 12 in C Minor, D. 703 Quartettsatz: II. Andante - Allegro assai	344	2	24	Franz Schubert	139200	2283131	0.99	\N	\N
-3501	L'orfeo, Act 3, Sinfonia (Orchestra)	345	2	24	Claudio Monteverdi	66639	1189062	0.99	\N	\N
-3502	Quintet for Horn, Violin, 2 Violas, and Cello in E Flat Major, K. 407/386c: III. Allegro	346	2	24	Wolfgang Amadeus Mozart	221331	3665114	0.99	\N	\N
-3503	Koyaanisqatsi	347	2	10	Philip Glass	206005	3305164	0.99	\N	\N
-asdf2134j	Prueba	\N	\N	\N	\N	\N	\N	1.50	\N	\N
-1234567asdf	Prueba	1	\N	\N	\N	\N	\N	1.50	\N	\N
-ca20b353-e196-4c97-8d72-63aa86831d1d	Prueba	1	\N	\N	\N	\N	\N	1.50	\N	\N
-0e932e5e-557e-4ec1-b9b1-fcf4789c4a2a	Prueba	1	\N	\N	\N	\N	\N	2.00	\N	\N
-fab76c97-d92d-4b00-ba94-20f38f7dfb0f	Prueba	1	\N	\N	\N	\N	\N	3.00	dele17822@uvg.edu.gt	\N
+602	'Round Midnight	48	1	2	Miles Davis	357459	11590284	0.99	\N	1
+63	Desafinado	8	1	2	\N	185338	5990473	0.99	\N	0
+8	Inject The Venom	1	1	1	Angus Young, Malcolm Young, Brian Johnson	210834	6852860	0.99	\N	0
+9	Snowballed	1	1	1	Angus Young, Malcolm Young, Brian Johnson	203102	6599424	0.99	\N	0
+10	Evil Walks	1	1	1	Angus Young, Malcolm Young, Brian Johnson	263497	8611245	0.99	\N	0
+11	C.O.D.	1	1	1	Angus Young, Malcolm Young, Brian Johnson	199836	6566314	0.99	\N	0
+12	Breaking The Rules	1	1	1	Angus Young, Malcolm Young, Brian Johnson	263288	8596840	0.99	\N	0
+13	Night Of The Long Knives	1	1	1	Angus Young, Malcolm Young, Brian Johnson	205688	6706347	0.99	\N	0
+14	Spellbound	1	1	1	Angus Young, Malcolm Young, Brian Johnson	270863	8817038	0.99	\N	0
+15	Go Down	4	1	1	AC/DC	331180	10847611	0.99	\N	0
+16	Dog Eat Dog	4	1	1	AC/DC	215196	7032162	0.99	\N	0
+17	Let There Be Rock	4	1	1	AC/DC	366654	12021261	0.99	\N	0
+18	Bad Boy Boogie	4	1	1	AC/DC	267728	8776140	0.99	\N	0
+19	Problem Child	4	1	1	AC/DC	325041	10617116	0.99	\N	0
+20	Overdose	4	1	1	AC/DC	369319	12066294	0.99	\N	0
+21	Hell Ain't A Bad Place To Be	4	1	1	AC/DC	254380	8331286	0.99	\N	0
+22	Whole Lotta Rosie	4	1	1	AC/DC	323761	10547154	0.99	\N	0
+23	Walk On Water	5	1	1	Steven Tyler, Joe Perry, Jack Blades, Tommy Shaw	295680	9719579	0.99	\N	0
+24	Love In An Elevator	5	1	1	Steven Tyler, Joe Perry	321828	10552051	0.99	\N	0
+25	Rag Doll	5	1	1	Steven Tyler, Joe Perry, Jim Vallance, Holly Knight	264698	8675345	0.99	\N	0
+26	What It Takes	5	1	1	Steven Tyler, Joe Perry, Desmond Child	310622	10144730	0.99	\N	0
+27	Dude (Looks Like A Lady)	5	1	1	Steven Tyler, Joe Perry, Desmond Child	264855	8679940	0.99	\N	0
+28	Janie's Got A Gun	5	1	1	Steven Tyler, Tom Hamilton	330736	10869391	0.99	\N	0
+29	Cryin'	5	1	1	Steven Tyler, Joe Perry, Taylor Rhodes	309263	10056995	0.99	\N	0
+30	Amazing	5	1	1	Steven Tyler, Richie Supa	356519	11616195	0.99	\N	0
+31	Blind Man	5	1	1	Steven Tyler, Joe Perry, Taylor Rhodes	240718	7877453	0.99	\N	0
+32	Deuces Are Wild	5	1	1	Steven Tyler, Jim Vallance	215875	7074167	0.99	\N	0
+33	The Other Side	5	1	1	Steven Tyler, Jim Vallance	244375	7983270	0.99	\N	0
+34	Crazy	5	1	1	Steven Tyler, Joe Perry, Desmond Child	316656	10402398	0.99	\N	0
+35	Eat The Rich	5	1	1	Steven Tyler, Joe Perry, Jim Vallance	251036	8262039	0.99	\N	0
+36	Angel	5	1	1	Steven Tyler, Desmond Child	307617	9989331	0.99	\N	0
+37	Livin' On The Edge	5	1	1	Steven Tyler, Joe Perry, Mark Hudson	381231	12374569	0.99	\N	0
+38	All I Really Want	6	1	1	Alanis Morissette & Glenn Ballard	284891	9375567	0.99	\N	0
+39	You Oughta Know	6	1	1	Alanis Morissette & Glenn Ballard	249234	8196916	0.99	\N	0
+40	Perfect	6	1	1	Alanis Morissette & Glenn Ballard	188133	6145404	0.99	\N	0
+41	Hand In My Pocket	6	1	1	Alanis Morissette & Glenn Ballard	221570	7224246	0.99	\N	0
+42	Right Through You	6	1	1	Alanis Morissette & Glenn Ballard	176117	5793082	0.99	\N	0
+43	Forgiven	6	1	1	Alanis Morissette & Glenn Ballard	300355	9753256	0.99	\N	0
+44	You Learn	6	1	1	Alanis Morissette & Glenn Ballard	239699	7824837	0.99	\N	0
+45	Head Over Feet	6	1	1	Alanis Morissette & Glenn Ballard	267493	8758008	0.99	\N	0
+46	Mary Jane	6	1	1	Alanis Morissette & Glenn Ballard	280607	9163588	0.99	\N	0
+47	Ironic	6	1	1	Alanis Morissette & Glenn Ballard	229825	7598866	0.99	\N	0
+48	Not The Doctor	6	1	1	Alanis Morissette & Glenn Ballard	227631	7604601	0.99	\N	0
+49	Wake Up	6	1	1	Alanis Morissette & Glenn Ballard	293485	9703359	0.99	\N	0
+50	You Oughta Know (Alternate)	6	1	1	Alanis Morissette & Glenn Ballard	491885	16008629	0.99	\N	0
+51	We Die Young	7	1	1	Jerry Cantrell	152084	4925362	0.99	\N	0
+52	Man In The Box	7	1	1	Jerry Cantrell, Layne Staley	286641	9310272	0.99	\N	0
+53	Sea Of Sorrow	7	1	1	Jerry Cantrell	349831	11316328	0.99	\N	0
+54	Bleed The Freak	7	1	1	Jerry Cantrell	241946	7847716	0.99	\N	0
+55	I Can't Remember	7	1	1	Jerry Cantrell, Layne Staley	222955	7302550	0.99	\N	0
+56	Love, Hate, Love	7	1	1	Jerry Cantrell, Layne Staley	387134	12575396	0.99	\N	0
+57	It Ain't Like That	7	1	1	Jerry Cantrell, Michael Starr, Sean Kinney	277577	8993793	0.99	\N	0
+58	Sunshine	7	1	1	Jerry Cantrell	284969	9216057	0.99	\N	0
+59	Put You Down	7	1	1	Jerry Cantrell	196231	6420530	0.99	\N	0
+60	Confusion	7	1	1	Jerry Cantrell, Michael Starr, Layne Staley	344163	11183647	0.99	\N	0
+61	I Know Somethin (Bout You)	7	1	1	Jerry Cantrell	261955	8497788	0.99	\N	0
+62	Real Thing	7	1	1	Jerry Cantrell, Layne Staley	243879	7937731	0.99	\N	0
+64	Garota De Ipanema	8	1	2	\N	285048	9348428	0.99	\N	0
+65	Samba De Uma Nota SÃ³ (One Note Samba)	8	1	2	\N	137273	4535401	0.99	\N	0
+66	Por Causa De VocÃª	8	1	2	\N	169900	5536496	0.99	\N	0
+67	Ligia	8	1	2	\N	251977	8226934	0.99	\N	0
+68	Fotografia	8	1	2	\N	129227	4198774	0.99	\N	0
+69	Dindi (Dindi)	8	1	2	\N	253178	8149148	0.99	\N	0
+70	Se Todos Fossem Iguais A VocÃª (Instrumental)	8	1	2	\N	134948	4393377	0.99	\N	0
+71	Falando De Amor	8	1	2	\N	219663	7121735	0.99	\N	0
+72	Angela	8	1	2	\N	169508	5574957	0.99	\N	0
+73	Corcovado (Quiet Nights Of Quiet Stars)	8	1	2	\N	205662	6687994	0.99	\N	0
+74	Outra Vez	8	1	2	\N	126511	4110053	0.99	\N	0
+75	O Boto (BÃ´to)	8	1	2	\N	366837	12089673	0.99	\N	0
+76	Canta, Canta Mais	8	1	2	\N	271856	8719426	0.99	\N	0
+77	Enter Sandman	9	1	3	Apocalyptica	221701	7286305	0.99	\N	0
+78	Master Of Puppets	9	1	3	Apocalyptica	436453	14375310	0.99	\N	0
+79	Harvester Of Sorrow	9	1	3	Apocalyptica	374543	12372536	0.99	\N	0
+80	The Unforgiven	9	1	3	Apocalyptica	322925	10422447	0.99	\N	0
+81	Sad But True	9	1	3	Apocalyptica	288208	9405526	0.99	\N	0
+82	Creeping Death	9	1	3	Apocalyptica	308035	10110980	0.99	\N	0
+83	Wherever I May Roam	9	1	3	Apocalyptica	369345	12033110	0.99	\N	0
+84	Welcome Home (Sanitarium)	9	1	3	Apocalyptica	350197	11406431	0.99	\N	0
+85	Cochise	10	1	1	Audioslave/Chris Cornell	222380	5339931	0.99	\N	0
+86	Show Me How to Live	10	1	1	Audioslave/Chris Cornell	277890	6672176	0.99	\N	0
+87	Gasoline	10	1	1	Audioslave/Chris Cornell	279457	6709793	0.99	\N	0
+88	What You Are	10	1	1	Audioslave/Chris Cornell	249391	5988186	0.99	\N	0
+89	Like a Stone	10	1	1	Audioslave/Chris Cornell	294034	7059624	0.99	\N	0
+90	Set It Off	10	1	1	Audioslave/Chris Cornell	263262	6321091	0.99	\N	0
+91	Shadow on the Sun	10	1	1	Audioslave/Chris Cornell	343457	8245793	0.99	\N	0
+92	I am the Highway	10	1	1	Audioslave/Chris Cornell	334942	8041411	0.99	\N	0
+93	Exploder	10	1	1	Audioslave/Chris Cornell	206053	4948095	0.99	\N	0
+94	Hypnotize	10	1	1	Audioslave/Chris Cornell	206628	4961887	0.99	\N	0
+95	Bring'em Back Alive	10	1	1	Audioslave/Chris Cornell	329534	7911634	0.99	\N	0
+96	Light My Way	10	1	1	Audioslave/Chris Cornell	303595	7289084	0.99	\N	0
+97	Getaway Car	10	1	1	Audioslave/Chris Cornell	299598	7193162	0.99	\N	0
+98	The Last Remaining Light	10	1	1	Audioslave/Chris Cornell	317492	7622615	0.99	\N	0
+99	Your Time Has Come	11	1	4	Cornell, Commerford, Morello, Wilk	255529	8273592	0.99	\N	0
+100	Out Of Exile	11	1	4	Cornell, Commerford, Morello, Wilk	291291	9506571	0.99	\N	0
+101	Be Yourself	11	1	4	Cornell, Commerford, Morello, Wilk	279484	9106160	0.99	\N	0
+102	Doesn't Remind Me	11	1	4	Cornell, Commerford, Morello, Wilk	255869	8357387	0.99	\N	0
+103	Drown Me Slowly	11	1	4	Cornell, Commerford, Morello, Wilk	233691	7609178	0.99	\N	0
+104	Heaven's Dead	11	1	4	Cornell, Commerford, Morello, Wilk	276688	9006158	0.99	\N	0
+105	The Worm	11	1	4	Cornell, Commerford, Morello, Wilk	237714	7710800	0.99	\N	0
+106	Man Or Animal	11	1	4	Cornell, Commerford, Morello, Wilk	233195	7542942	0.99	\N	0
+107	Yesterday To Tomorrow	11	1	4	Cornell, Commerford, Morello, Wilk	273763	8944205	0.99	\N	0
+108	Dandelion	11	1	4	Cornell, Commerford, Morello, Wilk	278125	9003592	0.99	\N	0
+109	#1 Zero	11	1	4	Cornell, Commerford, Morello, Wilk	299102	9731988	0.99	\N	0
+110	The Curse	11	1	4	Cornell, Commerford, Morello, Wilk	309786	10029406	0.99	\N	0
+111	Money	12	1	5	Berry Gordy, Jr./Janie Bradford	147591	2365897	0.99	\N	0
+112	Long Tall Sally	12	1	5	Enotris Johnson/Little Richard/Robert Bumps Blackwell	106396	1707084	0.99	\N	0
+113	Bad Boy	12	1	5	Larry Williams	116088	1862126	0.99	\N	0
+114	Twist And Shout	12	1	5	Bert Russell/Phil Medley	161123	2582553	0.99	\N	0
+115	Please Mr. Postman	12	1	5	Brian Holland/Freddie Gorman/Georgia Dobbins/Robert Bateman/William Garrett	137639	2206986	0.99	\N	0
+116	C'Mon Everybody	12	1	5	Eddie Cochran/Jerry Capehart	140199	2247846	0.99	\N	0
+117	Rock 'N' Roll Music	12	1	5	Chuck Berry	141923	2276788	0.99	\N	0
+118	Slow Down	12	1	5	Larry Williams	163265	2616981	0.99	\N	0
+119	Roadrunner	12	1	5	Bo Diddley	143595	2301989	0.99	\N	0
+120	Carol	12	1	5	Chuck Berry	143830	2306019	0.99	\N	0
+121	Good Golly Miss Molly	12	1	5	Little Richard	106266	1704918	0.99	\N	0
+122	20 Flight Rock	12	1	5	Ned Fairchild	107807	1299960	0.99	\N	0
+123	Quadrant	13	1	2	Billy Cobham	261851	8538199	0.99	\N	0
+124	Snoopy's search-Red baron	13	1	2	Billy Cobham	456071	15075616	0.99	\N	0
+125	Spanish moss-A sound portrait-Spanish moss	13	1	2	Billy Cobham	248084	8217867	0.99	\N	0
+126	Moon germs	13	1	2	Billy Cobham	294060	9714812	0.99	\N	0
+127	Stratus	13	1	2	Billy Cobham	582086	19115680	0.99	\N	0
+128	The pleasant pheasant	13	1	2	Billy Cobham	318066	10630578	0.99	\N	0
+129	Solo-Panhandler	13	1	2	Billy Cobham	246151	8230661	0.99	\N	0
+130	Do what cha wanna	13	1	2	George Duke	274155	9018565	0.99	\N	0
+131	Intro/ Low Down	14	1	3	\N	323683	10642901	0.99	\N	0
+132	13 Years Of Grief	14	1	3	\N	246987	8137421	0.99	\N	0
+133	Stronger Than Death	14	1	3	\N	300747	9869647	0.99	\N	0
+134	All For You	14	1	3	\N	235833	7726948	0.99	\N	0
+135	Super Terrorizer	14	1	3	\N	319373	10513905	0.99	\N	0
+136	Phoney Smile Fake Hellos	14	1	3	\N	273606	9011701	0.99	\N	0
+137	Lost My Better Half	14	1	3	\N	284081	9355309	0.99	\N	0
+138	Bored To Tears	14	1	3	\N	247327	8130090	0.99	\N	0
+139	A.N.D.R.O.T.A.Z.	14	1	3	\N	266266	8574746	0.99	\N	0
+140	Born To Booze	14	1	3	\N	282122	9257358	0.99	\N	0
+141	World Of Trouble	14	1	3	\N	359157	11820932	0.99	\N	0
+142	No More Tears	14	1	3	\N	555075	18041629	0.99	\N	0
+143	The Begining... At Last	14	1	3	\N	365662	11965109	0.99	\N	0
+144	Heart Of Gold	15	1	3	\N	194873	6417460	0.99	\N	0
+145	Snowblind	15	1	3	\N	420022	13842549	0.99	\N	0
+146	Like A Bird	15	1	3	\N	276532	9115657	0.99	\N	0
+147	Blood In The Wall	15	1	3	\N	284368	9359475	0.99	\N	0
+148	The Beginning...At Last	15	1	3	\N	271960	8975814	0.99	\N	0
+149	Black Sabbath	16	1	3	\N	382066	12440200	0.99	\N	0
+150	The Wizard	16	1	3	\N	264829	8646737	0.99	\N	0
+151	Behind The Wall Of Sleep	16	1	3	\N	217573	7169049	0.99	\N	0
+1268	01 - Prowler	100	1	6	Steve Harris	236173	5668992	0.99	\N	1
+152	N.I.B.	16	1	3	\N	368770	12029390	0.99	\N	0
+153	Evil Woman	16	1	3	\N	204930	6655170	0.99	\N	0
+154	Sleeping Village	16	1	3	\N	644571	21128525	0.99	\N	0
+155	Warning	16	1	3	\N	212062	6893363	0.99	\N	0
+156	Wheels Of Confusion / The Straightener	17	1	3	Tony Iommi, Bill Ward, Geezer Butler, Ozzy Osbourne	494524	16065830	0.99	\N	0
+157	Tomorrow's Dream	17	1	3	Tony Iommi, Bill Ward, Geezer Butler, Ozzy Osbourne	192496	6252071	0.99	\N	0
+158	Changes	17	1	3	Tony Iommi, Bill Ward, Geezer Butler, Ozzy Osbourne	286275	9175517	0.99	\N	0
+159	FX	17	1	3	Tony Iommi, Bill Ward, Geezer Butler, Ozzy Osbourne	103157	3331776	0.99	\N	0
+160	Supernaut	17	1	3	Tony Iommi, Bill Ward, Geezer Butler, Ozzy Osbourne	285779	9245971	0.99	\N	0
+161	Snowblind	17	1	3	Tony Iommi, Bill Ward, Geezer Butler, Ozzy Osbourne	331676	10813386	0.99	\N	0
+162	Cornucopia	17	1	3	Tony Iommi, Bill Ward, Geezer Butler, Ozzy Osbourne	234814	7653880	0.99	\N	0
+163	Laguna Sunrise	17	1	3	Tony Iommi, Bill Ward, Geezer Butler, Ozzy Osbourne	173087	5671374	0.99	\N	0
+164	St. Vitus Dance	17	1	3	Tony Iommi, Bill Ward, Geezer Butler, Ozzy Osbourne	149655	4884969	0.99	\N	0
+165	Under The Sun/Every Day Comes and Goes	17	1	3	Tony Iommi, Bill Ward, Geezer Butler, Ozzy Osbourne	350458	11360486	0.99	\N	0
+166	Smoked Pork	18	1	4	\N	47333	1549074	0.99	\N	0
+167	Body Count's In The House	18	1	4	\N	204251	6715413	0.99	\N	0
+168	Now Sports	18	1	4	\N	4884	161266	0.99	\N	0
+169	Body Count	18	1	4	\N	317936	10489139	0.99	\N	0
+170	A Statistic	18	1	4	\N	6373	211997	0.99	\N	0
+171	Bowels Of The Devil	18	1	4	\N	223216	7324125	0.99	\N	0
+172	The Real Problem	18	1	4	\N	11650	387360	0.99	\N	0
+173	KKK Bitch	18	1	4	\N	173008	5709631	0.99	\N	0
+174	D Note	18	1	4	\N	95738	3067064	0.99	\N	0
+175	Voodoo	18	1	4	\N	300721	9875962	0.99	\N	0
+176	The Winner Loses	18	1	4	\N	392254	12843821	0.99	\N	0
+177	There Goes The Neighborhood	18	1	4	\N	350171	11443471	0.99	\N	0
+178	Oprah	18	1	4	\N	6635	224313	0.99	\N	0
+179	Evil Dick	18	1	4	\N	239020	7828873	0.99	\N	0
+180	Body Count Anthem	18	1	4	\N	166426	5463690	0.99	\N	0
+181	Momma's Gotta Die Tonight	18	1	4	\N	371539	12122946	0.99	\N	0
+182	Freedom Of Speech	18	1	4	\N	281234	9337917	0.99	\N	0
+183	King In Crimson	19	1	3	Roy Z	283167	9218499	0.99	\N	0
+184	Chemical Wedding	19	1	3	Roy Z	246177	8022764	0.99	\N	0
+185	The Tower	19	1	3	Roy Z	285257	9435693	0.99	\N	0
+186	Killing Floor	19	1	3	Adrian Smith	269557	8854240	0.99	\N	0
+187	Book Of Thel	19	1	3	Eddie Casillas/Roy Z	494393	16034404	0.99	\N	0
+188	Gates Of Urizen	19	1	3	Roy Z	265351	8627004	0.99	\N	0
+189	Jerusalem	19	1	3	Roy Z	402390	13194463	0.99	\N	0
+190	Trupets Of Jericho	19	1	3	Roy Z	359131	11820908	0.99	\N	0
+191	Machine Men	19	1	3	Adrian Smith	341655	11138147	0.99	\N	0
+192	The Alchemist	19	1	3	Roy Z	509413	16545657	0.99	\N	0
+193	Realword	19	1	3	Roy Z	237531	7802095	0.99	\N	0
+194	First Time I Met The Blues	20	1	6	Eurreal Montgomery	140434	4604995	0.99	\N	0
+195	Let Me Love You Baby	20	1	6	Willie Dixon	175386	5716994	0.99	\N	0
+196	Stone Crazy	20	1	6	Buddy Guy	433397	14184984	0.99	\N	0
+197	Pretty Baby	20	1	6	Willie Dixon	237662	7848282	0.99	\N	0
+198	When My Left Eye Jumps	20	1	6	Al Perkins/Willie Dixon	235311	7685363	0.99	\N	0
+199	Leave My Girl Alone	20	1	6	Buddy Guy	204721	6859518	0.99	\N	0
+200	She Suits Me To A Tee	20	1	6	Buddy Guy	136803	4456321	0.99	\N	0
+201	Keep It To Myself (Aka Keep It To Yourself)	20	1	6	Sonny Boy Williamson [I]	166060	5487056	0.99	\N	0
+202	My Time After Awhile	20	1	6	Robert Geddins/Ron Badger/Sheldon Feinberg	182491	6022698	0.99	\N	0
+203	Too Many Ways (Alternate)	20	1	6	Willie Dixon	135053	4459946	0.99	\N	0
+204	Talkin' 'Bout Women Obviously	20	1	6	Amos Blakemore/Buddy Guy	589531	19161377	0.99	\N	0
+205	Jorge Da CapadÃ³cia	21	1	7	Jorge Ben	177397	5842196	0.99	\N	0
+206	Prenda Minha	21	1	7	Tradicional	99369	3225364	0.99	\N	0
+207	MeditaÃ§Ã£o	21	1	7	Tom Jobim - Newton MendoÃ§a	148793	4865597	0.99	\N	0
+208	Terra	21	1	7	Caetano Veloso	482429	15889054	0.99	\N	0
+209	Eclipse Oculto	21	1	7	Caetano Veloso	221936	7382703	0.99	\N	0
+210	Texto Verdade Tropical	21	1	7	Caetano Veloso	84088	2752161	0.99	\N	0
+211	Bem Devagar	21	1	7	Gilberto Gil	133172	4333651	0.99	\N	0
+212	DrÃ£o	21	1	7	Gilberto Gil	156264	5065932	0.99	\N	0
+213	Saudosismo	21	1	7	Caetano Veloso	144326	4726981	0.99	\N	0
+214	Carolina	21	1	7	Chico Buarque	181812	5924159	0.99	\N	0
+215	Sozinho	21	1	7	Peninha	190589	6253200	0.99	\N	0
+216	Esse Cara	21	1	7	Caetano Veloso	223111	7217126	0.99	\N	0
+217	Mel	21	1	7	Caetano Veloso - Waly SalomÃ£o	294765	9854062	0.99	\N	0
+218	Linha Do Equador	21	1	7	Caetano Veloso - Djavan	299337	10003747	0.99	\N	0
+219	Odara	21	1	7	Caetano Veloso	141270	4704104	0.99	\N	0
+220	A Luz De Tieta	21	1	7	Caetano Veloso	251742	8507446	0.99	\N	0
+221	AtrÃ¡s Da Verd-E-Rosa SÃ³ NÃ£o Vai Quem JÃ¡ Morreu	21	1	7	David CorrÃªa - Paulinho Carvalho - Carlos Sena - Bira do Ponto	307252	10364247	0.99	\N	0
+222	Vida Boa	21	1	7	Fausto Nilo - Armandinho	281730	9411272	0.99	\N	0
+223	Sozinho (Hitmakers Classic Mix)	22	1	7	\N	436636	14462072	0.99	\N	0
+224	Sozinho (Hitmakers Classic Radio Edit)	22	1	7	\N	195004	6455134	0.99	\N	0
+225	Sozinho (CaÃªdrum 'n' Bass)	22	1	7	\N	328071	10975007	0.99	\N	0
+226	Carolina	23	1	7	\N	163056	5375395	0.99	\N	0
+227	Essa MoÃ§a Ta Diferente	23	1	7	\N	167235	5568574	0.99	\N	0
+228	Vai Passar	23	1	7	\N	369763	12359161	0.99	\N	0
+229	Samba De Orly	23	1	7	\N	162429	5431854	0.99	\N	0
+230	Bye, Bye Brasil	23	1	7	\N	283402	9499590	0.99	\N	0
+231	Atras Da Porta	23	1	7	\N	189675	6132843	0.99	\N	0
+232	Tatuagem	23	1	7	\N	172120	5645703	0.99	\N	0
+233	O Que SerÃ¡ (Ã€ Flor Da Terra)	23	1	7	\N	167288	5574848	0.99	\N	0
+234	Morena De Angola	23	1	7	\N	186801	6373932	0.99	\N	0
+235	Apesar De VocÃª	23	1	7	\N	234501	7886937	0.99	\N	0
+236	A Banda	23	1	7	\N	132493	4349539	0.99	\N	0
+237	Minha Historia	23	1	7	\N	182256	6029673	0.99	\N	0
+238	Com AÃ§Ãºcar E Com Afeto	23	1	7	\N	175386	5846442	0.99	\N	0
+239	Brejo Da Cruz	23	1	7	\N	214099	7270749	0.99	\N	0
+240	Meu Caro Amigo	23	1	7	\N	260257	8778172	0.99	\N	0
+241	Geni E O Zepelim	23	1	7	\N	317570	10342226	0.99	\N	0
+242	Trocando Em MiÃºdos	23	1	7	\N	169717	5461468	0.99	\N	0
+243	Vai Trabalhar Vagabundo	23	1	7	\N	139154	4693941	0.99	\N	0
+244	Gota D'Ã¡gua	23	1	7	\N	153208	5074189	0.99	\N	0
+245	ConstruÃ§Ã£o / Deus Lhe Pague	23	1	7	\N	383059	12675305	0.99	\N	0
+246	Mateus Enter	24	1	7	Chico Science	33149	1103013	0.99	\N	0
+247	O CidadÃ£o Do Mundo	24	1	7	Chico Science	200933	6724966	0.99	\N	0
+248	Etnia	24	1	7	Chico Science	152555	5061413	0.99	\N	0
+249	Quilombo Groove [Instrumental]	24	1	7	Chico Science	151823	5042447	0.99	\N	0
+250	MacÃ´	24	1	7	Chico Science	249600	8253934	0.99	\N	0
+251	Um Passeio No Mundo Livre	24	1	7	Chico Science	240091	7984291	0.99	\N	0
+252	Samba Do Lado	24	1	7	Chico Science	227317	7541688	0.99	\N	0
+253	Maracatu AtÃ´mico	24	1	7	Chico Science	284264	9670057	0.99	\N	0
+254	O Encontro De Isaac Asimov Com Santos Dumont No CÃ©u	24	1	7	Chico Science	99108	3240816	0.99	\N	0
+255	Corpo De Lama	24	1	7	Chico Science	232672	7714954	0.99	\N	0
+256	Sobremesa	24	1	7	Chico Science	240091	7960868	0.99	\N	0
+257	Manguetown	24	1	7	Chico Science	194560	6475159	0.99	\N	0
+258	Um SatÃ©lite Na CabeÃ§a	24	1	7	Chico Science	126615	4272821	0.99	\N	0
+259	BaiÃ£o Ambiental [Instrumental]	24	1	7	Chico Science	152659	5198539	0.99	\N	0
+260	Sangue De Bairro	24	1	7	Chico Science	132231	4415557	0.99	\N	0
+261	Enquanto O Mundo Explode	24	1	7	Chico Science	88764	2968650	0.99	\N	0
+262	Interlude Zumbi	24	1	7	Chico Science	71627	2408550	0.99	\N	0
+263	CrianÃ§a De Domingo	24	1	7	Chico Science	208222	6984813	0.99	\N	0
+264	Amor De Muito	24	1	7	Chico Science	175333	5881293	0.99	\N	0
+265	Samidarish [Instrumental]	24	1	7	Chico Science	272431	8911641	0.99	\N	0
+266	Maracatu AtÃ´mico [Atomic Version]	24	1	7	Chico Science	273084	9019677	0.99	\N	0
+267	Maracatu AtÃ´mico [Ragga Mix]	24	1	7	Chico Science	210155	6986421	0.99	\N	0
+268	Maracatu AtÃ´mico [Trip Hop]	24	1	7	Chico Science	221492	7380787	0.99	\N	0
+269	Banditismo Por Uma Questa	25	1	7	\N	307095	10251097	0.99	\N	0
+270	Banditismo Por Uma Questa	25	1	7	\N	243644	8147224	0.99	\N	0
+271	Rios Pontes & Overdrives	25	1	7	\N	286720	9659152	0.99	\N	0
+272	Cidade	25	1	7	\N	216346	7241817	0.99	\N	0
+273	Praiera	25	1	7	\N	183640	6172781	0.99	\N	0
+274	Samba Makossa	25	1	7	\N	271856	9095410	0.99	\N	0
+275	Da Lama Ao Caos	25	1	7	\N	251559	8378065	0.99	\N	0
+276	Maracatu De Tiro Certeiro	25	1	7	\N	88868	2901397	0.99	\N	0
+277	Salustiano Song	25	1	7	\N	215405	7183969	0.99	\N	0
+278	Antene Se	25	1	7	\N	248372	8253618	0.99	\N	0
+279	Risoflora	25	1	7	\N	105586	3536938	0.99	\N	0
+280	Lixo Do Mangue	25	1	7	\N	193253	6534200	0.99	\N	0
+281	Computadores Fazem Arte	25	1	7	\N	404323	13702771	0.99	\N	0
+282	Girassol	26	1	8	Bino Farias/Da Gama/LazÃ£o/Pedro Luis/Toni Garrido	249808	8327676	0.99	\N	0
+283	A Sombra Da Maldade	26	1	8	Da Gama/Toni Garrido	230922	7697230	0.99	\N	0
+284	Johnny B. Goode	26	1	8	Chuck Berry	254615	8505985	0.99	\N	0
+285	Soldado Da Paz	26	1	8	Herbert Vianna	194220	6455080	0.99	\N	0
+286	Firmamento	26	1	8	Bino Farias/Da Gama/Henry Lawes/LazÃ£o/Toni Garrido/Winston Foser-Vers	222145	7402658	0.99	\N	0
+287	Extra	26	1	8	Gilberto Gil	304352	10078050	0.99	\N	0
+288	O ErÃª	26	1	8	Bernardo Vilhena/Bino Farias/Da Gama/LazÃ£o/Toni Garrido	236382	7866924	0.99	\N	0
+289	Podes Crer	26	1	8	Bino Farias/Da Gama/LazÃ£o/Toni Garrido	232280	7747747	0.99	\N	0
+290	A Estrada	26	1	8	Bino Farias/Da Gama/LazÃ£o/Toni Garrido	248842	8275673	0.99	\N	0
+291	Berlim	26	1	8	Da Gama/Toni Garrido	207542	6920424	0.99	\N	0
+292	JÃ¡ Foi	26	1	8	Bino Farias/Da Gama/LazÃ£o/Toni Garrido	221544	7388466	0.99	\N	0
+293	Onde VocÃª Mora?	26	1	8	Marisa Monte/Nando Reis	256026	8502588	0.99	\N	0
+294	Pensamento	26	1	8	Bino Farias/Da Gamma/LazÃ£o/RÃ¡s Bernard	173008	5748424	0.99	\N	0
+295	ConciliaÃ§Ã£o	26	1	8	Da Gama/LazÃ£o/RÃ¡s Bernardo	257619	8552474	0.99	\N	0
+296	Realidade Virtual	26	1	8	Bino Farias/Da Gama/LazÃ£o/Toni Garrido	195239	6503533	0.99	\N	0
+297	Mensagem	26	1	8	Bino Farias/Da Gama/LazÃ£o/RÃ¡s Bernardo	225332	7488852	0.99	\N	0
+298	A Cor Do Sol	26	1	8	Bernardo Vilhena/Da Gama/LazÃ£o	231392	7663348	0.99	\N	0
+299	Onde VocÃª Mora?	27	1	8	Marisa Monte/Nando Reis	298396	10056970	0.99	\N	0
+300	O ErÃª	27	1	8	Bernardo Vilhena/Bino/Da Gama/Lazao/Toni Garrido	206942	6950332	0.99	\N	0
+301	A Sombra Da Maldade	27	1	8	Da Gama/Toni Garrido	285231	9544383	0.99	\N	0
+302	A Estrada	27	1	8	Da Gama/Lazao/Toni Garrido	282174	9344477	0.99	\N	0
+303	Falar A Verdade	27	1	8	Bino/Da Gama/Ras Bernardo	244950	8189093	0.99	\N	0
+304	Firmamento	27	1	8	Harry Lawes/Winston Foster-Vers	225488	7507866	0.99	\N	0
+305	Pensamento	27	1	8	Bino/Da Gama/Ras Bernardo	192391	6399761	0.99	\N	0
+306	Realidade Virtual	27	1	8	Bino/Da Gamma/Lazao/Toni Garrido	240300	8069934	0.99	\N	0
+307	Doutor	27	1	8	Bino/Da Gama/Toni Garrido	178155	5950952	0.99	\N	0
+308	Na Frente Da TV	27	1	8	Bino/Da Gama/Lazao/Ras Bernardo	289750	9633659	0.99	\N	0
+309	Downtown	27	1	8	Cidade Negra	239725	8024386	0.99	\N	0
+310	SÃ¡bado A Noite	27	1	8	Lulu Santos	267363	8895073	0.99	\N	0
+311	A Cor Do Sol	27	1	8	Bernardo Vilhena/Da Gama/Lazao	273031	9142937	0.99	\N	0
+312	Eu TambÃ©m Quero Beijar	27	1	8	Fausto Nilo/Moraes Moreira/Pepeu Gomes	211147	7029400	0.99	\N	0
+313	Noite Do Prazer	28	1	7	\N	311353	10309980	0.99	\N	0
+314	Ã€ Francesa	28	1	7	\N	244532	8150846	0.99	\N	0
+315	Cada Um Cada Um (A Namoradeira)	28	1	7	\N	253492	8441034	0.99	\N	0
+316	Linha Do Equador	28	1	7	\N	244715	8123466	0.99	\N	0
+317	Amor Demais	28	1	7	\N	254040	8420093	0.99	\N	0
+318	FÃ©rias	28	1	7	\N	264202	8731945	0.99	\N	0
+319	Gostava Tanto De VocÃª	28	1	7	\N	230452	7685326	0.99	\N	0
+320	Flor Do Futuro	28	1	7	\N	275748	9205941	0.99	\N	0
+321	Felicidade Urgente	28	1	7	\N	266605	8873358	0.99	\N	0
+322	Livre Pra Viver	28	1	7	\N	214595	7111596	0.99	\N	0
+323	Dig-Dig, Lambe-Lambe (Ao Vivo)	29	1	9	Cassiano Costa/Cintia Maviane/J.F./Lucas Costa	205479	6892516	0.99	\N	0
+324	PererÃª	29	1	9	Augusto ConceiÃ§Ã£o/Chiclete Com Banana	198661	6643207	0.99	\N	0
+325	TriboTchan	29	1	9	Cal Adan/Paulo Levi	194194	6507950	0.99	\N	0
+326	Tapa Aqui, Descobre Ali	29	1	9	Paulo Levi/W. Rangel	188630	6327391	0.99	\N	0
+327	Daniela	29	1	9	Jorge Cardoso/Pierre Onasis	230791	7748006	0.99	\N	0
+328	Bate Lata	29	1	9	FÃ¡bio Nolasco/Gal Sales/Ivan Brasil	206733	7034985	0.99	\N	0
+329	Garotas do Brasil	29	1	9	Garay, Ricardo Engels/Luca Predabom/Ludwig, Carlos Henrique/MaurÃ­cio Vieira	210155	6973625	0.99	\N	0
+330	Levada do Amor (Ailoviu)	29	1	9	Luiz Wanderley/Paulo Levi	190093	6457752	0.99	\N	0
+331	Lavadeira	29	1	9	Do Vale, Valverde/Gal Oliveira/Luciano Pinto	214256	7254147	0.99	\N	0
+332	Reboladeira	29	1	9	Cal Adan/Ferrugem/Julinho Carioca/TrÃ­ona NÃ­ Dhomhnaill	210599	7027525	0.99	\N	0
+333	Ã‰ que Nessa EncarnaÃ§Ã£o Eu Nasci Manga	29	1	9	Lucina/Luli	196519	6568081	0.99	\N	0
+334	Reggae Tchan	29	1	9	Cal Adan/Del Rey, Tension/Edu Casanova	206654	6931328	0.99	\N	0
+335	My Love	29	1	9	Jauperi/Zeu GÃ³es	203493	6772813	0.99	\N	0
+336	Latinha de Cerveja	29	1	9	Adriano Bernandes/Edmar Neves	166687	5532564	0.99	\N	0
+337	You Shook Me	30	1	1	J B Lenoir/Willie Dixon	315951	10249958	0.99	\N	0
+338	I Can't Quit You Baby	30	1	1	Willie Dixon	263836	8581414	0.99	\N	0
+339	Communication Breakdown	30	1	1	Jimmy Page/John Bonham/John Paul Jones	192653	6287257	0.99	\N	0
+340	Dazed and Confused	30	1	1	Jimmy Page	401920	13035765	0.99	\N	0
+341	The Girl I Love She Got Long Black Wavy Hair	30	1	1	Jimmy Page/John Bonham/John Estes/John Paul Jones/Robert Plant	183327	5995686	0.99	\N	0
+342	What is and Should Never Be	30	1	1	Jimmy Page/Robert Plant	260675	8497116	0.99	\N	0
+343	Communication Breakdown(2)	30	1	1	Jimmy Page/John Bonham/John Paul Jones	161149	5261022	0.99	\N	0
+344	Travelling Riverside Blues	30	1	1	Jimmy Page/Robert Johnson/Robert Plant	312032	10232581	0.99	\N	0
+345	Whole Lotta Love	30	1	1	Jimmy Page/John Bonham/John Paul Jones/Robert Plant/Willie Dixon	373394	12258175	0.99	\N	0
+346	Somethin' Else	30	1	1	Bob Cochran/Sharon Sheeley	127869	4165650	0.99	\N	0
+347	Communication Breakdown(3)	30	1	1	Jimmy Page/John Bonham/John Paul Jones	185260	6041133	0.99	\N	0
+348	I Can't Quit You Baby(2)	30	1	1	Willie Dixon	380551	12377615	0.99	\N	0
+349	You Shook Me(2)	30	1	1	J B Lenoir/Willie Dixon	619467	20138673	0.99	\N	0
+350	How Many More Times	30	1	1	Chester Burnett/Jimmy Page/John Bonham/John Paul Jones/Robert Plant	711836	23092953	0.99	\N	0
+351	Debra Kadabra	31	1	1	Frank Zappa	234553	7649679	0.99	\N	0
+352	Carolina Hard-Core Ecstasy	31	1	1	Frank Zappa	359680	11731061	0.99	\N	0
+353	Sam With The Showing Scalp Flat Top	31	1	1	Don Van Vliet	171284	5572993	0.99	\N	0
+354	Poofter's Froth Wyoming Plans Ahead	31	1	1	Frank Zappa	183902	6007019	0.99	\N	0
+355	200 Years Old	31	1	1	Frank Zappa	272561	8912465	0.99	\N	0
+356	Cucamonga	31	1	1	Frank Zappa	144483	4728586	0.99	\N	0
+357	Advance Romance	31	1	1	Frank Zappa	677694	22080051	0.99	\N	0
+358	Man With The Woman Head	31	1	1	Don Van Vliet	88894	2922044	0.99	\N	0
+359	Muffin Man	31	1	1	Frank Zappa	332878	10891682	0.99	\N	0
+360	Vai-Vai 2001	32	1	10	\N	276349	9402241	0.99	\N	0
+361	X-9 2001	32	1	10	\N	273920	9310370	0.99	\N	0
+362	Gavioes 2001	32	1	10	\N	282723	9616640	0.99	\N	0
+363	Nene 2001	32	1	10	\N	284969	9694508	0.99	\N	0
+364	Rosas De Ouro 2001	32	1	10	\N	284342	9721084	0.99	\N	0
+365	Mocidade Alegre 2001	32	1	10	\N	282488	9599937	0.99	\N	0
+366	Camisa Verde 2001	32	1	10	\N	283454	9633755	0.99	\N	0
+367	Leandro De Itaquera 2001	32	1	10	\N	274808	9451845	0.99	\N	0
+368	Tucuruvi 2001	32	1	10	\N	287921	9883335	0.99	\N	0
+369	Aguia De Ouro 2001	32	1	10	\N	284160	9698729	0.99	\N	0
+370	Ipiranga 2001	32	1	10	\N	248293	8522591	0.99	\N	0
+371	Morro Da Casa Verde 2001	32	1	10	\N	284708	9718778	0.99	\N	0
+372	Perola Negra 2001	32	1	10	\N	281626	9619196	0.99	\N	0
+373	Sao Lucas 2001	32	1	10	\N	296254	10020122	0.99	\N	0
+374	Guanabara	33	1	7	Marcos Valle	247614	8499591	0.99	\N	0
+375	Mas Que Nada	33	1	7	Jorge Ben	248398	8255254	0.99	\N	0
+376	VÃ´o Sobre o Horizonte	33	1	7	J.r.Bertami/Parana	225097	7528825	0.99	\N	0
+377	A Paz	33	1	7	Donato/Gilberto Gil	263183	8619173	0.99	\N	0
+378	Wave (Vou te Contar)	33	1	7	Antonio Carlos Jobim	271647	9057557	0.99	\N	0
+380	Samba da BenÃ§aco	33	1	7	Baden Powell/Vinicius de Moraes	282200	9440676	0.99	\N	0
+381	Pode Parar	33	1	7	Jorge Vercilo/Jota Maranhao	179408	6046678	0.99	\N	0
+382	Menino do Rio	33	1	7	Caetano Veloso	262713	8737489	0.99	\N	0
+383	Ando Meio Desligado	33	1	7	Caetano Veloso	195813	6547648	0.99	\N	0
+384	MistÃ©rio da RaÃ§a	33	1	7	Luiz Melodia/Ricardo Augusto	184320	6191752	0.99	\N	0
+385	All Star	33	1	7	Nando Reis	176326	5891697	0.99	\N	0
+386	Menina Bonita	33	1	7	Alexandre Brazil/Pedro Luis/Rodrigo Cabelo	237087	7938246	0.99	\N	0
+387	Pescador de IlusÃµes	33	1	7	Macelo Yuka/O Rappa	245524	8267067	0.99	\N	0
+388	Ã€ Vontade (Live Mix)	33	1	7	Bombom/Ed Motta	180636	5972430	0.99	\N	0
+389	Maria FumaÃ§a	33	1	7	Luiz Carlos/Oberdan	141008	4743149	0.99	\N	0
+390	Sambassim (dj patife remix)	33	1	7	Alba Carvalho/Fernando Porto	213655	7243166	0.99	\N	0
+391	Garota De Ipanema	34	1	7	VÃ¡rios	279536	9141343	0.99	\N	0
+392	Tim Tim Por Tim Tim	34	1	7	VÃ¡rios	213237	7143328	0.99	\N	0
+393	Tarde Em ItapoÃ£	34	1	7	VÃ¡rios	313704	10344491	0.99	\N	0
+394	Tanto Tempo	34	1	7	VÃ¡rios	170292	5572240	0.99	\N	0
+395	Eu Vim Da Bahia - Live	34	1	7	VÃ¡rios	157988	5115428	0.99	\N	0
+396	AlÃ´ AlÃ´ Marciano	34	1	7	VÃ¡rios	238106	8013065	0.99	\N	0
+397	Linha Do Horizonte	34	1	7	VÃ¡rios	279484	9275929	0.99	\N	0
+398	Only A Dream In Rio	34	1	7	VÃ¡rios	371356	12192989	0.99	\N	0
+399	Abrir A Porta	34	1	7	VÃ¡rios	271960	8991141	0.99	\N	0
+400	Alice	34	1	7	VÃ¡rios	165982	5594341	0.99	\N	0
+401	Momentos Que Marcam	34	1	7	VÃ¡rios	280137	9313740	0.99	\N	0
+402	Um Jantar Pra Dois	34	1	7	VÃ¡rios	237714	7819755	0.99	\N	0
+403	Bumbo Da Mangueira	34	1	7	VÃ¡rios	270158	9073350	0.99	\N	0
+404	Mr Funk Samba	34	1	7	VÃ¡rios	213890	7102545	0.99	\N	0
+405	Santo Antonio	34	1	7	VÃ¡rios	162716	5492069	0.99	\N	0
+406	Por VocÃª	34	1	7	VÃ¡rios	205557	6792493	0.99	\N	0
+407	SÃ³ Tinha De Ser Com VocÃª	34	1	7	VÃ¡rios	389642	13085596	0.99	\N	0
+408	Free Speech For The Dumb	35	1	3	Molaney/Morris/Roberts/Wainwright	155428	5076048	0.99	\N	0
+409	It's Electric	35	1	3	Harris/Tatler	213995	6978601	0.99	\N	0
+410	Sabbra Cadabra	35	1	3	Black Sabbath	380342	12418147	0.99	\N	0
+411	Turn The Page	35	1	3	Seger	366524	11946327	0.99	\N	0
+412	Die Die My Darling	35	1	3	Danzig	149315	4867667	0.99	\N	0
+413	Loverman	35	1	3	Cave	472764	15446975	0.99	\N	0
+414	Mercyful Fate	35	1	3	Diamond/Shermann	671712	21942829	0.99	\N	0
+415	Astronomy	35	1	3	A.Bouchard/J.Bouchard/S.Pearlman	397531	13065612	0.99	\N	0
+416	Whiskey In The Jar	35	1	3	Traditional	305005	9943129	0.99	\N	0
+417	Tuesday's Gone	35	1	3	Collins/Van Zandt	545750	17900787	0.99	\N	0
+418	The More I See	35	1	3	Molaney/Morris/Roberts/Wainwright	287973	9378873	0.99	\N	0
+419	A Kind Of Magic	36	1	1	Roger Taylor	262608	8689618	0.99	\N	0
+420	Under Pressure	36	1	1	Queen & David Bowie	236617	7739042	0.99	\N	0
+421	Radio GA GA	36	1	1	Roger Taylor	343745	11358573	0.99	\N	0
+422	I Want It All	36	1	1	Queen	241684	7876564	0.99	\N	0
+423	I Want To Break Free	36	1	1	John Deacon	259108	8552861	0.99	\N	0
+424	Innuendo	36	1	1	Queen	387761	12664591	0.99	\N	0
+425	It's A Hard Life	36	1	1	Freddie Mercury	249417	8112242	0.99	\N	0
+426	Breakthru	36	1	1	Queen	249234	8150479	0.99	\N	0
+427	Who Wants To Live Forever	36	1	1	Brian May	297691	9577577	0.99	\N	0
+428	Headlong	36	1	1	Queen	273057	8921404	0.99	\N	0
+429	The Miracle	36	1	1	Queen	294974	9671923	0.99	\N	0
+430	I'm Going Slightly Mad	36	1	1	Queen	248032	8192339	0.99	\N	0
+431	The Invisible Man	36	1	1	Queen	238994	7920353	0.99	\N	0
+432	Hammer To Fall	36	1	1	Brian May	220316	7255404	0.99	\N	0
+433	Friends Will Be Friends	36	1	1	Freddie Mercury & John Deacon	248920	8114582	0.99	\N	0
+434	The Show Must Go On	36	1	1	Queen	263784	8526760	0.99	\N	0
+435	One Vision	36	1	1	Queen	242599	7936928	0.99	\N	0
+436	Detroit Rock City	37	1	1	Paul Stanley, B. Ezrin	218880	7146372	0.99	\N	0
+437	Black Diamond	37	1	1	Paul Stanley	314148	10266007	0.99	\N	0
+438	Hard Luck Woman	37	1	1	Paul Stanley	216032	7109267	0.99	\N	0
+439	Sure Know Something	37	1	1	Paul Stanley, Vincent Poncia	242468	7939886	0.99	\N	0
+440	Love Gun	37	1	1	Paul Stanley	196257	6424915	0.99	\N	0
+441	Deuce	37	1	1	Gene Simmons	185077	6097210	0.99	\N	0
+442	Goin' Blind	37	1	1	Gene Simmons, S. Coronel	216215	7045314	0.99	\N	0
+443	Shock Me	37	1	1	Ace Frehley	227291	7529336	0.99	\N	0
+444	Do You Love Me	37	1	1	Paul Stanley, B. Ezrin, K. Fowley	214987	6976194	0.99	\N	0
+445	She	37	1	1	Gene Simmons, S. Coronel	248346	8229734	0.99	\N	0
+446	I Was Made For Loving You	37	1	1	Paul Stanley, Vincent Poncia, Desmond Child	271360	9018078	0.99	\N	0
+447	Shout It Out Loud	37	1	1	Paul Stanley, Gene Simmons, B. Ezrin	219742	7194424	0.99	\N	0
+448	God Of Thunder	37	1	1	Paul Stanley	255791	8309077	0.99	\N	0
+449	Calling Dr. Love	37	1	1	Gene Simmons	225332	7395034	0.99	\N	0
+450	Beth	37	1	1	S. Penridge, Bob Ezrin, Peter Criss	166974	5360574	0.99	\N	0
+451	Strutter	37	1	1	Paul Stanley, Gene Simmons	192496	6317021	0.99	\N	0
+452	Rock And Roll All Nite	37	1	1	Paul Stanley, Gene Simmons	173609	5735902	0.99	\N	0
+453	Cold Gin	37	1	1	Ace Frehley	262243	8609783	0.99	\N	0
+454	Plaster Caster	37	1	1	Gene Simmons	207333	6801116	0.99	\N	0
+455	God Gave Rock 'n' Roll To You	37	1	1	Paul Stanley, Gene Simmons, Rus Ballard, Bob Ezrin	320444	10441590	0.99	\N	0
+456	Heart of the Night	38	1	2	\N	273737	9098263	0.99	\N	0
+457	De La Luz	38	1	2	\N	315219	10518284	0.99	\N	0
+458	Westwood Moon	38	1	2	\N	295627	9765802	0.99	\N	0
+459	Midnight	38	1	2	\N	266866	8851060	0.99	\N	0
+460	Playtime	38	1	2	\N	273580	9070880	0.99	\N	0
+461	Surrender	38	1	2	\N	287634	9422926	0.99	\N	0
+462	Valentino's	38	1	2	\N	296124	9848545	0.99	\N	0
+463	Believe	38	1	2	\N	310778	10317185	0.99	\N	0
+464	As We Sleep	38	1	2	\N	316865	10429398	0.99	\N	0
+465	When Evening Falls	38	1	2	\N	298135	9863942	0.99	\N	0
+466	J Squared	38	1	2	\N	288757	9480777	0.99	\N	0
+467	Best Thing	38	1	2	\N	274259	9069394	0.99	\N	0
+468	Maria	39	1	4	Billie Joe Armstrong -Words Green Day -Music	167262	5484747	0.99	\N	0
+469	Poprocks And Coke	39	1	4	Billie Joe Armstrong -Words Green Day -Music	158354	5243078	0.99	\N	0
+470	Longview	39	1	4	Billie Joe Armstrong -Words Green Day -Music	234083	7714939	0.99	\N	0
+471	Welcome To Paradise	39	1	4	Billie Joe Armstrong -Words Green Day -Music	224208	7406008	0.99	\N	0
+472	Basket Case	39	1	4	Billie Joe Armstrong -Words Green Day -Music	181629	5951736	0.99	\N	0
+473	When I Come Around	39	1	4	Billie Joe Armstrong -Words Green Day -Music	178364	5839426	0.99	\N	0
+474	She	39	1	4	Billie Joe Armstrong -Words Green Day -Music	134164	4425128	0.99	\N	0
+475	J.A.R. (Jason Andrew Relva)	39	1	4	Mike Dirnt -Words Green Day -Music	170997	5645755	0.99	\N	0
+476	Geek Stink Breath	39	1	4	Billie Joe Armstrong -Words Green Day -Music	135888	4408983	0.99	\N	0
+477	Brain Stew	39	1	4	Billie Joe Armstrong -Words Green Day -Music	193149	6305550	0.99	\N	0
+478	Jaded	39	1	4	Billie Joe Armstrong -Words Green Day -Music	90331	2950224	0.99	\N	0
+479	Walking Contradiction	39	1	4	Billie Joe Armstrong -Words Green Day -Music	151170	4932366	0.99	\N	0
+480	Stuck With Me	39	1	4	Billie Joe Armstrong -Words Green Day -Music	135523	4431357	0.99	\N	0
+481	Hitchin' A Ride	39	1	4	Billie Joe Armstrong -Words Green Day -Music	171546	5616891	0.99	\N	0
+482	Good Riddance (Time Of Your Life)	39	1	4	Billie Joe Armstrong -Words Green Day -Music	153600	5075241	0.99	\N	0
+483	Redundant	39	1	4	Billie Joe Armstrong -Words Green Day -Music	198164	6481753	0.99	\N	0
+484	Nice Guys Finish Last	39	1	4	Billie Joe Armstrong -Words Green Day -Music	170187	5604618	0.99	\N	0
+485	Minority	39	1	4	Billie Joe Armstrong -Words Green Day -Music	168803	5535061	0.99	\N	0
+486	Warning	39	1	4	Billie Joe Armstrong -Words Green Day -Music	221910	7343176	0.99	\N	0
+487	Waiting	39	1	4	Billie Joe Armstrong -Words Green Day -Music	192757	6316430	0.99	\N	0
+488	Macy's Day Parade	39	1	4	Billie Joe Armstrong -Words Green Day -Music	213420	7075573	0.99	\N	0
+489	Into The Light	40	1	1	David Coverdale	76303	2452653	0.99	\N	0
+490	River Song	40	1	1	David Coverdale	439510	14359478	0.99	\N	0
+491	She Give Me ...	40	1	1	David Coverdale	252551	8385478	0.99	\N	0
+492	Don't You Cry	40	1	1	David Coverdale	347036	11269612	0.99	\N	0
+493	Love Is Blind	40	1	1	David Coverdale/Earl Slick	344999	11409720	0.99	\N	0
+494	Slave	40	1	1	David Coverdale/Earl Slick	291892	9425200	0.99	\N	0
+495	Cry For Love	40	1	1	Bossi/David Coverdale/Earl Slick	293015	9567075	0.99	\N	0
+496	Living On Love	40	1	1	Bossi/David Coverdale/Earl Slick	391549	12785876	0.99	\N	0
+497	Midnight Blue	40	1	1	David Coverdale/Earl Slick	298631	9750990	0.99	\N	0
+498	Too Many Tears	40	1	1	Adrian Vanderberg/David Coverdale	359497	11810238	0.99	\N	0
+499	Don't Lie To Me	40	1	1	David Coverdale/Earl Slick	283585	9288007	0.99	\N	0
+500	Wherever You May Go	40	1	1	David Coverdale	239699	7803074	0.99	\N	0
+501	Grito De Alerta	41	1	7	Gonzaga Jr.	202213	6539422	0.99	\N	0
+502	NÃ£o DÃ¡ Mais Pra Segurar (Explode CoraÃ§Ã£o)	41	1	7	\N	219768	7083012	0.99	\N	0
+503	ComeÃ§aria Tudo Outra Vez	41	1	7	\N	196545	6473395	0.99	\N	0
+504	O Que Ã‰ O Que Ã‰ ?	41	1	7	\N	259291	8650647	0.99	\N	0
+505	Sangrando	41	1	7	Gonzaga Jr/Gonzaguinha	169717	5494406	0.99	\N	0
+506	Diga LÃ¡, CoraÃ§Ã£o	41	1	7	\N	255921	8280636	0.99	\N	0
+507	Lindo Lago Do Amor	41	1	7	Gonzaga Jr.	249678	8353191	0.99	\N	0
+508	Eu Apenas Queria Que VoÃ§Ãª Soubesse	41	1	7	\N	155637	5130056	0.99	\N	0
+509	Com A Perna No Mundo	41	1	7	Gonzaga Jr.	227448	7747108	0.99	\N	0
+510	E Vamos Ã€ Luta	41	1	7	\N	222406	7585112	0.99	\N	0
+511	Um Homem TambÃ©m Chora (Guerreiro Menino)	41	1	7	\N	207229	6854219	0.99	\N	0
+512	Comportamento Geral	41	1	7	Gonzaga Jr	181577	5997444	0.99	\N	0
+513	Ponto De InterrogaÃ§Ã£o	41	1	7	\N	180950	5946265	0.99	\N	0
+514	Espere Por Mim, Morena	41	1	7	Gonzaguinha	207072	6796523	0.99	\N	0
+515	Meia-Lua Inteira	23	1	7	\N	222093	7466288	0.99	\N	0
+516	Voce e Linda	23	1	7	\N	242938	8050268	0.99	\N	0
+517	Um Indio	23	1	7	\N	195944	6453213	0.99	\N	0
+518	Podres Poderes	23	1	7	\N	259761	8622495	0.99	\N	0
+519	Voce Nao Entende Nada - Cotidiano	23	1	7	\N	421982	13885612	0.99	\N	0
+520	O Estrangeiro	23	1	7	\N	374700	12472890	0.99	\N	0
+521	Menino Do Rio	23	1	7	\N	147670	4862277	0.99	\N	0
+522	Qualquer Coisa	23	1	7	\N	193410	6372433	0.99	\N	0
+523	Sampa	23	1	7	\N	185051	6151831	0.99	\N	0
+524	Queixa	23	1	7	\N	299676	9953962	0.99	\N	0
+525	O Leaozinho	23	1	7	\N	184398	6098150	0.99	\N	0
+526	Fora Da Ordem	23	1	7	\N	354011	11746781	0.99	\N	0
+527	Terra	23	1	7	\N	401319	13224055	0.99	\N	0
+528	Alegria, Alegria	23	1	7	\N	169221	5497025	0.99	\N	0
+529	Balada Do Louco	42	1	4	Arnaldo Baptista - Rita Lee	241057	7852328	0.99	\N	0
+530	Ando Meio Desligado	42	1	4	Arnaldo Baptista - Rita Lee -  SÃ©rgio Dias	287817	9484504	0.99	\N	0
+531	Top Top	42	1	4	Os Mutantes - Arnolpho Lima Filho	146938	4875374	0.99	\N	0
+532	Baby	42	1	4	Caetano Veloso	177188	5798202	0.99	\N	0
+533	A E O Z	42	1	4	Mutantes	518556	16873005	0.99	\N	0
+534	Panis Et Circenses	42	1	4	Caetano Veloso - Gilberto Gil	125152	4069688	0.99	\N	0
+535	ChÃ£o De Estrelas	42	1	4	Orestes Barbosa-SÃ­lvio Caldas	284813	9433620	0.99	\N	0
+536	Vida De Cachorro	42	1	4	Rita Lee - Arnaldo Baptista - SÃ©rgio Baptista	195186	6411149	0.99	\N	0
+537	Bat Macumba	42	1	4	Gilberto Gil - Caetano Veloso	187794	6295223	0.99	\N	0
+538	Desculpe Babe	42	1	4	Arnaldo Baptista - Rita Lee	170422	5637959	0.99	\N	0
+539	Rita Lee	42	1	4	Arnaldo Baptista/Rita Lee/SÃ©rgio Dias	189257	6270503	0.99	\N	0
+540	Posso Perder Minha Mulher, Minha MÃ£e, Desde Que Eu Tenha O Rock And Roll	42	1	4	Arnaldo Baptista - Rita Lee - Arnolpho Lima Filho	222955	7346254	0.99	\N	0
+541	Banho De Lua	42	1	4	B. de Filippi - F. Migliaci - VersÃ£o: Fred Jorge	221831	7232123	0.99	\N	0
+542	Meu Refrigerador NÃ£o Funciona	42	1	4	Arnaldo Baptista - Rita Lee - SÃ©rgio Dias	382981	12495906	0.99	\N	0
+543	Burn	43	1	1	Coverdale/Lord/Paice	453955	14775708	0.99	\N	0
+544	Stormbringer	43	1	1	Coverdale	277133	9050022	0.99	\N	0
+545	Gypsy	43	1	1	Coverdale/Hughes/Lord/Paice	339173	11046952	0.99	\N	0
+546	Lady Double Dealer	43	1	1	Coverdale	233586	7608759	0.99	\N	0
+547	Mistreated	43	1	1	Coverdale	758648	24596235	0.99	\N	0
+548	Smoke On The Water	43	1	1	Gillan/Glover/Lord/Paice	618031	20103125	0.99	\N	0
+549	You Fool No One	43	1	1	Coverdale/Lord/Paice	804101	26369966	0.99	\N	0
+550	Custard Pie	44	1	1	Jimmy Page/Robert Plant	253962	8348257	0.99	\N	0
+551	The Rover	44	1	1	Jimmy Page/Robert Plant	337084	11011286	0.99	\N	0
+552	In My Time Of Dying	44	1	1	John Bonham/John Paul Jones	666017	21676727	0.99	\N	0
+553	Houses Of The Holy	44	1	1	Jimmy Page/Robert Plant	242494	7972503	0.99	\N	0
+554	Trampled Under Foot	44	1	1	John Paul Jones	336692	11154468	0.99	\N	0
+555	Kashmir	44	1	1	John Bonham	508604	16686580	0.99	\N	0
+556	Imperatriz	45	1	7	Guga/Marquinho Lessa/Tuninho Professor	339173	11348710	0.99	\N	0
+557	Beija-Flor	45	1	7	Caruso/Cleber/Deo/Osmar	327000	10991159	0.99	\N	0
+558	Viradouro	45	1	7	Dadinho/Gilbreto Gomes/Gustavo/P.C. Portugal/R. Mocoto	344320	11484362	0.99	\N	0
+559	Mocidade	45	1	7	Domenil/J. Brito/Joaozinho/Rap, Marcelo Do	261720	8817757	0.99	\N	0
+560	Unidos Da Tijuca	45	1	7	Douglas/Neves, Vicente Das/Silva, Gilmar L./Toninho Gentil/Wantuir	338834	11440689	0.99	\N	0
+561	Salgueiro	45	1	7	Augusto/Craig Negoescu/Rocco Filho/Saara, Ze Carlos Da	305920	10294741	0.99	\N	0
+562	Mangueira	45	1	7	Bizuca/ClÃ³vis PÃª/Gilson Bernini/Marelo D'Aguia	298318	9999506	0.99	\N	0
+563	UniÃ£o Da Ilha	45	1	7	Dito/Djalma Falcao/Ilha, Almir Da/MÃ¡rcio AndrÃ©	330945	11100945	0.99	\N	0
+564	Grande Rio	45	1	7	Carlos Santos/Ciro/Claudio Russo/ZÃ© Luiz	307252	10251428	0.99	\N	0
+565	Portela	45	1	7	Flavio Bororo/Paulo Apparicio/Wagner Alves/Zeca Sereno	319608	10712216	0.99	\N	0
+566	Caprichosos	45	1	7	Gule/Jorge 101/Lequinho/Luiz Piao	351320	11870956	0.99	\N	0
+567	TradiÃ§Ã£o	45	1	7	Adalto Magalha/Lourenco	269165	9114880	0.99	\N	0
+568	ImpÃ©rio Serrano	45	1	7	Arlindo Cruz/Carlos Sena/Elmo Caetano/Mauricao	334942	11161196	0.99	\N	0
+569	Tuiuti	45	1	7	Claudio Martins/David Lima/Kleber Rodrigues/Livre, Cesare Som	259657	8749492	0.99	\N	0
+570	(Da Le) Yaleo	46	1	1	Santana	353488	11769507	0.99	\N	0
+571	Love Of My Life	46	1	1	Carlos Santana & Dave Matthews	347820	11634337	0.99	\N	0
+572	Put Your Lights On	46	1	1	E. Shrody	285178	9394769	0.99	\N	0
+573	Africa Bamba	46	1	1	I. Toure, S. Tidiane Toure, Carlos Santana & K. Perazzo	282827	9492487	0.99	\N	0
+574	Smooth	46	1	1	M. Itaal Shur & Rob Thomas	298161	9867455	0.99	\N	0
+575	Do You Like The Way	46	1	1	L. Hill	354899	11741062	0.99	\N	0
+576	Maria Maria	46	1	1	W. Jean, J. Duplessis, Carlos Santana, K. Perazzo & R. Rekow	262635	8664601	0.99	\N	0
+577	Migra	46	1	1	R. Taha, Carlos Santana & T. Lindsay	329064	10963305	0.99	\N	0
+578	Corazon Espinado	46	1	1	F. Olivera	276114	9206802	0.99	\N	0
+579	Wishing It Was	46	1	1	Eale-Eye Cherry, M. Simpson, J. King & M. Nishita	292832	9771348	0.99	\N	0
+580	El Farol	46	1	1	Carlos Santana & KC Porter	291160	9599353	0.99	\N	0
+581	Primavera	46	1	1	KC Porter & JB Eckl	378618	12504234	0.99	\N	0
+582	The Calling	46	1	1	Carlos Santana & C. Thompson	747755	24703884	0.99	\N	0
+583	SoluÃ§Ã£o	47	1	7	\N	247431	8100449	0.99	\N	0
+584	Manuel	47	1	7	\N	230269	7677671	0.99	\N	0
+585	Entre E OuÃ§a	47	1	7	\N	286302	9391004	0.99	\N	0
+586	Um Contrato Com Deus	47	1	7	\N	202501	6636465	0.99	\N	0
+587	Um Jantar Pra Dois	47	1	7	\N	244009	8021589	0.99	\N	0
+588	Vamos DanÃ§ar	47	1	7	\N	226194	7617432	0.99	\N	0
+589	Um Love	47	1	7	\N	181603	6095524	0.99	\N	0
+590	Seis Da Tarde	47	1	7	\N	238445	7935898	0.99	\N	0
+591	Baixo Rio	47	1	7	\N	198008	6521676	0.99	\N	0
+592	Sombras Do Meu Destino	47	1	7	\N	280685	9161539	0.99	\N	0
+593	Do You Have Other Loves?	47	1	7	\N	295235	9604273	0.99	\N	0
+594	Agora Que O Dia Acordou	47	1	7	\N	323213	10572752	0.99	\N	0
+595	JÃ¡!!!	47	1	7	\N	217782	7103608	0.99	\N	0
+596	A Rua	47	1	7	\N	238027	7930264	0.99	\N	0
+597	Now's The Time	48	1	2	Miles Davis	197459	6358868	0.99	\N	0
+598	Jeru	48	1	2	Miles Davis	193410	6222536	0.99	\N	0
+599	Compulsion	48	1	2	Miles Davis	345025	11254474	0.99	\N	0
+600	Tempus Fugit	48	1	2	Miles Davis	231784	7548434	0.99	\N	0
+601	Walkin'	48	1	2	Miles Davis	807392	26411634	0.99	\N	0
+603	Bye Bye Blackbird	48	1	2	Miles Davis	476003	15549224	0.99	\N	0
+604	New Rhumba	48	1	2	Miles Davis	277968	9018024	0.99	\N	0
+605	Generique	48	1	2	Miles Davis	168777	5437017	0.99	\N	0
+606	Summertime	48	1	2	Miles Davis	200437	6461370	0.99	\N	0
+607	So What	48	1	2	Miles Davis	564009	18360449	0.99	\N	0
+608	The Pan Piper	48	1	2	Miles Davis	233769	7593713	0.99	\N	0
+609	Someday My Prince Will Come	48	1	2	Miles Davis	544078	17890773	0.99	\N	0
+610	My Funny Valentine (Live)	49	1	2	Miles Davis	907520	29416781	0.99	\N	0
+611	E.S.P.	49	1	2	Miles Davis	330684	11079866	0.99	\N	0
+612	Nefertiti	49	1	2	Miles Davis	473495	15478450	0.99	\N	0
+613	Petits Machins (Little Stuff)	49	1	2	Miles Davis	487392	16131272	0.99	\N	0
+614	Miles Runs The Voodoo Down	49	1	2	Miles Davis	843964	27967919	0.99	\N	0
+615	Little Church (Live)	49	1	2	Miles Davis	196101	6273225	0.99	\N	0
+616	Black Satin	49	1	2	Miles Davis	316682	10529483	0.99	\N	0
+617	Jean Pierre (Live)	49	1	2	Miles Davis	243461	7955114	0.99	\N	0
+618	Time After Time	49	1	2	Miles Davis	220734	7292197	0.99	\N	0
+619	Portia	49	1	2	Miles Davis	378775	12520126	0.99	\N	0
+620	Space Truckin'	50	1	1	Blackmore/Gillan/Glover/Lord/Paice	1196094	39267613	0.99	\N	0
+621	Going Down / Highway Star	50	1	1	Gillan/Glover/Lord/Nix - Blackmore/Paice	913658	29846063	0.99	\N	0
+622	Mistreated (Alternate Version)	50	1	1	Blackmore/Coverdale	854700	27775442	0.99	\N	0
+623	You Fool No One (Alternate Version)	50	1	1	Blackmore/Coverdale/Lord/Paice	763924	24887209	0.99	\N	0
+624	Jeepers Creepers	51	1	2	\N	185965	5991903	0.99	\N	0
+625	Blue Rythm Fantasy	51	1	2	\N	348212	11204006	0.99	\N	0
+626	Drum Boogie	51	1	2	\N	191555	6185636	0.99	\N	0
+627	Let Me Off Uptown	51	1	2	\N	187637	6034685	0.99	\N	0
+628	Leave Us Leap	51	1	2	\N	182726	5898810	0.99	\N	0
+629	Opus No.1	51	1	2	\N	179800	5846041	0.99	\N	0
+630	Boogie Blues	51	1	2	\N	204199	6603153	0.99	\N	0
+631	How High The Moon	51	1	2	\N	201430	6529487	0.99	\N	0
+632	Disc Jockey Jump	51	1	2	\N	193149	6260820	0.99	\N	0
+633	Up An' Atom	51	1	2	\N	179565	5822645	0.99	\N	0
+634	Bop Boogie	51	1	2	\N	189596	6093124	0.99	\N	0
+635	Lemon Drop	51	1	2	\N	194089	6287531	0.99	\N	0
+636	Coronation Drop	51	1	2	\N	176222	5899898	0.99	\N	0
+637	Overtime	51	1	2	\N	163030	5432236	0.99	\N	0
+638	Imagination	51	1	2	\N	289306	9444385	0.99	\N	0
+639	Don't Take Your Love From Me	51	1	2	\N	282331	9244238	0.99	\N	0
+640	Midget	51	1	2	\N	217025	7257663	0.99	\N	0
+641	I'm Coming Virginia	51	1	2	\N	280163	9209827	0.99	\N	0
+642	Payin' Them Dues Blues	51	1	2	\N	198556	6536918	0.99	\N	0
+643	Jungle Drums	51	1	2	\N	199627	6546063	0.99	\N	0
+644	Showcase	51	1	2	\N	201560	6697510	0.99	\N	0
+645	Swedish Schnapps	51	1	2	\N	191268	6359750	0.99	\N	0
+646	Samba Da BÃªnÃ§Ã£o	52	1	11	\N	409965	13490008	0.99	\N	0
+647	Pot-Pourri N.Âº 4	52	1	11	\N	392437	13125975	0.99	\N	0
+648	Onde Anda VocÃª	52	1	11	\N	168437	5550356	0.99	\N	0
+649	Samba Da Volta	52	1	11	\N	170631	5676090	0.99	\N	0
+650	Canto De Ossanha	52	1	11	\N	204956	6771624	0.99	\N	0
+651	Pot-Pourri N.Âº 5	52	1	11	\N	219898	7117769	0.99	\N	0
+652	Formosa	52	1	11	\N	137482	4560873	0.99	\N	0
+653	Como Ã‰ Duro Trabalhar	52	1	11	\N	226168	7541177	0.99	\N	0
+654	Minha Namorada	52	1	11	\N	244297	7927967	0.99	\N	0
+655	Por Que SerÃ¡	52	1	11	\N	162142	5371483	0.99	\N	0
+656	Berimbau	52	1	11	\N	190667	6335548	0.99	\N	0
+657	Deixa	52	1	11	\N	179826	5932799	0.99	\N	0
+658	Pot-Pourri N.Âº 2	52	1	11	\N	211748	6878359	0.99	\N	0
+659	Samba Em PrelÃºdio	52	1	11	\N	212636	6923473	0.99	\N	0
+660	Carta Ao Tom 74	52	1	11	\N	162560	5382354	0.99	\N	0
+661	Linha de Passe (JoÃ£o Bosco)	53	1	7	\N	230948	7902328	0.99	\N	0
+740	Socorro	57	1	7	\N	258586	8549393	0.99	\N	0
+662	Pela Luz dos Olhos Teus (MiÃºcha e Tom Jobim)	53	1	7	\N	163970	5399626	0.99	\N	0
+663	ChÃ£o de Giz (Elba Ramalho)	53	1	7	\N	274834	9016916	0.99	\N	0
+664	Marina (Dorival Caymmi)	53	1	7	\N	172643	5523628	0.99	\N	0
+665	Aquarela (Toquinho)	53	1	7	\N	259944	8480140	0.99	\N	0
+666	CoraÃ§Ã£o do Agreste (FafÃ¡ de BelÃ©m)	53	1	7	\N	258194	8380320	0.99	\N	0
+667	Dona (Roupa Nova)	53	1	7	\N	243356	7991295	0.99	\N	0
+668	ComeÃ§aria Tudo Outra Vez (Maria Creuza)	53	1	7	\N	206994	6851151	0.99	\N	0
+669	CaÃ§ador de Mim (SÃ¡ & Guarabyra)	53	1	7	\N	238341	7751360	0.99	\N	0
+670	Romaria (Renato Teixeira)	53	1	7	\N	244793	8033885	0.99	\N	0
+671	As Rosas NÃ£o Falam (Beth Carvalho)	53	1	7	\N	116767	3836641	0.99	\N	0
+672	Wave (Os Cariocas)	53	1	7	\N	130063	4298006	0.99	\N	0
+733	E.C.T.	57	1	7	\N	227500	7571834	0.99	\N	0
+673	Garota de Ipanema (Dick Farney)	53	1	7	\N	174367	5767474	0.99	\N	0
+674	Preciso Apender a Viver SÃ³ (Maysa)	53	1	7	\N	143464	4642359	0.99	\N	0
+675	Susie Q	54	1	1	Hawkins-Lewis-Broadwater	275565	9043825	0.99	\N	0
+676	I Put A Spell On You	54	1	1	Jay Hawkins	272091	8943000	0.99	\N	0
+677	Proud Mary	54	1	1	J. C. Fogerty	189022	6229590	0.99	\N	0
+678	Bad Moon Rising	54	1	1	J. C. Fogerty	140146	4609835	0.99	\N	0
+679	Lodi	54	1	1	J. C. Fogerty	191451	6260214	0.99	\N	0
+680	Green River	54	1	1	J. C. Fogerty	154279	5105874	0.99	\N	0
+681	Commotion	54	1	1	J. C. Fogerty	162899	5354252	0.99	\N	0
+682	Down On The Corner	54	1	1	J. C. Fogerty	164858	5521804	0.99	\N	0
+683	Fortunate Son	54	1	1	J. C. Fogerty	140329	4617559	0.99	\N	0
+684	Travelin' Band	54	1	1	J. C. Fogerty	129358	4270414	0.99	\N	0
+685	Who'll Stop The Rain	54	1	1	J. C. Fogerty	149394	4899579	0.99	\N	0
+686	Up Around The Bend	54	1	1	J. C. Fogerty	162429	5368701	0.99	\N	0
+687	Run Through The Jungle	54	1	1	J. C. Fogerty	186044	6156567	0.99	\N	0
+688	Lookin' Out My Back Door	54	1	1	J. C. Fogerty	152946	5034670	0.99	\N	0
+689	Long As I Can See The Light	54	1	1	J. C. Fogerty	213237	6924024	0.99	\N	0
+690	I Heard It Through The Grapevine	54	1	1	Whitfield-Strong	664894	21947845	0.99	\N	0
+691	Have You Ever Seen The Rain?	54	1	1	J. C. Fogerty	160052	5263675	0.99	\N	0
+692	Hey Tonight	54	1	1	J. C. Fogerty	162847	5343807	0.99	\N	0
+693	Sweet Hitch-Hiker	54	1	1	J. C. Fogerty	175490	5716603	0.99	\N	0
+694	Someday Never Comes	54	1	1	J. C. Fogerty	239360	7945235	0.99	\N	0
+695	Walking On The Water	55	1	1	J.C. Fogerty	281286	9302129	0.99	\N	0
+696	Suzie-Q, Pt. 2	55	1	1	J.C. Fogerty	244114	7986637	0.99	\N	0
+697	Born On The Bayou	55	1	1	J.C. Fogerty	316630	10361866	0.99	\N	0
+698	Good Golly Miss Molly	55	1	1	J.C. Fogerty	163604	5348175	0.99	\N	0
+699	Tombstone Shadow	55	1	1	J.C. Fogerty	218880	7209080	0.99	\N	0
+700	Wrote A Song For Everyone	55	1	1	J.C. Fogerty	296385	9675875	0.99	\N	0
+701	Night Time Is The Right Time	55	1	1	J.C. Fogerty	190119	6211173	0.99	\N	0
+702	Cotton Fields	55	1	1	J.C. Fogerty	178181	5919224	0.99	\N	0
+703	It Came Out Of The Sky	55	1	1	J.C. Fogerty	176718	5807474	0.99	\N	0
+704	Don't Look Now	55	1	1	J.C. Fogerty	131918	4366455	0.99	\N	0
+705	The Midnight Special	55	1	1	J.C. Fogerty	253596	8297482	0.99	\N	0
+706	Before You Accuse Me	55	1	1	J.C. Fogerty	207804	6815126	0.99	\N	0
+707	My Baby Left Me	55	1	1	J.C. Fogerty	140460	4633440	0.99	\N	0
+708	Pagan Baby	55	1	1	J.C. Fogerty	385619	12713813	0.99	\N	0
+709	(Wish I Could) Hideaway	55	1	1	J.C. Fogerty	228466	7432978	0.99	\N	0
+710	It's Just A Thought	55	1	1	J.C. Fogerty	237374	7778319	0.99	\N	0
+711	Molina	55	1	1	J.C. Fogerty	163239	5390811	0.99	\N	0
+712	Born To Move	55	1	1	J.C. Fogerty	342804	11260814	0.99	\N	0
+713	Lookin' For A Reason	55	1	1	J.C. Fogerty	209789	6933135	0.99	\N	0
+714	Hello Mary Lou	55	1	1	J.C. Fogerty	132832	4476563	0.99	\N	0
+715	Gatas ExtraordinÃ¡rias	56	1	7	\N	212506	7095702	0.99	\N	0
+716	Brasil	56	1	7	\N	243696	7911683	0.99	\N	0
+717	Eu Sou Neguinha (Ao Vivo)	56	1	7	\N	251768	8376000	0.99	\N	0
+718	GeraÃ§Ã£o Coca-Cola (Ao Vivo)	56	1	7	\N	228153	7573301	0.99	\N	0
+719	Lanterna Dos Afogados	56	1	7	\N	204538	6714582	0.99	\N	0
+720	CoronÃ© Antonio Bento	56	1	7	\N	200437	6713066	0.99	\N	0
+721	VocÃª Passa, Eu Acho GraÃ§a (Ao Vivo)	56	1	7	\N	206733	6943576	0.99	\N	0
+722	Meu Mundo Fica Completo (Com VocÃª)	56	1	7	\N	247771	8322240	0.99	\N	0
+723	1Â° De Julho	56	1	7	\N	270262	9017535	0.99	\N	0
+724	MÃºsica Urbana 2	56	1	7	\N	194899	6383472	0.99	\N	0
+725	Vida Bandida (Ao Vivo)	56	1	7	\N	192626	6360785	0.99	\N	0
+726	Palavras Ao Vento	56	1	7	\N	212453	7048676	0.99	\N	0
+727	NÃ£o Sei O Que Eu Quero Da Vida	56	1	7	\N	151849	5024963	0.99	\N	0
+728	Woman Is The Nigger Of The World (Ao Vivo)	56	1	7	\N	298919	9724145	0.99	\N	0
+729	Juventude Transviada (Ao Vivo)	56	1	7	\N	278622	9183808	0.99	\N	0
+730	Malandragem	57	1	7	\N	247588	8165048	0.99	\N	0
+731	O Segundo Sol	57	1	7	\N	252133	8335629	0.99	\N	0
+732	Smells Like Teen Spirit (Ao Vivo)	57	1	7	\N	316865	10384506	0.99	\N	0
+734	Todo Amor Que Houver Nesta Vida	57	1	7	\N	227160	7420347	0.99	\N	0
+735	MetrÃ´. Linha 743	57	1	7	\N	174654	5837495	0.99	\N	0
+736	NÃ³s (Ao Vivo)	57	1	7	\N	193828	6498661	0.99	\N	0
+737	Na CadÃªncia Do Samba	57	1	7	\N	196075	6483952	0.99	\N	0
+738	AdmirÃ¡vel Gado Novo	57	1	7	\N	274390	9144031	0.99	\N	0
+739	Eleanor Rigby	57	1	7	\N	189466	6303205	0.99	\N	0
+741	Blues Da Piedade	57	1	7	\N	257123	8472964	0.99	\N	0
+742	Rubens	57	1	7	\N	211853	7026317	0.99	\N	0
+743	NÃ£o Deixe O Samba Morrer - Cassia Eller e Alcione	57	1	7	\N	268173	8936345	0.99	\N	0
+744	Mis Penas Lloraba Yo (Ao Vivo) Soy Gitano (Tangos)	57	1	7	\N	188473	6195854	0.99	\N	0
+745	Comin' Home	58	1	1	Bolin/Coverdale/Paice	235781	7644604	0.99	\N	0
+746	Lady Luck	58	1	1	Cook/Coverdale	168202	5501379	0.99	\N	0
+747	Gettin' Tighter	58	1	1	Bolin/Hughes	218044	7176909	0.99	\N	0
+748	Dealer	58	1	1	Bolin/Coverdale	230922	7591066	0.99	\N	0
+749	I Need Love	58	1	1	Bolin/Coverdale	263836	8701064	0.99	\N	0
+750	Drifter	58	1	1	Bolin/Coverdale	242834	8001505	0.99	\N	0
+751	Love Child	58	1	1	Bolin/Coverdale	188160	6173806	0.99	\N	0
+752	This Time Around / Owed to 'G' [Instrumental]	58	1	1	Bolin/Hughes/Lord	370102	11995679	0.99	\N	0
+753	You Keep On Moving	58	1	1	Coverdale/Hughes	319111	10447868	0.99	\N	0
+754	Speed King	59	1	1	Blackmore, Gillan, Glover, Lord, Paice	264385	8587578	0.99	\N	0
+755	Bloodsucker	59	1	1	Blackmore, Gillan, Glover, Lord, Paice	256261	8344405	0.99	\N	0
+756	Child In Time	59	1	1	Blackmore, Gillan, Glover, Lord, Paice	620460	20230089	0.99	\N	0
+757	Flight Of The Rat	59	1	1	Blackmore, Gillan, Glover, Lord, Paice	478302	15563967	0.99	\N	0
+758	Into The Fire	59	1	1	Blackmore, Gillan, Glover, Lord, Paice	210259	6849310	0.99	\N	0
+759	Living Wreck	59	1	1	Blackmore, Gillan, Glover, Lord, Paice	274886	8993056	0.99	\N	0
+760	Hard Lovin' Man	59	1	1	Blackmore, Gillan, Glover, Lord, Paice	431203	13931179	0.99	\N	0
+761	Fireball	60	1	1	Ritchie Blackmore, Ian Gillan, Roger Glover, Jon Lord, Ian Paice	204721	6714807	0.99	\N	0
+762	No No No	60	1	1	Ritchie Blackmore, Ian Gillan, Roger Glover, Jon Lord, Ian Paice	414902	13646606	0.99	\N	0
+763	Strange Kind Of Woman	60	1	1	Ritchie Blackmore, Ian Gillan, Roger Glover, Jon Lord, Ian Paice	247092	8072036	0.99	\N	0
+764	Anyone's Daughter	60	1	1	Ritchie Blackmore, Ian Gillan, Roger Glover, Jon Lord, Ian Paice	284682	9354480	0.99	\N	0
+765	The Mule	60	1	1	Ritchie Blackmore, Ian Gillan, Roger Glover, Jon Lord, Ian Paice	322063	10638390	0.99	\N	0
+766	Fools	60	1	1	Ritchie Blackmore, Ian Gillan, Roger Glover, Jon Lord, Ian Paice	500427	16279366	0.99	\N	0
+767	No One Came	60	1	1	Ritchie Blackmore, Ian Gillan, Roger Glover, Jon Lord, Ian Paice	385880	12643813	0.99	\N	0
+768	Knocking At Your Back Door	61	1	1	Richie Blackmore, Ian Gillian, Roger Glover	424829	13779332	0.99	\N	0
+769	Bad Attitude	61	1	1	Richie Blackmore, Ian Gillian, Roger Glover, Jon Lord	307905	10035180	0.99	\N	0
+770	Child In Time (Son Of Aleric - Instrumental)	61	1	1	Richie Blackmore, Ian Gillian, Roger Glover, Jon Lord, Ian Paice	602880	19712753	0.99	\N	0
+771	Nobody's Home	61	1	1	Richie Blackmore, Ian Gillian, Roger Glover, Jon Lord, Ian Paice	243017	7929493	0.99	\N	0
+772	Black Night	61	1	1	Richie Blackmore, Ian Gillian, Roger Glover, Jon Lord, Ian Paice	368770	12058906	0.99	\N	0
+773	Perfect Strangers	61	1	1	Richie Blackmore, Ian Gillian, Roger Glover	321149	10445353	0.99	\N	0
+774	The Unwritten Law	61	1	1	Richie Blackmore, Ian Gillian, Roger Glover, Ian Paice	295053	9740361	0.99	\N	0
+775	Call Of The Wild	61	1	1	Richie Blackmore, Ian Gillian, Roger Glover, Jon Lord	293851	9575295	0.99	\N	0
+776	Hush	61	1	1	South	213054	6944928	0.99	\N	0
+777	Smoke On The Water	61	1	1	Richie Blackmore, Ian Gillian, Roger Glover, Jon Lord, Ian Paice	464378	15180849	0.99	\N	0
+778	Space Trucking	61	1	1	Richie Blackmore, Ian Gillian, Roger Glover, Jon Lord, Ian Paice	341185	11122183	0.99	\N	0
+779	Highway Star	62	1	1	Ian Gillan/Ian Paice/Jon Lord/Ritchie Blckmore/Roger Glover	368770	12012452	0.99	\N	0
+780	Maybe I'm A Leo	62	1	1	Ian Gillan/Ian Paice/Jon Lord/Ritchie Blckmore/Roger Glover	290455	9502646	0.99	\N	0
+781	Pictures Of Home	62	1	1	Ian Gillan/Ian Paice/Jon Lord/Ritchie Blckmore/Roger Glover	303777	9903835	0.99	\N	0
+782	Never Before	62	1	1	Ian Gillan/Ian Paice/Jon Lord/Ritchie Blckmore/Roger Glover	239830	7832790	0.99	\N	0
+783	Smoke On The Water	62	1	1	Ian Gillan/Ian Paice/Jon Lord/Ritchie Blckmore/Roger Glover	340871	11246496	0.99	\N	0
+784	Lazy	62	1	1	Ian Gillan/Ian Paice/Jon Lord/Ritchie Blckmore/Roger Glover	442096	14397671	0.99	\N	0
+785	Space Truckin'	62	1	1	Ian Gillan/Ian Paice/Jon Lord/Ritchie Blckmore/Roger Glover	272796	8981030	0.99	\N	0
+786	Vavoom : Ted The Mechanic	63	1	1	Ian Gillan, Roger Glover, Jon Lord, Steve Morse, Ian Paice	257384	8510755	0.99	\N	0
+787	Loosen My Strings	63	1	1	Ian Gillan, Roger Glover, Jon Lord, Steve Morse, Ian Paice	359680	11702232	0.99	\N	0
+788	Soon Forgotten	63	1	1	Ian Gillan, Roger Glover, Jon Lord, Steve Morse, Ian Paice	287791	9401383	0.99	\N	0
+789	Sometimes I Feel Like Screaming	63	1	1	Ian Gillan, Roger Glover, Jon Lord, Steve Morse, Ian Paice	451840	14789410	0.99	\N	0
+790	Cascades : I'm Not Your Lover	63	1	1	Ian Gillan, Roger Glover, Jon Lord, Steve Morse, Ian Paice	283689	9209693	0.99	\N	0
+791	The Aviator	63	1	1	Ian Gillan, Roger Glover, Jon Lord, Steve Morse, Ian Paice	320992	10532053	0.99	\N	0
+792	Rosa's Cantina	63	1	1	Ian Gillan, Roger Glover, Jon Lord, Steve Morse, Ian Paice	312372	10323804	0.99	\N	0
+793	A Castle Full Of Rascals	63	1	1	Ian Gillan, Roger Glover, Jon Lord, Steve Morse, Ian Paice	311693	10159566	0.99	\N	0
+794	A Touch Away	63	1	1	Ian Gillan, Roger Glover, Jon Lord, Steve Morse, Ian Paice	276323	9098561	0.99	\N	0
+795	Hey Cisco	63	1	1	Ian Gillan, Roger Glover, Jon Lord, Steve Morse, Ian Paice	354089	11600029	0.99	\N	0
+796	Somebody Stole My Guitar	63	1	1	Ian Gillan, Roger Glover, Jon Lord, Steve Morse, Ian Paice	249443	8180421	0.99	\N	0
+797	The Purpendicular Waltz	63	1	1	Ian Gillan, Roger Glover, Jon Lord, Steve Morse, Ian Paice	283924	9299131	0.99	\N	0
+798	King Of Dreams	64	1	1	Blackmore, Glover, Turner	328385	10733847	0.99	\N	0
+799	The Cut Runs Deep	64	1	1	Blackmore, Glover, Turner, Lord, Paice	342752	11191650	0.99	\N	0
+800	Fire In The Basement	64	1	1	Blackmore, Glover, Turner, Lord, Paice	283977	9267550	0.99	\N	0
+801	Truth Hurts	64	1	1	Blackmore, Glover, Turner	314827	10224612	0.99	\N	0
+802	Breakfast In Bed	64	1	1	Blackmore, Glover, Turner	317126	10323804	0.99	\N	0
+803	Love Conquers All	64	1	1	Blackmore, Glover, Turner	227186	7328516	0.99	\N	0
+804	Fortuneteller	64	1	1	Blackmore, Glover, Turner, Lord, Paice	349335	11369671	0.99	\N	0
+805	Too Much Is Not Enough	64	1	1	Turner, Held, Greenwood	257724	8382800	0.99	\N	0
+3232	The Long Patrol	253	3	20	\N	2925008	513122217	1.99	\N	0
+888	Madalena	71	1	7	\N	157387	5243721	0.99	\N	0
+806	Wicked Ways	64	1	1	Blackmore, Glover, Turner, Lord, Paice	393691	12826582	0.99	\N	0
+807	Stormbringer	65	1	1	D.Coverdale/R.Blackmore/Ritchie Blackmore	246413	8044864	0.99	\N	0
+808	Love Don't Mean a Thing	65	1	1	D.Coverdale/G.Hughes/Glenn Hughes/I.Paice/Ian Paice/J.Lord/John Lord/R.Blackmore/Ritchie Blackmore	263862	8675026	0.99	\N	0
+809	Holy Man	65	1	1	D.Coverdale/G.Hughes/Glenn Hughes/J.Lord/John Lord	270236	8818093	0.99	\N	0
+810	Hold On	65	1	1	D.Coverdal/G.Hughes/Glenn Hughes/I.Paice/Ian Paice/J.Lord/John Lord	306860	10022428	0.99	\N	0
+811	Lady Double Dealer	65	1	1	D.Coverdale/R.Blackmore/Ritchie Blackmore	201482	6554330	0.99	\N	0
+812	You Can't Do it Right (With the One You Love)	65	1	1	D.Coverdale/G.Hughes/Glenn Hughes/R.Blackmore/Ritchie Blackmore	203755	6709579	0.99	\N	0
+813	High Ball Shooter	65	1	1	D.Coverdale/G.Hughes/Glenn Hughes/I.Paice/Ian Paice/J.Lord/John Lord/R.Blackmore/Ritchie Blackmore	267833	8772471	0.99	\N	0
+814	The Gypsy	65	1	1	D.Coverdale/G.Hughes/Glenn Hughes/I.Paice/Ian Paice/J.Lord/John Lord/R.Blackmore/Ritchie Blackmore	242886	7946614	0.99	\N	0
+815	Soldier Of Fortune	65	1	1	D.Coverdale/R.Blackmore/Ritchie Blackmore	193750	6315321	0.99	\N	0
+816	The Battle Rages On	66	1	1	ian paice/jon lord	356963	11626228	0.99	\N	0
+817	Lick It Up	66	1	1	roger glover	240274	7792604	0.99	\N	0
+818	Anya	66	1	1	jon lord/roger glover	392437	12754921	0.99	\N	0
+819	Talk About Love	66	1	1	roger glover	247823	8072171	0.99	\N	0
+820	Time To Kill	66	1	1	roger glover	351033	11354742	0.99	\N	0
+821	Ramshackle Man	66	1	1	roger glover	334445	10874679	0.99	\N	0
+822	A Twist In The Tail	66	1	1	roger glover	257462	8413103	0.99	\N	0
+823	Nasty Piece Of Work	66	1	1	jon lord/roger glover	276662	9076997	0.99	\N	0
+824	Solitaire	66	1	1	roger glover	282226	9157021	0.99	\N	0
+825	One Man's Meat	66	1	1	roger glover	278804	9068960	0.99	\N	0
+826	Pour Some Sugar On Me	67	1	1	\N	292519	9518842	0.99	\N	0
+827	Photograph	67	1	1	\N	248633	8108507	0.99	\N	0
+828	Love Bites	67	1	1	\N	346853	11305791	0.99	\N	0
+829	Let's Get Rocked	67	1	1	\N	296019	9724150	0.99	\N	0
+830	Two Steps Behind [Acoustic Version]	67	1	1	\N	259787	8523388	0.99	\N	0
+831	Animal	67	1	1	\N	244741	7985133	0.99	\N	0
+832	Heaven Is	67	1	1	\N	214021	6988128	0.99	\N	0
+833	Rocket	67	1	1	\N	247248	8092463	0.99	\N	0
+834	When Love & Hate Collide	67	1	1	\N	257280	8364633	0.99	\N	0
+835	Action	67	1	1	\N	220604	7130830	0.99	\N	0
+836	Make Love Like A Man	67	1	1	\N	255660	8309725	0.99	\N	0
+837	Armageddon It	67	1	1	\N	322455	10522352	0.99	\N	0
+838	Have You Ever Needed Someone So Bad	67	1	1	\N	319320	10400020	0.99	\N	0
+839	Rock Of Ages	67	1	1	\N	248424	8150318	0.99	\N	0
+840	Hysteria	67	1	1	\N	355056	11622738	0.99	\N	0
+841	Bringin' On The Heartbreak	67	1	1	\N	272457	8853324	0.99	\N	0
+842	Roll Call	68	1	2	Jim Beard	321358	10653494	0.99	\N	0
+843	Otay	68	1	2	John Scofield, Robert Aries, Milton Chambers and Gary Grainger	423653	14176083	0.99	\N	0
+844	Groovus Interruptus	68	1	2	Jim Beard	319373	10602166	0.99	\N	0
+845	Paris On Mine	68	1	2	Jon Herington	368875	12059507	0.99	\N	0
+846	In Time	68	1	2	Sylvester Stewart	368953	12287103	0.99	\N	0
+847	Plan B	68	1	2	Dean Brown, Dennis Chambers & Jim Beard	272039	9032315	0.99	\N	0
+848	Outbreak	68	1	2	Jim Beard & Jon Herington	659226	21685807	0.99	\N	0
+849	Baltimore, DC	68	1	2	John Scofield	346932	11394473	0.99	\N	0
+850	Talkin Loud and Saying Nothin	68	1	2	James Brown & Bobby Byrd	360411	11994859	0.99	\N	0
+851	PÃ©tala	69	1	7	\N	270080	8856165	0.99	\N	0
+852	Meu Bem-Querer	69	1	7	\N	255608	8330047	0.99	\N	0
+853	Cigano	69	1	7	\N	304692	10037362	0.99	\N	0
+854	Boa Noite	69	1	7	\N	338755	11283582	0.99	\N	0
+855	Fato Consumado	69	1	7	\N	211565	7018586	0.99	\N	0
+856	Faltando Um PedaÃ§o	69	1	7	\N	267728	8788760	0.99	\N	0
+858	Esquinas	69	1	7	\N	280999	9096726	0.99	\N	0
+859	Se...	69	1	7	\N	286432	9413777	0.99	\N	0
+860	Eu Te Devoro	69	1	7	\N	311614	10312775	0.99	\N	0
+861	LilÃ¡s	69	1	7	\N	274181	9049542	0.99	\N	0
+862	Acelerou	69	1	7	\N	284081	9396942	0.99	\N	0
+863	Um Amor Puro	69	1	7	\N	327784	10687311	0.99	\N	0
+864	Samurai	70	1	7	Djavan	330997	10872787	0.99	\N	0
+865	Nem Um Dia	70	1	7	Djavan	337423	11181446	0.99	\N	0
+866	Oceano	70	1	7	Djavan	217338	7026441	0.99	\N	0
+867	AÃ§ai	70	1	7	Djavan	270968	8893682	0.99	\N	0
+868	Serrado	70	1	7	Djavan	295314	9842240	0.99	\N	0
+869	Flor De Lis	70	1	7	Djavan	236355	7801108	0.99	\N	0
+870	Amar Ã‰ Tudo	70	1	7	Djavan	211617	7073899	0.99	\N	0
+871	Azul	70	1	7	Djavan	253962	8381029	0.99	\N	0
+872	Seduzir	70	1	7	Djavan	277524	9163253	0.99	\N	0
+873	A Carta	70	1	7	Djavan - Gabriel, O Pensador	347297	11493463	0.99	\N	0
+874	Sina	70	1	7	Djavan	268173	8906539	0.99	\N	0
+875	Acelerou	70	1	7	Djavan	284133	9391439	0.99	\N	0
+876	Um Amor Puro	70	1	7	Djavan	327105	10664698	0.99	\N	0
+877	O BÃªbado e a Equilibrista	71	1	7	\N	223059	7306143	0.99	\N	0
+878	O Mestre-Sala dos Mares	71	1	7	\N	186226	6180414	0.99	\N	0
+879	AtrÃ¡s da Porta	71	1	7	\N	166608	5432518	0.99	\N	0
+880	Dois Pra LÃ¡, Dois Pra CÃ¡	71	1	7	\N	263026	8684639	0.99	\N	0
+881	Casa no Campo	71	1	7	\N	170788	5531841	0.99	\N	0
+882	Romaria	71	1	7	\N	242834	7968525	0.99	\N	0
+883	AlÃ´, AlÃ´, Marciano	71	1	7	\N	241397	8137254	0.99	\N	0
+884	Me Deixas Louca	71	1	7	\N	214831	6888030	0.99	\N	0
+885	FascinaÃ§Ã£o	71	1	7	\N	180793	5793959	0.99	\N	0
+886	Saudosa Maloca	71	1	7	\N	278125	9059416	0.99	\N	0
+887	As AparÃªncias Enganam	71	1	7	\N	247379	8014346	0.99	\N	0
+889	Maria Rosa	71	1	7	\N	232803	7592504	0.99	\N	0
+890	Aprendendo A Jogar	71	1	7	\N	290664	9391041	0.99	\N	0
+891	Layla	72	1	6	Clapton/Gordon	430733	14115792	0.99	\N	0
+892	Badge	72	1	6	Clapton/Harrison	163552	5322942	0.99	\N	0
+893	I Feel Free	72	1	6	Bruce/Clapton	174576	5725684	0.99	\N	0
+894	Sunshine Of Your Love	72	1	6	Bruce/Clapton	252891	8225889	0.99	\N	0
+895	Crossroads	72	1	6	Clapton/Robert Johnson Arr: Eric Clapton	253335	8273540	0.99	\N	0
+896	Strange Brew	72	1	6	Clapton/Collins/Pappalardi	167810	5489787	0.99	\N	0
+897	White Room	72	1	6	Bruce/Clapton	301583	9872606	0.99	\N	0
+898	Bell Bottom Blues	72	1	6	Clapton	304744	9946681	0.99	\N	0
+899	Cocaine	72	1	6	Cale/Clapton	215928	7138399	0.99	\N	0
+900	I Shot The Sheriff	72	1	6	Marley	263862	8738973	0.99	\N	0
+901	After Midnight	72	1	6	Clapton/J. J. Cale	191320	6460941	0.99	\N	0
+902	Swing Low Sweet Chariot	72	1	6	Clapton/Trad. Arr. Clapton	208143	6896288	0.99	\N	0
+903	Lay Down Sally	72	1	6	Clapton/Levy	231732	7774207	0.99	\N	0
+904	Knockin On Heavens Door	72	1	6	Clapton/Dylan	264411	8758819	0.99	\N	0
+905	Wonderful Tonight	72	1	6	Clapton	221387	7326923	0.99	\N	0
+906	Let It Grow	72	1	6	Clapton	297064	9742568	0.99	\N	0
+907	Promises	72	1	6	Clapton/F.eldman/Linn	180401	6006154	0.99	\N	0
+908	I Can't Stand It	72	1	6	Clapton	249730	8271980	0.99	\N	0
+909	Signe	73	1	6	Eric Clapton	193515	6475042	0.99	\N	0
+910	Before You Accuse Me	73	1	6	Eugene McDaniel	224339	7456807	0.99	\N	0
+911	Hey Hey	73	1	6	Big Bill Broonzy	196466	6543487	0.99	\N	0
+912	Tears In Heaven	73	1	6	Eric Clapton, Will Jennings	274729	9032835	0.99	\N	0
+913	Lonely Stranger	73	1	6	Eric Clapton	328724	10894406	0.99	\N	0
+914	Nobody Knows You When You're Down & Out	73	1	6	Jimmy Cox	231836	7669922	0.99	\N	0
+915	Layla	73	1	6	Eric Clapton, Jim Gordon	285387	9490542	0.99	\N	0
+916	Running On Faith	73	1	6	Jerry Lynn Williams	378984	12536275	0.99	\N	0
+917	Walkin' Blues	73	1	6	Robert Johnson	226429	7435192	0.99	\N	0
+918	Alberta	73	1	6	Traditional	222406	7412975	0.99	\N	0
+919	San Francisco Bay Blues	73	1	6	Jesse Fuller	203363	6724021	0.99	\N	0
+920	Malted Milk	73	1	6	Robert Johnson	216528	7096781	0.99	\N	0
+921	Old Love	73	1	6	Eric Clapton, Robert Cray	472920	15780747	0.99	\N	0
+922	Rollin' And Tumblin'	73	1	6	McKinley Morgenfield (Muddy Waters)	251768	8407355	0.99	\N	0
+923	Collision	74	1	4	Jon Hudson/Mike Patton	204303	6656596	0.99	\N	0
+924	Stripsearch	74	1	4	Jon Hudson/Mike Bordin/Mike Patton	270106	8861119	0.99	\N	0
+925	Last Cup Of Sorrow	74	1	4	Bill Gould/Mike Patton	251663	8221247	0.99	\N	0
+926	Naked In Front Of The Computer	74	1	4	Mike Patton	128757	4225077	0.99	\N	0
+927	Helpless	74	1	4	Bill Gould/Mike Bordin/Mike Patton	326217	10753135	0.99	\N	0
+928	Mouth To Mouth	74	1	4	Bill Gould/Jon Hudson/Mike Bordin/Mike Patton	228493	7505887	0.99	\N	0
+929	Ashes To Ashes	74	1	4	Bill Gould/Jon Hudson/Mike Bordin/Mike Patton/Roddy Bottum	217391	7093746	0.99	\N	0
+930	She Loves Me Not	74	1	4	Bill Gould/Mike Bordin/Mike Patton	209867	6887544	0.99	\N	0
+931	Got That Feeling	74	1	4	Mike Patton	140852	4643227	0.99	\N	0
+932	Paths Of Glory	74	1	4	Bill Gould/Jon Hudson/Mike Bordin/Mike Patton/Roddy Bottum	257253	8436300	0.99	\N	0
+933	Home Sick Home	74	1	4	Mike Patton	119040	3898976	0.99	\N	0
+934	Pristina	74	1	4	Bill Gould/Mike Patton	232698	7497361	0.99	\N	0
+935	Land Of Sunshine	75	1	4	\N	223921	7353567	0.99	\N	0
+936	Caffeine	75	1	4	\N	267937	8747367	0.99	\N	0
+937	Midlife Crisis	75	1	4	\N	263235	8628841	0.99	\N	0
+938	RV	75	1	4	\N	223242	7288162	0.99	\N	0
+939	Smaller And Smaller	75	1	4	\N	310831	10180103	0.99	\N	0
+940	Everything's Ruined	75	1	4	\N	273658	9010917	0.99	\N	0
+941	Malpractice	75	1	4	\N	241371	7900683	0.99	\N	0
+942	Kindergarten	75	1	4	\N	270680	8853647	0.99	\N	0
+943	Be Aggressive	75	1	4	\N	222432	7298027	0.99	\N	0
+944	A Small Victory	75	1	4	\N	297168	9733572	0.99	\N	0
+945	Crack Hitler	75	1	4	\N	279144	9162435	0.99	\N	0
+946	Jizzlobber	75	1	4	\N	398341	12926140	0.99	\N	0
+947	Midnight Cowboy	75	1	4	\N	251924	8242626	0.99	\N	0
+948	Easy	75	1	4	\N	185835	6073008	0.99	\N	0
+949	Get Out	76	1	1	Mike Bordin, Billy Gould, Mike Patton	137482	4524972	0.99	\N	0
+950	Ricochet	76	1	1	Mike Bordin, Billy Gould, Mike Patton	269400	8808812	0.99	\N	0
+951	Evidence	76	1	1	Mike Bordin, Billy Gould, Mike Patton, Trey Spruance	293590	9626136	0.99	\N	0
+952	The Gentle Art Of Making Enemies	76	1	1	Mike Bordin, Billy Gould, Mike Patton	209319	6908609	0.99	\N	0
+953	Star A.D.	76	1	1	Mike Bordin, Billy Gould, Mike Patton	203807	6747658	0.99	\N	0
+954	Cuckoo For Caca	76	1	1	Mike Bordin, Billy Gould, Mike Patton, Trey Spruance	222902	7388369	0.99	\N	0
+955	Caralho Voador	76	1	1	Mike Bordin, Billy Gould, Mike Patton, Trey Spruance	242102	8029054	0.99	\N	0
+956	Ugly In The Morning	76	1	1	Mike Bordin, Billy Gould, Mike Patton	186435	6224997	0.99	\N	0
+1113	Sampa	73	1	7	Gilberto Gil	225697	7469905	0.99	\N	0
+957	Digging The Grave	76	1	1	Mike Bordin, Billy Gould, Mike Patton	185129	6109259	0.99	\N	0
+958	Take This Bottle	76	1	1	Mike Bordin, Billy Gould, Mike Patton, Trey Spruance	298997	9779971	0.99	\N	0
+959	King For A Day	76	1	1	Mike Bordin, Billy Gould, Mike Patton, Trey Spruance	395859	13163733	0.99	\N	0
+960	What A Day	76	1	1	Mike Bordin, Billy Gould, Mike Patton	158275	5203430	0.99	\N	0
+961	The Last To Know	76	1	1	Mike Bordin, Billy Gould, Mike Patton	267833	8736776	0.99	\N	0
+962	Just A Man	76	1	1	Mike Bordin, Billy Gould, Mike Patton	336666	11031254	0.99	\N	0
+963	Absolute Zero	76	1	1	Mike Bordin, Billy Gould, Mike Patton	181995	5929427	0.99	\N	0
+964	From Out Of Nowhere	77	1	4	Faith No More	202527	6587802	0.99	\N	0
+965	Epic	77	1	4	Faith No More	294008	9631296	0.99	\N	0
+966	Falling To Pieces	77	1	4	Faith No More	316055	10333123	0.99	\N	0
+967	Surprise! You're Dead!	77	1	4	Faith No More	147226	4823036	0.99	\N	0
+968	Zombie Eaters	77	1	4	Faith No More	360881	11835367	0.99	\N	0
+969	The Real Thing	77	1	4	Faith No More	493635	16233080	0.99	\N	0
+970	Underwater Love	77	1	4	Faith No More	231993	7634387	0.99	\N	0
+971	The Morning After	77	1	4	Faith No More	223764	7355898	0.99	\N	0
+972	Woodpecker From Mars	77	1	4	Faith No More	340532	11174250	0.99	\N	0
+973	War Pigs	77	1	4	Tony Iommi, Bill Ward, Geezer Butler, Ozzy Osbourne	464770	15267802	0.99	\N	0
+974	Edge Of The World	77	1	4	Faith No More	250357	8235607	0.99	\N	0
+975	Deixa Entrar	78	1	7	\N	33619	1095012	0.99	\N	0
+976	Falamansa Song	78	1	7	\N	237165	7921313	0.99	\N	0
+977	Xote Dos Milagres	78	1	7	\N	269557	8897778	0.99	\N	0
+978	Rindo Ã€ Toa	78	1	7	\N	222066	7365321	0.99	\N	0
+979	ConfidÃªncia	78	1	7	\N	222197	7460829	0.99	\N	0
+980	ForrÃ³ De TÃ³quio	78	1	7	\N	169273	5588756	0.99	\N	0
+981	Zeca Violeiro	78	1	7	\N	143673	4781949	0.99	\N	0
+982	Avisa	78	1	7	\N	355030	11844320	0.99	\N	0
+983	Principiando/Decolagem	78	1	7	\N	116767	3923789	0.99	\N	0
+984	Asas	78	1	7	\N	231915	7711669	0.99	\N	0
+985	Medo De Escuro	78	1	7	\N	213760	7056323	0.99	\N	0
+986	OraÃ§Ã£o	78	1	7	\N	271072	9003882	0.99	\N	0
+987	Minha Gata	78	1	7	\N	181838	6039502	0.99	\N	0
+988	Desaforo	78	1	7	\N	174524	5853561	0.99	\N	0
+989	In Your Honor	79	1	1	Dave Grohl, Taylor Hawkins, Nate Mendel, Chris Shiflett	230191	7468463	0.99	\N	0
+990	No Way Back	79	1	1	Dave Grohl, Taylor Hawkins, Nate Mendel, Chris Shiflett	196675	6421400	0.99	\N	0
+991	Best Of You	79	1	1	Dave Grohl, Taylor Hawkins, Nate Mendel, Chris Shiflett	255712	8363467	0.99	\N	0
+992	DOA	79	1	1	Dave Grohl, Taylor Hawkins, Nate Mendel, Chris Shiflett	252186	8232342	0.99	\N	0
+993	Hell	79	1	1	Dave Grohl, Taylor Hawkins, Nate Mendel, Chris Shiflett	117080	3819255	0.99	\N	0
+994	The Last Song	79	1	1	Dave Grohl, Taylor Hawkins, Nate Mendel, Chris Shiflett	199523	6496742	0.99	\N	0
+995	Free Me	79	1	1	Dave Grohl, Taylor Hawkins, Nate Mendel, Chris Shiflett	278700	9109340	0.99	\N	0
+996	Resolve	79	1	1	Dave Grohl, Taylor Hawkins, Nate Mendel, Chris Shiflett	288731	9416186	0.99	\N	0
+997	The Deepest Blues Are Black	79	1	1	Dave Grohl, Taylor Hawkins, Nate Mendel, Chris Shiflett	238419	7735473	0.99	\N	0
+998	End Over End	79	1	1	Dave Grohl, Taylor Hawkins, Nate Mendel, Chris Shiflett	352078	11395296	0.99	\N	0
+999	Still	80	1	1	Dave Grohl, Taylor Hawkins, Nate Mendel, Chris Shiflett/FOO FIGHTERS	313182	10323157	0.99	\N	0
+1000	What If I Do?	80	1	1	Dave Grohl, Taylor Hawkins, Nate Mendel, Chris Shiflett/FOO FIGHTERS	302994	9929799	0.99	\N	0
+1001	Miracle	80	1	1	Dave Grohl, Taylor Hawkins, Nate Mendel, Chris Shiflett/FOO FIGHTERS	209684	6877994	0.99	\N	0
+1002	Another Round	80	1	1	Dave Grohl, Taylor Hawkins, Nate Mendel, Chris Shiflett/FOO FIGHTERS	265848	8752670	0.99	\N	0
+1003	Friend Of A Friend	80	1	1	Dave Grohl, Taylor Hawkins, Nate Mendel, Chris Shiflett/FOO FIGHTERS	193280	6355088	0.99	\N	0
+1004	Over And Out	80	1	1	Dave Grohl, Taylor Hawkins, Nate Mendel, Chris Shiflett/FOO FIGHTERS	316264	10428382	0.99	\N	0
+1005	On The Mend	80	1	1	Dave Grohl, Taylor Hawkins, Nate Mendel, Chris Shiflett/FOO FIGHTERS	271908	9071997	0.99	\N	0
+1006	Virginia Moon	80	1	1	Dave Grohl, Taylor Hawkins, Nate Mendel, Chris Shiflett/FOO FIGHTERS	229198	7494639	0.99	\N	0
+1007	Cold Day In The Sun	80	1	1	Dave Grohl, Taylor Hawkins, Nate Mendel, Chris Shiflett/FOO FIGHTERS	200724	6596617	0.99	\N	0
+1008	Razor	80	1	1	Dave Grohl, Taylor Hawkins, Nate Mendel, Chris Shiflett/FOO FIGHTERS	293276	9721373	0.99	\N	0
+1009	All My Life	81	1	4	Foo Fighters	263653	8665545	0.99	\N	0
+1010	Low	81	1	4	Foo Fighters	268120	8847196	0.99	\N	0
+1011	Have It All	81	1	4	Foo Fighters	298057	9729292	0.99	\N	0
+1012	Times Like These	81	1	4	Foo Fighters	266370	8624691	0.99	\N	0
+1013	Disenchanted Lullaby	81	1	4	Foo Fighters	273528	8919111	0.99	\N	0
+1014	Tired Of You	81	1	4	Foo Fighters	311353	10094743	0.99	\N	0
+1015	Halo	81	1	4	Foo Fighters	306442	10026371	0.99	\N	0
+1016	Lonely As You	81	1	4	Foo Fighters	277185	9022628	0.99	\N	0
+1017	Overdrive	81	1	4	Foo Fighters	270550	8793187	0.99	\N	0
+1018	Burn Away	81	1	4	Foo Fighters	298396	9678073	0.99	\N	0
+1019	Come Back	81	1	4	Foo Fighters	469968	15371980	0.99	\N	0
+1020	Doll	82	1	1	Dave, Taylor, Nate, Chris	83487	2702572	0.99	\N	0
+1021	Monkey Wrench	82	1	1	Dave, Taylor, Nate, Chris	231523	7527531	0.99	\N	0
+1022	Hey, Johnny Park!	82	1	1	Dave, Taylor, Nate, Chris	248528	8079480	0.99	\N	0
+1023	My Poor Brain	82	1	1	Dave, Taylor, Nate, Chris	213446	6973746	0.99	\N	0
+1024	Wind Up	82	1	1	Dave, Taylor, Nate, Chris	152163	4950667	0.99	\N	0
+1025	Up In Arms	82	1	1	Dave, Taylor, Nate, Chris	135732	4406227	0.99	\N	0
+1026	My Hero	82	1	1	Dave, Taylor, Nate, Chris	260101	8472365	0.99	\N	0
+1027	See You	82	1	1	Dave, Taylor, Nate, Chris	146782	4888173	0.99	\N	0
+1028	Enough Space	82	1	1	Dave Grohl	157387	5169280	0.99	\N	0
+1029	February Stars	82	1	1	Dave, Taylor, Nate, Chris	289306	9344875	0.99	\N	0
+1030	Everlong	82	1	1	Dave Grohl	250749	8270816	0.99	\N	0
+1031	Walking After You	82	1	1	Dave Grohl	303856	9898992	0.99	\N	0
+1032	New Way Home	82	1	1	Dave, Taylor, Nate, Chris	342230	11205664	0.99	\N	0
+1033	My Way	83	1	12	claude franÃ§ois/gilles thibault/jacques revaux/paul anka	275879	8928684	0.99	\N	0
+1034	Strangers In The Night	83	1	12	berthold kaempfert/charles singleton/eddie snyder	155794	5055295	0.99	\N	0
+1035	New York, New York	83	1	12	fred ebb/john kander	206001	6707993	0.99	\N	0
+1036	I Get A Kick Out Of You	83	1	12	cole porter	194429	6332441	0.99	\N	0
+1037	Something Stupid	83	1	12	carson c. parks	158615	5210643	0.99	\N	0
+1038	Moon River	83	1	12	henry mancini/johnny mercer	198922	6395808	0.99	\N	0
+1039	What Now My Love	83	1	12	carl sigman/gilbert becaud/pierre leroyer	149995	4913383	0.99	\N	0
+1040	Summer Love	83	1	12	hans bradtke/heinz meier/johnny mercer	174994	5693242	0.99	\N	0
+1041	For Once In My Life	83	1	12	orlando murden/ronald miller	171154	5557537	0.99	\N	0
+1042	Love And Marriage	83	1	12	jimmy van heusen/sammy cahn	89730	2930596	0.99	\N	0
+1043	They Can't Take That Away From Me	83	1	12	george gershwin/ira gershwin	161227	5240043	0.99	\N	0
+1044	My Kind Of Town	83	1	12	jimmy van heusen/sammy cahn	188499	6119915	0.99	\N	0
+1045	Fly Me To The Moon	83	1	12	bart howard	149263	4856954	0.99	\N	0
+1046	I've Got You Under My Skin	83	1	12	cole porter	210808	6883787	0.99	\N	0
+1047	The Best Is Yet To Come	83	1	12	carolyn leigh/cy coleman	173583	5633730	0.99	\N	0
+1048	It Was A Very Good Year	83	1	12	ervin drake	266605	8554066	0.99	\N	0
+1049	Come Fly With Me	83	1	12	jimmy van heusen/sammy cahn	190458	6231029	0.99	\N	0
+1050	That's Life	83	1	12	dean kay thompson/kelly gordon	187010	6095727	0.99	\N	0
+1051	The Girl From Ipanema	83	1	12	antonio carlos jobim/norman gimbel/vinicius de moraes	193750	6410674	0.99	\N	0
+1052	The Lady Is A Tramp	83	1	12	lorenz hart/richard rodgers	184111	5987372	0.99	\N	0
+1053	Bad, Bad Leroy Brown	83	1	12	jim croce	169900	5548581	0.99	\N	0
+1054	Mack The Knife	83	1	12	bert brecht/kurt weill/marc blitzstein	292075	9541052	0.99	\N	0
+1055	Loves Been Good To Me	83	1	12	rod mckuen	203964	6645365	0.99	\N	0
+1056	L.A. Is My Lady	83	1	12	alan bergman/marilyn bergman/peggy lipton jones/quincy jones	193175	6378511	0.99	\N	0
+1057	Entrando Na Sua (Intro)	84	1	7	\N	179252	5840027	0.99	\N	0
+1058	Nervosa	84	1	7	\N	229537	7680421	0.99	\N	0
+1059	Funk De Bamba (Com Fernanda Abreu)	84	1	7	\N	237191	7866165	0.99	\N	0
+1060	Call Me At CleoÂ´s	84	1	7	\N	236617	7920510	0.99	\N	0
+1061	Olhos Coloridos (Com Sandra De SÃ¡)	84	1	7	\N	321332	10567404	0.99	\N	0
+1062	ZambaÃ§Ã£o	84	1	7	\N	301113	10030604	0.99	\N	0
+1063	Funk Hum	84	1	7	\N	244453	8084475	0.99	\N	0
+1064	Forty Days (Com DJ Hum)	84	1	7	\N	221727	7347172	0.99	\N	0
+1065	Balada Da Paula	84	1	7	Emerson Villani	322821	10603717	0.99	\N	0
+1066	Dujji	84	1	7	\N	324597	10833935	0.99	\N	0
+1067	Meu Guarda-Chuva	84	1	7	\N	248528	8216625	0.99	\N	0
+1068	MotÃ©is	84	1	7	\N	213498	7041077	0.99	\N	0
+1069	Whistle Stop	84	1	7	\N	526132	17533664	0.99	\N	0
+1070	16 Toneladas	84	1	7	\N	191634	6390885	0.99	\N	0
+1071	Divirta-Se (Saindo Da Sua)	84	1	7	\N	74919	2439206	0.99	\N	0
+1072	Forty Days Instrumental	84	1	7	\N	292493	9584317	0.99	\N	0
+1073	Ã“ia Eu Aqui De Novo	85	1	10	\N	219454	7469735	0.99	\N	0
+1074	BaiÃ£o Da Penha	85	1	10	\N	247928	8393047	0.99	\N	0
+1075	Esperando Na Janela	85	1	10	Manuca/Raimundinho DoAcordion/Targino Godim	261041	8660617	0.99	\N	0
+1076	Juazeiro	85	1	10	Humberto Teixeira/Luiz Gonzaga	222275	7349779	0.99	\N	0
+1077	Ãšltimo Pau-De-Arara	85	1	10	CorumbÃ¡/JosÃ© GumarÃ£es/Venancio	200437	6638563	0.99	\N	0
+1078	Asa Branca	85	1	10	Humberto Teixeira/Luiz Gonzaga	217051	7387183	0.99	\N	0
+1079	Qui Nem JilÃ³	85	1	10	Humberto Teixeira/Luiz Gonzaga	204695	6937472	0.99	\N	0
+1080	Assum Preto	85	1	10	Humberto Teixeira/Luiz Gonzaga	199653	6625000	0.99	\N	0
+1081	Pau-De-Arara	85	1	10	Guio De Morais E Seus Parentes/Luiz Gonzaga	191660	6340649	0.99	\N	0
+1082	A Volta Da Asa Branca	85	1	10	Luiz Gonzaga/ZÃ© Dantas	271020	9098093	0.99	\N	0
+1083	O Amor Daqui De Casa	85	1	10	Gilberto Gil	148636	4888292	0.99	\N	0
+1084	As Pegadas Do Amor	85	1	10	Gilberto Gil	209136	6899062	0.99	\N	0
+1085	Lamento Sertanejo	85	1	10	Dominguinhos/Gilberto Gil	260963	8518290	0.99	\N	0
+1086	Casinha Feliz	85	1	10	Gilberto Gil	32287	1039615	0.99	\N	0
+1087	IntroduÃ§Ã£o (Live)	86	1	7	\N	154096	5227579	0.99	\N	0
+1088	Palco (Live)	86	1	7	\N	238315	8026622	0.99	\N	0
+1089	Is This Love (Live)	86	1	7	\N	295262	9819759	0.99	\N	0
+1090	Stir It Up (Live)	86	1	7	\N	282409	9594738	0.99	\N	0
+1091	Refavela (Live)	86	1	7	\N	236695	7985305	0.99	\N	0
+1092	Vendedor De Caranguejo (Live)	86	1	7	\N	248842	8358128	0.99	\N	0
+1093	Quanta (Live)	86	1	7	\N	357485	11774865	0.99	\N	0
+1094	Estrela (Live)	86	1	7	\N	285309	9436411	0.99	\N	0
+1095	Pela Internet (Live)	86	1	7	\N	263471	8804401	0.99	\N	0
+1096	CÃ©rebro EletrÃ´nico (Live)	86	1	7	\N	231627	7805352	0.99	\N	0
+1097	OpachorÃ´ (Live)	86	1	7	\N	259526	8596384	0.99	\N	0
+1098	Copacabana (Live)	86	1	7	\N	289671	9673672	0.99	\N	0
+1099	A Novidade (Live)	86	1	7	\N	316969	10508000	0.99	\N	0
+1100	Ghandi (Live)	86	1	7	\N	222458	7481950	0.99	\N	0
+1101	De Ouro E Marfim (Live)	86	1	7	\N	234971	7838453	0.99	\N	0
+1102	Doce De Carnaval (Candy All)	87	1	2	\N	356101	11998470	0.99	\N	0
+1103	Lamento De Carnaval	87	1	2	\N	294530	9819276	0.99	\N	0
+1104	Pretinha	87	1	2	\N	265273	8914579	0.99	\N	0
+1105	A Novidade	73	1	7	Gilberto Gil	324780	10765600	0.99	\N	0
+1106	Tenho Sede	73	1	7	Gilberto Gil	261616	8708114	0.99	\N	0
+1107	Refazenda	73	1	7	Gilberto Gil	218305	7237784	0.99	\N	0
+1108	Realce	73	1	7	Gilberto Gil	264489	8847612	0.99	\N	0
+1109	EsotÃ©rico	73	1	7	Gilberto Gil	317779	10530533	0.99	\N	0
+1110	DrÃ£o	73	1	7	Gilberto Gil	301453	9931950	0.99	\N	0
+1111	A Paz	73	1	7	Gilberto Gil	293093	9593064	0.99	\N	0
+1112	Beira Mar	73	1	7	Gilberto Gil	295444	9597994	0.99	\N	0
+1114	ParabolicamarÃ¡	73	1	7	Gilberto Gil	284943	9543435	0.99	\N	0
+1115	Tempo Rei	73	1	7	Gilberto Gil	302733	10019269	0.99	\N	0
+1116	Expresso 2222	73	1	7	Gilberto Gil	284760	9690577	0.99	\N	0
+1117	Aquele AbraÃ§o	73	1	7	Gilberto Gil	263993	8805003	0.99	\N	0
+1118	Palco	73	1	7	Gilberto Gil	270550	9049901	0.99	\N	0
+1119	Toda Menina Baiana	73	1	7	Gilberto Gil	278177	9351000	0.99	\N	0
+1120	SÃ­tio Do Pica-Pau Amarelo	73	1	7	Gilberto Gil	218070	7217955	0.99	\N	0
+1121	Straight Out Of Line	88	1	3	Sully Erna	259213	8511877	0.99	\N	0
+1122	Faceless	88	1	3	Sully Erna	216006	6992417	0.99	\N	0
+1123	Changes	88	1	3	Sully Erna; Tony Rombola	260022	8455835	0.99	\N	0
+1124	Make Me Believe	88	1	3	Sully Erna	248607	8075050	0.99	\N	0
+1125	I Stand Alone	88	1	3	Sully Erna	246125	8017041	0.99	\N	0
+1126	Re-Align	88	1	3	Sully Erna	260884	8513891	0.99	\N	0
+1127	I Fucking Hate You	88	1	3	Sully Erna	247170	8059642	0.99	\N	0
+1128	Releasing The Demons	88	1	3	Sully Erna	252760	8276372	0.99	\N	0
+1129	Dead And Broken	88	1	3	Sully Erna	251454	8206611	0.99	\N	0
+1130	I Am	88	1	3	Sully Erna	239516	7803270	0.99	\N	0
+1131	The Awakening	88	1	3	Sully Erna	89547	3035251	0.99	\N	0
+1132	Serenity	88	1	3	Sully Erna; Tony Rombola	274834	9172976	0.99	\N	0
+1133	American Idiot	89	1	4	Billie Joe Armstrong, Mike Dirnt, TrÃ© Cool	174419	5705793	0.99	\N	0
+1134	Jesus Of Suburbia / City Of The Damned / I Don't Care / Dearly Beloved / Tales Of Another Broken Home	89	1	4	Billie Joe Armstrong/Green Day	548336	17875209	0.99	\N	0
+1135	Holiday	89	1	4	Billie Joe Armstrong, Mike Dirnt, TrÃ© Cool	232724	7599602	0.99	\N	0
+1136	Boulevard Of Broken Dreams	89	1	4	Mike Dint, Billie Joe, TrÃ© Cool	260858	8485122	0.99	\N	0
+1137	Are We The Waiting	89	1	4	Green Day	163004	5328329	0.99	\N	0
+1138	St. Jimmy	89	1	4	Green Day	175307	5716589	0.99	\N	0
+1139	Give Me Novacaine	89	1	4	Green Day	205871	6752485	0.99	\N	0
+1140	She's A Rebel	89	1	4	Green Day	120528	3901226	0.99	\N	0
+1141	Extraordinary Girl	89	1	4	Green Day	214021	6975177	0.99	\N	0
+1142	Letterbomb	89	1	4	Green Day	246151	7980902	0.99	\N	0
+1143	Wake Me Up When September Ends	89	1	4	Mike Dint, Billie Joe, TrÃ© Cool	285753	9325597	0.99	\N	0
+1144	Homecoming / The Death Of St. Jimmy / East 12th St. / Nobody Likes You / Rock And Roll Girlfriend / We're Coming Home Again	89	1	4	Mike Dirnt/TrÃ© Cool	558602	18139840	0.99	\N	0
+1145	Whatsername	89	1	4	Green Day	252316	8244843	0.99	\N	0
+1146	Welcome to the Jungle	90	2	1	\N	273552	4538451	0.99	\N	0
+1147	It's So Easy	90	2	1	\N	202824	3394019	0.99	\N	0
+1148	Nightrain	90	2	1	\N	268537	4457283	0.99	\N	0
+1149	Out Ta Get Me	90	2	1	\N	263893	4382147	0.99	\N	0
+1150	Mr. Brownstone	90	2	1	\N	228924	3816323	0.99	\N	0
+1151	Paradise City	90	2	1	\N	406347	6687123	0.99	\N	0
+1152	My Michelle	90	2	1	\N	219961	3671299	0.99	\N	0
+1153	Think About You	90	2	1	\N	231640	3860275	0.99	\N	0
+1154	Sweet Child O' Mine	90	2	1	\N	356424	5879347	0.99	\N	0
+1155	You're Crazy	90	2	1	\N	197135	3301971	0.99	\N	0
+1156	Anything Goes	90	2	1	\N	206400	3451891	0.99	\N	0
+1157	Rocket Queen	90	2	1	\N	375349	6185539	0.99	\N	0
+1158	Right Next Door to Hell	91	2	1	\N	182321	3175950	0.99	\N	0
+1159	Dust' Bones	91	2	1	\N	298374	5053742	0.99	\N	0
+1160	Live and Let Die	91	2	1	\N	184016	3203390	0.99	\N	0
+1161	Don't Cry (Original)	91	2	1	\N	284744	4833259	0.99	\N	0
+1162	Perfect Crime	91	2	1	\N	143637	2550030	0.99	\N	0
+1163	You Ain't the First	91	2	1	\N	156268	2754414	0.99	\N	0
+1164	Bad Obsession	91	2	1	\N	328282	5537678	0.99	\N	0
+1165	Back off Bitch	91	2	1	\N	303436	5135662	0.99	\N	0
+1166	Double Talkin' Jive	91	2	1	\N	203637	3520862	0.99	\N	0
+1167	November Rain	91	2	1	\N	537540	8923566	0.99	\N	0
+1168	The Garden	91	2	1	\N	322175	5438862	0.99	\N	0
+1169	Garden of Eden	91	2	1	\N	161539	2839694	0.99	\N	0
+1170	Don't Damn Me	91	2	1	\N	318901	5385886	0.99	\N	0
+1171	Bad Apples	91	2	1	\N	268351	4567966	0.99	\N	0
+1172	Dead Horse	91	2	1	\N	257600	4394014	0.99	\N	0
+1173	Coma	91	2	1	\N	616511	10201342	0.99	\N	0
+1174	Civil War	92	1	3	Duff McKagan/Slash/W. Axl Rose	461165	15046579	0.99	\N	0
+1175	14 Years	92	1	3	Izzy Stradlin'/W. Axl Rose	261355	8543664	0.99	\N	0
+1176	Yesterdays	92	1	3	Billy/Del James/W. Axl Rose/West Arkeen	196205	6398489	0.99	\N	0
+1177	Knockin' On Heaven's Door	92	1	3	Bob Dylan	336457	10986716	0.99	\N	0
+1178	Get In The Ring	92	1	3	Duff McKagan/Slash/W. Axl Rose	341054	11134105	0.99	\N	0
+1179	Shotgun Blues	92	1	3	W. Axl Rose	203206	6623916	0.99	\N	0
+1180	Breakdown	92	1	3	W. Axl Rose	424960	13978284	0.99	\N	0
+1181	Pretty Tied Up	92	1	3	Izzy Stradlin'	287477	9408754	0.99	\N	0
+1182	Locomotive	92	1	3	Slash/W. Axl Rose	522396	17236842	0.99	\N	0
+1183	So Fine	92	1	3	Duff McKagan	246491	8039484	0.99	\N	0
+1184	Estranged	92	1	3	W. Axl Rose	563800	18343787	0.99	\N	0
+1185	You Could Be Mine	92	1	3	Izzy Stradlin'/W. Axl Rose	343875	11207355	0.99	\N	0
+1186	Don't Cry	92	1	3	Izzy Stradlin'/W. Axl Rose	284238	9222458	0.99	\N	0
+1187	My World	92	1	3	W. Axl Rose	84532	2764045	0.99	\N	0
+1188	Colibri	93	1	2	Richard Bull	361012	12055329	0.99	\N	0
+1189	Love Is The Colour	93	1	2	R. Carless	251585	8419165	0.99	\N	0
+1190	Magnetic Ocean	93	1	2	Patrick Claher/Richard Bull	321123	10720741	0.99	\N	0
+1191	Deep Waters	93	1	2	Richard Bull	396460	13075359	0.99	\N	0
+1192	L'Arc En Ciel De Miles	93	1	2	Kevin Robinson/Richard Bull	242390	8053997	0.99	\N	0
+1193	Gypsy	93	1	2	Kevin Robinson	330997	11083374	0.99	\N	0
+1194	Journey Into Sunlight	93	1	2	Jean Paul Maunick	249756	8241177	0.99	\N	0
+1195	Sunchild	93	1	2	Graham Harvey	259970	8593143	0.99	\N	0
+1196	Millenium	93	1	2	Maxton Gig Beesley Jnr.	379167	12511939	0.99	\N	0
+1197	Thinking 'Bout Tomorrow	93	1	2	Fayyaz Virgi/Richard Bull	355395	11865384	0.99	\N	0
+1198	Jacob's Ladder	93	1	2	Julian Crampton	367647	12201595	0.99	\N	0
+1199	She Wears Black	93	1	2	G Harvey/R Hope-Taylor	528666	17617944	0.99	\N	0
+1200	Dark Side Of The Cog	93	1	2	Jean Paul Maunick	377155	12491122	0.99	\N	0
+1201	Different World	94	2	1	\N	258692	4383764	0.99	\N	0
+1202	These Colours Don't Run	94	2	1	\N	412152	6883500	0.99	\N	0
+1203	Brighter Than a Thousand Suns	94	2	1	\N	526255	8721490	0.99	\N	0
+1204	The Pilgrim	94	2	1	\N	307593	5172144	0.99	\N	0
+1205	The Longest Day	94	2	1	\N	467810	7785748	0.99	\N	0
+1206	Out of the Shadows	94	2	1	\N	336896	5647303	0.99	\N	0
+1207	The Reincarnation of Benjamin Breeg	94	2	1	\N	442106	7367736	0.99	\N	0
+1208	For the Greater Good of God	94	2	1	\N	564893	9367328	0.99	\N	0
+1209	Lord of Light	94	2	1	\N	444614	7393698	0.99	\N	0
+1210	The Legacy	94	2	1	\N	562966	9314287	0.99	\N	0
+1211	Hallowed Be Thy Name (Live) [Non Album Bonus Track]	94	2	1	\N	431262	7205816	0.99	\N	0
+1212	The Number Of The Beast	95	1	3	Steve Harris	294635	4718897	0.99	\N	0
+1213	The Trooper	95	1	3	Steve Harris	235311	3766272	0.99	\N	0
+1214	Prowler	95	1	3	Steve Harris	255634	4091904	0.99	\N	0
+1215	Transylvania	95	1	3	Steve Harris	265874	4255744	0.99	\N	0
+1216	Remember Tomorrow	95	1	3	Paul Di'Anno/Steve Harris	352731	5648438	0.99	\N	0
+1217	Where Eagles Dare	95	1	3	Steve Harris	289358	4630528	0.99	\N	0
+1218	Sanctuary	95	1	3	David Murray/Paul Di'Anno/Steve Harris	293250	4694016	0.99	\N	0
+1219	Running Free	95	1	3	Paul Di'Anno/Steve Harris	228937	3663872	0.99	\N	0
+1220	Run To The Hilss	95	1	3	Steve Harris	237557	3803136	0.99	\N	0
+1221	2 Minutes To Midnight	95	1	3	Adrian Smith/Bruce Dickinson	337423	5400576	0.99	\N	0
+1222	Iron Maiden	95	1	3	Steve Harris	324623	5195776	0.99	\N	0
+1223	Hallowed Be Thy Name	95	1	3	Steve Harris	471849	7550976	0.99	\N	0
+1224	Be Quick Or Be Dead	96	1	3	Bruce Dickinson/Janick Gers	196911	3151872	0.99	\N	0
+1225	From Here To Eternity	96	1	3	Steve Harris	259866	4159488	0.99	\N	0
+1226	Can I Play With Madness	96	1	3	Adrian Smith/Bruce Dickinson/Steve Harris	282488	4521984	0.99	\N	0
+1227	Wasting Love	96	1	3	Bruce Dickinson/Janick Gers	347846	5566464	0.99	\N	0
+1228	Tailgunner	96	1	3	Bruce Dickinson/Steve Harris	249469	3993600	0.99	\N	0
+1229	The Evil That Men Do	96	1	3	Adrian Smith/Bruce Dickinson/Steve Harris	325929	5216256	0.99	\N	0
+1230	Afraid To Shoot Strangers	96	1	3	Steve Harris	407980	6529024	0.99	\N	0
+1231	Bring Your Daughter... To The Slaughter	96	1	3	Bruce Dickinson	317727	5085184	0.99	\N	0
+1232	Heaven Can Wait	96	1	3	Steve Harris	448574	7178240	0.99	\N	0
+1233	The Clairvoyant	96	1	3	Steve Harris	269871	4319232	0.99	\N	0
+1234	Fear Of The Dark	96	1	3	Steve Harris	431333	6906078	0.99	\N	0
+1235	The Wicker Man	97	1	1	Adrian Smith/Bruce Dickinson/Steve Harris	275539	11022464	0.99	\N	0
+1236	Ghost Of The Navigator	97	1	1	Bruce Dickinson/Janick Gers/Steve Harris	410070	16404608	0.99	\N	0
+1237	Brave New World	97	1	1	Bruce Dickinson/David Murray/Steve Harris	378984	15161472	0.99	\N	0
+1238	Blood Brothers	97	1	1	Steve Harris	434442	17379456	0.99	\N	0
+1239	The Mercenary	97	1	1	Janick Gers/Steve Harris	282488	11300992	0.99	\N	0
+1240	Dream Of Mirrors	97	1	1	Janick Gers/Steve Harris	561162	22448256	0.99	\N	0
+1241	The Fallen Angel	97	1	1	Adrian Smith/Steve Harris	240718	9629824	0.99	\N	0
+1242	The Nomad	97	1	1	David Murray/Steve Harris	546115	21846144	0.99	\N	0
+1243	Out Of The Silent Planet	97	1	1	Bruce Dickinson/Janick Gers/Steve Harris	385541	15423616	0.99	\N	0
+1244	The Thin Line Between Love & Hate	97	1	1	David Murray/Steve Harris	506801	20273280	0.99	\N	0
+1245	Wildest Dreams	98	1	13	Adrian Smith/Steve Harris	232777	9312384	0.99	\N	0
+1246	Rainmaker	98	1	13	Bruce Dickinson/David Murray/Steve Harris	228623	9146496	0.99	\N	0
+1247	No More Lies	98	1	13	Steve Harris	441782	17672320	0.99	\N	0
+1248	Montsegur	98	1	13	Bruce Dickinson/Janick Gers/Steve Harris	350484	14020736	0.99	\N	0
+1249	Dance Of Death	98	1	13	Janick Gers/Steve Harris	516649	20670727	0.99	\N	0
+1250	Gates Of Tomorrow	98	1	13	Bruce Dickinson/Janick Gers/Steve Harris	312032	12482688	0.99	\N	0
+1251	New Frontier	98	1	13	Adrian Smith/Bruce Dickinson/Nicko McBrain	304509	12181632	0.99	\N	0
+1252	Paschendale	98	1	13	Adrian Smith/Steve Harris	508107	20326528	0.99	\N	0
+1253	Face In The Sand	98	1	13	Adrian Smith/Bruce Dickinson/Steve Harris	391105	15648948	0.99	\N	0
+1254	Age Of Innocence	98	1	13	David Murray/Steve Harris	370468	14823478	0.99	\N	0
+1255	Journeyman	98	1	13	Bruce Dickinson/David Murray/Steve Harris	427023	17082496	0.99	\N	0
+1256	Be Quick Or Be Dead	99	1	1	Bruce Dickinson/Janick Gers	204512	8181888	0.99	\N	0
+1257	From Here To Eternity	99	1	1	Steve Harris	218357	8739038	0.99	\N	0
+1258	Afraid To Shoot Strangers	99	1	1	Steve Harris	416496	16664589	0.99	\N	0
+1259	Fear Is The Key	99	1	1	Bruce Dickinson/Janick Gers	335307	13414528	0.99	\N	0
+1260	Childhood's End	99	1	1	Steve Harris	280607	11225216	0.99	\N	0
+1261	Wasting Love	99	1	1	Bruce Dickinson/Janick Gers	350981	14041216	0.99	\N	0
+1262	The Fugitive	99	1	1	Steve Harris	294112	11765888	0.99	\N	0
+1263	Chains Of Misery	99	1	1	Bruce Dickinson/David Murray	217443	8700032	0.99	\N	0
+1264	The Apparition	99	1	1	Janick Gers/Steve Harris	234605	9386112	0.99	\N	0
+1265	Judas Be My Guide	99	1	1	Bruce Dickinson/David Murray	188786	7553152	0.99	\N	0
+1266	Weekend Warrior	99	1	1	Janick Gers/Steve Harris	339748	13594678	0.99	\N	0
+1267	Fear Of The Dark	99	1	1	Steve Harris	436976	17483789	0.99	\N	0
+1269	02 - Sanctuary	100	1	6	David Murray/Paul Di'Anno/Steve Harris	196284	4712576	0.99	\N	0
+1270	03 - Remember Tomorrow	100	1	6	Harris/Paul DiÂ´Anno	328620	7889024	0.99	\N	0
+1271	04 - Running Free	100	1	6	Harris/Paul DiÂ´Anno	197276	4739122	0.99	\N	0
+1272	05 - Phantom of the Opera	100	1	6	Steve Harris	428016	10276872	0.99	\N	0
+1273	06 - Transylvania	100	1	6	Steve Harris	259343	6226048	0.99	\N	0
+1274	07 - Strange World	100	1	6	Steve Harris	332460	7981184	0.99	\N	0
+1275	08 - Charlotte the Harlot	100	1	6	Murray  Dave	252708	6066304	0.99	\N	0
+1276	09 - Iron Maiden	100	1	6	Steve Harris	216058	5189891	0.99	\N	0
+1277	The Ides Of March	101	1	13	Steve Harris	105926	2543744	0.99	\N	0
+1278	Wrathchild	101	1	13	Steve Harris	174471	4188288	0.99	\N	0
+1279	Murders In The Rue Morgue	101	1	13	Steve Harris	258377	6205786	0.99	\N	0
+1280	Another Life	101	1	13	Steve Harris	203049	4874368	0.99	\N	0
+1281	Genghis Khan	101	1	13	Steve Harris	187141	4493440	0.99	\N	0
+1282	Innocent Exile	101	1	13	DiÂ´Anno/Harris	232515	5584861	0.99	\N	0
+1283	Killers	101	1	13	Steve Harris	300956	7227440	0.99	\N	0
+1284	Prodigal Son	101	1	13	Steve Harris	372349	8937600	0.99	\N	0
+1285	Purgatory	101	1	13	Steve Harris	200150	4804736	0.99	\N	0
+1286	Drifter	101	1	13	Steve Harris	288757	6934660	0.99	\N	0
+1287	Intro- Churchill S Speech	102	1	13	\N	48013	1154488	0.99	\N	0
+1289	2 Minutes To Midnight	102	1	3	Smith/Dickinson	366550	8799380	0.99	\N	0
+1290	The Trooper	102	1	3	Harris	268878	6455255	0.99	\N	0
+1291	Revelations	102	1	3	Dickinson	371826	8926021	0.99	\N	0
+1292	Flight Of Icarus	102	1	3	Smith/Dickinson	229982	5521744	0.99	\N	0
+1293	Rime Of The Ancient Mariner	102	1	3	\N	789472	18949518	0.99	\N	0
+1294	Powerslave	102	1	3	\N	454974	10921567	0.99	\N	0
+1295	The Number Of The Beast	102	1	3	Harris	275121	6605094	0.99	\N	0
+1296	Hallowed Be Thy Name	102	1	3	Harris	451422	10836304	0.99	\N	0
+1297	Iron Maiden	102	1	3	Harris	261955	6289117	0.99	\N	0
+1298	Run To The Hills	102	1	3	Harris	231627	5561241	0.99	\N	0
+1299	Running Free	102	1	3	Harris/Di Anno	204617	4912986	0.99	\N	0
+1300	Wrathchild	102	1	13	Steve Harris	183666	4410181	0.99	\N	0
+1301	Acacia Avenue	102	1	13	\N	379872	9119118	0.99	\N	0
+1302	Children Of The Damned	102	1	13	Steve Harris	278177	6678446	0.99	\N	0
+1303	Die With Your Boots On	102	1	13	Adrian Smith/Bruce Dickinson/Steve Harris	314174	7542367	0.99	\N	0
+1304	Phantom Of The Opera	102	1	13	Steve Harris	441155	10589917	0.99	\N	0
+1305	Be Quick Or Be Dead	103	1	1	\N	233142	5599853	0.99	\N	0
+1306	The Number Of The Beast	103	1	1	\N	294008	7060625	0.99	\N	0
+1307	Wrathchild	103	1	1	\N	174106	4182963	0.99	\N	0
+1308	From Here To Eternity	103	1	1	\N	284447	6831163	0.99	\N	0
+1309	Can I Play With Madness	103	1	1	\N	213106	5118995	0.99	\N	0
+1310	Wasting Love	103	1	1	\N	336953	8091301	0.99	\N	0
+1311	Tailgunner	103	1	1	\N	247640	5947795	0.99	\N	0
+1312	The Evil That Men Do	103	1	1	\N	478145	11479913	0.99	\N	0
+1313	Afraid To Shoot Strangers	103	1	1	\N	412525	9905048	0.99	\N	0
+1314	Fear Of The Dark	103	1	1	\N	431542	10361452	0.99	\N	0
+1315	Bring Your Daughter... To The Slaughter...	104	1	1	\N	376711	9045532	0.99	\N	0
+1316	The Clairvoyant	104	1	1	\N	262426	6302648	0.99	\N	0
+1317	Heaven Can Wait	104	1	1	\N	440555	10577743	0.99	\N	0
+1318	Run To The Hills	104	1	1	\N	235859	5665052	0.99	\N	0
+1319	2 Minutes To Midnight	104	1	1	Adrian Smith/Bruce Dickinson	338233	8122030	0.99	\N	0
+1320	Iron Maiden	104	1	1	\N	494602	11874875	0.99	\N	0
+1321	Hallowed Be Thy Name	104	1	1	\N	447791	10751410	0.99	\N	0
+1322	The Trooper	104	1	1	\N	232672	5588560	0.99	\N	0
+1323	Sanctuary	104	1	1	\N	318511	7648679	0.99	\N	0
+1324	Running Free	104	1	1	\N	474017	11380851	0.99	\N	0
+1325	Tailgunner	105	1	3	Bruce Dickinson/Steve Harris	255582	4089856	0.99	\N	0
+1326	Holy Smoke	105	1	3	Bruce Dickinson/Steve Harris	229459	3672064	0.99	\N	0
+1327	No Prayer For The Dying	105	1	3	Steve Harris	263941	4225024	0.99	\N	0
+1328	Public Enema Number One	105	1	3	Bruce Dickinson/David Murray	254197	4071587	0.99	\N	0
+1329	Fates Warning	105	1	3	David Murray/Steve Harris	250853	4018088	0.99	\N	0
+1330	The Assassin	105	1	3	Steve Harris	258768	4141056	0.99	\N	0
+1331	Run Silent Run Deep	105	1	3	Bruce Dickinson/Steve Harris	275408	4407296	0.99	\N	0
+1332	Hooks In You	105	1	3	Adrian Smith/Bruce Dickinson	247510	3960832	0.99	\N	0
+1333	Bring Your Daughter... ...To The Slaughter	105	1	3	Bruce Dickinson	284238	4548608	0.99	\N	0
+1334	Mother Russia	105	1	3	Steve Harris	332617	5322752	0.99	\N	0
+1335	Where Eagles Dare	106	1	3	Steve Harris	369554	5914624	0.99	\N	0
+1336	Revelations	106	1	3	Bruce Dickinson	408607	6539264	0.99	\N	0
+1337	Flight Of The Icarus	106	1	3	Adrian Smith/Bruce Dickinson	230269	3686400	0.99	\N	0
+1338	Die With Your Boots On	106	1	3	Adrian Smith/Bruce Dickinson/Steve Harris	325694	5212160	0.99	\N	0
+1339	The Trooper	106	1	3	Steve Harris	251454	4024320	0.99	\N	0
+1340	Still Life	106	1	3	David Murray/Steve Harris	294347	4710400	0.99	\N	0
+1341	Quest For Fire	106	1	3	Steve Harris	221309	3543040	0.99	\N	0
+1342	Sun And Steel	106	1	3	Adrian Smith/Bruce Dickinson	206367	3306324	0.99	\N	0
+1343	To Tame A Land	106	1	3	Steve Harris	445283	7129264	0.99	\N	0
+1344	Aces High	107	1	3	Harris	269531	6472088	0.99	\N	0
+1345	2 Minutes To Midnight	107	1	3	Smith/Dickinson	359810	8638809	0.99	\N	0
+1346	Losfer Words	107	1	3	Steve Harris	252891	6074756	0.99	\N	0
+1347	Flash of The Blade	107	1	3	Dickinson	242729	5828861	0.99	\N	0
+1348	Duelists	107	1	3	Steve Harris	366471	8800686	0.99	\N	0
+1349	Back in the Village	107	1	3	Dickinson/Smith	320548	7696518	0.99	\N	0
+1350	Powerslave	107	1	3	Dickinson	407823	9791106	0.99	\N	0
+1351	Rime of the Ancient Mariner	107	1	3	Harris	816509	19599577	0.99	\N	0
+1352	Intro	108	1	3	\N	115931	4638848	0.99	\N	0
+1353	The Wicker Man	108	1	3	Adrian Smith/Bruce Dickinson/Steve Harris	281782	11272320	0.99	\N	0
+1354	Ghost Of The Navigator	108	1	3	Bruce Dickinson/Janick Gers/Steve Harris	408607	16345216	0.99	\N	0
+1355	Brave New World	108	1	3	Bruce Dickinson/David Murray/Steve Harris	366785	14676148	0.99	\N	0
+1356	Wrathchild	108	1	3	Steve Harris	185808	7434368	0.99	\N	0
+1357	2 Minutes To Midnight	108	1	3	Adrian Smith/Bruce Dickinson	386821	15474816	0.99	\N	0
+1358	Blood Brothers	108	1	3	Steve Harris	435513	17422464	0.99	\N	0
+1359	Sign Of The Cross	108	1	3	Steve Harris	649116	25966720	0.99	\N	0
+1360	The Mercenary	108	1	3	Janick Gers/Steve Harris	282697	11309184	0.99	\N	0
+1361	The Trooper	108	1	3	Steve Harris	273528	10942592	0.99	\N	0
+1362	Dream Of Mirrors	109	1	1	Janick Gers/Steve Harris	578324	23134336	0.99	\N	0
+1363	The Clansman	109	1	1	Steve Harris	559203	22370432	0.99	\N	0
+1364	The Evil That Men Do	109	1	3	Adrian Smith/Bruce Dickinson/Steve Harris	280737	11231360	0.99	\N	0
+1365	Fear Of The Dark	109	1	1	Steve Harris	460695	18430080	0.99	\N	0
+1366	Iron Maiden	109	1	1	Steve Harris	351869	14076032	0.99	\N	0
+1367	The Number Of The Beast	109	1	1	Steve Harris	300434	12022107	0.99	\N	0
+1368	Hallowed Be Thy Name	109	1	1	Steve Harris	443977	17760384	0.99	\N	0
+1369	Sanctuary	109	1	1	David Murray/Paul Di'Anno/Steve Harris	317335	12695680	0.99	\N	0
+1370	Run To The Hills	109	1	1	Steve Harris	292179	11688064	0.99	\N	0
+1371	Moonchild	110	1	3	Adrian Smith; Bruce Dickinson	340767	8179151	0.99	\N	0
+1372	Infinite Dreams	110	1	3	Steve Harris	369005	8858669	0.99	\N	0
+1373	Can I Play With Madness	110	1	3	Adrian Smith; Bruce Dickinson; Steve Harris	211043	5067867	0.99	\N	0
+1374	The Evil That Men Do	110	1	3	Adrian Smith; Bruce Dickinson; Steve Harris	273998	6578930	0.99	\N	0
+1375	Seventh Son of a Seventh Son	110	1	3	Steve Harris	593580	14249000	0.99	\N	0
+1376	The Prophecy	110	1	3	Dave Murray; Steve Harris	305475	7334450	0.99	\N	0
+1377	The Clairvoyant	110	1	3	Adrian Smith; Bruce Dickinson; Steve Harris	267023	6411510	0.99	\N	0
+1378	Only the Good Die Young	110	1	3	Bruce Dickinson; Harris	280894	6744431	0.99	\N	0
+1379	Caught Somewhere in Time	111	1	3	Steve Harris	445779	10701149	0.99	\N	0
+1380	Wasted Years	111	1	3	Adrian Smith	307565	7384358	0.99	\N	0
+1381	Sea of Madness	111	1	3	Adrian Smith	341995	8210695	0.99	\N	0
+1382	Heaven Can Wait	111	1	3	Steve Harris	441417	10596431	0.99	\N	0
+1383	Stranger in a Strange Land	111	1	3	Adrian Smith	344502	8270899	0.99	\N	0
+1384	Alexander the Great	111	1	3	Steve Harris	515631	12377742	0.99	\N	0
+1385	De Ja Vu	111	1	3	David Murray/Steve Harris	296176	7113035	0.99	\N	0
+1386	The Loneliness of the Long Dis	111	1	3	Steve Harris	391314	9393598	0.99	\N	0
+1387	22 Acacia Avenue	112	1	3	Adrian Smith/Steve Harris	395572	5542516	0.99	\N	0
+1388	Children of the Damned	112	1	3	Steve Harris	274364	3845631	0.99	\N	0
+1389	Gangland	112	1	3	Adrian Smith/Clive Burr/Steve Harris	228440	3202866	0.99	\N	0
+1390	Hallowed Be Thy Name	112	1	3	Steve Harris	428669	6006107	0.99	\N	0
+1391	Invaders	112	1	3	Steve Harris	203180	2849181	0.99	\N	0
+1392	Run to the Hills	112	1	3	Steve Harris	228884	3209124	0.99	\N	0
+1393	The Number Of The Beast	112	1	1	Steve Harris	293407	11737216	0.99	\N	0
+1394	The Prisoner	112	1	3	Adrian Smith/Steve Harris	361299	5062906	0.99	\N	0
+1395	Sign Of The Cross	113	1	1	Steve Harris	678008	27121792	0.99	\N	0
+1396	Lord Of The Flies	113	1	1	Janick Gers/Steve Harris	303699	12148864	0.99	\N	0
+1397	Man On The Edge	113	1	1	Blaze Bayley/Janick Gers	253413	10137728	0.99	\N	0
+1398	Fortunes Of War	113	1	1	Steve Harris	443977	17760384	0.99	\N	0
+1399	Look For The Truth	113	1	1	Blaze Bayley/Janick Gers/Steve Harris	310230	12411008	0.99	\N	0
+1400	The Aftermath	113	1	1	Blaze Bayley/Janick Gers/Steve Harris	380786	15233152	0.99	\N	0
+1401	Judgement Of Heaven	113	1	1	Steve Harris	312476	12501120	0.99	\N	0
+1402	Blood On The World's Hands	113	1	1	Steve Harris	357799	14313600	0.99	\N	0
+1403	The Edge Of Darkness	113	1	1	Blaze Bayley/Janick Gers/Steve Harris	399333	15974528	0.99	\N	0
+1404	2 A.M.	113	1	1	Blaze Bayley/Janick Gers/Steve Harris	337658	13511087	0.99	\N	0
+1405	The Unbeliever	113	1	1	Janick Gers/Steve Harris	490422	19617920	0.99	\N	0
+1406	Futureal	114	1	1	Blaze Bayley/Steve Harris	175777	7032960	0.99	\N	0
+1407	The Angel And The Gambler	114	1	1	Steve Harris	592744	23711872	0.99	\N	0
+1408	Lightning Strikes Twice	114	1	1	David Murray/Steve Harris	290377	11616384	0.99	\N	0
+1409	The Clansman	114	1	1	Steve Harris	539689	21592327	0.99	\N	0
+1410	When Two Worlds Collide	114	1	1	Blaze Bayley/David Murray/Steve Harris	377312	15093888	0.99	\N	0
+1411	The Educated Fool	114	1	1	Steve Harris	404767	16191616	0.99	\N	0
+1412	Don't Look To The Eyes Of A Stranger	114	1	1	Steve Harris	483657	19347584	0.99	\N	0
+1413	Como Estais Amigos	114	1	1	Blaze Bayley/Janick Gers	330292	13213824	0.99	\N	0
+1414	Please Please Please	115	1	14	James Brown/Johnny Terry	165067	5394585	0.99	\N	0
+1415	Think	115	1	14	Lowman Pauling	166739	5513208	0.99	\N	0
+1416	Night Train	115	1	14	Jimmy Forrest/Lewis C. Simpkins/Oscar Washington	212401	7027377	0.99	\N	0
+1417	Out Of Sight	115	1	14	Ted Wright	143725	4711323	0.99	\N	0
+1418	Papa's Got A Brand New Bag Pt.1	115	1	14	James Brown	127399	4174420	0.99	\N	0
+1419	I Got You (I Feel Good)	115	1	14	James Brown	167392	5468472	0.99	\N	0
+1420	It's A Man's Man's Man's World	115	1	14	Betty Newsome/James Brown	168228	5541611	0.99	\N	0
+1421	Cold Sweat	115	1	14	Alfred Ellis/James Brown	172408	5643213	0.99	\N	0
+1422	Say It Loud, I'm Black And I'm Proud Pt.1	115	1	14	Alfred Ellis/James Brown	167392	5478117	0.99	\N	0
+1423	Get Up (I Feel Like Being A) Sex Machine	115	1	14	Bobby Byrd/James Brown/Ron Lenhoff	316551	10498031	0.99	\N	0
+1424	Hey America	115	1	14	Addie William Jones/Nat Jones	218226	7187857	0.99	\N	0
+1425	Make It Funky Pt.1	115	1	14	Charles Bobbitt/James Brown	196231	6507782	0.99	\N	0
+1426	I'm A Greedy Man Pt.1	115	1	14	Charles Bobbitt/James Brown	217730	7251211	0.99	\N	0
+1427	Get On The Good Foot	115	1	14	Fred Wesley/James Brown/Joseph Mims	215902	7182736	0.99	\N	0
+1428	Get Up Offa That Thing	115	1	14	Deanna Brown/Deidra Jenkins/Yamma Brown	250723	8355989	0.99	\N	0
+1429	It's Too Funky In Here	115	1	14	Brad Shapiro/George Jackson/Robert Miller/Walter Shaw	239072	7973979	0.99	\N	0
+1430	Living In America	115	1	14	Charlie Midnight/Dan Hartman	282880	9432346	0.99	\N	0
+1431	I'm Real	115	1	14	Full Force/James Brown	334236	11183457	0.99	\N	0
+1432	Hot Pants Pt.1	115	1	14	Fred Wesley/James Brown	188212	6295110	0.99	\N	0
+1433	Soul Power (Live)	115	1	14	James Brown	260728	8593206	0.99	\N	0
+1434	When You Gonna Learn (Digeridoo)	116	1	1	Jay Kay/Kay, Jay	230635	7655482	0.99	\N	0
+1435	Too Young To Die	116	1	1	Smith, Toby	365818	12391660	0.99	\N	0
+1436	Hooked Up	116	1	1	Smith, Toby	275879	9301687	0.99	\N	0
+1437	If I Like It, I Do It	116	1	1	Gelder, Nick van	293093	9848207	0.99	\N	0
+1438	Music Of The Wind	116	1	1	Smith, Toby	383033	12870239	0.99	\N	0
+1439	Emergency On Planet Earth	116	1	1	Smith, Toby	245263	8117218	0.99	\N	0
+1440	Whatever It Is, I Just Can't Stop	116	1	1	Jay Kay/Kay, Jay	247222	8249453	0.99	\N	0
+1441	Blow Your Mind	116	1	1	Smith, Toby	512339	17089176	0.99	\N	0
+1442	Revolution 1993	116	1	1	Smith, Toby	616829	20816872	0.99	\N	0
+1443	Didgin' Out	116	1	1	Buchanan, Wallis	157100	5263555	0.99	\N	0
+1444	Canned Heat	117	1	14	Jay Kay	331964	11042037	0.99	\N	0
+1445	Planet Home	117	1	14	Jay Kay/Toby Smith	284447	9566237	0.99	\N	0
+1446	Black Capricorn Day	117	1	14	Jay Kay	341629	11477231	0.99	\N	0
+1447	Soul Education	117	1	14	Jay Kay/Toby Smith	255477	8575435	0.99	\N	0
+1448	Failling	117	1	14	Jay Kay/Toby Smith	225227	7503999	0.99	\N	0
+1449	Destitute Illusions	117	1	14	Derrick McKenzie/Jay Kay/Toby Smith	340218	11452651	0.99	\N	0
+1450	Supersonic	117	1	14	Jay Kay	315872	10699265	0.99	\N	0
+1451	Butterfly	117	1	14	Jay Kay/Toby Smith	268852	8947356	0.99	\N	0
+1452	Were Do We Go From Here	117	1	14	Jay Kay	313626	10504158	0.99	\N	0
+1453	King For A Day	117	1	14	Jay Kay/Toby Smith	221544	7335693	0.99	\N	0
+1454	Deeper Underground	117	1	14	Toby Smith	281808	9351277	0.99	\N	0
+1455	Just Another Story	118	1	15	Toby Smith	529684	17582818	0.99	\N	0
+1456	Stillness In Time	118	1	15	Toby Smith	257097	8644290	0.99	\N	0
+1457	Half The Man	118	1	15	Toby Smith	289854	9577679	0.99	\N	0
+1458	Light Years	118	1	15	Toby Smith	354560	11796244	0.99	\N	0
+1459	Manifest Destiny	118	1	15	Toby Smith	382197	12676962	0.99	\N	0
+1460	The Kids	118	1	15	Toby Smith	309995	10334529	0.99	\N	0
+1461	Mr. Moon	118	1	15	Stuard Zender/Toby Smith	329534	11043559	0.99	\N	0
+1462	Scam	118	1	15	Stuart Zender	422321	14019705	0.99	\N	0
+1463	Journey To Arnhemland	118	1	15	Toby Smith/Wallis Buchanan	322455	10843832	0.99	\N	0
+1464	Morning Glory	118	1	15	J. Kay/Jay Kay	384130	12777210	0.99	\N	0
+1465	Space Cowboy	118	1	15	J. Kay/Jay Kay	385697	12906520	0.99	\N	0
+1466	Last Chance	119	1	4	C. Cester/C. Muncey	112352	3683130	0.99	\N	0
+1467	Are You Gonna Be My Girl	119	1	4	C. Muncey/N. Cester	213890	6992324	0.99	\N	0
+1468	Rollover D.J.	119	1	4	C. Cester/N. Cester	196702	6406517	0.99	\N	0
+1469	Look What You've Done	119	1	4	N. Cester	230974	7517083	0.99	\N	0
+1470	Get What You Need	119	1	4	C. Cester/C. Muncey/N. Cester	247719	8043765	0.99	\N	0
+1471	Move On	119	1	4	C. Cester/N. Cester	260623	8519353	0.99	\N	0
+1472	Radio Song	119	1	4	C. Cester/C. Muncey/N. Cester	272117	8871509	0.99	\N	0
+1473	Get Me Outta Here	119	1	4	C. Cester/N. Cester	176274	5729098	0.99	\N	0
+1474	Cold Hard Bitch	119	1	4	C. Cester/C. Muncey/N. Cester	243278	7929610	0.99	\N	0
+1475	Come Around Again	119	1	4	C. Muncey/N. Cester	270497	8872405	0.99	\N	0
+1476	Take It Or Leave It	119	1	4	C. Muncey/N. Cester	142889	4643370	0.99	\N	0
+1477	Lazy Gun	119	1	4	C. Cester/N. Cester	282174	9186285	0.99	\N	0
+1478	Timothy	119	1	4	C. Cester	270341	8856507	0.99	\N	0
+1479	Foxy Lady	120	1	1	Jimi Hendrix	199340	6480896	0.99	\N	0
+1480	Manic Depression	120	1	1	Jimi Hendrix	222302	7289272	0.99	\N	0
+1481	Red House	120	1	1	Jimi Hendrix	224130	7285851	0.99	\N	0
+1482	Can You See Me	120	1	1	Jimi Hendrix	153077	4987068	0.99	\N	0
+1483	Love Or Confusion	120	1	1	Jimi Hendrix	193123	6329408	0.99	\N	0
+1484	I Don't Live Today	120	1	1	Jimi Hendrix	235311	7661214	0.99	\N	0
+1485	May This Be Love	120	1	1	Jimi Hendrix	191216	6240028	0.99	\N	0
+1486	Fire	120	1	1	Jimi Hendrix	164989	5383075	0.99	\N	0
+1487	Third Stone From The Sun	120	1	1	Jimi Hendrix	404453	13186975	0.99	\N	0
+1488	Remember	120	1	1	Jimi Hendrix	168150	5509613	0.99	\N	0
+1489	Are You Experienced?	120	1	1	Jimi Hendrix	254537	8292497	0.99	\N	0
+1490	Hey Joe	120	1	1	Billy Roberts	210259	6870054	0.99	\N	0
+1491	Stone Free	120	1	1	Jimi Hendrix	216293	7002331	0.99	\N	0
+1492	Purple Haze	120	1	1	Jimi Hendrix	171572	5597056	0.99	\N	0
+1493	51st Anniversary	120	1	1	Jimi Hendrix	196388	6398044	0.99	\N	0
+1494	The Wind Cries Mary	120	1	1	Jimi Hendrix	200463	6540638	0.99	\N	0
+1495	Highway Chile	120	1	1	Jimi Hendrix	212453	6887949	0.99	\N	0
+1496	Surfing with the Alien	121	2	1	\N	263707	4418504	0.99	\N	0
+1497	Ice 9	121	2	1	\N	239721	4036215	0.99	\N	0
+1498	Crushing Day	121	2	1	\N	314768	5232158	0.99	\N	0
+1499	Always With Me, Always With You	121	2	1	\N	202035	3435777	0.99	\N	0
+1500	Satch Boogie	121	2	1	\N	193560	3300654	0.99	\N	0
+1501	Hill of the Skull	121	2	1	J. Satriani	108435	1944738	0.99	\N	0
+1502	Circles	121	2	1	\N	209071	3548553	0.99	\N	0
+1503	Lords of Karma	121	2	1	J. Satriani	288227	4809279	0.99	\N	0
+1504	Midnight	121	2	1	J. Satriani	102630	1851753	0.99	\N	0
+1505	Echo	121	2	1	J. Satriani	337570	5595557	0.99	\N	0
+1506	Engenho De Dentro	122	1	7	\N	310073	10211473	0.99	\N	0
+1507	Alcohol	122	1	7	\N	355239	12010478	0.99	\N	0
+1508	Mama Africa	122	1	7	\N	283062	9488316	0.99	\N	0
+1509	Salve Simpatia	122	1	7	\N	343484	11314756	0.99	\N	0
+1510	W/Brasil (Chama O SÃ­ndico)	122	1	7	\N	317100	10599953	0.99	\N	0
+1511	PaÃ­s Tropical	122	1	7	\N	452519	14946972	0.99	\N	0
+1512	Os Alquimistas EstÃ£o Chegando	122	1	7	\N	367281	12304520	0.99	\N	0
+1513	Charles Anjo 45	122	1	7	\N	389276	13022833	0.99	\N	0
+1514	SelassiÃª	122	1	7	\N	326321	10724982	0.99	\N	0
+1515	Menina SararÃ¡	122	1	7	\N	191477	6393818	0.99	\N	0
+1516	Que Maravilha	122	1	7	\N	338076	10996656	0.99	\N	0
+1517	Santa Clara Clareou	122	1	7	\N	380081	12524725	0.99	\N	0
+1518	Filho Maravilha	122	1	7	\N	227526	7498259	0.99	\N	0
+1519	Taj Mahal	122	1	7	\N	289750	9502898	0.99	\N	0
+1520	Rapidamente	123	1	7	\N	252238	8470107	0.99	\N	0
+1521	As Dores do Mundo	123	1	7	Hyldon	255477	8537092	0.99	\N	0
+1522	Vou Pra Ai	123	1	7	\N	300878	10053718	0.99	\N	0
+1523	My Brother	123	1	7	\N	253231	8431821	0.99	\N	0
+1524	HÃ¡ Quanto Tempo	123	1	7	\N	270027	9004470	0.99	\N	0
+1525	VÃ­cio	123	1	7	\N	269897	8887216	0.99	\N	0
+1526	Encontrar AlguÃ©m	123	1	7	Marco Tulio Lara/Rogerio Flausino	224078	7437935	0.99	\N	0
+1527	Dance Enquanto Ã© Tempo	123	1	7	\N	229093	7583799	0.99	\N	0
+1528	A Tarde	123	1	7	\N	266919	8836127	0.99	\N	0
+1529	Always Be All Right	123	1	7	\N	128078	4299676	0.99	\N	0
+1530	Sem Sentido	123	1	7	\N	250462	8292108	0.99	\N	0
+1531	Onibusfobia	123	1	7	\N	315977	10474904	0.99	\N	0
+1532	Pura Elegancia	124	1	16	JoÃ£o Suplicy	284107	9632269	0.99	\N	0
+1533	Choramingando	124	1	16	JoÃ£o Suplicy	190484	6400532	0.99	\N	0
+1534	Por Merecer	124	1	16	JoÃ£o Suplicy	230582	7764601	0.99	\N	0
+1535	No Futuro	124	1	16	JoÃ£o Suplicy	182308	6056200	0.99	\N	0
+1536	Voce Inteira	124	1	16	JoÃ£o Suplicy	241084	8077282	0.99	\N	0
+1537	Cuando A Noite Vai Chegando	124	1	16	JoÃ£o Suplicy	270628	9081874	0.99	\N	0
+1538	Naquele Dia	124	1	16	JoÃ£o Suplicy	251768	8452654	0.99	\N	0
+1539	Equinocio	124	1	16	JoÃ£o Suplicy	269008	8871455	0.99	\N	0
+1540	PapelÃ£o	124	1	16	JoÃ£o Suplicy	213263	7257390	0.99	\N	0
+1541	Cuando Eu For Pro Ceu	124	1	16	JoÃ£o Suplicy	118804	3948371	0.99	\N	0
+1542	Do Nosso Amor	124	1	16	JoÃ£o Suplicy	203415	6774566	0.99	\N	0
+1543	Borogodo	124	1	16	JoÃ£o Suplicy	208457	7104588	0.99	\N	0
+1544	Cafezinho	124	1	16	JoÃ£o Suplicy	180924	6031174	0.99	\N	0
+1545	Enquanto O Dia NÃ£o Vem	124	1	16	JoÃ£o Suplicy	220891	7248336	0.99	\N	0
+1546	The Green Manalishi	125	1	3	\N	205792	6720789	0.99	\N	0
+1547	Living After Midnight	125	1	3	\N	213289	7056785	0.99	\N	0
+1548	Breaking The Law (Live)	125	1	3	\N	144195	4728246	0.99	\N	0
+1549	Hot Rockin'	125	1	3	\N	197328	6509179	0.99	\N	0
+1550	Heading Out To The Highway (Live)	125	1	3	\N	276427	9006022	0.99	\N	0
+1551	The Hellion	125	1	3	\N	41900	1351993	0.99	\N	0
+1552	Electric Eye	125	1	3	\N	222197	7231368	0.99	\N	0
+1553	You've Got Another Thing Comin'	125	1	3	\N	305162	9962558	0.99	\N	0
+1554	Turbo Lover	125	1	3	\N	335542	11068866	0.99	\N	0
+1555	Freewheel Burning	125	1	3	\N	265952	8713599	0.99	\N	0
+1556	Some Heads Are Gonna Roll	125	1	3	\N	249939	8198617	0.99	\N	0
+1557	Metal Meltdown	125	1	3	\N	290664	9390646	0.99	\N	0
+1558	Ram It Down	125	1	3	\N	292179	9554023	0.99	\N	0
+1559	Diamonds And Rust (Live)	125	1	3	\N	219350	7163147	0.99	\N	0
+1560	Victim Of Change (Live)	125	1	3	\N	430942	14067512	0.99	\N	0
+1561	Tyrant (Live)	125	1	3	\N	282253	9190536	0.99	\N	0
+1562	Comin' Home	126	1	1	Paul Stanley, Ace Frehley	172068	5661120	0.99	\N	0
+1563	Plaster Caster	126	1	1	Gene Simmons	198060	6528719	0.99	\N	0
+1564	Goin' Blind	126	1	1	Gene Simmons, Stephen Coronel	217652	7167523	0.99	\N	0
+1565	Do You Love Me	126	1	1	Paul Stanley, Bob Ezrin, Kim Fowley	193619	6343111	0.99	\N	0
+1566	Domino	126	1	1	Gene Simmons	226377	7488191	0.99	\N	0
+1567	Sure Know Something	126	1	1	Paul Stanley, Vincent Poncia	254354	8375190	0.99	\N	0
+1568	A World Without Heroes	126	1	1	Paul Stanley, Gene Simmons, Bob Ezrin, Lewis Reed	177815	5832524	0.99	\N	0
+1569	Rock Bottom	126	1	1	Paul Stanley, Ace Frehley	200594	6560818	0.99	\N	0
+1570	See You Tonight	126	1	1	Gene Simmons	146494	4817521	0.99	\N	0
+1571	I Still Love You	126	1	1	Paul Stanley	369815	12086145	0.99	\N	0
+1572	Every Time I Look At You	126	1	1	Paul Stanley, Vincent Cusano	283898	9290948	0.99	\N	0
+1573	2,000 Man	126	1	1	Mick Jagger, Keith Richard	312450	10292829	0.99	\N	0
+1574	Beth	126	1	1	Peter Criss, Stan Penridge, Bob Ezrin	170187	5577807	0.99	\N	0
+1575	Nothin' To Lose	126	1	1	Gene Simmons	222354	7351460	0.99	\N	0
+1576	Rock And Roll All Nite	126	1	1	Paul Stanley, Gene Simmons	259631	8549296	0.99	\N	0
+1577	Immigrant Song	127	1	1	Robert Plant	201247	6457766	0.99	\N	0
+1578	Heartbreaker	127	1	1	John Bonham/John Paul Jones/Robert Plant	316081	10179657	0.99	\N	0
+1579	Since I've Been Loving You	127	1	1	John Paul Jones/Robert Plant	416365	13471959	0.99	\N	0
+1580	Black Dog	127	1	1	John Paul Jones/Robert Plant	317622	10267572	0.99	\N	0
+1581	Dazed And Confused	127	1	1	Jimmy Page/Led Zeppelin	1116734	36052247	0.99	\N	0
+1582	Stairway To Heaven	127	1	1	Robert Plant	529658	17050485	0.99	\N	0
+1583	Going To California	127	1	1	Robert Plant	234605	7646749	0.99	\N	0
+1584	That's The Way	127	1	1	Robert Plant	343431	11248455	0.99	\N	0
+1585	Whole Lotta Love (Medley)	127	1	1	Arthur Crudup/Bernard Besman/Bukka White/Doc Pomus/John Bonham/John Lee Hooker/John Paul Jones/Mort Shuman/Robert Plant/Willie Dixon	825103	26742545	0.99	\N	0
+1586	Thank You	127	1	1	Robert Plant	398262	12831826	0.99	\N	0
+1587	We're Gonna Groove	128	1	1	Ben E.King/James Bethea	157570	5180975	0.99	\N	0
+1588	Poor Tom	128	1	1	Jimmy Page/Robert Plant	182491	6016220	0.99	\N	0
+1589	I Can't Quit You Baby	128	1	1	Willie Dixon	258168	8437098	0.99	\N	0
+1590	Walter's Walk	128	1	1	Jimmy Page, Robert Plant	270785	8712499	0.99	\N	0
+1591	Ozone Baby	128	1	1	Jimmy Page, Robert Plant	215954	7079588	0.99	\N	0
+1592	Darlene	128	1	1	Jimmy Page, Robert Plant, John Bonham, John Paul Jones	307226	10078197	0.99	\N	0
+1593	Bonzo's Montreux	128	1	1	John Bonham	258925	8557447	0.99	\N	0
+1594	Wearing And Tearing	128	1	1	Jimmy Page, Robert Plant	330004	10701590	0.99	\N	0
+1595	The Song Remains The Same	129	1	1	Jimmy Page/Jimmy Page & Robert Plant/Robert Plant	330004	10708950	0.99	\N	0
+1596	The Rain Song	129	1	1	Jimmy Page/Jimmy Page & Robert Plant/Robert Plant	459180	15029875	0.99	\N	0
+1597	Over The Hills And Far Away	129	1	1	Jimmy Page/Jimmy Page & Robert Plant/Robert Plant	290089	9552829	0.99	\N	0
+1598	The Crunge	129	1	1	John Bonham/John Paul Jones	197407	6460212	0.99	\N	0
+1599	Dancing Days	129	1	1	Jimmy Page/Jimmy Page & Robert Plant/Robert Plant	223216	7250104	0.99	\N	0
+1600	D'Yer Mak'er	129	1	1	John Bonham/John Paul Jones	262948	8645935	0.99	\N	0
+1601	No Quarter	129	1	1	John Paul Jones	420493	13656517	0.99	\N	0
+1602	The Ocean	129	1	1	John Bonham/John Paul Jones	271098	8846469	0.99	\N	0
+1603	In The Evening	130	1	1	Jimmy Page, Robert Plant & John Paul Jones	410566	13399734	0.99	\N	0
+1604	South Bound Saurez	130	1	1	John Paul Jones & Robert Plant	254406	8420427	0.99	\N	0
+1605	Fool In The Rain	130	1	1	Jimmy Page, Robert Plant & John Paul Jones	372950	12371433	0.99	\N	0
+1606	Hot Dog	130	1	1	Jimmy Page & Robert Plant	197198	6536167	0.99	\N	0
+1607	Carouselambra	130	1	1	John Paul Jones, Jimmy Page & Robert Plant	634435	20858315	0.99	\N	0
+1608	All My Love	130	1	1	Robert Plant & John Paul Jones	356284	11684862	0.99	\N	0
+1609	I'm Gonna Crawl	130	1	1	Jimmy Page, Robert Plant & John Paul Jones	329639	10737665	0.99	\N	0
+1610	Black Dog	131	1	1	Jimmy Page, Robert Plant, John Paul Jones	296672	9660588	0.99	\N	0
+1611	Rock & Roll	131	1	1	Jimmy Page, Robert Plant, John Paul Jones, John Bonham	220917	7142127	0.99	\N	0
+1612	The Battle Of Evermore	131	1	1	Jimmy Page, Robert Plant	351555	11525689	0.99	\N	0
+1613	Stairway To Heaven	131	1	1	Jimmy Page, Robert Plant	481619	15706767	0.99	\N	0
+1614	Misty Mountain Hop	131	1	1	Jimmy Page, Robert Plant, John Paul Jones	278857	9092799	0.99	\N	0
+1615	Four Sticks	131	1	1	Jimmy Page, Robert Plant	284447	9481301	0.99	\N	0
+1616	Going To California	131	1	1	Jimmy Page, Robert Plant	215693	7068737	0.99	\N	0
+1617	When The Levee Breaks	131	1	1	Jimmy Page, Robert Plant, John Paul Jones, John Bonham, Memphis Minnie	427702	13912107	0.99	\N	0
+1618	Good Times Bad Times	132	1	1	Jimmy Page/John Bonham/John Paul Jones	166164	5464077	0.99	\N	0
+1619	Babe I'm Gonna Leave You	132	1	1	Jimmy Page/Robert Plant	401475	13189312	0.99	\N	0
+1620	You Shook Me	132	1	1	J. B. Lenoir/Willie Dixon	388179	12643067	0.99	\N	0
+1621	Dazed and Confused	132	1	1	Jimmy Page	386063	12610326	0.99	\N	0
+1622	Your Time Is Gonna Come	132	1	1	Jimmy Page/John Paul Jones	274860	9011653	0.99	\N	0
+1623	Black Mountain Side	132	1	1	Jimmy Page	132702	4440602	0.99	\N	0
+1624	Communication Breakdown	132	1	1	Jimmy Page/John Bonham/John Paul Jones	150230	4899554	0.99	\N	0
+1625	I Can't Quit You Baby	132	1	1	Willie Dixon	282671	9252733	0.99	\N	0
+1626	How Many More Times	132	1	1	Jimmy Page/John Bonham/John Paul Jones	508055	16541364	0.99	\N	0
+1627	Whole Lotta Love	133	1	1	Jimmy Page, Robert Plant, John Paul Jones, John Bonham	334471	11026243	0.99	\N	0
+1628	What Is And What Should Never Be	133	1	1	Jimmy Page, Robert Plant	287973	9369385	0.99	\N	0
+1629	The Lemon Song	133	1	1	Jimmy Page, Robert Plant, John Paul Jones, John Bonham	379141	12463496	0.99	\N	0
+1630	Thank You	133	1	1	Jimmy Page, Robert Plant	287791	9337392	0.99	\N	0
+1631	Heartbreaker	133	1	1	Jimmy Page, Robert Plant, John Paul Jones, John Bonham	253988	8387560	0.99	\N	0
+1632	Living Loving Maid (She's Just A Woman)	133	1	1	Jimmy Page, Robert Plant	159216	5219819	0.99	\N	0
+1633	Ramble On	133	1	1	Jimmy Page, Robert Plant	275591	9199710	0.99	\N	0
+1634	Moby Dick	133	1	1	John Bonham, John Paul Jones, Jimmy Page	260728	8664210	0.99	\N	0
+1635	Bring It On Home	133	1	1	Jimmy Page, Robert Plant	259970	8494731	0.99	\N	0
+1636	Immigrant Song	134	1	1	Jimmy Page, Robert Plant	144875	4786461	0.99	\N	0
+1637	Friends	134	1	1	Jimmy Page, Robert Plant	233560	7694220	0.99	\N	0
+1638	Celebration Day	134	1	1	Jimmy Page, Robert Plant, John Paul Jones	209528	6871078	0.99	\N	0
+1639	Since I've Been Loving You	134	1	1	Jimmy Page, Robert Plant, John Paul Jones	444055	14482460	0.99	\N	0
+1640	Out On The Tiles	134	1	1	Jimmy Page, Robert Plant, John Bonham	246047	8060350	0.99	\N	0
+1641	Gallows Pole	134	1	1	Traditional	296228	9757151	0.99	\N	0
+1642	Tangerine	134	1	1	Jimmy Page	189675	6200893	0.99	\N	0
+1643	That's The Way	134	1	1	Jimmy Page, Robert Plant	337345	11202499	0.99	\N	0
+1644	Bron-Y-Aur Stomp	134	1	1	Jimmy Page, Robert Plant, John Paul Jones	259500	8674508	0.99	\N	0
+1645	Hats Off To (Roy) Harper	134	1	1	Traditional	219376	7236640	0.99	\N	0
+1646	In The Light	135	1	1	John Paul Jones/Robert Plant	526785	17033046	0.99	\N	0
+1647	Bron-Yr-Aur	135	1	1	Jimmy Page	126641	4150746	0.99	\N	0
+1648	Down By The Seaside	135	1	1	Robert Plant	316186	10371282	0.99	\N	0
+1649	Ten Years Gone	135	1	1	Robert Plant	393116	12756366	0.99	\N	0
+1650	Night Flight	135	1	1	John Paul Jones/Robert Plant	217547	7160647	0.99	\N	0
+1651	The Wanton Song	135	1	1	Robert Plant	249887	8180988	0.99	\N	0
+1652	Boogie With Stu	135	1	1	Ian Stewart/John Bonham/John Paul Jones/Mrs. Valens/Robert Plant	233273	7657086	0.99	\N	0
+1653	Black Country Woman	135	1	1	Robert Plant	273084	8951732	0.99	\N	0
+1654	Sick Again	135	1	1	Robert Plant	283036	9279263	0.99	\N	0
+1655	Achilles Last Stand	136	1	1	Jimmy Page/Robert Plant	625502	20593955	0.99	\N	0
+1656	For Your Life	136	1	1	Jimmy Page/Robert Plant	384391	12633382	0.99	\N	0
+1657	Royal Orleans	136	1	1	John Bonham/John Paul Jones	179591	5930027	0.99	\N	0
+1658	Nobody's Fault But Mine	136	1	1	Jimmy Page/Robert Plant	376215	12237859	0.99	\N	0
+1659	Candy Store Rock	136	1	1	Jimmy Page/Robert Plant	252055	8397423	0.99	\N	0
+1660	Hots On For Nowhere	136	1	1	Jimmy Page/Robert Plant	284107	9342342	0.99	\N	0
+1661	Tea For One	136	1	1	Jimmy Page/Robert Plant	566752	18475264	0.99	\N	0
+1662	Rock & Roll	137	1	1	John Bonham/John Paul Jones/Robert Plant	242442	7897065	0.99	\N	0
+1663	Celebration Day	137	1	1	John Paul Jones/Robert Plant	230034	7478487	0.99	\N	0
+1664	The Song Remains The Same	137	1	1	Robert Plant	353358	11465033	0.99	\N	0
+1665	Rain Song	137	1	1	Robert Plant	505808	16273705	0.99	\N	0
+1666	Dazed And Confused	137	1	1	Jimmy Page	1612329	52490554	0.99	\N	0
+1667	No Quarter	138	1	1	John Paul Jones/Robert Plant	749897	24399285	0.99	\N	0
+1668	Stairway To Heaven	138	1	1	Robert Plant	657293	21354766	0.99	\N	0
+1669	Moby Dick	138	1	1	John Bonham/John Paul Jones	766354	25345841	0.99	\N	0
+1670	Whole Lotta Love	138	1	1	John Bonham/John Paul Jones/Robert Plant/Willie Dixon	863895	28191437	0.99	\N	0
+1671	NatÃ¡lia	139	1	7	Renato Russo	235728	7640230	0.99	\N	0
+1672	L'Avventura	139	1	7	Renato Russo	278256	9165769	0.99	\N	0
+1673	MÃºsica De Trabalho	139	1	7	Renato Russo	260231	8590671	0.99	\N	0
+1674	Longe Do Meu Lado	139	1	7	Renato Russo - Marcelo BonfÃ¡	266161	8655249	0.99	\N	0
+1675	A Via LÃ¡ctea	139	1	7	Renato Russo	280084	9234879	0.99	\N	0
+1676	MÃºsica Ambiente	139	1	7	Renato Russo	247614	8234388	0.99	\N	0
+1677	Aloha	139	1	7	Renato Russo	325955	10793301	0.99	\N	0
+1678	Soul Parsifal	139	1	7	Renato Russo - Marisa Monte	295053	9853589	0.99	\N	0
+1679	Dezesseis	139	1	7	Renato Russo	323918	10573515	0.99	\N	0
+1680	Mil PedaÃ§os	139	1	7	Renato Russo	203337	6643291	0.99	\N	0
+1681	Leila	139	1	7	Renato Russo	323056	10608239	0.99	\N	0
+1682	1Âº De Julho	139	1	7	Renato Russo	290298	9619257	0.99	\N	0
+1683	Esperando Por Mim	139	1	7	Renato Russo	261668	8844133	0.99	\N	0
+1684	Quando VocÃª Voltar	139	1	7	Renato Russo	173897	5781046	0.99	\N	0
+1685	O Livro Dos Dias	139	1	7	Renato Russo	257253	8570929	0.99	\N	0
+1686	SerÃ¡	140	1	7	Dado Villa-Lobos/Marcelo BonfÃ¡	148401	4826528	0.99	\N	0
+1687	Ainda Ã‰ Cedo	140	1	7	Dado Villa-Lobos/Ico Ouro-Preto/Marcelo BonfÃ¡	236826	7796400	0.99	\N	0
+1688	GeraÃ§Ã£o Coca-Cola	140	1	7	Renato Russo	141453	4625731	0.99	\N	0
+1689	Eduardo E MÃ´nica	140	1	7	Renato Russo	271229	9026691	0.99	\N	0
+1690	Tempo Perdido	140	1	7	Renato Russo	302158	9963914	0.99	\N	0
+1691	Indios	140	1	7	Renato Russo	258168	8610226	0.99	\N	0
+1692	Que PaÃ­s Ã‰ Este	140	1	7	Renato Russo	177606	5822124	0.99	\N	0
+1693	Faroeste Caboclo	140	1	7	Renato Russo	543007	18092739	0.99	\N	0
+1694	HÃ¡ Tempos	140	1	7	Dado Villa-Lobos/Marcelo BonfÃ¡	197146	6432922	0.99	\N	0
+1695	Pais E Filhos	140	1	7	Dado Villa-Lobos/Marcelo BonfÃ¡	308401	10130685	0.99	\N	0
+1696	Meninos E Meninas	140	1	7	Dado Villa-Lobos/Marcelo BonfÃ¡	203781	6667802	0.99	\N	0
+1697	Vento No Litoral	140	1	7	Dado Villa-Lobos/Marcelo BonfÃ¡	366445	12063806	0.99	\N	0
+1698	PerfeiÃ§Ã£o	140	1	7	Dado Villa-Lobos/Marcelo BonfÃ¡	276558	9258489	0.99	\N	0
+1699	Giz	140	1	7	Dado Villa-Lobos/Marcelo BonfÃ¡	202213	6677671	0.99	\N	0
+1700	Dezesseis	140	1	7	Dado Villa-Lobos/Marcelo BonfÃ¡	321724	10501773	0.99	\N	0
+1701	Antes Das Seis	140	1	7	Dado Villa-Lobos	189231	6296531	0.99	\N	0
+1702	Are You Gonna Go My Way	141	1	1	Craig Ross/Lenny Kravitz	211591	6905135	0.99	\N	0
+1703	Fly Away	141	1	1	Lenny Kravitz	221962	7322085	0.99	\N	0
+1704	Rock And Roll Is Dead	141	1	1	Lenny Kravitz	204199	6680312	0.99	\N	0
+1705	Again	141	1	1	Lenny Kravitz	228989	7490476	0.99	\N	0
+1706	It Ain't Over 'Til It's Over	141	1	1	Lenny Kravitz	242703	8078936	0.99	\N	0
+1707	Can't Get You Off My Mind	141	1	1	Lenny Kravitz	273815	8937150	0.99	\N	0
+1708	Mr. Cab Driver	141	1	1	Lenny Kravitz	230321	7668084	0.99	\N	0
+1709	American Woman	141	1	1	B. Cummings/G. Peterson/M.J. Kale/R. Bachman	261773	8538023	0.99	\N	0
+1710	Stand By My Woman	141	1	1	Henry Kirssch/Lenny Kravitz/S. Pasch A. Krizan	259683	8447611	0.99	\N	0
+1711	Always On The Run	141	1	1	Lenny Kravitz/Slash	232515	7593397	0.99	\N	0
+1712	Heaven Help	141	1	1	Gerry DeVeaux/Terry Britten	190354	6222092	0.99	\N	0
+1713	I Belong To You	141	1	1	Lenny Kravitz	257123	8477980	0.99	\N	0
+1714	Believe	141	1	1	Henry Hirsch/Lenny Kravitz	295131	9661978	0.99	\N	0
+1715	Let Love Rule	141	1	1	Lenny Kravitz	342648	11298085	0.99	\N	0
+1716	Black Velveteen	141	1	1	Lenny Kravitz	290899	9531301	0.99	\N	0
+1745	Pseudo Silk Kimono	144	1	1	Kelly, Mosley, Rothery, Trewaves	134739	4334038	0.99	\N	0
+1746	Kayleigh	144	1	1	Kelly, Mosley, Rothery, Trewaves	234605	7716005	0.99	\N	0
+1747	Lavender	144	1	1	Kelly, Mosley, Rothery, Trewaves	153417	4999814	0.99	\N	0
+1748	Bitter Suite: Brief Encounter / Lost Weekend / Blue Angel	144	1	1	Kelly, Mosley, Rothery, Trewaves	356493	11791068	0.99	\N	0
+1749	Heart Of Lothian: Wide Boy / Curtain Call	144	1	1	Kelly, Mosley, Rothery, Trewaves	366053	11893723	0.99	\N	0
+1750	Waterhole (Expresso Bongo)	144	1	1	Kelly, Mosley, Rothery, Trewaves	133093	4378835	0.99	\N	0
+1751	Lords Of The Backstage	144	1	1	Kelly, Mosley, Rothery, Trewaves	112875	3741319	0.99	\N	0
+1752	Blind Curve: Vocal Under A Bloodlight / Passing Strangers / Mylo / Perimeter Walk / Threshold	144	1	1	Kelly, Mosley, Rothery, Trewaves	569704	18578995	0.99	\N	0
+1753	Childhoods End?	144	1	1	Kelly, Mosley, Rothery, Trewaves	272796	9015366	0.99	\N	0
+1754	White Feather	144	1	1	Kelly, Mosley, Rothery, Trewaves	143595	4711776	0.99	\N	0
+1755	Arrepio	145	1	7	Carlinhos Brown	136254	4511390	0.99	\N	0
+1756	Magamalabares	145	1	7	Carlinhos Brown	215875	7183757	0.99	\N	0
+1757	Chuva No Brejo	145	1	7	Morais	145606	4857761	0.99	\N	0
+1758	CÃ©rebro EletrÃ´nico	145	1	7	Gilberto Gil	172800	5760864	0.99	\N	0
+1759	Tempos Modernos	145	1	7	Lulu Santos	183066	6066234	0.99	\N	0
+1760	MaraÃ§Ã¡	145	1	7	Carlinhos Brown	230008	7621482	0.99	\N	0
+1761	Blanco	145	1	7	Marisa Monte/poema de Octavio Paz/versÃ£o: Haroldo de Campos	45191	1454532	0.99	\N	0
+1762	Panis Et Circenses	145	1	7	Caetano Veloso e Gilberto Gil	192339	6318373	0.99	\N	0
+1763	De Noite Na Cama	145	1	7	Caetano Veloso e Gilberto Gil	209005	7012658	0.99	\N	0
+1764	Beija Eu	145	1	7	Caetano Veloso e Gilberto Gil	197276	6512544	0.99	\N	0
+1765	Give Me Love	145	1	7	Caetano Veloso e Gilberto Gil	249808	8196331	0.99	\N	0
+1766	Ainda Lembro	145	1	7	Caetano Veloso e Gilberto Gil	218801	7211247	0.99	\N	0
+1767	A Menina DanÃ§a	145	1	7	Caetano Veloso e Gilberto Gil	129410	4326918	0.99	\N	0
+1768	DanÃ§a Da SolidÃ£o	145	1	7	Caetano Veloso e Gilberto Gil	203520	6699368	0.99	\N	0
+1769	Ao Meu Redor	145	1	7	Caetano Veloso e Gilberto Gil	275591	9158834	0.99	\N	0
+1770	Bem Leve	145	1	7	Caetano Veloso e Gilberto Gil	159190	5246835	0.99	\N	0
+1771	Segue O Seco	145	1	7	Caetano Veloso e Gilberto Gil	178207	5922018	0.99	\N	0
+1772	O Xote Das Meninas	145	1	7	Caetano Veloso e Gilberto Gil	291866	9553228	0.99	\N	0
+1773	Wherever I Lay My Hat	146	1	14	\N	136986	4477321	0.99	\N	0
+1774	Get My Hands On Some Lovin'	146	1	14	\N	149054	4860380	0.99	\N	0
+1775	No Good Without You	146	1	14	William Mickey Stevenson	161410	5259218	0.99	\N	0
+1776	You've Been A Long Time Coming	146	1	14	Brian Holland/Eddie Holland/Lamont Dozier	137221	4437949	0.99	\N	0
+1777	When I Had Your Love	146	1	14	Robert Rogers/Warren Pete Moore/William Mickey Stevenson	152424	4972815	0.99	\N	0
+1778	You're What's Happening (In The World Today)	146	1	14	Allen Story/George Gordy/Robert Gordy	142027	4631104	0.99	\N	0
+1779	Loving You Is Sweeter Than Ever	146	1	14	Ivy Hunter/Stevie Wonder	166295	5377546	0.99	\N	0
+1780	It's A Bitter Pill To Swallow	146	1	14	Smokey Robinson/Warren Pete Moore	194821	6477882	0.99	\N	0
+1781	Seek And You Shall Find	146	1	14	Ivy Hunter/William Mickey Stevenson	223451	7306719	0.99	\N	0
+1782	Gonna Keep On Tryin' Till I Win Your Love	146	1	14	Barrett Strong/Norman Whitfield	176404	5789945	0.99	\N	0
+1783	Gonna Give Her All The Love I've Got	146	1	14	Barrett Strong/Norman Whitfield	210886	6893603	0.99	\N	0
+1784	I Wish It Would Rain	146	1	14	Barrett Strong/Norman Whitfield/Roger Penzabene	172486	5647327	0.99	\N	0
+1785	Abraham, Martin And John	146	1	14	Dick Holler	273057	8888206	0.99	\N	0
+1786	Save The Children	146	1	14	Al Cleveland/Marvin Gaye/Renaldo Benson	194821	6342021	0.99	\N	0
+1787	You Sure Love To Ball	146	1	14	Marvin Gaye	218540	7217872	0.99	\N	0
+1788	Ego Tripping Out	146	1	14	Marvin Gaye	314514	10383887	0.99	\N	0
+1789	Praise	146	1	14	Marvin Gaye	235833	7839179	0.99	\N	0
+1790	Heavy Love Affair	146	1	14	Marvin Gaye	227892	7522232	0.99	\N	0
+1791	Down Under	147	1	1	\N	222171	7366142	0.99	\N	0
+1792	Overkill	147	1	1	\N	225410	7408652	0.99	\N	0
+1793	Be Good Johnny	147	1	1	\N	216320	7139814	0.99	\N	0
+1794	Everything I Need	147	1	1	\N	216476	7107625	0.99	\N	0
+1795	Down by the Sea	147	1	1	\N	408163	13314900	0.99	\N	0
+1796	Who Can It Be Now?	147	1	1	\N	202396	6682850	0.99	\N	0
+1797	It's a Mistake	147	1	1	\N	273371	8979965	0.99	\N	0
+1798	Dr. Heckyll & Mr. Jive	147	1	1	\N	278465	9110403	0.99	\N	0
+1799	Shakes and Ladders	147	1	1	\N	198008	6560753	0.99	\N	0
+1800	No Sign of Yesterday	147	1	1	\N	362004	11829011	0.99	\N	0
+1801	Enter Sandman	148	1	3	James Hetfield, Lars Ulrich and Kirk Hammett	332251	10852002	0.99	\N	0
+1802	Sad But True	148	1	3	Ulrich	324754	10541258	0.99	\N	0
+1803	Holier Than Thou	148	1	3	Ulrich	227892	7462011	0.99	\N	0
+1804	The Unforgiven	148	1	3	James Hetfield, Lars Ulrich and Kirk Hammett	387082	12646886	0.99	\N	0
+1805	Wherever I May Roam	148	1	3	Ulrich	404323	13161169	0.99	\N	0
+1806	Don't Tread On Me	148	1	3	Ulrich	240483	7827907	0.99	\N	0
+1807	Through The Never	148	1	3	James Hetfield, Lars Ulrich and Kirk Hammett	244375	8024047	0.99	\N	0
+1808	Nothing Else Matters	148	1	3	Ulrich	388832	12606241	0.99	\N	0
+1809	Of Wolf And Man	148	1	3	James Hetfield, Lars Ulrich and Kirk Hammett	256835	8339785	0.99	\N	0
+1810	The God That Failed	148	1	3	Ulrich	308610	10055959	0.99	\N	0
+1811	My Friend Of Misery	148	1	3	James Hetfield, Lars Ulrich and Jason Newsted	409547	13293515	0.99	\N	0
+1812	The Struggle Within	148	1	3	Ulrich	234240	7654052	0.99	\N	0
+1813	Helpless	149	1	3	Harris/Tatler	398315	12977902	0.99	\N	0
+1814	The Small Hours	149	1	3	Holocaust	403435	13215133	0.99	\N	0
+1815	The Wait	149	1	3	Killing Joke	295418	9688418	0.99	\N	0
+1816	Crash Course In Brain Surgery	149	1	3	Bourge/Phillips/Shelley	190406	6233729	0.99	\N	0
+1817	Last Caress/Green Hell	149	1	3	Danzig	209972	6854313	0.99	\N	0
+1818	Am I Evil?	149	1	3	Harris/Tatler	470256	15387219	0.99	\N	0
+1819	Blitzkrieg	149	1	3	Jones/Sirotto/Smith	216685	7090018	0.99	\N	0
+1820	Breadfan	149	1	3	Bourge/Phillips/Shelley	341551	11100130	0.99	\N	0
+1821	The Prince	149	1	3	Harris/Tatler	265769	8624492	0.99	\N	0
+1822	Stone Cold Crazy	149	1	3	Deacon/May/Mercury/Taylor	137717	4514830	0.99	\N	0
+1823	So What	149	1	3	Culmer/Exalt	189152	6162894	0.99	\N	0
+1824	Killing Time	149	1	3	Sweet Savage	183693	6021197	0.99	\N	0
+1825	Overkill	149	1	3	Clarke/Kilmister/Tayler	245133	7971330	0.99	\N	0
+1826	Damage Case	149	1	3	Clarke/Farren/Kilmister/Tayler	220212	7212997	0.99	\N	0
+1827	Stone Dead Forever	149	1	3	Clarke/Kilmister/Tayler	292127	9556060	0.99	\N	0
+1828	Too Late Too Late	149	1	3	Clarke/Kilmister/Tayler	192052	6276291	0.99	\N	0
+1829	Hit The Lights	150	1	3	James Hetfield, Lars Ulrich	257541	8357088	0.99	\N	0
+1830	The Four Horsemen	150	1	3	James Hetfield, Lars Ulrich, Dave Mustaine	433188	14178138	0.99	\N	0
+1831	Motorbreath	150	1	3	James Hetfield	188395	6153933	0.99	\N	0
+1832	Jump In The Fire	150	1	3	James Hetfield, Lars Ulrich, Dave Mustaine	281573	9135755	0.99	\N	0
+1833	(Anesthesia) Pulling Teeth	150	1	3	Cliff Burton	254955	8234710	0.99	\N	0
+1834	Whiplash	150	1	3	James Hetfield, Lars Ulrich	249208	8102839	0.99	\N	0
+1835	Phantom Lord	150	1	3	James Hetfield, Lars Ulrich, Dave Mustaine	302053	9817143	0.99	\N	0
+1836	No Remorse	150	1	3	James Hetfield, Lars Ulrich	386795	12672166	0.99	\N	0
+1837	Seek & Destroy	150	1	3	James Hetfield, Lars Ulrich	415817	13452301	0.99	\N	0
+1838	Metal Militia	150	1	3	James Hetfield, Lars Ulrich, Dave Mustaine	311327	10141785	0.99	\N	0
+1839	Ain't My Bitch	151	1	3	James Hetfield, Lars Ulrich	304457	9931015	0.99	\N	0
+1840	2 X 4	151	1	3	James Hetfield, Lars Ulrich, Kirk Hammett	328254	10732251	0.99	\N	0
+1841	The House Jack Built	151	1	3	James Hetfield, Lars Ulrich, Kirk Hammett	398942	13005152	0.99	\N	0
+1842	Until It Sleeps	151	1	3	James Hetfield, Lars Ulrich	269740	8837394	0.99	\N	0
+1843	King Nothing	151	1	3	James Hetfield, Lars Ulrich, Kirk Hammett	328097	10681477	0.99	\N	0
+1844	Hero Of The Day	151	1	3	James Hetfield, Lars Ulrich, Kirk Hammett	261982	8540298	0.99	\N	0
+1845	Bleeding Me	151	1	3	James Hetfield, Lars Ulrich, Kirk Hammett	497998	16249420	0.99	\N	0
+1846	Cure	151	1	3	James Hetfield, Lars Ulrich	294347	9648615	0.99	\N	0
+1847	Poor Twisted Me	151	1	3	James Hetfield, Lars Ulrich	240065	7854349	0.99	\N	0
+1848	Wasted My Hate	151	1	3	James Hetfield, Lars Ulrich, Kirk Hammett	237296	7762300	0.99	\N	0
+1849	Mama Said	151	1	3	James Hetfield, Lars Ulrich	319764	10508310	0.99	\N	0
+1850	Thorn Within	151	1	3	James Hetfield, Lars Ulrich, Kirk Hammett	351738	11486686	0.99	\N	0
+1851	Ronnie	151	1	3	James Hetfield, Lars Ulrich	317204	10390947	0.99	\N	0
+1852	The Outlaw Torn	151	1	3	James Hetfield, Lars Ulrich	588721	19286261	0.99	\N	0
+1853	Battery	152	1	3	J.Hetfield/L.Ulrich	312424	10229577	0.99	\N	0
+1854	Master Of Puppets	152	1	3	K.Hammett	515239	16893720	0.99	\N	0
+1855	The Thing That Should Not Be	152	1	3	K.Hammett	396199	12952368	0.99	\N	0
+1856	Welcome Home (Sanitarium)	152	1	3	K.Hammett	387186	12679965	0.99	\N	0
+1857	Disposable Heroes	152	1	3	J.Hetfield/L.Ulrich	496718	16135560	0.99	\N	0
+1858	Leper Messiah	152	1	3	C.Burton	347428	11310434	0.99	\N	0
+1859	Orion	152	1	3	K.Hammett	500062	16378477	0.99	\N	0
+1860	Damage Inc.	152	1	3	K.Hammett	330919	10725029	0.99	\N	0
+1861	Fuel	153	1	3	Hetfield, Ulrich, Hammett	269557	8876811	0.99	\N	0
+1862	The Memory Remains	153	1	3	Hetfield, Ulrich	279353	9110730	0.99	\N	0
+1863	Devil's Dance	153	1	3	Hetfield, Ulrich	318955	10414832	0.99	\N	0
+1864	The Unforgiven II	153	1	3	Hetfield, Ulrich, Hammett	395520	12886474	0.99	\N	0
+1865	Better Than You	153	1	3	Hetfield, Ulrich	322899	10549070	0.99	\N	0
+1866	Slither	153	1	3	Hetfield, Ulrich, Hammett	313103	10199789	0.99	\N	0
+1867	Carpe Diem Baby	153	1	3	Hetfield, Ulrich, Hammett	372480	12170693	0.99	\N	0
+1868	Bad Seed	153	1	3	Hetfield, Ulrich, Hammett	245394	8019586	0.99	\N	0
+1869	Where The Wild Things Are	153	1	3	Hetfield, Ulrich, Newsted	414380	13571280	0.99	\N	0
+1870	Prince Charming	153	1	3	Hetfield, Ulrich	365061	12009412	0.99	\N	0
+1871	Low Man's Lyric	153	1	3	Hetfield, Ulrich	457639	14855583	0.99	\N	0
+1872	Attitude	153	1	3	Hetfield, Ulrich	315898	10335734	0.99	\N	0
+1873	Fixxxer	153	1	3	Hetfield, Ulrich, Hammett	496065	16190041	0.99	\N	0
+1874	Fight Fire With Fire	154	1	3	Metallica	285753	9420856	0.99	\N	0
+1875	Ride The Lightning	154	1	3	Metallica	397740	13055884	0.99	\N	0
+1876	For Whom The Bell Tolls	154	1	3	Metallica	311719	10159725	0.99	\N	0
+1877	Fade To Black	154	1	3	Metallica	414824	13531954	0.99	\N	0
+1878	Trapped Under Ice	154	1	3	Metallica	244532	7975942	0.99	\N	0
+1879	Escape	154	1	3	Metallica	264359	8652332	0.99	\N	0
+1880	Creeping Death	154	1	3	Metallica	396878	12955593	0.99	\N	0
+1881	The Call Of Ktulu	154	1	3	Metallica	534883	17486240	0.99	\N	0
+1882	Frantic	155	1	3	Bob Rock/James Hetfield/Kirk Hammett/Lars Ulrich	350458	11510849	0.99	\N	0
+1883	St. Anger	155	1	3	Bob Rock/James Hetfield/Kirk Hammett/Lars Ulrich	441234	14363779	0.99	\N	0
+1884	Some Kind Of Monster	155	1	3	Bob Rock/James Hetfield/Kirk Hammett/Lars Ulrich	505626	16557497	0.99	\N	0
+1885	Dirty Window	155	1	3	Bob Rock/James Hetfield/Kirk Hammett/Lars Ulrich	324989	10670604	0.99	\N	0
+1886	Invisible Kid	155	1	3	Bob Rock/James Hetfield/Kirk Hammett/Lars Ulrich	510197	16591800	0.99	\N	0
+1887	My World	155	1	3	Bob Rock/James Hetfield/Kirk Hammett/Lars Ulrich	345626	11253756	0.99	\N	0
+1888	Shoot Me Again	155	1	3	Bob Rock/James Hetfield/Kirk Hammett/Lars Ulrich	430210	14093551	0.99	\N	0
+1889	Sweet Amber	155	1	3	Bob Rock/James Hetfield/Kirk Hammett/Lars Ulrich	327235	10616595	0.99	\N	0
+1890	The Unnamed Feeling	155	1	3	Bob Rock/James Hetfield/Kirk Hammett/Lars Ulrich	429479	14014582	0.99	\N	0
+1891	Purify	155	1	3	Bob Rock/James Hetfield/Kirk Hammett/Lars Ulrich	314017	10232537	0.99	\N	0
+1892	All Within My Hands	155	1	3	Bob Rock/James Hetfield/Kirk Hammett/Lars Ulrich	527986	17162741	0.99	\N	0
+1893	Blackened	156	1	3	James Hetfield, Lars Ulrich & Jason Newsted	403382	13254874	0.99	\N	0
+1894	...And Justice For All	156	1	3	James Hetfield, Lars Ulrich & Kirk Hammett	585769	19262088	0.99	\N	0
+1895	Eye Of The Beholder	156	1	3	James Hetfield, Lars Ulrich & Kirk Hammett	385828	12747894	0.99	\N	0
+1896	One	156	1	3	James Hetfield & Lars Ulrich	446484	14695721	0.99	\N	0
+1897	The Shortest Straw	156	1	3	James Hetfield and Lars Ulrich	395389	13013990	0.99	\N	0
+1898	Harvester Of Sorrow	156	1	3	James Hetfield and Lars Ulrich	345547	11377339	0.99	\N	0
+1899	The Frayed Ends Of Sanity	156	1	3	James Hetfield, Lars Ulrich and Kirk Hammett	464039	15198986	0.99	\N	0
+1900	To Live Is To Die	156	1	3	James Hetfield, Lars Ulrich and Cliff Burton	588564	19243795	0.99	\N	0
+1901	Dyers Eve	156	1	3	James Hetfield, Lars Ulrich and Kirk Hammett	313991	10302828	0.99	\N	0
+1902	Springsville	157	1	2	J. Carisi	207725	6776219	0.99	\N	0
+1903	The Maids Of Cadiz	157	1	2	L. Delibes	233534	7505275	0.99	\N	0
+1904	The Duke	157	1	2	Dave Brubeck	214961	6977626	0.99	\N	0
+1905	My Ship	157	1	2	Ira Gershwin, Kurt Weill	268016	8581144	0.99	\N	0
+1906	Miles Ahead	157	1	2	Miles Davis, Gil Evans	209893	6807707	0.99	\N	0
+1907	Blues For Pablo	157	1	2	Gil Evans	318328	10218398	0.99	\N	0
+1908	New Rhumba	157	1	2	A. Jamal	276871	8980400	0.99	\N	0
+1909	The Meaning Of The Blues	157	1	2	R. Troup, L. Worth	168594	5395412	0.99	\N	0
+1910	Lament	157	1	2	J.J. Johnson	134191	4293394	0.99	\N	0
+1911	I Don't Wanna Be Kissed (By Anyone But You)	157	1	2	H. Spina, J. Elliott	191320	6219487	0.99	\N	0
+1912	Springsville (Alternate Take)	157	1	2	J. Carisi	196388	6382079	0.99	\N	0
+1913	Blues For Pablo (Alternate Take)	157	1	2	Gil Evans	212558	6900619	0.99	\N	0
+1914	The Meaning Of The Blues/Lament (Alternate Take)	157	1	2	J.J. Johnson/R. Troup, L. Worth	309786	9912387	0.99	\N	0
+1915	I Don't Wanna Be Kissed (By Anyone But You) (Alternate Take)	157	1	2	H. Spina, J. Elliott	192078	6254796	0.99	\N	0
+1916	CoraÃ§Ã£o De Estudante	158	1	7	Wagner Tiso, Milton Nascimento	238550	7797308	0.99	\N	0
+1917	A Noite Do Meu Bem	158	1	7	Dolores Duran	220081	7125225	0.99	\N	0
+1918	Paisagem Na Janela	158	1	7	LÃ´ Borges, Fernando Brant	197694	6523547	0.99	\N	0
+1919	Cuitelinho	158	1	7	Folclore	209397	6803970	0.99	\N	0
+1920	CaxangÃ¡	158	1	7	Milton Nascimento, Fernando Brant	245551	8144179	0.99	\N	0
+1921	Nos Bailes Da Vida	158	1	7	Milton Nascimento, Fernando Brant	275748	9126170	0.99	\N	0
+1922	Menestrel Das Alagoas	158	1	7	Milton Nascimento, Fernando Brant	199758	6542289	0.99	\N	0
+1923	Brasil	158	1	7	Milton Nascimento, Fernando Brant	155428	5252560	0.99	\N	0
+1924	CanÃ§Ã£o Do Novo Mundo	158	1	7	Beto Guedes, Ronaldo Bastos	215353	7032626	0.99	\N	0
+1925	Um Gosto De Sol	158	1	7	Milton Nascimento, Ronaldo Bastos	307200	9893875	0.99	\N	0
+1926	Solar	158	1	7	Milton Nascimento, Fernando Brant	156212	5098288	0.99	\N	0
+1927	Para Lennon E McCartney	158	1	7	LÃ´ Borges, MÃ¡rcio Borges, Fernando Brant	321828	10626920	0.99	\N	0
+1928	Maria, Maria	158	1	7	Milton Nascimento, Fernando Brant	72463	2371543	0.99	\N	0
+1929	Minas	159	1	7	Milton Nascimento, Caetano Veloso	152293	4921056	0.99	\N	0
+1930	FÃ© Cega, Faca Amolada	159	1	7	Milton Nascimento, Ronaldo Bastos	278099	9258649	0.99	\N	0
+1931	Beijo Partido	159	1	7	Toninho Horta	229564	7506969	0.99	\N	0
+1932	Saudade Dos AviÃµes Da Panair (Conversando No Bar)	159	1	7	Milton Nascimento, Fernando Brant	268721	8805088	0.99	\N	0
+1933	Gran Circo	159	1	7	Milton Nascimento, MÃ¡rcio Borges	251297	8237026	0.99	\N	0
+1934	Ponta de Areia	159	1	7	Milton Nascimento, Fernando Brant	272796	8874285	0.99	\N	0
+1935	Trastevere	159	1	7	Milton Nascimento, Ronaldo Bastos	265665	8708399	0.99	\N	0
+1936	Idolatrada	159	1	7	Milton Nascimento, Fernando Brant	286249	9426153	0.99	\N	0
+1937	Leila (Venha Ser Feliz)	159	1	7	Milton Nascimento	209737	6898507	0.99	\N	0
+1938	Paula E Bebeto	159	1	7	Milton Nascimento, Caetano Veloso	135732	4583956	0.99	\N	0
+1939	Simples	159	1	7	Nelson Angelo	133093	4326333	0.99	\N	0
+1940	Norwegian Wood	159	1	7	John Lennon, Paul McCartney	413910	13520382	0.99	\N	0
+1941	Caso VocÃª Queira Saber	159	1	7	Beto Guedes, MÃ¡rcio Borges	205688	6787901	0.99	\N	0
+1942	Ace Of Spades	160	1	3	Clarke/Kilmister/Taylor	169926	5523552	0.99	\N	0
+1943	Love Me Like A Reptile	160	1	3	Clarke/Kilmister/Taylor	203546	6616389	0.99	\N	0
+1944	Shoot You In The Back	160	1	3	Clarke/Kilmister/Taylor	160026	5175327	0.99	\N	0
+1945	Live To Win	160	1	3	Clarke/Kilmister/Taylor	217626	7102182	0.99	\N	0
+1946	Fast And Loose	160	1	3	Clarke/Kilmister/Taylor	203337	6643350	0.99	\N	0
+1947	(We Are) The Road Crew	160	1	3	Clarke/Kilmister/Taylor	192600	6283035	0.99	\N	0
+1948	Fire Fire	160	1	3	Clarke/Kilmister/Taylor	164675	5416114	0.99	\N	0
+1949	Jailbait	160	1	3	Clarke/Kilmister/Taylor	213916	6983609	0.99	\N	0
+1950	Dance	160	1	3	Clarke/Kilmister/Taylor	158432	5155099	0.99	\N	0
+1951	Bite The Bullet	160	1	3	Clarke/Kilmister/Taylor	98115	3195536	0.99	\N	0
+1952	The Chase Is Better Than The Catch	160	1	3	Clarke/Kilmister/Taylor	258403	8393310	0.99	\N	0
+1953	The Hammer	160	1	3	Clarke/Kilmister/Taylor	168071	5543267	0.99	\N	0
+1954	Dirty Love	160	1	3	Clarke/Kilmister/Taylor	176457	5805241	0.99	\N	0
+1955	Please Don't Touch	160	1	3	Heath/Robinson	169926	5557002	0.99	\N	0
+1956	Emergency	160	1	3	Dufort/Johnson/McAuliffe/Williams	180427	5828728	0.99	\N	0
+1957	Kir Royal	161	1	16	MÃ´nica Marianno	234788	7706552	0.99	\N	0
+1958	O Que Vai Em Meu CoraÃ§Ã£o	161	1	16	MÃ´nica Marianno	255373	8366846	0.99	\N	0
+1959	Aos LeÃµes	161	1	16	MÃ´nica Marianno	234684	7790574	0.99	\N	0
+1961	Noite Negra	161	1	16	MÃ´nica Marianno	206811	6819584	0.99	\N	0
+1962	Beijo do Olhar	161	1	16	MÃ´nica Marianno	252682	8369029	0.99	\N	0
+1963	Ã‰ Fogo	161	1	16	MÃ´nica Marianno	194873	6501520	0.99	\N	0
+1964	JÃ¡ Foi	161	1	16	MÃ´nica Marianno	245681	8094872	0.99	\N	0
+1965	SÃ³ Se For Pelo Cabelo	161	1	16	MÃ´nica Marianno	238288	8006345	0.99	\N	0
+1966	No Clima	161	1	16	MÃ´nica Marianno	249495	8362040	0.99	\N	0
+1967	A MoÃ§a e a Chuva	161	1	16	MÃ´nica Marianno	274625	8929357	0.99	\N	0
+1968	Demorou!	161	1	16	MÃ´nica Marianno	39131	1287083	0.99	\N	0
+1969	Bitter Pill	162	1	3	Mick Mars/Nikki Sixx/Tommy Lee/Vince Neil	266814	8666786	0.99	\N	0
+1970	Enslaved	162	1	3	Mick Mars/Nikki Sixx/Tommy Lee	269844	8789966	0.99	\N	0
+1971	Girls, Girls, Girls	162	1	3	Mick Mars/Nikki Sixx/Tommy Lee	270288	8874814	0.99	\N	0
+1972	Kickstart My Heart	162	1	3	Nikki Sixx	283559	9237736	0.99	\N	0
+1973	Wild Side	162	1	3	Nikki Sixx/Tommy Lee/Vince Neil	276767	9116997	0.99	\N	0
+2053	Meu Erro	167	1	7	Herbert Vianna	188577	6192791	0.99	\N	0
+1974	Glitter	162	1	3	Bryan Adams/Nikki Sixx/Scott Humphrey	340114	11184094	0.99	\N	0
+1975	Dr. Feelgood	162	1	3	Mick Mars/Nikki Sixx	282618	9281875	0.99	\N	0
+1976	Same Ol' Situation	162	1	3	Mick Mars/Nikki Sixx/Tommy Lee/Vince Neil	254511	8283958	0.99	\N	0
+1977	Home Sweet Home	162	1	3	Nikki Sixx/Tommy Lee/Vince Neil	236904	7697538	0.99	\N	0
+1978	Afraid	162	1	3	Nikki Sixx	248006	8077464	0.99	\N	0
+1979	Don't Go Away Mad (Just Go Away)	162	1	3	Mick Mars/Nikki Sixx	279980	9188156	0.99	\N	0
+1980	Without You	162	1	3	Mick Mars/Nikki Sixx	268956	8738371	0.99	\N	0
+1981	Smokin' in The Boys Room	162	1	3	Cub Coda/Michael Lutz	206837	6735408	0.99	\N	0
+1982	Primal Scream	162	1	3	Mick Mars/Nikki Sixx/Tommy Lee/Vince Neil	286197	9421164	0.99	\N	0
+1983	Too Fast For Love	162	1	3	Nikki Sixx	200829	6580542	0.99	\N	0
+1984	Looks That Kill	162	1	3	Nikki Sixx	240979	7831122	0.99	\N	0
+1985	Shout At The Devil	162	1	3	Nikki Sixx	221962	7281974	0.99	\N	0
+1986	Intro	163	1	1	Kurt Cobain	52218	1688527	0.99	\N	0
+1987	School	163	1	1	Kurt Cobain	160235	5234885	0.99	\N	0
+1988	Drain You	163	1	1	Kurt Cobain	215196	7013175	0.99	\N	0
+1989	Aneurysm	163	1	1	Nirvana	271516	8862545	0.99	\N	0
+1990	Smells Like Teen Spirit	163	1	1	Nirvana	287190	9425215	0.99	\N	0
+1991	Been A Son	163	1	1	Kurt Cobain	127555	4170369	0.99	\N	0
+1992	Lithium	163	1	1	Kurt Cobain	250017	8148800	0.99	\N	0
+1993	Sliver	163	1	1	Kurt Cobain	116218	3784567	0.99	\N	0
+1994	Spank Thru	163	1	1	Kurt Cobain	190354	6186487	0.99	\N	0
+1995	Scentless Apprentice	163	1	1	Nirvana	211200	6898177	0.99	\N	0
+1996	Heart-Shaped Box	163	1	1	Kurt Cobain	281887	9210982	0.99	\N	0
+1997	Milk It	163	1	1	Kurt Cobain	225724	7406945	0.99	\N	0
+1998	Negative Creep	163	1	1	Kurt Cobain	163761	5354854	0.99	\N	0
+1999	Polly	163	1	1	Kurt Cobain	149995	4885331	0.99	\N	0
+2000	Breed	163	1	1	Kurt Cobain	208378	6759080	0.99	\N	0
+2001	Tourette's	163	1	1	Kurt Cobain	115591	3753246	0.99	\N	0
+2002	Blew	163	1	1	Kurt Cobain	216346	7096936	0.99	\N	0
+2003	Smells Like Teen Spirit	164	1	1	Kurt Cobain	301296	9823847	0.99	\N	0
+2004	In Bloom	164	1	1	Kurt Cobain	254928	8327077	0.99	\N	0
+2005	Come As You Are	164	1	1	Kurt Cobain	219219	7123357	0.99	\N	0
+2006	Breed	164	1	1	Kurt Cobain	183928	5984812	0.99	\N	0
+2007	Lithium	164	1	1	Kurt Cobain	256992	8404745	0.99	\N	0
+2008	Polly	164	1	1	Kurt Cobain	177031	5788407	0.99	\N	0
+2009	Territorial Pissings	164	1	1	Kurt Cobain	143281	4613880	0.99	\N	0
+2010	Drain You	164	1	1	Kurt Cobain	223973	7273440	0.99	\N	0
+2011	Lounge Act	164	1	1	Kurt Cobain	156786	5093635	0.99	\N	0
+2012	Stay Away	164	1	1	Kurt Cobain	212636	6956404	0.99	\N	0
+2013	On A Plain	164	1	1	Kurt Cobain	196440	6390635	0.99	\N	0
+2014	Something In The Way	164	1	1	Kurt Cobain	230556	7472168	0.99	\N	0
+2015	Time	165	1	1	\N	96888	3124455	0.99	\N	0
+2016	P.S.ApareÃ§a	165	1	1	\N	209188	6842244	0.99	\N	0
+2017	Sangue Latino	165	1	1	\N	223033	7354184	0.99	\N	0
+2018	Folhas Secas	165	1	1	\N	161253	5284522	0.99	\N	0
+2019	Poeira	165	1	1	\N	267075	8784141	0.99	\N	0
+2020	MÃ¡gica	165	1	1	\N	233743	7627348	0.99	\N	0
+2021	Quem Mata A Mulher Mata O Melhor	165	1	1	\N	262791	8640121	0.99	\N	0
+2022	MundarÃ©u	165	1	1	\N	217521	7158975	0.99	\N	0
+2023	O BraÃ§o Da Minha Guitarra	165	1	1	\N	258351	8469531	0.99	\N	0
+2024	Deus	165	1	1	\N	284160	9188110	0.99	\N	0
+2025	MÃ£e Terra	165	1	1	\N	306625	9949269	0.99	\N	0
+2026	Ã€s Vezes	165	1	1	\N	330292	10706614	0.99	\N	0
+2027	Menino De Rua	165	1	1	\N	329795	10784595	0.99	\N	0
+2028	Prazer E FÃ©	165	1	1	\N	214831	7031383	0.99	\N	0
+2029	Elza	165	1	1	\N	199105	6517629	0.99	\N	0
+2030	Requebra	166	1	7	\N	240744	8010811	0.99	\N	0
+2031	Nossa Gente (Avisa LÃ )	166	1	7	\N	188212	6233201	0.99	\N	0
+2032	Olodum - Alegria Geral	166	1	7	\N	233404	7754245	0.99	\N	0
+2033	MadagÃ¡scar Olodum	166	1	7	\N	252264	8270584	0.99	\N	0
+2034	FaraÃ³ Divindade Do Egito	166	1	7	\N	228571	7523278	0.99	\N	0
+2035	Todo Amor (Asas Da Liberdade)	166	1	7	\N	245133	8121434	0.99	\N	0
+2036	DenÃºncia	166	1	7	\N	159555	5327433	0.99	\N	0
+2037	Olodum, A Banda Do PelÃ´	166	1	7	\N	146599	4900121	0.99	\N	0
+2038	Cartao Postal	166	1	7	\N	211565	7082301	0.99	\N	0
+2039	Jeito Faceiro	166	1	7	\N	217286	7233608	0.99	\N	0
+2040	Revolta Olodum	166	1	7	\N	230191	7557065	0.99	\N	0
+2041	Reggae OdoyÃ¡	166	1	7	\N	224470	7499807	0.99	\N	0
+2042	Protesto Do Olodum (Ao Vivo)	166	1	7	\N	206001	6766104	0.99	\N	0
+2043	Olodum - Smile (Instrumental)	166	1	7	\N	235833	7871409	0.99	\N	0
+2044	VulcÃ£o Dub - Fui Eu	167	1	7	Bi Ribeira/Herbert Vianna/JoÃ£o Barone	287059	9495202	0.99	\N	0
+2045	O Trem Da Juventude	167	1	7	Herbert Vianna	225880	7507655	0.99	\N	0
+2046	Manguetown	167	1	7	Chico Science/Dengue/LÃºcio Maia	162925	5382018	0.99	\N	0
+2047	Um Amor, Um Lugar	167	1	7	Herbert Vianna	184555	6090334	0.99	\N	0
+2048	Bora-Bora	167	1	7	Herbert Vianna	182987	6036046	0.99	\N	0
+2049	Vai Valer	167	1	7	Herbert Vianna	206524	6899778	0.99	\N	0
+2050	I Feel Good (I Got You) - Sossego	167	1	7	James Brown/Tim Maia	244976	8091302	0.99	\N	0
+2051	Uns Dias	167	1	7	Herbert Vianna	240796	7931552	0.99	\N	0
+2052	Sincero Breu	167	1	7	C. A./C.A./Celso Alvim/Herbert Vianna/MÃ¡rio Moura/Pedro LuÃ­s/Sidon Silva	208013	6921669	0.99	\N	0
+2054	Selvagem	167	1	7	Bi Ribeiro/Herbert Vianna/JoÃ£o Barone	148558	4942831	0.99	\N	0
+2055	BrasÃ­lia 5:31	167	1	7	Herbert Vianna	178337	5857116	0.99	\N	0
+2056	Tendo A Lua	167	1	7	Herbert Vianna/Tet Tillett	198922	6568180	0.99	\N	0
+2057	Que PaÃ­s Ã‰ Este	167	1	7	Renato Russo	216685	7137865	0.99	\N	0
+2058	Navegar Impreciso	167	1	7	Herbert Vianna	262870	8761283	0.99	\N	0
+2059	Feira Moderna	167	1	7	Beto Guedes/Fernando Brant/L Borges	182517	6001793	0.99	\N	0
+2060	Tequila - Lourinha Bombril (Parate Y Mira)	167	1	7	Bahiano/Chuck Rio/Diego Blanco/Herbert Vianna	255738	8514961	0.99	\N	0
+2061	Vamo BatÃª Lata	167	1	7	Herbert Vianna	228754	7585707	0.99	\N	0
+2062	Life During Wartime	167	1	7	Chris Frantz/David Byrne/Jerry Harrison/Tina Weymouth	259186	8543439	0.99	\N	0
+2063	Nebulosa Do Amor	167	1	7	Herbert Vianna	203415	6732496	0.99	\N	0
+2064	CaleidoscÃ³pio	167	1	7	Herbert Vianna	256522	8484597	0.99	\N	0
+2065	Trac Trac	168	1	7	Fito Paez/Herbert Vianna	231653	7638256	0.99	\N	0
+2066	Tendo A Lua	168	1	7	Herbert Vianna/TetÃª Tillet	219585	7342776	0.99	\N	0
+2067	Mensagen De Amor (2000)	168	1	7	Herbert Vianna	183588	6061324	0.99	\N	0
+2068	Lourinha Bombril	168	1	7	Bahiano/Diego Blanco/Herbert Vianna	159895	5301882	0.99	\N	0
+2069	La Bella Luna	168	1	7	Herbert Vianna	192653	6428598	0.99	\N	0
+2070	Busca Vida	168	1	7	Herbert Vianna	176431	5798663	0.99	\N	0
+2071	Uma Brasileira	168	1	7	Carlinhos Brown/Herbert Vianna	217573	7280574	0.99	\N	0
+2072	Luis Inacio (300 Picaretas)	168	1	7	Herbert Vianna	198191	6576790	0.99	\N	0
+2073	Saber Amar	168	1	7	Herbert Vianna	202788	6723733	0.99	\N	0
+2074	Ela Disse Adeus	168	1	7	Herbert Vianna	226298	7608999	0.99	\N	0
+2075	O Amor Nao Sabe Esperar	168	1	7	Herbert Vianna	241084	8042534	0.99	\N	0
+2076	Aonde Quer Que Eu Va	168	1	7	Herbert Vianna/Paulo SÃ©rgio Valle	258089	8470121	0.99	\N	0
+2077	CaleidoscÃ³pio	169	1	7	\N	211330	7000017	0.99	\N	0
+2078	Ã“culos	169	1	7	\N	219271	7262419	0.99	\N	0
+2079	Cinema Mudo	169	1	7	\N	227918	7612168	0.99	\N	0
+2080	Alagados	169	1	7	\N	302393	10255463	0.99	\N	0
+2081	Lanterna Dos Afogados	169	1	7	\N	190197	6264318	0.99	\N	0
+2082	MelÃ´ Do Marinheiro	169	1	7	\N	208352	6905668	0.99	\N	0
+2083	Vital E Sua Moto	169	1	7	\N	210207	6902878	0.99	\N	0
+2084	O Beco	169	1	7	\N	189178	6293184	0.99	\N	0
+2085	Meu Erro	169	1	7	\N	208431	6893533	0.99	\N	0
+2086	Perplexo	169	1	7	\N	161175	5355013	0.99	\N	0
+2087	Me Liga	169	1	7	\N	229590	7565912	0.99	\N	0
+2088	Quase Um Segundo	169	1	7	\N	275644	8971355	0.99	\N	0
+2089	Selvagem	169	1	7	\N	245890	8141084	0.99	\N	0
+2090	Romance Ideal	169	1	7	\N	250070	8260477	0.99	\N	0
+2091	SerÃ¡ Que Vai Chover?	169	1	7	\N	337057	11133830	0.99	\N	0
+2092	SKA	169	1	7	\N	148871	4943540	0.99	\N	0
+2093	Bark at the Moon	170	2	1	O. Osbourne	257252	4601224	0.99	\N	0
+2094	I Don't Know	171	2	1	B. Daisley, O. Osbourne & R. Rhoads	312980	5525339	0.99	\N	0
+2095	Crazy Train	171	2	1	B. Daisley, O. Osbourne & R. Rhoads	295960	5255083	0.99	\N	0
+2096	Flying High Again	172	2	1	L. Kerslake, O. Osbourne, R. Daisley & R. Rhoads	290851	5179599	0.99	\N	0
+2097	Mama, I'm Coming Home	173	2	1	L. Kilmister, O. Osbourne & Z. Wylde	251586	4302390	0.99	\N	0
+2098	No More Tears	173	2	1	J. Purdell, M. Inez, O. Osbourne, R. Castillo & Z. Wylde	444358	7362964	0.99	\N	0
+2099	I Don't Know	174	1	3	O. Osbourne, R. Daisley, R. Rhoads	283088	9207869	0.99	\N	0
+2100	Crazy Train	174	1	3	O. Osbourne, R. Daisley, R. Rhoads	322716	10517408	0.99	\N	0
+2101	Believer	174	1	3	O. Osbourne, R. Daisley, R. Rhoads	308897	10003794	0.99	\N	0
+2102	Mr. Crowley	174	1	3	O. Osbourne, R. Daisley, R. Rhoads	344241	11184130	0.99	\N	0
+2103	Flying High Again	174	1	3	O. Osbourne, R. Daisley, R. Rhoads, L. Kerslake	261224	8481822	0.99	\N	0
+2104	Relvelation (Mother Earth)	174	1	3	O. Osbourne, R. Daisley, R. Rhoads	349440	11367866	0.99	\N	0
+2105	Steal Away (The Night)	174	1	3	O. Osbourne, R. Daisley, R. Rhoads	485720	15945806	0.99	\N	0
+2106	Suicide Solution (With Guitar Solo)	174	1	3	O. Osbourne, R. Daisley, R. Rhoads	467069	15119938	0.99	\N	0
+2107	Iron Man	174	1	3	A. F. Iommi, W. Ward, T. Butler, J. Osbourne	172120	5609799	0.99	\N	0
+2108	Children Of The Grave	174	1	3	A. F. Iommi, W. Ward, T. Butler, J. Osbourne	357067	11626740	0.99	\N	0
+2109	Paranoid	174	1	3	A. F. Iommi, W. Ward, T. Butler, J. Osbourne	176352	5729813	0.99	\N	0
+2110	Goodbye To Romance	174	1	3	O. Osbourne, R. Daisley, R. Rhoads	334393	10841337	0.99	\N	0
+2111	No Bone Movies	174	1	3	O. Osbourne, R. Daisley, R. Rhoads	249208	8095199	0.99	\N	0
+2112	Dee	174	1	3	R. Rhoads	261302	8555963	0.99	\N	0
+2113	Shining In The Light	175	1	1	Jimmy Page, Robert Plant, Charlie Jones, Michael Lee	240796	7951688	0.99	\N	0
+2114	When The World Was Young	175	1	1	Jimmy Page, Robert Plant, Charlie Jones, Michael Lee	373394	12198930	0.99	\N	0
+2115	Upon A Golden Horse	175	1	1	Jimmy Page, Robert Plant, Charlie Jones, Michael Lee	232359	7594829	0.99	\N	0
+2116	Blue Train	175	1	1	Jimmy Page, Robert Plant, Charlie Jones, Michael Lee	405028	13170391	0.99	\N	0
+2117	Please Read The Letter	175	1	1	Jimmy Page, Robert Plant, Charlie Jones, Michael Lee	262112	8603372	0.99	\N	0
+2118	Most High	175	1	1	Jimmy Page, Robert Plant, Charlie Jones, Michael Lee	336535	10999203	0.99	\N	0
+2119	Heart In Your Hand	175	1	1	Jimmy Page, Robert Plant, Charlie Jones, Michael Lee	230896	7598019	0.99	\N	0
+2120	Walking Into Clarksdale	175	1	1	Jimmy Page, Robert Plant, Charlie Jones, Michael Lee	318511	10396315	0.99	\N	0
+3230	Lost Planet of the Gods, Pt. 2	253	3	20	\N	2914664	534343985	1.99	\N	0
+2121	Burning Up	175	1	1	Jimmy Page, Robert Plant, Charlie Jones, Michael Lee	321619	10525136	0.99	\N	0
+2122	When I Was A Child	175	1	1	Jimmy Page, Robert Plant, Charlie Jones, Michael Lee	345626	11249456	0.99	\N	0
+2123	House Of Love	175	1	1	Jimmy Page, Robert Plant, Charlie Jones, Michael Lee	335699	10990880	0.99	\N	0
+2124	Sons Of Freedom	175	1	1	Jimmy Page, Robert Plant, Charlie Jones, Michael Lee	246465	8087944	0.99	\N	0
+2125	United Colours	176	1	10	Brian Eno, Bono, Adam Clayton, The Edge & Larry Mullen Jnr.	330266	10939131	0.99	\N	0
+2126	Slug	176	1	10	Brian Eno, Bono, Adam Clayton, The Edge & Larry Mullen Jnr.	281469	9295950	0.99	\N	0
+2127	Your Blue Room	176	1	10	Brian Eno, Bono, Adam Clayton, The Edge & Larry Mullen Jnr.	328228	10867860	0.99	\N	0
+2128	Always Forever Now	176	1	10	Brian Eno, Bono, Adam Clayton, The Edge & Larry Mullen Jnr.	383764	12727928	0.99	\N	0
+2129	A Different Kind Of Blue	176	1	10	Brian Eno, Bono, Adam Clayton, The Edge & Larry Mullen Jnr.	120816	3884133	0.99	\N	0
+2130	Beach Sequence	176	1	10	Brian Eno, Bono, Adam Clayton, The Edge & Larry Mullen Jnr.	212297	6928259	0.99	\N	0
+2131	Miss Sarajevo	176	1	10	Brian Eno, Bono, Adam Clayton, The Edge & Larry Mullen Jnr.	340767	11064884	0.99	\N	0
+2132	Ito Okashi	176	1	10	Brian Eno, Bono, Adam Clayton, The Edge & Larry Mullen Jnr.	205087	6572813	0.99	\N	0
+2133	One Minute Warning	176	1	10	Brian Eno, Bono, Adam Clayton, The Edge & Larry Mullen Jnr.	279693	9335453	0.99	\N	0
+2134	Corpse (These Chains Are Way Too Long)	176	1	10	Brian Eno, Bono, Adam Clayton, The Edge & Larry Mullen Jnr.	214909	6920451	0.99	\N	0
+2135	Elvis Ate America	176	1	10	Brian Eno, Bono, Adam Clayton, The Edge & Larry Mullen Jnr.	180166	5851053	0.99	\N	0
+2136	Plot 180	176	1	10	Brian Eno, Bono, Adam Clayton, The Edge & Larry Mullen Jnr.	221596	7253729	0.99	\N	0
+2137	Theme From The Swan	176	1	10	Brian Eno, Bono, Adam Clayton, The Edge & Larry Mullen Jnr.	203911	6638076	0.99	\N	0
+2138	Theme From Let's Go Native	176	1	10	Brian Eno, Bono, Adam Clayton, The Edge & Larry Mullen Jnr.	186723	6179777	0.99	\N	0
+2139	Wrathchild	177	1	1	Steve Harris	170396	5499390	0.99	\N	0
+2140	Killers	177	1	1	Paul Di'Anno/Steve Harris	309995	10009697	0.99	\N	0
+2141	Prowler	177	1	1	Steve Harris	240274	7782963	0.99	\N	0
+2142	Murders In The Rue Morgue	177	1	1	Steve Harris	258638	8360999	0.99	\N	0
+2143	Women In Uniform	177	1	1	Greg Macainsh	189936	6139651	0.99	\N	0
+2144	Remember Tomorrow	177	1	1	Paul Di'Anno/Steve Harris	326426	10577976	0.99	\N	0
+2145	Sanctuary	177	1	1	David Murray/Paul Di'Anno/Steve Harris	198844	6423543	0.99	\N	0
+2146	Running Free	177	1	1	Paul Di'Anno/Steve Harris	199706	6483496	0.99	\N	0
+2147	Phantom Of The Opera	177	1	1	Steve Harris	418168	13585530	0.99	\N	0
+2148	Iron Maiden	177	1	1	Steve Harris	235232	7600077	0.99	\N	0
+2149	Corduroy	178	1	1	Pearl Jam & Eddie Vedder	305293	9991106	0.99	\N	0
+2150	Given To Fly	178	1	1	Eddie Vedder & Mike McCready	233613	7678347	0.99	\N	0
+2151	Hail, Hail	178	1	1	Stone Gossard & Eddie Vedder & Jeff Ament & Mike McCready	223764	7364206	0.99	\N	0
+2152	Daughter	178	1	1	Dave Abbruzzese & Jeff Ament & Stone Gossard & Mike McCready & Eddie Vedder	407484	13420697	0.99	\N	0
+2153	Elderly Woman Behind The Counter In A Small Town	178	1	1	Dave Abbruzzese & Jeff Ament & Stone Gossard & Mike McCready & Eddie Vedder	229328	7509304	0.99	\N	0
+2154	Untitled	178	1	1	Pearl Jam	122801	3957141	0.99	\N	0
+2155	MFC	178	1	1	Eddie Vedder	148192	4817665	0.99	\N	0
+2156	Go	178	1	1	Dave Abbruzzese & Jeff Ament & Stone Gossard & Mike McCready & Eddie Vedder	161541	5290810	0.99	\N	0
+2157	Red Mosquito	178	1	1	Jeff Ament & Stone Gossard & Jack Irons & Mike McCready & Eddie Vedder	242991	7944923	0.99	\N	0
+2158	Even Flow	178	1	1	Stone Gossard & Eddie Vedder	317100	10394239	0.99	\N	0
+2159	Off He Goes	178	1	1	Eddie Vedder	343222	11245109	0.99	\N	0
+2160	Nothingman	178	1	1	Jeff Ament & Eddie Vedder	278595	9107017	0.99	\N	0
+2161	Do The Evolution	178	1	1	Eddie Vedder & Stone Gossard	225462	7377286	0.99	\N	0
+2162	Better Man	178	1	1	Eddie Vedder	246204	8019563	0.99	\N	0
+2163	Black	178	1	1	Stone Gossard & Eddie Vedder	415712	13580009	0.99	\N	0
+2164	F*Ckin' Up	178	1	1	Neil Young	377652	12360893	0.99	\N	0
+2165	Life Wasted	179	1	4	Stone Gossard	234344	7610169	0.99	\N	0
+2166	World Wide Suicide	179	1	4	Eddie Vedder	209188	6885908	0.99	\N	0
+2167	Comatose	179	1	4	Mike McCready & Stone Gossard	139990	4574516	0.99	\N	0
+2168	Severed Hand	179	1	4	Eddie Vedder	270341	8817438	0.99	\N	0
+2169	Marker In The Sand	179	1	4	Mike McCready	263235	8656578	0.99	\N	0
+2170	Parachutes	179	1	4	Stone Gossard	216555	7074973	0.99	\N	0
+2171	Unemployable	179	1	4	Matt Cameron & Mike McCready	184398	6066542	0.99	\N	0
+2172	Big Wave	179	1	4	Jeff Ament	178573	5858788	0.99	\N	0
+2173	Gone	179	1	4	Eddie Vedder	249547	8158204	0.99	\N	0
+2174	Wasted Reprise	179	1	4	Stone Gossard	53733	1731020	0.99	\N	0
+2175	Army Reserve	179	1	4	Jeff Ament	225567	7393771	0.99	\N	0
+2176	Come Back	179	1	4	Eddie Vedder & Mike McCready	329743	10768701	0.99	\N	0
+2177	Inside Job	179	1	4	Eddie Vedder & Mike McCready	428643	14006924	0.99	\N	0
+2178	Can't Keep	180	1	1	Eddie Vedder	219428	7215713	0.99	\N	0
+2179	Save You	180	1	1	Eddie Vedder/Jeff Ament/Matt Cameron/Mike McCready/Stone Gossard	230112	7609110	0.99	\N	0
+2180	Love Boat Captain	180	1	1	Eddie Vedder	276453	9016789	0.99	\N	0
+2181	Cropduster	180	1	1	Matt Cameron	231888	7588928	0.99	\N	0
+2182	Ghost	180	1	1	Jeff Ament	195108	6383772	0.99	\N	0
+2183	I Am Mine	180	1	1	Eddie Vedder	215719	7086901	0.99	\N	0
+2184	Thumbing My Way	180	1	1	Eddie Vedder	250226	8201437	0.99	\N	0
+2185	You Are	180	1	1	Matt Cameron	270863	8938409	0.99	\N	0
+2186	Get Right	180	1	1	Matt Cameron	158589	5223345	0.99	\N	0
+2187	Green Disease	180	1	1	Eddie Vedder	161253	5375818	0.99	\N	0
+2188	Help Help	180	1	1	Jeff Ament	215092	7033002	0.99	\N	0
+2189	Bushleager	180	1	1	Stone Gossard	237479	7849757	0.99	\N	0
+2190	1/2 Full	180	1	1	Jeff Ament	251010	8197219	0.99	\N	0
+2191	Arc	180	1	1	Pearl Jam	65593	2099421	0.99	\N	0
+2192	All or None	180	1	1	Stone Gossard	277655	9104728	0.99	\N	0
+2193	Once	181	1	1	Stone Gossard	231758	7561555	0.99	\N	0
+2194	Evenflow	181	1	1	Stone Gossard	293720	9622017	0.99	\N	0
+2195	Alive	181	1	1	Stone Gossard	341080	11176623	0.99	\N	0
+2196	Why Go	181	1	1	Jeff Ament	200254	6539287	0.99	\N	0
+2197	Black	181	1	1	Dave Krusen/Stone Gossard	343823	11213314	0.99	\N	0
+2198	Jeremy	181	1	1	Jeff Ament	318981	10447222	0.99	\N	0
+2199	Oceans	181	1	1	Jeff Ament/Stone Gossard	162194	5282368	0.99	\N	0
+2200	Porch	181	1	1	Eddie Vedder	210520	6877475	0.99	\N	0
+2201	Garden	181	1	1	Jeff Ament/Stone Gossard	299154	9740738	0.99	\N	0
+2202	Deep	181	1	1	Jeff Ament/Stone Gossard	258324	8432497	0.99	\N	0
+2203	Release	181	1	1	Jeff Ament/Mike McCready/Stone Gossard	546063	17802673	0.99	\N	0
+2204	Go	182	1	1	Dave Abbruzzese/Eddie Vedder/Jeff Ament/Mike McCready/Stone Gossard	193123	6351920	0.99	\N	0
+2205	Animal	182	1	1	Dave Abbruzzese/Eddie Vedder/Jeff Ament/Mike McCready/Stone Gossard	169325	5503459	0.99	\N	0
+2206	Daughter	182	1	1	Dave Abbruzzese/Eddie Vedder/Jeff Ament/Mike McCready/Stone Gossard	235598	7824586	0.99	\N	0
+2207	Glorified G	182	1	1	Dave Abbruzzese/Eddie Vedder/Jeff Ament/Mike McCready/Stone Gossard	206968	6772116	0.99	\N	0
+2208	Dissident	182	1	1	Dave Abbruzzese/Eddie Vedder/Jeff Ament/Mike McCready/Stone Gossard	215510	7034500	0.99	\N	0
+2209	W.M.A.	182	1	1	Dave Abbruzzese/Eddie Vedder/Jeff Ament/Mike McCready/Stone Gossard	359262	12037261	0.99	\N	0
+2210	Blood	182	1	1	Dave Abbruzzese/Eddie Vedder/Jeff Ament/Mike McCready/Stone Gossard	170631	5551478	0.99	\N	0
+2211	Rearviewmirror	182	1	1	Dave Abbruzzese/Eddie Vedder/Jeff Ament/Mike McCready/Stone Gossard	284186	9321053	0.99	\N	0
+2212	Rats	182	1	1	Dave Abbruzzese/Eddie Vedder/Jeff Ament/Mike McCready/Stone Gossard	255425	8341934	0.99	\N	0
+2213	Elderly Woman Behind The Counter In A Small Town	182	1	1	Dave Abbruzzese/Eddie Vedder/Jeff Ament/Mike McCready/Stone Gossard	196336	6499398	0.99	\N	0
+2214	Leash	182	1	1	Dave Abbruzzese/Eddie Vedder/Jeff Ament/Mike McCready/Stone Gossard	189257	6191560	0.99	\N	0
+2215	Indifference	182	1	1	Dave Abbruzzese/Eddie Vedder/Jeff Ament/Mike McCready/Stone Gossard	302053	9756133	0.99	\N	0
+2216	Johnny B. Goode	141	1	8	\N	243200	8092024	0.99	\N	0
+2217	Don't Look Back	141	1	8	\N	221100	7344023	0.99	\N	0
+2218	Jah Seh No	141	1	8	\N	276871	9134476	0.99	\N	0
+2219	I'm The Toughest	141	1	8	\N	230191	7657594	0.99	\N	0
+2220	Nothing But Love	141	1	8	\N	221570	7335228	0.99	\N	0
+2221	Buk-In-Hamm Palace	141	1	8	\N	265665	8964369	0.99	\N	0
+2222	Bush Doctor	141	1	8	\N	239751	7942299	0.99	\N	0
+2223	Wanted Dread And Alive	141	1	8	\N	260310	8670933	0.99	\N	0
+2224	Mystic Man	141	1	8	\N	353671	11812170	0.99	\N	0
+2225	Coming In Hot	141	1	8	\N	213054	7109414	0.99	\N	0
+2226	Pick Myself Up	141	1	8	\N	234684	7788255	0.99	\N	0
+2227	Crystal Ball	141	1	8	\N	309733	10319296	0.99	\N	0
+2228	Equal Rights Downpresser Man	141	1	8	\N	366733	12086524	0.99	\N	0
+2229	Speak To Me/Breathe	183	1	1	Mason/Waters, Gilmour, Wright	234213	7631305	0.99	\N	0
+2230	On The Run	183	1	1	Gilmour, Waters	214595	7206300	0.99	\N	0
+2231	Time	183	1	1	Mason, Waters, Wright, Gilmour	425195	13955426	0.99	\N	0
+2232	The Great Gig In The Sky	183	1	1	Wright, Waters	284055	9147563	0.99	\N	0
+2233	Money	183	1	1	Waters	391888	12930070	0.99	\N	0
+2234	Us And Them	183	1	1	Waters, Wright	461035	15000299	0.99	\N	0
+2235	Any Colour You Like	183	1	1	Gilmour, Mason, Wright, Waters	205740	6707989	0.99	\N	0
+2236	Brain Damage	183	1	1	Waters	230556	7497655	0.99	\N	0
+2237	Eclipse	183	1	1	Waters	125361	4065299	0.99	\N	0
+2238	ZeroVinteUm	184	1	17	\N	315637	10426550	0.99	\N	0
+2239	Queimando Tudo	184	1	17	\N	172591	5723677	0.99	\N	0
+2240	Hip Hop Rio	184	1	17	\N	151536	4991935	0.99	\N	0
+2241	Bossa	184	1	17	\N	29048	967098	0.99	\N	0
+2242	100% HardCore	184	1	17	\N	165146	5407744	0.99	\N	0
+2243	Biruta	184	1	17	\N	213263	7108200	0.99	\N	0
+2244	MÃ£o Na CabeÃ§a	184	1	17	\N	202631	6642753	0.99	\N	0
+2245	O Bicho TÃ¡ Pregando	184	1	17	\N	171964	5683369	0.99	\N	0
+2246	Adoled (Ocean)	184	1	17	\N	185103	6009946	0.99	\N	0
+2247	Seus Amigos	184	1	17	\N	100858	3304738	0.99	\N	0
+2248	Paga Pau	184	1	17	\N	197485	6529041	0.99	\N	0
+2249	Rappers Reais	184	1	17	\N	202004	6684160	0.99	\N	0
+2250	Nega Do Cabelo Duro	184	1	17	\N	121808	4116536	0.99	\N	0
+2251	Hemp Family	184	1	17	\N	205923	6806900	0.99	\N	0
+2252	Quem Me Cobrou?	184	1	17	\N	121704	3947664	0.99	\N	0
+2253	Se Liga	184	1	17	\N	410409	13559173	0.99	\N	0
+2254	Bohemian Rhapsody	185	1	1	Mercury, Freddie	358948	11619868	0.99	\N	0
+2255	Another One Bites The Dust	185	1	1	Deacon, John	216946	7172355	0.99	\N	0
+2256	Killer Queen	185	1	1	Mercury, Freddie	182099	5967749	0.99	\N	0
+2257	Fat Bottomed Girls	185	1	1	May, Brian	204695	6630041	0.99	\N	0
+2258	Bicycle Race	185	1	1	Mercury, Freddie	183823	6012409	0.99	\N	0
+2259	You're My Best Friend	185	1	1	Deacon, John	172225	5602173	0.99	\N	0
+2260	Don't Stop Me Now	185	1	1	Mercury, Freddie	211826	6896666	0.99	\N	0
+2261	Save Me	185	1	1	May, Brian	228832	7444624	0.99	\N	0
+2262	Crazy Little Thing Called Love	185	1	1	Mercury, Freddie	164231	5435501	0.99	\N	0
+2263	Somebody To Love	185	1	1	Mercury, Freddie	297351	9650520	0.99	\N	0
+2264	Now I'm Here	185	1	1	May, Brian	255346	8328312	0.99	\N	0
+2265	Good Old-Fashioned Lover Boy	185	1	1	Mercury, Freddie	175960	5747506	0.99	\N	0
+2266	Play The Game	185	1	1	Mercury, Freddie	213368	6915832	0.99	\N	0
+2267	Flash	185	1	1	May, Brian	168489	5464986	0.99	\N	0
+2268	Seven Seas Of Rhye	185	1	1	Mercury, Freddie	170553	5539957	0.99	\N	0
+2269	We Will Rock You	185	1	1	Deacon, John/May, Brian	122880	4026955	0.99	\N	0
+2270	We Are The Champions	185	1	1	Mercury, Freddie	180950	5880231	0.99	\N	0
+2271	We Will Rock You	186	1	1	May	122671	4026815	0.99	\N	0
+2272	We Are The Champions	186	1	1	Mercury	182883	5939794	0.99	\N	0
+2273	Sheer Heart Attack	186	1	1	Taylor	207386	6642685	0.99	\N	0
+2274	All Dead, All Dead	186	1	1	May	190119	6144878	0.99	\N	0
+2275	Spread Your Wings	186	1	1	Deacon	275356	8936992	0.99	\N	0
+2276	Fight From The Inside	186	1	1	Taylor	184737	6078001	0.99	\N	0
+2277	Get Down, Make Love	186	1	1	Mercury	231235	7509333	0.99	\N	0
+2278	Sleep On The Sidewalk	186	1	1	May	187428	6099840	0.99	\N	0
+2279	Who Needs You	186	1	1	Deacon	186958	6292969	0.99	\N	0
+2280	It's Late	186	1	1	May	386194	12519388	0.99	\N	0
+2281	My Melancholy Blues	186	1	1	Mercury	206471	6691838	0.99	\N	0
+2282	Shiny Happy People	187	1	4	Bill Berry/Michael Stipe/Mike Mills/Peter Buck	226298	7475323	0.99	\N	0
+2283	Me In Honey	187	1	4	Bill Berry/Michael Stipe/Mike Mills/Peter Buck	246674	8194751	0.99	\N	0
+2284	Radio Song	187	1	4	Bill Berry/Michael Stipe/Mike Mills/Peter Buck	255477	8421172	0.99	\N	0
+2285	Pop Song 89	188	1	4	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	185730	6132218	0.99	\N	0
+2286	Get Up	188	1	4	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	160235	5264376	0.99	\N	0
+2287	You Are The Everything	188	1	4	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	226298	7373181	0.99	\N	0
+2288	Stand	188	1	4	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	192862	6349090	0.99	\N	0
+2289	World Leader Pretend	188	1	4	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	259761	8537282	0.99	\N	0
+2290	The Wrong Child	188	1	4	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	216633	7065060	0.99	\N	0
+2291	Orange Crush	188	1	4	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	231706	7742894	0.99	\N	0
+2292	Turn You Inside-Out	188	1	4	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	257358	8395671	0.99	\N	0
+2293	Hairshirt	188	1	4	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	235911	7753807	0.99	\N	0
+2294	I Remember California	188	1	4	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	304013	9950311	0.99	\N	0
+2295	Untitled	188	1	4	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	191503	6332426	0.99	\N	0
+2296	How The West Was Won And Where It Got Us	189	1	1	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	271151	8994291	0.99	\N	0
+2297	The Wake-Up Bomb	189	1	1	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	308532	10077337	0.99	\N	0
+2298	New Test Leper	189	1	1	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	326791	10866447	0.99	\N	0
+2299	Undertow	189	1	1	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	309498	10131005	0.99	\N	0
+2300	E-Bow The Letter	189	1	1	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	324963	10714576	0.99	\N	0
+2301	Leave	189	1	1	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	437968	14433365	0.99	\N	0
+2302	Departure	189	1	1	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	209423	6818425	0.99	\N	0
+2303	Bittersweet Me	189	1	1	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	245812	8114718	0.99	\N	0
+2304	Be Mine	189	1	1	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	333087	10790541	0.99	\N	0
+2305	Binky The Doormat	189	1	1	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	301688	9950320	0.99	\N	0
+2306	Zither	189	1	1	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	154148	5032962	0.99	\N	0
+2307	So Fast, So Numb	189	1	1	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	252682	8341223	0.99	\N	0
+2308	Low Desert	189	1	1	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	212062	6989288	0.99	\N	0
+2309	Electrolite	189	1	1	Bill Berry-Peter Buck-Mike Mills-Michael Stipe	245315	8051199	0.99	\N	0
+2310	Losing My Religion	187	1	4	Bill Berry/Michael Stipe/Mike Mills/Peter Buck	269035	8885672	0.99	\N	0
+2311	Low	187	1	4	Bill Berry/Michael Stipe/Mike Mills/Peter Buck	296777	9633860	0.99	\N	0
+2312	Near Wild Heaven	187	1	4	Bill Berry/Michael Stipe/Mike Mills/Peter Buck	199862	6610009	0.99	\N	0
+2313	Endgame	187	1	4	Bill Berry/Michael Stipe/Mike Mills/Peter Buck	230687	7664479	0.99	\N	0
+2314	Belong	187	1	4	Bill Berry/Michael Stipe/Mike Mills/Peter Buck	247013	8219375	0.99	\N	0
+2315	Half A World Away	187	1	4	Bill Berry/Michael Stipe/Mike Mills/Peter Buck	208431	6837283	0.99	\N	0
+2316	Texarkana	187	1	4	Bill Berry/Michael Stipe/Mike Mills/Peter Buck	220081	7260681	0.99	\N	0
+2317	Country Feedback	187	1	4	Bill Berry/Michael Stipe/Mike Mills/Peter Buck	249782	8178943	0.99	\N	0
+2318	Carnival Of Sorts	190	1	4	R.E.M.	233482	7669658	0.99	\N	0
+2319	Radio Free Aurope	190	1	4	R.E.M.	245315	8163490	0.99	\N	0
+2320	Perfect Circle	190	1	4	R.E.M.	208509	6898067	0.99	\N	0
+2321	Talk About The Passion	190	1	4	R.E.M.	203206	6725435	0.99	\N	0
+2322	So Central Rain	190	1	4	R.E.M.	194768	6414550	0.99	\N	0
+2323	Don't Go Back To Rockville	190	1	4	R.E.M.	272352	9010715	0.99	\N	0
+2324	Pretty Persuasion	190	1	4	R.E.M.	229929	7577754	0.99	\N	0
+2325	Green Grow The Rushes	190	1	4	R.E.M.	225671	7422425	0.99	\N	0
+2326	Can't Get There From Here	190	1	4	R.E.M.	220630	7285936	0.99	\N	0
+2327	Driver 8	190	1	4	R.E.M.	204747	6779076	0.99	\N	0
+2329	I Believe	190	1	4	R.E.M.	227709	7542929	0.99	\N	0
+2330	Cuyahoga	190	1	4	R.E.M.	260623	8591057	0.99	\N	0
+2331	The One I Love	190	1	4	R.E.M.	197355	6495125	0.99	\N	0
+2332	The Finest Worksong	190	1	4	R.E.M.	229276	7574856	0.99	\N	0
+2333	It's The End Of The World As We Know It (And I Feel Fine)	190	1	4	R.E.M.	244819	7998987	0.99	\N	0
+2334	Infeliz Natal	191	1	4	Rodolfo	138266	4503299	0.99	\N	0
+2335	A Sua	191	1	4	Rodolfo	142132	4622064	0.99	\N	0
+2336	Papeau Nuky Doe	191	1	4	Rodolfo	121652	3995022	0.99	\N	0
+2337	Merry Christmas	191	1	4	Rodolfo	126040	4166652	0.99	\N	0
+2338	Bodies	191	1	4	Rodolfo	180035	5873778	0.99	\N	0
+2339	Puteiro Em JoÃ£o Pessoa	191	1	4	Rodolfo	195578	6395490	0.99	\N	0
+2340	Esporrei Na Manivela	191	1	4	Rodolfo	293276	9618499	0.99	\N	0
+2341	BÃª-a-BÃ¡	191	1	4	Rodolfo	249051	8130636	0.99	\N	0
+2342	Cajueiro	191	1	4	Rodolfo	158589	5164837	0.99	\N	0
+2343	Palhas Do Coqueiro	191	1	4	Rodolfo	133851	4396466	0.99	\N	0
+2344	Maluco Beleza	192	1	1	\N	203206	6628067	0.99	\N	0
+2345	O Dia Em Que A Terra Parou	192	1	1	\N	261720	8586678	0.99	\N	0
+2346	No Fundo Do Quintal Da Escola	192	1	1	\N	177606	5836953	0.99	\N	0
+2347	O Segredo Do Universo	192	1	1	\N	192679	6315187	0.99	\N	0
+2348	As Profecias	192	1	1	\N	232515	7657732	0.99	\N	0
+2349	Mata Virgem	192	1	1	\N	142602	4690029	0.99	\N	0
+2350	Sapato 36	192	1	1	\N	196702	6507301	0.99	\N	0
+2351	Todo Mundo Explica	192	1	1	\N	134896	4449772	0.99	\N	0
+2352	Que Luz Ã‰ Essa	192	1	1	\N	165067	5620058	0.99	\N	0
+2353	Diamante De Mendigo	192	1	1	\N	206053	6775101	0.99	\N	0
+2354	NegÃ³cio Ã‰	192	1	1	\N	175464	5826775	0.99	\N	0
+2355	Muita Estrela, Pouca ConstelaÃ§Ã£o	192	1	1	\N	268068	8781021	0.99	\N	0
+2356	SÃ©culo XXI	192	1	1	\N	244897	8040563	0.99	\N	0
+2357	Rock Das Aranhas (Ao Vivo) (Live)	192	1	1	\N	231836	7591945	0.99	\N	0
+2358	The Power Of Equality	193	1	4	Anthony Kiedis/Chad Smith/Flea/John Frusciante	243591	8148266	0.99	\N	0
+2359	If You Have To Ask	193	1	4	Anthony Kiedis/Chad Smith/Flea/John Frusciante	216790	7199175	0.99	\N	0
+2360	Breaking The Girl	193	1	4	Anthony Kiedis/Chad Smith/Flea/John Frusciante	295497	9805526	0.99	\N	0
+2361	Funky Monks	193	1	4	Anthony Kiedis/Chad Smith/Flea/John Frusciante	323395	10708168	0.99	\N	0
+2362	Suck My Kiss	193	1	4	Anthony Kiedis/Chad Smith/Flea/John Frusciante	217234	7129137	0.99	\N	0
+2363	I Could Have Lied	193	1	4	Anthony Kiedis/Chad Smith/Flea/John Frusciante	244506	8088244	0.99	\N	0
+2364	Mellowship Slinky In B Major	193	1	4	Anthony Kiedis/Chad Smith/Flea/John Frusciante	240091	7971384	0.99	\N	0
+2365	The Righteous & The Wicked	193	1	4	Anthony Kiedis/Chad Smith/Flea/John Frusciante	248084	8134096	0.99	\N	0
+2366	Give It Away	193	1	4	Anthony Kiedis/Chad Smith/Flea/John Frusciante	283010	9308997	0.99	\N	0
+2367	Blood Sugar Sex Magik	193	1	4	Anthony Kiedis/Chad Smith/Flea/John Frusciante	271229	8940573	0.99	\N	0
+2368	Under The Bridge	193	1	4	Anthony Kiedis/Chad Smith/Flea/John Frusciante	264359	8682716	0.99	\N	0
+2369	Naked In The Rain	193	1	4	Anthony Kiedis/Chad Smith/Flea/John Frusciante	265717	8724674	0.99	\N	0
+2370	Apache Rose Peacock	193	1	4	Anthony Kiedis/Chad Smith/Flea/John Frusciante	282226	9312588	0.99	\N	0
+2371	The Greeting Song	193	1	4	Anthony Kiedis/Chad Smith/Flea/John Frusciante	193593	6346507	0.99	\N	0
+2372	My Lovely Man	193	1	4	Anthony Kiedis/Chad Smith/Flea/John Frusciante	279118	9220114	0.99	\N	0
+2373	Sir Psycho Sexy	193	1	4	Anthony Kiedis/Chad Smith/Flea/John Frusciante	496692	16354362	0.99	\N	0
+2374	They're Red Hot	193	1	4	Robert Johnson	71941	2382220	0.99	\N	0
+2375	By The Way	194	1	1	Anthony Kiedis, Flea, John Frusciante, and Chad Smith	218017	7197430	0.99	\N	0
+2376	Universally Speaking	194	1	1	Anthony Kiedis, Flea, John Frusciante, and Chad Smith	259213	8501904	0.99	\N	0
+2377	This Is The Place	194	1	1	Anthony Kiedis, Flea, John Frusciante, and Chad Smith	257906	8469765	0.99	\N	0
+2378	Dosed	194	1	1	Anthony Kiedis, Flea, John Frusciante, and Chad Smith	312058	10235611	0.99	\N	0
+2379	Don't Forget Me	194	1	1	Anthony Kiedis, Flea, John Frusciante, and Chad Smith	277995	9107071	0.99	\N	0
+2380	The Zephyr Song	194	1	1	Anthony Kiedis, Flea, John Frusciante, and Chad Smith	232960	7690312	0.99	\N	0
+2381	Can't Stop	194	1	1	Anthony Kiedis, Flea, John Frusciante, and Chad Smith	269400	8872479	0.99	\N	0
+2382	I Could Die For You	194	1	1	Anthony Kiedis, Flea, John Frusciante, and Chad Smith	193906	6333311	0.99	\N	0
+2383	Midnight	194	1	1	Anthony Kiedis, Flea, John Frusciante, and Chad Smith	295810	9702450	0.99	\N	0
+2384	Throw Away Your Television	194	1	1	Anthony Kiedis, Flea, John Frusciante, and Chad Smith	224574	7483526	0.99	\N	0
+2385	Cabron	194	1	1	Anthony Kiedis, Flea, John Frusciante, and Chad Smith	218592	7458864	0.99	\N	0
+2386	Tear	194	1	1	Anthony Kiedis, Flea, John Frusciante, and Chad Smith	317413	10395500	0.99	\N	0
+2387	On Mercury	194	1	1	Anthony Kiedis, Flea, John Frusciante, and Chad Smith	208509	6834762	0.99	\N	0
+2388	Minor Thing	194	1	1	Anthony Kiedis, Flea, John Frusciante, and Chad Smith	217835	7148115	0.99	\N	0
+2389	Warm Tape	194	1	1	Anthony Kiedis, Flea, John Frusciante, and Chad Smith	256653	8358200	0.99	\N	0
+2390	Venice Queen	194	1	1	Anthony Kiedis, Flea, John Frusciante, and Chad Smith	369110	12280381	0.99	\N	0
+2391	Around The World	195	1	1	Anthony Kiedis/Chad Smith/Flea/John Frusciante	238837	7859167	0.99	\N	0
+2632	Love	213	1	1	\N	326739	10729824	0.99	\N	0
+2392	Parallel Universe	195	1	1	Red Hot Chili Peppers	270654	8958519	0.99	\N	0
+2393	Scar Tissue	195	1	1	Red Hot Chili Peppers	217469	7153744	0.99	\N	0
+2394	Otherside	195	1	1	Red Hot Chili Peppers	255973	8357989	0.99	\N	0
+2395	Get On Top	195	1	1	Red Hot Chili Peppers	198164	6587883	0.99	\N	0
+2396	Californication	195	1	1	Red Hot Chili Peppers	321671	10568999	0.99	\N	0
+2397	Easily	195	1	1	Red Hot Chili Peppers	231418	7504534	0.99	\N	0
+2398	Porcelain	195	1	1	Anthony Kiedis/Chad Smith/Flea/John Frusciante	163787	5278793	0.99	\N	0
+2399	Emit Remmus	195	1	1	Red Hot Chili Peppers	240300	7901717	0.99	\N	0
+2400	I Like Dirt	195	1	1	Red Hot Chili Peppers	157727	5225917	0.99	\N	0
+2401	This Velvet Glove	195	1	1	Red Hot Chili Peppers	225280	7480537	0.99	\N	0
+2402	Savior	195	1	1	Anthony Kiedis/Chad Smith/Flea/John Frusciante	292493	9551885	0.99	\N	0
+2403	Purple Stain	195	1	1	Red Hot Chili Peppers	253440	8359971	0.99	\N	0
+2404	Right On Time	195	1	1	Red Hot Chili Peppers	112613	3722219	0.99	\N	0
+2405	Road Trippin'	195	1	1	Red Hot Chili Peppers	205635	6685831	0.99	\N	0
+2406	The Spirit Of Radio	196	1	1	Geddy Lee And Alex Lifeson/Geddy Lee And Neil Peart/Rush	299154	9862012	0.99	\N	0
+2407	The Trees	196	1	1	Geddy Lee And Alex Lifeson/Geddy Lee And Neil Peart/Rush	285126	9345473	0.99	\N	0
+2408	Something For Nothing	196	1	1	Geddy Lee And Alex Lifeson/Geddy Lee And Neil Peart/Rush	240770	7898395	0.99	\N	0
+2409	Freewill	196	1	1	Geddy Lee And Alex Lifeson/Geddy Lee And Neil Peart/Rush	324362	10694110	0.99	\N	0
+2410	Xanadu	196	1	1	Geddy Lee And Alex Lifeson/Geddy Lee And Neil Peart/Rush	667428	21753168	0.99	\N	0
+2411	Bastille Day	196	1	1	Geddy Lee And Alex Lifeson/Geddy Lee And Neil Peart/Rush	280528	9264769	0.99	\N	0
+2412	By-Tor And The Snow Dog	196	1	1	Geddy Lee And Alex Lifeson/Geddy Lee And Neil Peart/Rush	519888	17076397	0.99	\N	0
+2413	Anthem	196	1	1	Geddy Lee And Alex Lifeson/Geddy Lee And Neil Peart/Rush	264515	8693343	0.99	\N	0
+2414	Closer To The Heart	196	1	1	Geddy Lee And Alex Lifeson/Geddy Lee And Neil Peart/Rush	175412	5767005	0.99	\N	0
+2415	2112 Overture	196	1	1	Geddy Lee And Alex Lifeson/Geddy Lee And Neil Peart/Rush	272718	8898066	0.99	\N	0
+2416	The Temples Of Syrinx	196	1	1	Geddy Lee And Alex Lifeson/Geddy Lee And Neil Peart/Rush	133459	4360163	0.99	\N	0
+2417	La Villa Strangiato	196	1	1	Geddy Lee And Alex Lifeson/Geddy Lee And Neil Peart/Rush	577488	19137855	0.99	\N	0
+2418	Fly By Night	196	1	1	Geddy Lee And Alex Lifeson/Geddy Lee And Neil Peart/Rush	202318	6683061	0.99	\N	0
+2419	Finding My Way	196	1	1	Geddy Lee And Alex Lifeson/Geddy Lee And Neil Peart/Rush	305528	9985701	0.99	\N	0
+2420	Jingo	197	1	1	M.Babatunde Olantunji	592953	19736495	0.99	\N	0
+2421	El Corazon Manda	197	1	1	E.Weiss	713534	23519583	0.99	\N	0
+2422	La Puesta Del Sol	197	1	1	E.Weiss	628062	20614621	0.99	\N	0
+2423	Persuasion	197	1	1	Carlos Santana	318432	10354751	0.99	\N	0
+2424	As The Years Go by	197	1	1	Albert King	233064	7566829	0.99	\N	0
+2425	Soul Sacrifice	197	1	1	Carlos Santana	296437	9801120	0.99	\N	0
+2426	Fried Neckbones And Home Fries	197	1	1	W.Correa	638563	20939646	0.99	\N	0
+2427	Santana Jam	197	1	1	Carlos Santana	882834	29207100	0.99	\N	0
+2428	Evil Ways	198	1	1	\N	475402	15289235	0.99	\N	0
+2429	We've Got To Get Together/Jingo	198	1	1	\N	1070027	34618222	0.99	\N	0
+2430	Rock Me	198	1	1	\N	94720	3037596	0.99	\N	0
+2431	Just Ain't Good Enough	198	1	1	\N	850259	27489067	0.99	\N	0
+2432	Funky Piano	198	1	1	\N	934791	30200730	0.99	\N	0
+2433	The Way You Do To Mer	198	1	1	\N	618344	20028702	0.99	\N	0
+2434	Holding Back The Years	141	1	1	Mick Hucknall and Neil Moss	270053	8833220	0.99	\N	0
+2435	Money's Too Tight To Mention	141	1	1	John and William Valentine	268408	8861921	0.99	\N	0
+2436	The Right Thing	141	1	1	Mick Hucknall	262687	8624063	0.99	\N	0
+2437	It's Only Love	141	1	1	Jimmy and Vella Cameron	232594	7659017	0.99	\N	0
+2438	A New Flame	141	1	1	Mick Hucknall	237662	7822875	0.99	\N	0
+2439	You've Got It	141	1	1	Mick Hucknall and Lamont Dozier	235232	7712845	0.99	\N	0
+2440	If You Don't Know Me By Now	141	1	1	Kenny Gamble and Leon Huff	206524	6712634	0.99	\N	0
+2441	Stars	141	1	1	Mick Hucknall	248137	8194906	0.99	\N	0
+2442	Something Got Me Started	141	1	1	Mick Hucknall and Fritz McIntyre	239595	7997139	0.99	\N	0
+2443	Thrill Me	141	1	1	Mick Hucknall and Fritz McIntyre	303934	10034711	0.99	\N	0
+2444	Your Mirror	141	1	1	Mick Hucknall	240666	7893821	0.99	\N	0
+2445	For Your Babies	141	1	1	Mick Hucknall	256992	8408803	0.99	\N	0
+2446	So Beautiful	141	1	1	Mick Hucknall	298083	9837832	0.99	\N	0
+2447	Angel	141	1	1	Carolyn Franklin and Sonny Saunders	240561	7880256	0.99	\N	0
+2448	Fairground	141	1	1	Mick Hucknall	263888	8793094	0.99	\N	0
+2450	TrÃªs Lados	199	1	1	Chico Amaral/Samuel Rosa	233665	7699609	0.99	\N	0
+2451	Ela Desapareceu	199	1	1	Chico Amaral/Samuel Rosa	250122	8289200	0.99	\N	0
+2452	Balada Do Amor InabalÃ¡vel	199	1	1	Fausto Fawcett/Samuel Rosa	240613	8025816	0.99	\N	0
+2453	CanÃ§Ã£o Noturna	199	1	1	Chico Amaral/Lelo Zanettik	238628	7874774	0.99	\N	0
+2454	MuÃ§ulmano	199	1	1	LeÃ£o, Rodrigo F./Samuel Rosa	249600	8270613	0.99	\N	0
+2455	Maquinarama	199	1	1	Chico Amaral/Samuel Rosa	245629	8213710	0.99	\N	0
+2456	RebeliÃ£o	199	1	1	Chico Amaral/Samuel Rosa	298527	9817847	0.99	\N	0
+2457	A Ãšltima Guerra	199	1	1	LeÃ£o, Rodrigo F./LÃ´ Borges/Samuel Rosa	314723	10480391	0.99	\N	0
+2458	Fica	199	1	1	Chico Amaral/Samuel Rosa	272169	8980972	0.99	\N	0
+2459	Ali	199	1	1	Nando Reis/Samuel Rosa	306390	10110351	0.99	\N	0
+2460	Preto DamiÃ£o	199	1	1	Chico Amaral/Samuel Rosa	264568	8697658	0.99	\N	0
+2461	Ã‰ Uma Partida De Futebol	200	1	1	Samuel Rosa	1071	38747	0.99	\N	0
+2462	Eu Disse A Ela	200	1	1	Samuel Rosa	254223	8479463	0.99	\N	0
+2463	ZÃ© Trindade	200	1	1	Samuel Rosa	247954	8331310	0.99	\N	0
+2464	Garota Nacional	200	1	1	Samuel Rosa	317492	10511239	0.99	\N	0
+2465	TÃ£o Seu	200	1	1	Samuel Rosa	243748	8133126	0.99	\N	0
+2466	Sem Terra	200	1	1	Samuel Rosa	279353	9196411	0.99	\N	0
+2467	Os Exilados	200	1	1	Samuel Rosa	245551	8222095	0.99	\N	0
+2468	Um Dia Qualquer	200	1	1	Samuel Rosa	292414	9805570	0.99	\N	0
+2469	Los Pretos	200	1	1	Samuel Rosa	239229	8025667	0.99	\N	0
+2470	Sul Da AmÃ©rica	200	1	1	Samuel Rosa	254928	8484871	0.99	\N	0
+2471	PoconÃ©	200	1	1	Samuel Rosa	318406	10771610	0.99	\N	0
+2472	Lucky 13	201	1	4	Billy Corgan	189387	6200617	0.99	\N	0
+2473	Aeroplane Flies High	201	1	4	Billy Corgan	473391	15408329	0.99	\N	0
+2474	Because You Are	201	1	4	Billy Corgan	226403	7405137	0.99	\N	0
+2475	Slow Dawn	201	1	4	Billy Corgan	192339	6269057	0.99	\N	0
+2476	Believe	201	1	4	James Iha	192940	6320652	0.99	\N	0
+2477	My Mistake	201	1	4	Billy Corgan	240901	7843477	0.99	\N	0
+2478	Marquis In Spades	201	1	4	Billy Corgan	192731	6304789	0.99	\N	0
+2479	Here's To The Atom Bomb	201	1	4	Billy Corgan	266893	8763140	0.99	\N	0
+2480	Sparrow	201	1	4	Billy Corgan	176822	5696989	0.99	\N	0
+2481	Waiting	201	1	4	Billy Corgan	228336	7627641	0.99	\N	0
+2482	Saturnine	201	1	4	Billy Corgan	229877	7523502	0.99	\N	0
+2483	Rock On	201	1	4	David Cook	366471	12133825	0.99	\N	0
+2484	Set The Ray To Jerry	201	1	4	Billy Corgan	249364	8215184	0.99	\N	0
+2485	Winterlong	201	1	4	Billy Corgan	299389	9670616	0.99	\N	0
+2486	Soot & Stars	201	1	4	Billy Corgan	399986	12866557	0.99	\N	0
+2487	Blissed & Gone	201	1	4	Billy Corgan	286302	9305998	0.99	\N	0
+2488	Siva	202	1	4	Billy Corgan	261172	8576622	0.99	\N	0
+2489	Rhinocerous	202	1	4	Billy Corgan	353462	11526684	0.99	\N	0
+2490	Drown	202	1	4	Billy Corgan	270497	8883496	0.99	\N	0
+2491	Cherub Rock	202	1	4	Billy Corgan	299389	9786739	0.99	\N	0
+2492	Today	202	1	4	Billy Corgan	202213	6596933	0.99	\N	0
+2493	Disarm	202	1	4	Billy Corgan	198556	6508249	0.99	\N	0
+2494	Landslide	202	1	4	Stevie Nicks	190275	6187754	0.99	\N	0
+2495	Bullet With Butterfly Wings	202	1	4	Billy Corgan	257306	8431747	0.99	\N	0
+2496	1979	202	1	4	Billy Corgan	263653	8728470	0.99	\N	0
+2497	Zero	202	1	4	Billy Corgan	161123	5267176	0.99	\N	0
+2498	Tonight, Tonight	202	1	4	Billy Corgan	255686	8351543	0.99	\N	0
+2499	Eye	202	1	4	Billy Corgan	294530	9784201	0.99	\N	0
+2500	Ava Adore	202	1	4	Billy Corgan	261433	8590412	0.99	\N	0
+2501	Perfect	202	1	4	Billy Corgan	203023	6734636	0.99	\N	0
+2502	The Everlasting Gaze	202	1	4	Billy Corgan	242155	7844404	0.99	\N	0
+2503	Stand Inside Your Love	202	1	4	Billy Corgan	253753	8270113	0.99	\N	0
+2504	Real Love	202	1	4	Billy Corgan	250697	8025896	0.99	\N	0
+2505	[Untitled]	202	1	4	Billy Corgan	231784	7689713	0.99	\N	0
+2523	Morning Dance	204	1	2	Jay Beckenstein	238759	8101979	0.99	\N	0
+2524	Jubilee	204	1	2	Jeremy Wall	275147	9151846	0.99	\N	0
+2525	Rasul	204	1	2	Jeremy Wall	238315	7854737	0.99	\N	0
+2526	Song For Lorraine	204	1	2	Jay Beckenstein	240091	8101723	0.99	\N	0
+2527	Starburst	204	1	2	Jeremy Wall	291500	9768399	0.99	\N	0
+2528	Heliopolis	204	1	2	Jay Beckenstein	338729	11365655	0.99	\N	0
+2529	It Doesn't Matter	204	1	2	Chet Catallo	270027	9034177	0.99	\N	0
+2530	Little Linda	204	1	2	Jeremy Wall	264019	8958743	0.99	\N	0
+2531	End Of Romanticism	204	1	2	Rick Strauss	320078	10553155	0.99	\N	0
+2532	The House Is Rockin'	205	1	6	Doyle Bramhall/Stevie Ray Vaughan	144352	4706253	0.99	\N	0
+2533	Crossfire	205	1	6	B. Carter/C. Layton/R. Ellsworth/R. Wynans/T. Shannon	251219	8238033	0.99	\N	0
+2534	Tightrope	205	1	6	Doyle Bramhall/Stevie Ray Vaughan	281155	9254906	0.99	\N	0
+2535	Let Me Love You Baby	205	1	6	Willie Dixon	164127	5378455	0.99	\N	0
+2536	Leave My Girl Alone	205	1	6	B. Guy	256365	8438021	0.99	\N	0
+2537	Travis Walk	205	1	6	Stevie Ray Vaughan	140826	4650979	0.99	\N	0
+2538	Wall Of Denial	205	1	6	Doyle Bramhall/Stevie Ray Vaughan	336927	11085915	0.99	\N	0
+2539	Scratch-N-Sniff	205	1	6	Doyle Bramhall/Stevie Ray Vaughan	163422	5353627	0.99	\N	0
+2540	Love Me Darlin'	205	1	6	C. Burnett	201586	6650869	0.99	\N	0
+2541	Riviera Paradise	205	1	6	Stevie Ray Vaughan	528692	17232776	0.99	\N	0
+2542	Dead And Bloated	206	1	1	R. DeLeo/Weiland	310386	10170433	0.99	\N	0
+2543	Sex Type Thing	206	1	1	D. DeLeo/Kretz/Weiland	218723	7102064	0.99	\N	0
+2544	Wicked Garden	206	1	1	D. DeLeo/R. DeLeo/Weiland	245368	7989505	0.99	\N	0
+2545	No Memory	206	1	1	Dean Deleo	80613	2660859	0.99	\N	0
+2546	Sin	206	1	1	R. DeLeo/Weiland	364800	12018823	0.99	\N	0
+2547	Naked Sunday	206	1	1	D. DeLeo/Kretz/R. DeLeo/Weiland	229720	7444201	0.99	\N	0
+2548	Creep	206	1	1	R. DeLeo/Weiland	333191	10894988	0.99	\N	0
+2549	Piece Of Pie	206	1	1	R. DeLeo/Weiland	324623	10605231	0.99	\N	0
+2550	Plush	206	1	1	R. DeLeo/Weiland	314017	10229848	0.99	\N	0
+2551	Wet My Bed	206	1	1	R. DeLeo/Weiland	96914	3198627	0.99	\N	0
+2552	Crackerman	206	1	1	Kretz/R. DeLeo/Weiland	194403	6317361	0.99	\N	0
+2553	Where The River Goes	206	1	1	D. DeLeo/Kretz/Weiland	505991	16468904	0.99	\N	0
+2554	Soldier Side - Intro	207	1	3	Dolmayan, John/Malakian, Daron/Odadjian, Shavo	63764	2056079	0.99	\N	0
+2555	B.Y.O.B.	207	1	3	Tankian, Serj	255555	8407935	0.99	\N	0
+2556	Revenga	207	1	3	Tankian, Serj	228127	7503805	0.99	\N	0
+2557	Cigaro	207	1	3	Tankian, Serj	131787	4321705	0.99	\N	0
+2558	Radio/Video	207	1	3	Dolmayan, John/Malakian, Daron/Odadjian, Shavo	249312	8224917	0.99	\N	0
+2559	This Cocaine Makes Me Feel Like I'm On This Song	207	1	3	Tankian, Serj	128339	4185193	0.99	\N	0
+2560	Violent Pornography	207	1	3	Dolmayan, John/Malakian, Daron/Odadjian, Shavo	211435	6985960	0.99	\N	0
+2561	Question!	207	1	3	Tankian, Serj	200698	6616398	0.99	\N	0
+2562	Sad Statue	207	1	3	Tankian, Serj	205897	6733449	0.99	\N	0
+2563	Old School Hollywood	207	1	3	Dolmayan, John/Malakian, Daron/Odadjian, Shavo	176953	5830258	0.99	\N	0
+2564	Lost in Hollywood	207	1	3	Tankian, Serj	320783	10535158	0.99	\N	0
+2565	The Sun Road	208	1	1	Terry Bozzio, Steve Stevens, Tony Levin	880640	29008407	0.99	\N	0
+2566	Dark Corners	208	1	1	Terry Bozzio, Steve Stevens, Tony Levin	513541	16839223	0.99	\N	0
+2567	Duende	208	1	1	Terry Bozzio, Steve Stevens, Tony Levin	447582	14956771	0.99	\N	0
+2568	Black Light Syndrome	208	1	1	Terry Bozzio, Steve Stevens, Tony Levin	526471	17300835	0.99	\N	0
+2569	Falling in Circles	208	1	1	Terry Bozzio, Steve Stevens, Tony Levin	549093	18263248	0.99	\N	0
+2570	Book of Hours	208	1	1	Terry Bozzio, Steve Stevens, Tony Levin	583366	19464726	0.99	\N	0
+2571	Chaos-Control	208	1	1	Terry Bozzio, Steve Stevens, Tony Levin	529841	17455568	0.99	\N	0
+2572	Midnight From The Inside Out	209	1	6	Chris Robinson/Rich Robinson	286981	9442157	0.99	\N	0
+2573	Sting Me	209	1	6	Chris Robinson/Rich Robinson	268094	8813561	0.99	\N	0
+2574	Thick & Thin	209	1	6	Chris Robinson/Rich Robinson	222720	7284377	0.99	\N	0
+2575	Greasy Grass River	209	1	6	Chris Robinson/Rich Robinson	218749	7157045	0.99	\N	0
+2576	Sometimes Salvation	209	1	6	Chris Robinson/Rich Robinson	389146	12749424	0.99	\N	0
+2577	Cursed Diamonds	209	1	6	Chris Robinson/Rich Robinson	368300	12047978	0.99	\N	0
+2578	Miracle To Me	209	1	6	Chris Robinson/Rich Robinson	372636	12222116	0.99	\N	0
+2579	Wiser Time	209	1	6	Chris Robinson/Rich Robinson	459990	15161907	0.99	\N	0
+2580	Girl From A Pawnshop	209	1	6	Chris Robinson/Rich Robinson	404688	13250848	0.99	\N	0
+2581	Cosmic Fiend	209	1	6	Chris Robinson/Rich Robinson	308401	10115556	0.99	\N	0
+2582	Black Moon Creeping	210	1	6	Chris Robinson/Rich Robinson	359314	11740886	0.99	\N	0
+2583	High Head Blues	210	1	6	Chris Robinson/Rich Robinson	371879	12227998	0.99	\N	0
+2584	Title Song	210	1	6	Chris Robinson/Rich Robinson	505521	16501316	0.99	\N	0
+2585	She Talks To Angels	210	1	6	Chris Robinson/Rich Robinson	361978	11837342	0.99	\N	0
+2586	Twice As Hard	210	1	6	Chris Robinson/Rich Robinson	275565	9008067	0.99	\N	0
+2587	Lickin'	210	1	6	Chris Robinson/Rich Robinson	314409	10331216	0.99	\N	0
+2588	Soul Singing	210	1	6	Chris Robinson/Rich Robinson	233639	7672489	0.99	\N	0
+2589	Hard To Handle	210	1	6	A.Isbell/A.Jones/O.Redding	206994	6786304	0.99	\N	0
+2590	Remedy	210	1	6	Chris Robinson/Rich Robinson	337084	11049098	0.99	\N	0
+2591	White Riot	211	1	4	Joe Strummer/Mick Jones	118726	3922819	0.99	\N	0
+2592	Remote Control	211	1	4	Joe Strummer/Mick Jones	180297	5949647	0.99	\N	0
+2593	Complete Control	211	1	4	Joe Strummer/Mick Jones	192653	6272081	0.99	\N	0
+2594	Clash City Rockers	211	1	4	Joe Strummer/Mick Jones	227500	7555054	0.99	\N	0
+2595	(White Man) In Hammersmith Palais	211	1	4	Joe Strummer/Mick Jones	240640	7883532	0.99	\N	0
+2596	Tommy Gun	211	1	4	Joe Strummer/Mick Jones	195526	6399872	0.99	\N	0
+2597	English Civil War	211	1	4	Mick Jones/Traditional arr. Joe Strummer	156708	5111226	0.99	\N	0
+2598	I Fought The Law	211	1	4	Sonny Curtis	159764	5245258	0.99	\N	0
+2599	London Calling	211	1	4	Joe Strummer/Mick Jones	199706	6569007	0.99	\N	0
+2600	Train In Vain	211	1	4	Joe Strummer/Mick Jones	189675	6329877	0.99	\N	0
+2601	Bankrobber	211	1	4	Joe Strummer/Mick Jones	272431	9067323	0.99	\N	0
+2602	The Call Up	211	1	4	The Clash	324336	10746937	0.99	\N	0
+2603	Hitsville UK	211	1	4	The Clash	261433	8606887	0.99	\N	0
+2604	The Magnificent Seven	211	1	4	The Clash	268486	8889821	0.99	\N	0
+2605	This Is Radio Clash	211	1	4	The Clash	249756	8366573	0.99	\N	0
+2606	Know Your Rights	211	1	4	The Clash	217678	7195726	0.99	\N	0
+2607	Rock The Casbah	211	1	4	The Clash	222145	7361500	0.99	\N	0
+2608	Should I Stay Or Should I Go	211	1	4	The Clash	187219	6188688	0.99	\N	0
+2609	War (The Process)	212	1	1	Billy Duffy/Ian Astbury	252630	8254842	0.99	\N	0
+2610	The Saint	212	1	1	Billy Duffy/Ian Astbury	216215	7061584	0.99	\N	0
+2611	Rise	212	1	1	Billy Duffy/Ian Astbury	219088	7106195	0.99	\N	0
+2612	Take The Power	212	1	1	Billy Duffy/Ian Astbury	235755	7650012	0.99	\N	0
+2613	Breathe	212	1	1	Billy Duffy/Ian Astbury/Marti Frederiksen/Mick Jones	299781	9742361	0.99	\N	0
+2614	Nico	212	1	1	Billy Duffy/Ian Astbury	289488	9412323	0.99	\N	0
+2615	American Gothic	212	1	1	Billy Duffy/Ian Astbury	236878	7739840	0.99	\N	0
+2616	Ashes And Ghosts	212	1	1	Billy Duffy/Bob Rock/Ian Astbury	300591	9787692	0.99	\N	0
+2617	Shape The Sky	212	1	1	Billy Duffy/Ian Astbury	209789	6885647	0.99	\N	0
+2618	Speed Of Light	212	1	1	Billy Duffy/Bob Rock/Ian Astbury	262817	8563352	0.99	\N	0
+2619	True Believers	212	1	1	Billy Duffy/Ian Astbury	308009	9981359	0.99	\N	0
+2620	My Bridges Burn	212	1	1	Billy Duffy/Ian Astbury	231862	7571370	0.99	\N	0
+2621	She Sells Sanctuary	213	1	1	\N	253727	8368634	0.99	\N	0
+2622	Fire Woman	213	1	1	\N	312790	10196995	0.99	\N	0
+2623	Lil' Evil	213	1	1	\N	165825	5419655	0.99	\N	0
+2624	Spirit Walker	213	1	1	\N	230060	7555897	0.99	\N	0
+2625	The Witch	213	1	1	\N	258768	8725403	0.99	\N	0
+2626	Revolution	213	1	1	\N	256026	8371254	0.99	\N	0
+2627	Wild Hearted Son	213	1	1	\N	266893	8670550	0.99	\N	0
+2628	Love Removal Machine	213	1	1	\N	257619	8412167	0.99	\N	0
+2629	Rain	213	1	1	\N	236669	7788461	0.99	\N	0
+2630	Edie (Ciao Baby)	213	1	1	\N	241632	7846177	0.99	\N	0
+2631	Heart Of Soul	213	1	1	\N	274207	8967257	0.99	\N	0
+2633	Wild Flower	213	1	1	\N	215536	7084321	0.99	\N	0
+2634	Go West	213	1	1	\N	238158	7777749	0.99	\N	0
+2635	Resurrection Joe	213	1	1	\N	255451	8532840	0.99	\N	0
+2636	Sun King	213	1	1	\N	368431	12010865	0.99	\N	0
+2637	Sweet Soul Sister	213	1	1	\N	212009	6889883	0.99	\N	0
+2638	Earth Mofo	213	1	1	\N	282200	9204581	0.99	\N	0
+2639	Break on Through	214	1	1	Robby Krieger, Ray Manzarek, John Densmore, Jim Morrison	149342	4943144	0.99	\N	0
+2640	Soul Kitchen	214	1	1	Robby Krieger, Ray Manzarek, John Densmore, Jim Morrison	215066	7040865	0.99	\N	0
+2641	The Crystal Ship	214	1	1	Robby Krieger, Ray Manzarek, John Densmore, Jim Morrison	154853	5052658	0.99	\N	0
+2642	Twentienth Century Fox	214	1	1	Robby Krieger, Ray Manzarek, John Densmore, Jim Morrison	153913	5069211	0.99	\N	0
+2643	Alabama Song	214	1	1	Weill-Brecht	200097	6563411	0.99	\N	0
+2644	Light My Fire	214	1	1	Robby Krieger, Ray Manzarek, John Densmore, Jim Morrison	428329	13963351	0.99	\N	0
+2645	Back Door Man	214	1	1	Willie Dixon, C. Burnett	214360	7035636	0.99	\N	0
+2646	I Looked At You	214	1	1	Robby Krieger, Ray Manzarek, John Densmore, Jim Morrison	142080	4663988	0.99	\N	0
+2647	End Of The Night	214	1	1	Robby Krieger, Ray Manzarek, John Densmore, Jim Morrison	172695	5589732	0.99	\N	0
+2648	Take It As It Comes	214	1	1	Robby Krieger, Ray Manzarek, John Densmore, Jim Morrison	137168	4512656	0.99	\N	0
+2649	The End	214	1	1	Robby Krieger, Ray Manzarek, John Densmore, Jim Morrison	701831	22927336	0.99	\N	0
+2650	Roxanne	215	1	1	G M Sumner	192992	6330159	0.99	\N	0
+2651	Can't Stand Losing You	215	1	1	G M Sumner	181159	5971983	0.99	\N	0
+2652	Message in a Bottle	215	1	1	G M Sumner	291474	9647829	0.99	\N	0
+2653	Walking on the Moon	215	1	1	G M Sumner	302080	10019861	0.99	\N	0
+2654	Don't Stand so Close to Me	215	1	1	G M Sumner	241031	7956658	0.99	\N	0
+2655	De Do Do Do, De Da Da Da	215	1	1	G M Sumner	247196	8227075	0.99	\N	0
+2656	Every Little Thing She Does is Magic	215	1	1	G M Sumner	261120	8646853	0.99	\N	0
+2657	Invisible Sun	215	1	1	G M Sumner	225593	7304320	0.99	\N	0
+2658	Spirit's in the Material World	215	1	1	G M Sumner	181133	5986622	0.99	\N	0
+2659	Every Breath You Take	215	1	1	G M Sumner	254615	8364520	0.99	\N	0
+2660	King Of Pain	215	1	1	G M Sumner	300512	9880303	0.99	\N	0
+2661	Wrapped Around Your Finger	215	1	1	G M Sumner	315454	10361490	0.99	\N	0
+2662	Don't Stand So Close to Me '86	215	1	1	G M Sumner	293590	9636683	0.99	\N	0
+2663	Message in a Bottle (new classic rock mix)	215	1	1	G M Sumner	290951	9640349	0.99	\N	0
+2664	Time Is On My Side	216	1	1	Jerry Ragavoy	179983	5855836	0.99	\N	0
+2665	Heart Of Stone	216	1	1	Jagger/Richards	164493	5329538	0.99	\N	0
+2666	Play With Fire	216	1	1	Nanker Phelge	132022	4265297	0.99	\N	0
+2667	Satisfaction	216	1	1	Jagger/Richards	226612	7398766	0.99	\N	0
+2668	As Tears Go By	216	1	1	Jagger/Richards/Oldham	164284	5357350	0.99	\N	0
+2669	Get Off Of My Cloud	216	1	1	Jagger/Richards	176013	5719514	0.99	\N	0
+2670	Mother's Little Helper	216	1	1	Jagger/Richards	167549	5422434	0.99	\N	0
+2671	19th Nervous Breakdown	216	1	1	Jagger/Richards	237923	7742984	0.99	\N	0
+2672	Paint It Black	216	1	1	Jagger/Richards	226063	7442888	0.99	\N	0
+2673	Under My Thumb	216	1	1	Jagger/Richards	221387	7371799	0.99	\N	0
+2674	Ruby Tuesday	216	1	1	Jagger/Richards	197459	6433467	0.99	\N	0
+2675	Let's Spend The Night Together	216	1	1	Jagger/Richards	217495	7137048	0.99	\N	0
+2676	Intro	217	1	1	Jagger/Richards	49737	1618591	0.99	\N	0
+2677	You Got Me Rocking	217	1	1	Jagger/Richards	205766	6734385	0.99	\N	0
+2678	Gimmie Shelters	217	1	1	Jagger/Richards	382119	12528764	0.99	\N	0
+2679	Flip The Switch	217	1	1	Jagger/Richards	252421	8336591	0.99	\N	0
+2680	Memory Motel	217	1	1	Jagger/Richards	365844	11982431	0.99	\N	0
+2681	Corinna	217	1	1	Jesse Ed Davis III/Taj Mahal	257488	8449471	0.99	\N	0
+2682	Saint Of Me	217	1	1	Jagger/Richards	325694	10725160	0.99	\N	0
+2683	Wainting On A Friend	217	1	1	Jagger/Richards	302497	9978046	0.99	\N	0
+2684	Sister Morphine	217	1	1	Faithfull/Jagger/Richards	376215	12345289	0.99	\N	0
+2685	Live With Me	217	1	1	Jagger/Richards	234893	7709006	0.99	\N	0
+2686	Respectable	217	1	1	Jagger/Richards	215693	7099669	0.99	\N	0
+2687	Thief In The Night	217	1	1	De Beauport/Jagger/Richards	337266	10952756	0.99	\N	0
+2688	The Last Time	217	1	1	Jagger/Richards	287294	9498758	0.99	\N	0
+2689	Out Of Control	217	1	1	Jagger/Richards	479242	15749289	0.99	\N	0
+2690	Love Is Strong	218	1	1	Jagger/Richards	230896	7639774	0.99	\N	0
+2691	You Got Me Rocking	218	1	1	Jagger/Richards	215928	7162159	0.99	\N	0
+2692	Sparks Will Fly	218	1	1	Jagger/Richards	196466	6492847	0.99	\N	0
+2693	The Worst	218	1	1	Jagger/Richards	144613	4750094	0.99	\N	0
+2694	New Faces	218	1	1	Jagger/Richards	172146	5689122	0.99	\N	0
+2695	Moon Is Up	218	1	1	Jagger/Richards	222119	7366316	0.99	\N	0
+2696	Out Of Tears	218	1	1	Jagger/Richards	327418	10677236	0.99	\N	0
+2697	I Go Wild	218	1	1	Jagger/Richards	264019	8630833	0.99	\N	0
+2698	Brand New Car	218	1	1	Jagger/Richards	256052	8459344	0.99	\N	0
+2699	Sweethearts Together	218	1	1	Jagger/Richards	285492	9550459	0.99	\N	0
+2700	Suck On The Jugular	218	1	1	Jagger/Richards	268225	8920566	0.99	\N	0
+2701	Blinded By Rainbows	218	1	1	Jagger/Richards	273946	8971343	0.99	\N	0
+2702	Baby Break It Down	218	1	1	Jagger/Richards	249417	8197309	0.99	\N	0
+2703	Thru And Thru	218	1	1	Jagger/Richards	375092	12175406	0.99	\N	0
+2704	Mean Disposition	218	1	1	Jagger/Richards	249155	8273602	0.99	\N	0
+2705	Walking Wounded	219	1	4	The Tea Party	277968	9184345	0.99	\N	0
+2706	Temptation	219	1	4	The Tea Party	205087	6711943	0.99	\N	0
+2707	The Messenger	219	1	4	Daniel Lanois	212062	6975437	0.99	\N	0
+2708	Psychopomp	219	1	4	The Tea Party	315559	10295199	0.99	\N	0
+2709	Sister Awake	219	1	4	The Tea Party	343875	11299407	0.99	\N	0
+2710	The Bazaar	219	1	4	The Tea Party	222458	7245691	0.99	\N	0
+2711	Save Me (Remix)	219	1	4	The Tea Party	396303	13053839	0.99	\N	0
+2712	Fire In The Head	219	1	4	The Tea Party	306337	10005675	0.99	\N	0
+2713	Release	219	1	4	The Tea Party	244114	8014606	0.99	\N	0
+2714	Heaven Coming Down	219	1	4	The Tea Party	241867	7846459	0.99	\N	0
+2715	The River (Remix)	219	1	4	The Tea Party	343170	11193268	0.99	\N	0
+2716	Babylon	219	1	4	The Tea Party	169795	5568808	0.99	\N	0
+2717	Waiting On A Sign	219	1	4	The Tea Party	261903	8558590	0.99	\N	0
+2718	Life Line	219	1	4	The Tea Party	277786	9082773	0.99	\N	0
+2719	Paint It Black	219	1	4	Keith Richards/Mick Jagger	214752	7101572	0.99	\N	0
+2720	Temptation	220	1	4	The Tea Party	205244	6719465	0.99	\N	0
+2721	Army Ants	220	1	4	The Tea Party	215405	7075838	0.99	\N	0
+2722	Psychopomp	220	1	4	The Tea Party	317231	10351778	0.99	\N	0
+2723	Gyroscope	220	1	4	The Tea Party	177711	5810323	0.99	\N	0
+2724	Alarum	220	1	4	The Tea Party	298187	9712545	0.99	\N	0
+2725	Release	220	1	4	The Tea Party	266292	8725824	0.99	\N	0
+2726	Transmission	220	1	4	The Tea Party	317257	10351152	0.99	\N	0
+2727	Babylon	220	1	4	The Tea Party	292466	9601786	0.99	\N	0
+2728	Pulse	220	1	4	The Tea Party	250253	8183872	0.99	\N	0
+2729	Emerald	220	1	4	The Tea Party	289750	9543789	0.99	\N	0
+2730	Aftermath	220	1	4	The Tea Party	343745	11085607	0.99	\N	0
+2731	I Can't Explain	221	1	1	Pete Townshend	125152	4082896	0.99	\N	0
+2732	Anyway, Anyhow, Anywhere	221	1	1	Pete Townshend, Roger Daltrey	161253	5234173	0.99	\N	0
+2733	My Generation	221	1	1	John Entwistle/Pete Townshend	197825	6446634	0.99	\N	0
+2734	Substitute	221	1	1	Pete Townshend	228022	7409995	0.99	\N	0
+2735	I'm A Boy	221	1	1	Pete Townshend	157126	5120605	0.99	\N	0
+2736	Boris The Spider	221	1	1	John Entwistle	149472	4835202	0.99	\N	0
+2737	Happy Jack	221	1	1	Pete Townshend	132310	4353063	0.99	\N	0
+2738	Pictures Of Lily	221	1	1	Pete Townshend	164414	5329751	0.99	\N	0
+2739	I Can See For Miles	221	1	1	Pete Townshend	262791	8604989	0.99	\N	0
+2740	Magic Bus	221	1	1	Pete Townshend	197224	6452700	0.99	\N	0
+2741	Pinball Wizard	221	1	1	John Entwistle/Pete Townshend	181890	6055580	0.99	\N	0
+2742	The Seeker	221	1	1	Pete Townshend	204643	6736866	0.99	\N	0
+2743	Baba O'Riley	221	1	1	John Entwistle/Pete Townshend	309472	10141660	0.99	\N	0
+2744	Won't Get Fooled Again (Full Length Version)	221	1	1	John Entwistle/Pete Townshend	513750	16855521	0.99	\N	0
+2745	Let's See Action	221	1	1	Pete Townshend	243513	8078418	0.99	\N	0
+2746	5.15	221	1	1	Pete Townshend	289619	9458549	0.99	\N	0
+2747	Join Together	221	1	1	Pete Townshend	262556	8602485	0.99	\N	0
+2748	Squeeze Box	221	1	1	Pete Townshend	161280	5256508	0.99	\N	0
+3044	Wear You To The Ball	241	1	8	\N	213342	7159527	0.99	\N	0
+2749	Who Are You (Single Edit Version)	221	1	1	John Entwistle/Pete Townshend	299232	9900469	0.99	\N	0
+2750	You Better You Bet	221	1	1	Pete Townshend	338520	11160877	0.99	\N	0
+2751	Primavera	222	1	7	Genival Cassiano/Silvio Rochael	126615	4152604	0.99	\N	0
+2752	Chocolate	222	1	7	Tim Maia	194690	6411587	0.99	\N	0
+2753	Azul Da Cor Do Mar	222	1	7	Tim Maia	197955	6475007	0.99	\N	0
+2754	O Descobridor Dos Sete Mares	222	1	7	Gilson MendonÃ§a/Michel	262974	8749583	0.99	\N	0
+2755	AtÃ© Que Enfim Encontrei VocÃª	222	1	7	Tim Maia	105064	3477751	0.99	\N	0
+2756	CoronÃ© Antonio Bento	222	1	7	Do Vale, JoÃ£o/Luiz Wanderley	131317	4340326	0.99	\N	0
+2757	New Love	222	1	7	Tim Maia	237897	7786824	0.99	\N	0
+2758	NÃ£o Vou Ficar	222	1	7	Tim Maia	172068	5642919	0.99	\N	0
+2759	MÃºsica No Ar	222	1	7	Tim Maia	158511	5184891	0.99	\N	0
+2760	Salve Nossa Senhora	222	1	7	Carlos Imperial/Edardo AraÃºjo	115461	3827629	0.99	\N	0
+2761	VocÃª Fugiu	222	1	7	Genival Cassiano	238367	7971147	0.99	\N	0
+2762	Cristina NÂº 2	222	1	7	Carlos Imperial/Tim Maia	90148	2978589	0.99	\N	0
+2763	Compadre	222	1	7	Tim Maia	171389	5631446	0.99	\N	0
+2764	Over Again	222	1	7	Tim Maia	200489	6612634	0.99	\N	0
+2765	RÃ©u Confesso	222	1	7	Tim Maia	217391	7189874	0.99	\N	0
+2766	O Que Me Importa	223	1	7	\N	153155	4977852	0.99	\N	0
+2767	Gostava Tanto De VocÃª	223	1	7	\N	253805	8380077	0.99	\N	0
+2769	NÃ£o Quero Dinheiro	223	1	7	\N	152607	5031797	0.99	\N	0
+2770	Eu Amo VocÃª	223	1	7	\N	242782	7914628	0.99	\N	0
+2771	A Festa Do Santo Reis	223	1	7	\N	159791	5204995	0.99	\N	0
+2772	I Don't Know What To Do With Myself	223	1	7	\N	221387	7251478	0.99	\N	0
+2773	Padre CÃ­cero	223	1	7	\N	139598	4581685	0.99	\N	0
+2774	Nosso Adeus	223	1	7	\N	206471	6793270	0.99	\N	0
+2775	CanÃ¡rio Do Reino	223	1	7	\N	139337	4552858	0.99	\N	0
+2776	Preciso Ser Amado	223	1	7	\N	174001	5618895	0.99	\N	0
+2777	BalanÃ§o	223	1	7	\N	209737	6890327	0.99	\N	0
+2778	Preciso Aprender A Ser SÃ³	223	1	7	\N	162220	5213894	0.99	\N	0
+2779	Esta Ã‰ A CanÃ§Ã£o	223	1	7	\N	184450	6069933	0.99	\N	0
+2780	Formigueiro	223	1	7	\N	252943	8455132	0.99	\N	0
+2781	Comida	224	1	4	TitÃ£s	322612	10786578	0.99	\N	0
+2782	Go Back	224	1	4	TitÃ£s	230504	7668899	0.99	\N	0
+2783	PrÃ¡ Dizer Adeus	224	1	4	TitÃ£s	222484	7382048	0.99	\N	0
+2784	FamÃ­lia	224	1	4	TitÃ£s	218331	7267458	0.99	\N	0
+2785	Os Cegos Do Castelo	224	1	4	TitÃ£s	296829	9868187	0.99	\N	0
+2786	O Pulso	224	1	4	TitÃ£s	199131	6566998	0.99	\N	0
+2787	Marvin	224	1	4	TitÃ£s	264359	8741444	0.99	\N	0
+2788	Nem 5 Minutos Guardados	224	1	4	TitÃ£s	245995	8143797	0.99	\N	0
+2789	Flores	224	1	4	TitÃ£s	215510	7148017	0.99	\N	0
+2790	Palavras	224	1	4	TitÃ£s	158458	5285715	0.99	\N	0
+2791	HereditÃ¡rio	224	1	4	TitÃ£s	151693	5020547	0.99	\N	0
+2792	A Melhor Forma	224	1	4	TitÃ£s	191503	6349938	0.99	\N	0
+2793	CabeÃ§a Dinossauro	224	1	4	TitÃ£s	37120	1220930	0.99	\N	0
+2794	32 Dentes	224	1	4	TitÃ£s	184946	6157904	0.99	\N	0
+2795	Bichos Escrotos (Vinheta)	224	1	4	TitÃ£s	104986	3503755	0.99	\N	0
+2796	NÃ£o Vou Lutar	224	1	4	TitÃ£s	189988	6308613	0.99	\N	0
+2797	Homem Primata (Vinheta)	224	1	4	TitÃ£s	34168	1124909	0.99	\N	0
+2798	Homem Primata	224	1	4	TitÃ£s	195500	6486470	0.99	\N	0
+2799	PolÃ­cia (Vinheta)	224	1	4	TitÃ£s	56111	1824213	0.99	\N	0
+2800	Querem Meu Sangue	224	1	4	TitÃ£s	212401	7069773	0.99	\N	0
+2801	DiversÃ£o	224	1	4	TitÃ£s	285936	9531268	0.99	\N	0
+2802	TelevisÃ£o	224	1	4	TitÃ£s	293668	9776548	0.99	\N	0
+2803	Sonifera Ilha	225	1	4	Branco Mello/Carlos Barmack/Ciro Pessoa/Marcelo Fromer/Toni Belloto	170684	5678290	0.99	\N	0
+2804	Lugar Nenhum	225	1	4	Arnaldo Antunes/Charles Gavin/Marcelo Fromer/SÃ©rgio Britto/Toni Bellotto	195840	6472780	0.99	\N	0
+2805	Sua Impossivel Chance	225	1	4	Nando Reis	246622	8073248	0.99	\N	0
+2806	Desordem	225	1	4	Charles Gavin/Marcelo Fromer/SÃ©rgio Britto	213289	7067340	0.99	\N	0
+2807	NÃ£o Vou Me Adaptar	225	1	4	Arnaldo Antunes	221831	7304656	0.99	\N	0
+2808	Domingo	225	1	4	SÃ©rgio Britto/Toni Bellotto	208613	6883180	0.99	\N	0
+2809	AmanhÃ£ NÃ£o Se Sabe	225	1	4	SÃ©rgio Britto	189440	6243967	0.99	\N	0
+2810	Caras Como Eu	225	1	4	Toni Bellotto	183092	5999048	0.99	\N	0
+2811	Senhora E Senhor	225	1	4	Arnaldo Anutnes/Marcelo Fromer/Paulo Miklos	203702	6733733	0.99	\N	0
+2906	...In Translation	230	3	19	\N	2604575	215441983	1.99	\N	1
+2812	Era Uma Vez	225	1	4	Arnaldo Anutnes/Branco Mello/Marcelo Fromer/Sergio Brotto/Toni Bellotto	224261	7453156	0.99	\N	0
+2813	MisÃ©ria	225	1	4	Arnaldo Antunes/Britto, SergioMiklos, Paulo	262191	8727645	0.99	\N	0
+2814	InsensÃ­vel	225	1	4	SÃ©rgio Britto	207830	6893664	0.99	\N	0
+2815	Eu E Ela	225	1	4	Nando Reis	276035	9138846	0.99	\N	0
+2816	Toda Cor	225	1	4	Ciro Pressoa/Marcelo Fromer	209084	6939176	0.99	\N	0
+2817	Ã‰ Preciso Saber Viver	225	1	4	Erasmo Carlos/Roberto Carlos	251115	8271418	0.99	\N	0
+2818	Senhor Delegado/Eu NÃ£o Aguento	225	1	4	Antonio Lopes	156656	5277983	0.99	\N	0
+2819	Battlestar Galactica: The Story So Far	226	3	18	\N	2622250	490750393	1.99	\N	0
+2820	Occupation / Precipice	227	3	19	\N	5286953	1054423946	1.99	\N	0
+2821	Exodus, Pt. 1	227	3	19	\N	2621708	475079441	1.99	\N	0
+2822	Exodus, Pt. 2	227	3	19	\N	2618000	466820021	1.99	\N	0
+2823	Collaborators	227	3	19	\N	2626626	483484911	1.99	\N	0
+2824	Torn	227	3	19	\N	2631291	495262585	1.99	\N	0
+2825	A Measure of Salvation	227	3	18	\N	2563938	489715554	1.99	\N	0
+2826	Hero	227	3	18	\N	2713755	506896959	1.99	\N	0
+2827	Unfinished Business	227	3	18	\N	2622038	528499160	1.99	\N	0
+2828	The Passage	227	3	18	\N	2623875	490375760	1.99	\N	0
+2829	The Eye of Jupiter	227	3	18	\N	2618750	517909587	1.99	\N	0
+2831	Taking a Break from All Your Worries	227	3	18	\N	2624207	492700163	1.99	\N	0
+2832	The Woman King	227	3	18	\N	2626376	552893447	1.99	\N	0
+2833	A Day In the Life	227	3	18	\N	2620245	462818231	1.99	\N	0
+2834	Dirty Hands	227	3	18	\N	2627961	537648614	1.99	\N	0
+2835	Maelstrom	227	3	18	\N	2622372	514154275	1.99	\N	0
+2836	The Son Also Rises	227	3	18	\N	2621830	499258498	1.99	\N	0
+2837	Crossroads, Pt. 1	227	3	20	\N	2622622	486233524	1.99	\N	0
+2838	Crossroads, Pt. 2	227	3	20	\N	2869953	497335706	1.99	\N	0
+2839	Genesis	228	3	19	\N	2611986	515671080	1.99	\N	0
+2840	Don't Look Back	228	3	21	\N	2571154	493628775	1.99	\N	0
+2841	One Giant Leap	228	3	21	\N	2607649	521616246	1.99	\N	0
+2842	Collision	228	3	21	\N	2605480	526182322	1.99	\N	0
+2843	Hiros	228	3	21	\N	2533575	488835454	1.99	\N	0
+2844	Better Halves	228	3	21	\N	2573031	549353481	1.99	\N	0
+2845	Nothing to Hide	228	3	19	\N	2605647	510058181	1.99	\N	0
+2846	Seven Minutes to Midnight	228	3	21	\N	2613988	515590682	1.99	\N	0
+2847	Homecoming	228	3	21	\N	2601351	516015339	1.99	\N	0
+2848	Six Months Ago	228	3	19	\N	2602852	505133869	1.99	\N	0
+2849	Fallout	228	3	21	\N	2594761	501145440	1.99	\N	0
+2850	The Fix	228	3	21	\N	2600266	507026323	1.99	\N	0
+2851	Distractions	228	3	21	\N	2590382	537111289	1.99	\N	0
+2852	Run!	228	3	21	\N	2602602	542936677	1.99	\N	0
+2853	Unexpected	228	3	21	\N	2598139	511777758	1.99	\N	0
+2854	Company Man	228	3	21	\N	2601226	493168135	1.99	\N	0
+2855	Company Man	228	3	21	\N	2601101	503786316	1.99	\N	0
+2856	Parasite	228	3	21	\N	2602727	487461520	1.99	\N	0
+2857	A Tale of Two Cities	229	3	19	\N	2636970	513691652	1.99	\N	0
+2858	Lost (Pilot, Part 1) [Premiere]	230	3	19	\N	2548875	217124866	1.99	\N	0
+2859	Man of Science, Man of Faith (Premiere)	231	3	19	\N	2612250	543342028	1.99	\N	0
+2860	Adrift	231	3	19	\N	2564958	502663995	1.99	\N	0
+2861	Lost (Pilot, Part 2)	230	3	19	\N	2436583	204995876	1.99	\N	0
+2862	The Glass Ballerina	229	3	21	\N	2637458	535729216	1.99	\N	0
+2863	Further Instructions	229	3	19	\N	2563980	502041019	1.99	\N	0
+2864	Orientation	231	3	19	\N	2609083	500600434	1.99	\N	0
+2865	Tabula Rasa	230	3	19	\N	2627105	210526410	1.99	\N	0
+2866	Every Man for Himself	229	3	21	\N	2637387	513803546	1.99	\N	0
+2867	Everybody Hates Hugo	231	3	19	\N	2609192	498163145	1.99	\N	0
+2868	Walkabout	230	3	19	\N	2587370	207748198	1.99	\N	0
+2869	...And Found	231	3	19	\N	2563833	500330548	1.99	\N	0
+2870	The Cost of Living	229	3	19	\N	2637500	505647192	1.99	\N	0
+2871	White Rabbit	230	3	19	\N	2571965	201654606	1.99	\N	0
+2872	Abandoned	231	3	19	\N	2587041	537348711	1.99	\N	0
+2873	House of the Rising Sun	230	3	19	\N	2590032	210379525	1.99	\N	0
+2874	I Do	229	3	19	\N	2627791	504676825	1.99	\N	0
+2875	Not In Portland	229	3	21	\N	2637303	499061234	1.99	\N	0
+2876	Not In Portland	229	3	21	\N	2637345	510546847	1.99	\N	0
+2877	The Moth	230	3	19	\N	2631327	228896396	1.99	\N	0
+2878	The Other 48 Days	231	3	19	\N	2610625	535256753	1.99	\N	0
+2879	Collision	231	3	19	\N	2564916	475656544	1.99	\N	0
+2880	Confidence Man	230	3	19	\N	2615244	223756475	1.99	\N	0
+2881	Flashes Before Your Eyes	229	3	21	\N	2636636	537760755	1.99	\N	0
+2882	Lost Survival Guide	229	3	21	\N	2632590	486675063	1.99	\N	0
+2883	Solitary	230	3	19	\N	2612894	207045178	1.99	\N	0
+2884	What Kate Did	231	3	19	\N	2610250	484583988	1.99	\N	0
+2885	Raised By Another	230	3	19	\N	2590459	223623810	1.99	\N	0
+2886	Stranger In a Strange Land	229	3	21	\N	2636428	505056021	1.99	\N	0
+2887	The 23rd Psalm	231	3	19	\N	2610416	487401604	1.99	\N	0
+2888	All the Best Cowboys Have Daddy Issues	230	3	19	\N	2555492	211743651	1.99	\N	0
+2889	The Hunting Party	231	3	21	\N	2611333	520350364	1.99	\N	0
+2890	Tricia Tanaka Is Dead	229	3	21	\N	2635010	548197162	1.99	\N	0
+2891	Enter 77	229	3	21	\N	2629796	517521422	1.99	\N	0
+2892	Fire + Water	231	3	21	\N	2600333	488458695	1.99	\N	0
+2893	Whatever the Case May Be	230	3	19	\N	2616410	183867185	1.99	\N	0
+2894	Hearts and Minds	230	3	19	\N	2619462	207607466	1.99	\N	0
+2895	Par Avion	229	3	21	\N	2629879	517079642	1.99	\N	0
+2896	The Long Con	231	3	19	\N	2679583	518376636	1.99	\N	0
+2897	One of Them	231	3	21	\N	2698791	542332389	1.99	\N	0
+2898	Special	230	3	19	\N	2618530	219961967	1.99	\N	0
+2899	The Man from Tallahassee	229	3	21	\N	2637637	550893556	1.99	\N	0
+2900	ExposÃ©	229	3	21	\N	2593760	511338017	1.99	\N	0
+2901	Homecoming	230	3	19	\N	2515882	210675221	1.99	\N	0
+2902	Maternity Leave	231	3	21	\N	2780416	555244214	1.99	\N	0
+2903	Left Behind	229	3	21	\N	2635343	538491964	1.99	\N	0
+2904	Outlaws	230	3	19	\N	2619887	206500939	1.99	\N	0
+2905	The Whole Truth	231	3	21	\N	2610125	495487014	1.99	\N	0
+2907	Lockdown	231	3	21	\N	2610250	543886056	1.99	\N	0
+2908	One of Us	229	3	21	\N	2638096	502387276	1.99	\N	0
+2909	Catch-22	229	3	21	\N	2561394	489773399	1.99	\N	0
+2910	Dave	231	3	19	\N	2825166	574325829	1.99	\N	0
+2911	Numbers	230	3	19	\N	2609772	214709143	1.99	\N	0
+2912	D.O.C.	229	3	21	\N	2616032	518556641	1.99	\N	0
+2913	Deus Ex Machina	230	3	19	\N	2582009	214996732	1.99	\N	0
+2914	S.O.S.	231	3	19	\N	2639541	517979269	1.99	\N	0
+2915	Do No Harm	230	3	19	\N	2618487	212039309	1.99	\N	0
+2916	Two for the Road	231	3	21	\N	2610958	502404558	1.99	\N	0
+2917	The Greater Good	230	3	19	\N	2617784	214130273	1.99	\N	0
+2919	Born to Run	230	3	19	\N	2618619	213772057	1.99	\N	0
+2920	Three Minutes	231	3	19	\N	2763666	531556853	1.99	\N	0
+2921	Exodus (Part 1)	230	3	19	\N	2620747	213107744	1.99	\N	0
+2922	Live Together, Die Alone, Pt. 1	231	3	21	\N	2478041	457364940	1.99	\N	0
+2923	Exodus (Part 2) [Season Finale]	230	3	19	\N	2605557	208667059	1.99	\N	0
+2924	Live Together, Die Alone, Pt. 2	231	3	19	\N	2656531	503619265	1.99	\N	0
+2925	Exodus (Part 3) [Season Finale]	230	3	19	\N	2619869	197937785	1.99	\N	0
+2926	Zoo Station	232	1	1	U2	276349	9056902	0.99	\N	0
+2927	Even Better Than The Real Thing	232	1	1	U2	221361	7279392	0.99	\N	0
+2928	One	232	1	1	U2	276192	9158892	0.99	\N	0
+2929	Until The End Of The World	232	1	1	U2	278700	9132485	0.99	\N	0
+2930	Who's Gonna Ride Your Wild Horses	232	1	1	U2	316551	10304369	0.99	\N	0
+2931	So Cruel	232	1	1	U2	349492	11527614	0.99	\N	0
+2932	The Fly	232	1	1	U2	268982	8825399	0.99	\N	0
+2933	Mysterious Ways	232	1	1	U2	243826	8062057	0.99	\N	0
+2934	Tryin' To Throw Your Arms Around The World	232	1	1	U2	232463	7612124	0.99	\N	0
+2935	Ultraviolet (Light My Way)	232	1	1	U2	330788	10754631	0.99	\N	0
+2936	Acrobat	232	1	1	U2	270288	8824723	0.99	\N	0
+2937	Love Is Blindness	232	1	1	U2	263497	8531766	0.99	\N	0
+2938	Beautiful Day	233	1	1	Adam Clayton, Bono, Larry Mullen, The Edge	248163	8056723	0.99	\N	0
+2939	Stuck In A Moment You Can't Get Out Of	233	1	1	Adam Clayton, Bono, Larry Mullen, The Edge	272378	8997366	0.99	\N	0
+2940	Elevation	233	1	1	Adam Clayton, Bono, Larry Mullen, The Edge	227552	7479414	0.99	\N	0
+2941	Walk On	233	1	1	Adam Clayton, Bono, Larry Mullen, The Edge	296280	9800861	0.99	\N	0
+2942	Kite	233	1	1	Adam Clayton, Bono, Larry Mullen, The Edge	266893	8765761	0.99	\N	0
+2943	In A Little While	233	1	1	Adam Clayton, Bono, Larry Mullen, The Edge	219271	7189647	0.99	\N	0
+2944	Wild Honey	233	1	1	Adam Clayton, Bono, Larry Mullen, The Edge	226768	7466069	0.99	\N	0
+2945	Peace On Earth	233	1	1	Adam Clayton, Bono, Larry Mullen, The Edge	288496	9476171	0.99	\N	0
+2946	When I Look At The World	233	1	1	Adam Clayton, Bono, Larry Mullen, The Edge	257776	8500491	0.99	\N	0
+2947	New York	233	1	1	Adam Clayton, Bono, Larry Mullen, The Edge	330370	10862323	0.99	\N	0
+2948	Grace	233	1	1	Adam Clayton, Bono, Larry Mullen, The Edge	330657	10877148	0.99	\N	0
+2949	The Three Sunrises	234	1	1	U2	234788	7717990	0.99	\N	0
+2950	Spanish Eyes	234	1	1	U2	196702	6392710	0.99	\N	0
+2951	Sweetest Thing	234	1	1	U2	185103	6154896	0.99	\N	0
+2952	Love Comes Tumbling	234	1	1	U2	282671	9328802	0.99	\N	0
+2953	Bass Trap	234	1	1	U2	213289	6834107	0.99	\N	0
+2954	Dancing Barefoot	234	1	1	Ivan Kral/Patti Smith	287895	9488294	0.99	\N	0
+2955	Everlasting Love	234	1	1	Buzz Cason/Mac Gayden	202631	6708932	0.99	\N	0
+2956	Unchained Melody	234	1	1	Alex North/Hy Zaret	294164	9597568	0.99	\N	0
+2957	Walk To The Water	234	1	1	U2	289253	9523336	0.99	\N	0
+2958	Luminous Times (Hold On To Love)	234	1	1	Brian Eno/U2	277760	9015513	0.99	\N	0
+2959	Hallelujah Here She Comes	234	1	1	U2	242364	8027028	0.99	\N	0
+2960	Silver And Gold	234	1	1	Bono	279875	9199746	0.99	\N	0
+2961	Endless Deep	234	1	1	U2	179879	5899070	0.99	\N	0
+2962	A Room At The Heartbreak Hotel	234	1	1	U2	274546	9015416	0.99	\N	0
+2963	Trash, Trampoline And The Party Girl	234	1	1	U2	153965	5083523	0.99	\N	0
+2964	Vertigo	235	1	1	Adam Clayton, Bono, Larry Mullen & The Edge	194612	6329502	0.99	\N	0
+2965	Miracle Drug	235	1	1	Adam Clayton, Bono, Larry Mullen & The Edge	239124	7760916	0.99	\N	0
+2966	Sometimes You Can't Make It On Your Own	235	1	1	Adam Clayton, Bono, Larry Mullen & The Edge	308976	10112863	0.99	\N	0
+2967	Love And Peace Or Else	235	1	1	Adam Clayton, Bono, Larry Mullen & The Edge	290690	9476723	0.99	\N	0
+2968	City Of Blinding Lights	235	1	1	Adam Clayton, Bono, Larry Mullen & The Edge	347951	11432026	0.99	\N	0
+2969	All Because Of You	235	1	1	Adam Clayton, Bono, Larry Mullen & The Edge	219141	7198014	0.99	\N	0
+2970	A Man And A Woman	235	1	1	Adam Clayton, Bono, Larry Mullen & The Edge	270132	8938285	0.99	\N	0
+2971	Crumbs From Your Table	235	1	1	Adam Clayton, Bono, Larry Mullen & The Edge	303568	9892349	0.99	\N	0
+2972	One Step Closer	235	1	1	Adam Clayton, Bono, Larry Mullen & The Edge	231680	7512912	0.99	\N	0
+2973	Original Of The Species	235	1	1	Adam Clayton, Bono, Larry Mullen & The Edge	281443	9230041	0.99	\N	0
+2974	Yahweh	235	1	1	Adam Clayton, Bono, Larry Mullen & The Edge	262034	8636998	0.99	\N	0
+2975	Discotheque	236	1	1	Bono, The Edge, Adam Clayton, and Larry Mullen	319582	10442206	0.99	\N	0
+2976	Do You Feel Loved	236	1	1	Bono, The Edge, Adam Clayton, and Larry Mullen	307539	10122694	0.99	\N	0
+2977	Mofo	236	1	1	Bono, The Edge, Adam Clayton, and Larry Mullen	349178	11583042	0.99	\N	0
+2978	If God Will Send His Angels	236	1	1	Bono, The Edge, Adam Clayton, and Larry Mullen	322533	10563329	0.99	\N	0
+2979	Staring At The Sun	236	1	1	Bono, The Edge, Adam Clayton, and Larry Mullen	276924	9082838	0.99	\N	0
+2980	Last Night On Earth	236	1	1	Bono, The Edge, Adam Clayton, and Larry Mullen	285753	9401017	0.99	\N	0
+2918	?	231	3	19	\N	2782333	528227089	1.99	\N	1
+2981	Gone	236	1	1	Bono, The Edge, Adam Clayton, and Larry Mullen	266866	8746301	0.99	\N	0
+2982	Miami	236	1	1	Bono, The Edge, Adam Clayton, and Larry Mullen	293041	9741603	0.99	\N	0
+2983	The Playboy Mansion	236	1	1	Bono, The Edge, Adam Clayton, and Larry Mullen	280555	9274144	0.99	\N	0
+2984	If You Wear That Velvet Dress	236	1	1	Bono, The Edge, Adam Clayton, and Larry Mullen	315167	10227333	0.99	\N	0
+2985	Please	236	1	1	Bono, The Edge, Adam Clayton, and Larry Mullen	302602	9909484	0.99	\N	0
+2986	Wake Up Dead Man	236	1	1	Bono, The Edge, Adam Clayton, and Larry Mullen	292832	9515903	0.99	\N	0
+2987	Helter Skelter	237	1	1	Lennon, John/McCartney, Paul	187350	6097636	0.99	\N	0
+2988	Van Diemen's Land	237	1	1	Bono/Clayton, Adam/Mullen Jr., Larry/The Edge	186044	5990280	0.99	\N	0
+2989	Desire	237	1	1	Bono/Clayton, Adam/Mullen Jr., Larry/The Edge	179226	5874535	0.99	\N	0
+2990	Hawkmoon 269	237	1	1	Bono/Clayton, Adam/Mullen Jr., Larry/The Edge	382458	12494987	0.99	\N	0
+2991	All Along The Watchtower	237	1	1	Dylan, Bob	264568	8623572	0.99	\N	0
+2992	I Still Haven't Found What I'm Looking for	237	1	1	Bono/Clayton, Adam/Mullen Jr., Larry/The Edge	353567	11542247	0.99	\N	0
+2993	Freedom For My People	237	1	1	Mabins, Macie/Magee, Sterling/Robinson, Bobby	38164	1249764	0.99	\N	0
+2994	Silver And Gold	237	1	1	Bono/Clayton, Adam/Mullen Jr., Larry/The Edge	349831	11450194	0.99	\N	0
+2995	Pride (In The Name Of Love)	237	1	1	Bono/Clayton, Adam/Mullen Jr., Larry/The Edge	267807	8806361	0.99	\N	0
+2996	Angel Of Harlem	237	1	1	Bono/Clayton, Adam/Mullen Jr., Larry/The Edge	229276	7498022	0.99	\N	0
+2997	Love Rescue Me	237	1	1	Bono/Clayton, Adam/Dylan, Bob/Mullen Jr., Larry/The Edge	384522	12508716	0.99	\N	0
+2998	When Love Comes To Town	237	1	1	Bono/Clayton, Adam/Mullen Jr., Larry/The Edge	255869	8340954	0.99	\N	0
+2999	Heartland	237	1	1	Bono/Clayton, Adam/Mullen Jr., Larry/The Edge	303360	9867748	0.99	\N	0
+3000	God Part II	237	1	1	Bono/Clayton, Adam/Mullen Jr., Larry/The Edge	195604	6497570	0.99	\N	0
+3001	The Star Spangled Banner	237	1	1	Hendrix, Jimi	43232	1385810	0.99	\N	0
+3002	Bullet The Blue Sky	237	1	1	Bono/Clayton, Adam/Mullen Jr., Larry/The Edge	337005	10993607	0.99	\N	0
+3003	All I Want Is You	237	1	1	Bono/Clayton, Adam/Mullen Jr., Larry/The Edge	390243	12729820	0.99	\N	0
+3004	Pride (In The Name Of Love)	238	1	1	U2	230243	7549085	0.99	\N	0
+3005	New Year's Day	238	1	1	U2	258925	8491818	0.99	\N	0
+3006	With Or Without You	238	1	1	U2	299023	9765188	0.99	\N	0
+3007	I Still Haven't Found What I'm Looking For	238	1	1	U2	280764	9306737	0.99	\N	0
+3008	Sunday Bloody Sunday	238	1	1	U2	282174	9269668	0.99	\N	0
+3009	Bad	238	1	1	U2	351817	11628058	0.99	\N	0
+3010	Where The Streets Have No Name	238	1	1	U2	276218	9042305	0.99	\N	0
+3011	I Will Follow	238	1	1	U2	218253	7184825	0.99	\N	0
+3012	The Unforgettable Fire	238	1	1	U2	295183	9684664	0.99	\N	0
+3013	Sweetest Thing	238	1	1	U2 & Daragh O'Toole	183066	6071385	0.99	\N	0
+3014	Desire	238	1	1	U2	179853	5893206	0.99	\N	0
+3015	When Love Comes To Town	238	1	1	U2	258194	8479525	0.99	\N	0
+3016	Angel Of Harlem	238	1	1	U2	230217	7527339	0.99	\N	0
+3017	All I Want Is You	238	1	1	U2 & Van Dyke Parks	591986	19202252	0.99	\N	0
+3018	Sunday Bloody Sunday	239	1	1	U2	278204	9140849	0.99	\N	0
+3019	Seconds	239	1	1	U2	191582	6352121	0.99	\N	0
+3020	New Year's Day	239	1	1	U2	336274	11054732	0.99	\N	0
+3021	Like A Song...	239	1	1	U2	287294	9365379	0.99	\N	0
+3022	Drowning Man	239	1	1	U2	254458	8457066	0.99	\N	0
+3023	The Refugee	239	1	1	U2	221283	7374043	0.99	\N	0
+3024	Two Hearts Beat As One	239	1	1	U2	243487	7998323	0.99	\N	0
+3025	Red Light	239	1	1	U2	225854	7453704	0.99	\N	0
+3026	Surrender	239	1	1	U2	333505	11221406	0.99	\N	0
+3027	40	239	1	1	U2	157962	5251767	0.99	\N	0
+3028	Zooropa	240	1	1	U2; Bono	392359	12807979	0.99	\N	0
+3029	Babyface	240	1	1	U2; Bono	241998	7942573	0.99	\N	0
+3030	Numb	240	1	1	U2; Edge, The	260284	8577861	0.99	\N	0
+3031	Lemon	240	1	1	U2; Bono	418324	13988878	0.99	\N	0
+3032	Stay (Faraway, So Close!)	240	1	1	U2; Bono	298475	9785480	0.99	\N	0
+3033	Daddy's Gonna Pay For Your Crashed Car	240	1	1	U2; Bono	320287	10609581	0.99	\N	0
+3034	Some Days Are Better Than Others	240	1	1	U2; Bono	257436	8417690	0.99	\N	0
+3035	The First Time	240	1	1	U2; Bono	225697	7247651	0.99	\N	0
+3036	Dirty Day	240	1	1	U2; Bono & Edge, The	324440	10652877	0.99	\N	0
+3037	The Wanderer	240	1	1	U2; Bono	283951	9258717	0.99	\N	0
+3038	Breakfast In Bed	241	1	8	\N	196179	6513325	0.99	\N	0
+3039	Where Did I Go Wrong	241	1	8	\N	226742	7485054	0.99	\N	0
+3040	I Would Do For You	241	1	8	\N	334524	11193602	0.99	\N	0
+3041	Homely Girl	241	1	8	\N	203833	6790788	0.99	\N	0
+3042	Here I Am (Come And Take Me)	241	1	8	\N	242102	8106249	0.99	\N	0
+3043	Kingston Town	241	1	8	\N	226951	7638236	0.99	\N	0
+3045	(I Can't Help) Falling In Love With You	241	1	8	\N	207568	6905623	0.99	\N	0
+3046	Higher Ground	241	1	8	\N	260179	8665244	0.99	\N	0
+3047	Bring Me Your Cup	241	1	8	\N	341498	11346114	0.99	\N	0
+3048	C'est La Vie	241	1	8	\N	270053	9031661	0.99	\N	0
+3049	Reggae Music	241	1	8	\N	245106	8203931	0.99	\N	0
+3050	Superstition	241	1	8	\N	319582	10728099	0.99	\N	0
+3051	Until My Dying Day	241	1	8	\N	235807	7886195	0.99	\N	0
+3052	Where Have All The Good Times Gone?	242	1	1	Ray Davies	186723	6063937	0.99	\N	0
+3231	The Lost Warrior	253	3	20	\N	2920045	558872190	1.99	\N	0
+3361	Cabin Fever	261	3	21	\N	2612028	477733942	1.99	\N	0
+3053	Hang 'Em High	242	1	1	Alex Van Halen/David Lee Roth/Edward Van Halen/Michael Anthony	210259	6872314	0.99	\N	0
+3054	Cathedral	242	1	1	Alex Van Halen/David Lee Roth/Edward Van Halen/Michael Anthony	82860	2650998	0.99	\N	0
+3055	Secrets	242	1	1	Alex Van Halen/David Lee Roth/Edward Van Halen/Michael Anthony	206968	6803255	0.99	\N	0
+3056	Intruder	242	1	1	Alex Van Halen/David Lee Roth/Edward Van Halen/Michael Anthony	100153	3282142	0.99	\N	0
+3057	(Oh) Pretty Woman	242	1	1	Bill Dees/Roy Orbison	174680	5665828	0.99	\N	0
+3058	Dancing In The Street	242	1	1	Ivy Jo Hunter/Marvin Gaye/William Stevenson	225985	7461499	0.99	\N	0
+3059	Little Guitars (Intro)	242	1	1	Alex Van Halen/David Lee Roth/Edward Van Halen/Michael Anthony	42240	1439530	0.99	\N	0
+3060	Little Guitars	242	1	1	Alex Van Halen/David Lee Roth/Edward Van Halen/Michael Anthony	228806	7453043	0.99	\N	0
+3061	Big Bad Bill (Is Sweet William Now)	242	1	1	Jack Yellen/Milton Ager	165146	5489609	0.99	\N	0
+3062	The Full Bug	242	1	1	Alex Van Halen/David Lee Roth/Edward Van Halen/Michael Anthony	201116	6551013	0.99	\N	0
+3063	Happy Trails	242	1	1	Dale Evans	65488	2111141	0.99	\N	0
+3064	Eruption	243	1	1	Edward Van Halen, Alex Van Halen, David Lee Roth, Michael Anthony	102164	3272891	0.99	\N	0
+3065	Ain't Talkin' 'bout Love	243	1	1	Edward Van Halen, Alex Van Halen, David Lee Roth, Michael Anthony	228336	7569506	0.99	\N	0
+3066	Runnin' With The Devil	243	1	1	Edward Van Halen, Alex Van Halen, David Lee Roth, Michael Anthony	215902	7061901	0.99	\N	0
+3067	Dance the Night Away	243	1	1	Edward Van Halen, Alex Van Halen, David Lee Roth, Michael Anthony	185965	6087433	0.99	\N	0
+3068	And the Cradle Will Rock...	243	1	1	Edward Van Halen, Alex Van Halen, David Lee Roth, Michael Anthony	213968	7011402	0.99	\N	0
+3069	Unchained	243	1	1	Edward Van Halen, Alex Van Halen, David Lee Roth, Michael Anthony	208953	6777078	0.99	\N	0
+3070	Jump	243	1	1	Edward Van Halen, Alex Van Halen, David Lee Roth	241711	7911090	0.99	\N	0
+3071	Panama	243	1	1	Edward Van Halen, Alex Van Halen, David Lee Roth	211853	6921784	0.99	\N	0
+3072	Why Can't This Be Love	243	1	1	Van Halen	227761	7457655	0.99	\N	0
+3073	Dreams	243	1	1	Edward Van Halen, Alex Van Halen, Michael Anthony,/Edward Van Halen, Alex Van Halen, Michael Anthony, Sammy Hagar	291813	9504119	0.99	\N	0
+3074	When It's Love	243	1	1	Edward Van Halen, Alex Van Halen, Michael Anthony,/Edward Van Halen, Alex Van Halen, Michael Anthony, Sammy Hagar	338991	11049966	0.99	\N	0
+3075	Poundcake	243	1	1	Edward Van Halen, Alex Van Halen, Michael Anthony,/Edward Van Halen, Alex Van Halen, Michael Anthony, Sammy Hagar	321854	10366978	0.99	\N	0
+3076	Right Now	243	1	1	Van Halen	321828	10503352	0.99	\N	0
+3077	Can't Stop Loving You	243	1	1	Van Halen	248502	8107896	0.99	\N	0
+3078	Humans Being	243	1	1	Edward Van Halen, Alex Van Halen, Michael Anthony,/Edward Van Halen, Alex Van Halen, Michael Anthony, Sammy Hagar	308950	10014683	0.99	\N	0
+3079	Can't Get This Stuff No More	243	1	1	Edward Van Halen, Alex Van Halen, Michael Anthony,/Edward Van Halen, Alex Van Halen, Michael Anthony, David Lee Roth	315376	10355753	0.99	\N	0
+3080	Me Wise Magic	243	1	1	Edward Van Halen, Alex Van Halen, Michael Anthony,/Edward Van Halen, Alex Van Halen, Michael Anthony, David Lee Roth	366053	12013467	0.99	\N	0
+3081	Runnin' With The Devil	244	1	1	Edward Van Halen, Alex Van Halen, Michael Anthony and David Lee Roth	216032	7056863	0.99	\N	0
+3082	Eruption	244	1	1	Edward Van Halen, Alex Van Halen, Michael Anthony and David Lee Roth	102556	3286026	0.99	\N	0
+3083	You Really Got Me	244	1	1	Ray Davies	158589	5194092	0.99	\N	0
+3084	Ain't Talkin' 'Bout Love	244	1	1	Edward Van Halen, Alex Van Halen, Michael Anthony and David Lee Roth	230060	7617284	0.99	\N	0
+3085	I'm The One	244	1	1	Edward Van Halen, Alex Van Halen, Michael Anthony and David Lee Roth	226507	7373922	0.99	\N	0
+3086	Jamie's Cryin'	244	1	1	Edward Van Halen, Alex Van Halen, Michael Anthony and David Lee Roth	210546	6946086	0.99	\N	0
+3087	Atomic Punk	244	1	1	Edward Van Halen, Alex Van Halen, Michael Anthony and David Lee Roth	182073	5908861	0.99	\N	0
+3088	Feel Your Love Tonight	244	1	1	Edward Van Halen, Alex Van Halen, Michael Anthony and David Lee Roth	222850	7293608	0.99	\N	0
+3089	Little Dreamer	244	1	1	Edward Van Halen, Alex Van Halen, Michael Anthony and David Lee Roth	203258	6648122	0.99	\N	0
+3090	Ice Cream Man	244	1	1	John Brim	200306	6573145	0.99	\N	0
+3091	On Fire	244	1	1	Edward Van Halen, Alex Van Halen, Michael Anthony and David Lee Roth	180636	5879235	0.99	\N	0
+3092	Neworld	245	1	1	Van Halen	105639	3495897	0.99	\N	0
+3093	Without You	245	1	1	Van Halen	390295	12619558	0.99	\N	0
+3094	One I Want	245	1	1	Van Halen	330788	10743970	0.99	\N	0
+3095	From Afar	245	1	1	Van Halen	324414	10524554	0.99	\N	0
+3096	Dirty Water Dog	245	1	1	Van Halen	327392	10709202	0.99	\N	0
+3097	Once	245	1	1	Van Halen	462837	15378082	0.99	\N	0
+3098	Fire in the Hole	245	1	1	Van Halen	331728	10846768	0.99	\N	0
+3099	Josephina	245	1	1	Van Halen	342491	11161521	0.99	\N	0
+3100	Year to the Day	245	1	1	Van Halen	514612	16621333	0.99	\N	0
+3101	Primary	245	1	1	Van Halen	86987	2812555	0.99	\N	0
+3102	Ballot or the Bullet	245	1	1	Van Halen	342282	11212955	0.99	\N	0
+3103	How Many Say I	245	1	1	Van Halen	363937	11716855	0.99	\N	0
+3104	Sucker Train Blues	246	1	1	Dave Kushner, Duff, Matt Sorum, Scott Weiland & Slash	267859	8738780	0.99	\N	0
+3105	Do It For The Kids	246	1	1	Dave Kushner, Duff, Matt Sorum, Scott Weiland & Slash	235911	7693331	0.99	\N	0
+3106	Big Machine	246	1	1	Dave Kushner, Duff, Matt Sorum, Scott Weiland & Slash	265613	8673442	0.99	\N	0
+3107	Illegal I Song	246	1	1	Dave Kushner, Duff, Matt Sorum, Scott Weiland & Slash	257750	8483347	0.99	\N	0
+3108	Spectacle	246	1	1	Dave Kushner, Duff, Matt Sorum, Scott Weiland & Slash	221701	7252876	0.99	\N	0
+3109	Fall To Pieces	246	1	1	Dave Kushner, Duff, Matt Sorum, Scott Weiland & Slash	270889	8823096	0.99	\N	0
+3110	Headspace	246	1	1	Dave Kushner, Duff, Matt Sorum, Scott Weiland & Slash	223033	7237986	0.99	\N	0
+3111	Superhuman	246	1	1	Dave Kushner, Duff, Matt Sorum, Scott Weiland & Slash	255921	8365328	0.99	\N	0
+3112	Set Me Free	246	1	1	Dave Kushner, Duff, Matt Sorum, Scott Weiland & Slash	247954	8053388	0.99	\N	0
+3113	You Got No Right	246	1	1	Dave Kushner, Duff, Matt Sorum, Scott Weiland & Slash	335412	10991094	0.99	\N	0
+3114	Slither	246	1	1	Dave Kushner, Duff, Matt Sorum, Scott Weiland & Slash	248398	8118785	0.99	\N	0
+3115	Dirty Little Thing	246	1	1	Dave Kushner, Duff, Keith Nelson, Matt Sorum, Scott Weiland & Slash	237844	7732982	0.99	\N	0
+3116	Loving The Alien	246	1	1	Dave Kushner, Duff, Matt Sorum, Scott Weiland & Slash	348786	11412762	0.99	\N	0
+3117	Pela Luz Dos Olhos Teus	247	1	7	\N	119196	3905715	0.99	\N	0
+3118	A Bencao E Outros	247	1	7	\N	421093	14234427	0.99	\N	0
+3119	Tudo Na Mais Santa Paz	247	1	7	\N	222406	7426757	0.99	\N	0
+3120	O Velho E Aflor	247	1	7	\N	275121	9126828	0.99	\N	0
+3121	Cotidiano N 2	247	1	7	\N	55902	1805797	0.99	\N	0
+3122	Adeus	247	1	7	\N	221884	7259351	0.99	\N	0
+3123	Samba Pra Endrigo	247	1	7	\N	259265	8823551	0.99	\N	0
+3124	So Por Amor	247	1	7	\N	236591	7745764	0.99	\N	0
+3125	Meu Pranto Rolou	247	1	7	\N	181760	6003345	0.99	\N	0
+3126	Mulher Carioca	247	1	7	\N	191686	6395048	0.99	\N	0
+3127	Um Homem Chamado Alfredo	247	1	7	\N	151640	4976227	0.99	\N	0
+3128	Samba Do Jato	247	1	7	\N	220813	7357840	0.99	\N	0
+3129	Oi, La	247	1	7	\N	167053	5562700	0.99	\N	0
+3130	Vinicius, Poeta Do Encontro	247	1	7	\N	336431	10858776	0.99	\N	0
+3131	Soneto Da Separacao	247	1	7	\N	193880	6277511	0.99	\N	0
+3132	Still Of The Night	141	1	3	Sykes	398210	13043817	0.99	\N	0
+3133	Here I Go Again	141	1	3	Marsden	233874	7652473	0.99	\N	0
+3134	Is This Love	141	1	3	Sykes	283924	9262360	0.99	\N	0
+3135	Love Ain't No Stranger	141	1	3	Galley	259395	8490428	0.99	\N	0
+3136	Looking For Love	141	1	3	Sykes	391941	12769847	0.99	\N	0
+3137	Now You're Gone	141	1	3	Vandenberg	251141	8162193	0.99	\N	0
+3138	Slide It In	141	1	3	Coverdale	202475	6615152	0.99	\N	0
+3139	Slow An' Easy	141	1	3	Moody	367255	11961332	0.99	\N	0
+3140	Judgement Day	141	1	3	Vandenberg	317074	10326997	0.99	\N	0
+3141	You're Gonna Break My Hart Again	141	1	3	Sykes	250853	8176847	0.99	\N	0
+3142	The Deeper The Love	141	1	3	Vandenberg	262791	8606504	0.99	\N	0
+3143	Crying In The Rain	141	1	3	Coverdale	337005	10931921	0.99	\N	0
+3144	Fool For Your Loving	141	1	3	Marsden/Moody	250801	8129820	0.99	\N	0
+3145	Sweet Lady Luck	141	1	3	Vandenberg	273737	8919163	0.99	\N	0
+3146	Faixa Amarela	248	1	7	Beto Gogo/JessÃ© Pai/Luiz Carlos/Zeca Pagodinho	240692	8082036	0.99	\N	0
+3147	Posso AtÃ© Me Apaixonar	248	1	7	Dudu Nobre	200698	6735526	0.99	\N	0
+3148	NÃ£o Sou Mais Disso	248	1	7	Jorge AragÃ£o/Zeca Pagodinho	225985	7613817	0.99	\N	0
+3149	Vivo Isolado Do Mundo	248	1	7	Alcides Dias Lopes	180035	6073995	0.99	\N	0
+3150	CoraÃ§Ã£o Em Desalinho	248	1	7	Mauro Diniz/Ratino Sigem	185208	6225948	0.99	\N	0
+3151	Seu BalancÃª	248	1	7	Paulinho Rezende/Toninho Geraes	219454	7311219	0.99	\N	0
+3152	Vai Adiar	248	1	7	Alcino CorrÃªa/Monarco	270393	9134882	0.99	\N	0
+3153	Rugas	248	1	7	Augusto Garcez/Nelson Cavaquinho	140930	4703182	0.99	\N	0
+3154	Feirinha da Pavuna/Luz do Repente/BagaÃ§o da Laranja	248	1	7	Arlindo Cruz/Franco/Marquinhos PQD/Negro, Jovelina PÃ©rolo/Zeca Pagodinho	107206	3593684	0.99	\N	0
+3155	Sem Essa de Malandro Agulha	248	1	7	Aldir Blanc/Jayme Vignoli	158484	5332668	0.99	\N	0
+3156	Chico NÃ£o Vai na Corimba	248	1	7	Dudu Nobre/Zeca Pagodinho	269374	9122188	0.99	\N	0
+3157	Papel Principal	248	1	7	Almir Guineto/DedÃ© Paraiso/Luverci Ernesto	217495	7325302	0.99	\N	0
+3158	Saudade Louca	248	1	7	Acyr Marques/Arlindo Cruz/Franco	243591	8136475	0.99	\N	0
+3159	CamarÃ£o que Dorme e Onda Leva	248	1	7	Acyi Marques/Arlindo Bruz/BraÃ§o, Beto Sem/Zeca Pagodinho	299102	10012231	0.99	\N	0
+3160	Sapopemba e Maxambomba	248	1	7	Nei Lopes/Wilson Moreira	245394	8268712	0.99	\N	0
+3161	Minha FÃ©	248	1	7	MurilÃ£o	206994	6981474	0.99	\N	0
+3162	Lua de Ogum	248	1	7	Ratinho/Zeca Pagodinho	168463	5719129	0.99	\N	0
+3163	Samba pras moÃ§as	248	1	7	Grazielle/Roque Ferreira	152816	5121366	0.99	\N	0
+3164	Verdade	248	1	7	Carlinhos Santana/Nelson Rufino	332826	11120708	0.99	\N	0
+3165	The Brig	229	3	21	\N	2617325	488919543	1.99	\N	0
+3166	.07%	228	3	21	\N	2585794	541715199	1.99	\N	0
+3167	Five Years Gone	228	3	21	\N	2587712	530551890	1.99	\N	0
+3168	The Hard Part	228	3	21	\N	2601017	475996611	1.99	\N	0
+3169	The Man Behind the Curtain	229	3	21	\N	2615990	493951081	1.99	\N	0
+3170	Greatest Hits	229	3	21	\N	2617117	522102916	1.99	\N	0
+3171	Landslide	228	3	21	\N	2600725	518677861	1.99	\N	0
+3172	The Office: An American Workplace (Pilot)	249	3	19	\N	1380833	290482361	1.99	\N	0
+3173	Diversity Day	249	3	19	\N	1306416	257879716	1.99	\N	0
+3174	Health Care	249	3	19	\N	1321791	260493577	1.99	\N	0
+3175	The Alliance	249	3	19	\N	1317125	266203162	1.99	\N	0
+3176	Basketball	249	3	19	\N	1323541	267464180	1.99	\N	0
+3177	Hot Girl	249	3	19	\N	1325458	267836576	1.99	\N	0
+3178	The Dundies	250	3	19	\N	1253541	246845576	1.99	\N	0
+3179	Sexual Harassment	250	3	19	\N	1294541	273069146	1.99	\N	0
+3180	Office Olympics	250	3	19	\N	1290458	256247623	1.99	\N	0
+1	For Those About To Rock (We Salute You)	1	1	1	Angus Young, Malcolm Young, Brian Johnson	343719	11170334	0.99	\N	0
+2	Balls to the Wall	2	2	1	\N	342562	5510424	0.99	\N	0
+3	Fast As a Shark	3	2	1	F. Baltes, S. Kaufman, U. Dirkscneider & W. Hoffman	230619	3990994	0.99	\N	0
+4	Restless and Wild	3	2	1	F. Baltes, R.A. Smith-Diesel, S. Kaufman, U. Dirkscneider & W. Hoffman	252051	4331779	0.99	\N	0
+5	Princess of the Dawn	3	2	1	Deaffy & R.A. Smith-Diesel	375418	6290521	0.99	\N	0
+6	Put The Finger On You	1	1	1	Angus Young, Malcolm Young, Brian Johnson	205662	6713451	0.99	\N	0
+7	Let's Get It Up	1	1	1	Angus Young, Malcolm Young, Brian Johnson	233926	7636561	0.99	\N	0
+ac5214a5-2e71-46a0-860e-f3d1ce86e012	Test	95	\N	\N	\N	\N	\N	1.00	dele17822@uvg.edu.gt	\N
+1288	Aces High	102	1	13	\N	276375	6635187	0.99	\N	0
+2328	Fall On Me	190	1	4	R.E.M.	172016	5676811	0.99	\N	0
+2768	VocÃª	223	1	7	\N	242599	7911702	0.99	\N	0
+2830	Rapture	227	3	18	\N	2624541	508406153	1.99	\N	0
+3181	The Fire	250	3	19	\N	1288166	266856017	1.99	\N	0
+3182	Halloween	250	3	19	\N	1315333	249205209	1.99	\N	0
+3183	The Fight	250	3	19	\N	1320028	277149457	1.99	\N	0
+3184	The Client	250	3	19	\N	1299341	253836788	1.99	\N	0
+3185	Performance Review	250	3	19	\N	1292458	256143822	1.99	\N	0
+3186	Email Surveillance	250	3	19	\N	1328870	265101113	1.99	\N	0
+3187	Christmas Party	250	3	19	\N	1282115	260891300	1.99	\N	0
+3188	Booze Cruise	250	3	19	\N	1267958	252518021	1.99	\N	0
+3189	The Injury	250	3	19	\N	1275275	253912762	1.99	\N	0
+3190	The Secret	250	3	19	\N	1264875	253143200	1.99	\N	0
+3191	The Carpet	250	3	19	\N	1264375	256477011	1.99	\N	0
+3192	Boys and Girls	250	3	19	\N	1278333	255245729	1.99	\N	0
+3193	Valentine's Day	250	3	19	\N	1270375	253552710	1.99	\N	0
+3194	Dwight's Speech	250	3	19	\N	1278041	255001728	1.99	\N	0
+3195	Take Your Daughter to Work Day	250	3	19	\N	1268333	253451012	1.99	\N	0
+3196	Michael's Birthday	250	3	19	\N	1237791	247238398	1.99	\N	0
+3197	Drug Testing	250	3	19	\N	1278625	244626927	1.99	\N	0
+3198	Conflict Resolution	250	3	19	\N	1274583	253808658	1.99	\N	0
+3199	Casino Night - Season Finale	250	3	19	\N	1712791	327642458	1.99	\N	0
+3200	Gay Witch Hunt	251	3	19	\N	1326534	276942637	1.99	\N	0
+3201	The Convention	251	3	19	\N	1297213	255117055	1.99	\N	0
+3202	The Coup	251	3	19	\N	1276526	267205501	1.99	\N	0
+3203	Grief Counseling	251	3	19	\N	1282615	256912833	1.99	\N	0
+3204	The Initiation	251	3	19	\N	1280113	251728257	1.99	\N	0
+3205	Diwali	251	3	19	\N	1279904	252726644	1.99	\N	0
+3206	Branch Closing	251	3	19	\N	1822781	358761786	1.99	\N	0
+3207	The Merger	251	3	19	\N	1801926	345960631	1.99	\N	0
+3208	The Convict	251	3	22	\N	1273064	248863427	1.99	\N	0
+3209	A Benihana Christmas, Pts. 1 & 2	251	3	22	\N	2519436	515301752	1.99	\N	0
+3210	Back from Vacation	251	3	22	\N	1271688	245378749	1.99	\N	0
+3211	Traveling Salesmen	251	3	22	\N	1289039	250822697	1.99	\N	0
+3212	Producer's Cut: The Return	251	3	22	\N	1700241	337219980	1.99	\N	0
+3213	Ben Franklin	251	3	22	\N	1271938	264168080	1.99	\N	0
+3214	Phyllis's Wedding	251	3	22	\N	1271521	258561054	1.99	\N	0
+3215	Business School	251	3	22	\N	1302093	254402605	1.99	\N	0
+3216	Cocktails	251	3	22	\N	1272522	259011909	1.99	\N	0
+3217	The Negotiation	251	3	22	\N	1767851	371663719	1.99	\N	0
+3218	Safety Training	251	3	22	\N	1271229	253054534	1.99	\N	0
+3219	Product Recall	251	3	22	\N	1268268	251208610	1.99	\N	0
+3220	Women's Appreciation	251	3	22	\N	1732649	338778844	1.99	\N	0
+3221	Beach Games	251	3	22	\N	1676134	333671149	1.99	\N	0
+3222	The Job	251	3	22	\N	2541875	501060138	1.99	\N	0
+3223	How to Stop an Exploding Man	228	3	21	\N	2687103	487881159	1.99	\N	0
+3224	Through a Looking Glass	229	3	21	\N	5088838	1059546140	1.99	\N	0
+3225	Your Time Is Gonna Come	252	2	1	Page, Jones	310774	5126563	0.99	\N	0
+3226	Battlestar Galactica, Pt. 1	253	3	20	\N	2952702	541359437	1.99	\N	0
+3227	Battlestar Galactica, Pt. 2	253	3	20	\N	2956081	521387924	1.99	\N	0
+3228	Battlestar Galactica, Pt. 3	253	3	20	\N	2927802	554509033	1.99	\N	0
+3229	Lost Planet of the Gods, Pt. 1	253	3	20	\N	2922547	537812711	1.99	\N	0
+3233	The Gun On Ice Planet Zero, Pt. 1	253	3	20	\N	2907615	540980196	1.99	\N	0
+3234	The Gun On Ice Planet Zero, Pt. 2	253	3	20	\N	2924341	546542281	1.99	\N	0
+3235	The Magnificent Warriors	253	3	20	\N	2924716	570152232	1.99	\N	0
+3236	The Young Lords	253	3	20	\N	2863571	587051735	1.99	\N	0
+3237	The Living Legend, Pt. 1	253	3	20	\N	2924507	503641007	1.99	\N	0
+3238	The Living Legend, Pt. 2	253	3	20	\N	2923298	515632754	1.99	\N	0
+3239	Fire In Space	253	3	20	\N	2926593	536784757	1.99	\N	0
+3240	War of the Gods, Pt. 1	253	3	20	\N	2922630	505761343	1.99	\N	0
+3241	War of the Gods, Pt. 2	253	3	20	\N	2923381	487899692	1.99	\N	0
+3242	The Man With Nine Lives	253	3	20	\N	2956998	577829804	1.99	\N	0
+3243	Murder On the Rising Star	253	3	20	\N	2935894	551759986	1.99	\N	0
+3244	Greetings from Earth, Pt. 1	253	3	20	\N	2960293	536824558	1.99	\N	0
+3245	Greetings from Earth, Pt. 2	253	3	20	\N	2903778	527842860	1.99	\N	0
+3246	Baltar's Escape	253	3	20	\N	2922088	525564224	1.99	\N	0
+3247	Experiment In Terra	253	3	20	\N	2923548	547982556	1.99	\N	0
+3248	Take the Celestra	253	3	20	\N	2927677	512381289	1.99	\N	0
+3249	The Hand of God	253	3	20	\N	2924007	536583079	1.99	\N	0
+3250	Pilot	254	3	19	\N	2484567	492670102	1.99	\N	0
+3251	Through the Looking Glass, Pt. 2	229	3	21	\N	2617117	550943353	1.99	\N	0
+3252	Through the Looking Glass, Pt. 1	229	3	21	\N	2610860	493211809	1.99	\N	0
+3253	Instant Karma	255	2	9	\N	193188	3150090	0.99	\N	0
+3254	#9 Dream	255	2	9	\N	278312	4506425	0.99	\N	0
+3255	Mother	255	2	9	\N	287740	4656660	0.99	\N	0
+3256	Give Peace a Chance	255	2	9	\N	274644	4448025	0.99	\N	0
+3257	Cold Turkey	255	2	9	\N	281424	4556003	0.99	\N	0
+3258	Whatever Gets You Thru the Night	255	2	9	\N	215084	3499018	0.99	\N	0
+3259	I'm Losing You	255	2	9	\N	240719	3907467	0.99	\N	0
+3260	Gimme Some Truth	255	2	9	\N	232778	3780807	0.99	\N	0
+3261	Oh, My Love	255	2	9	\N	159473	2612788	0.99	\N	0
+3262	Imagine	255	2	9	\N	192329	3136271	0.99	\N	0
+3263	Nobody Told Me	255	2	9	\N	210348	3423395	0.99	\N	0
+3264	Jealous Guy	255	2	9	\N	239094	3881620	0.99	\N	0
+3265	Working Class Hero	255	2	9	\N	265449	4301430	0.99	\N	0
+3266	Power to the People	255	2	9	\N	213018	3466029	0.99	\N	0
+3267	Imagine	255	2	9	\N	219078	3562542	0.99	\N	0
+3268	Beautiful Boy	255	2	9	\N	227995	3704642	0.99	\N	0
+3269	Isolation	255	2	9	\N	156059	2558399	0.99	\N	0
+3270	Watching the Wheels	255	2	9	\N	198645	3237063	0.99	\N	0
+3271	Grow Old With Me	255	2	9	\N	149093	2447453	0.99	\N	0
+3272	Gimme Some Truth	255	2	9	\N	187546	3060083	0.99	\N	0
+3273	[Just Like] Starting Over	255	2	9	\N	215549	3506308	0.99	\N	0
+3274	God	255	2	9	\N	260410	4221135	0.99	\N	0
+3275	Real Love	255	2	9	\N	236911	3846658	0.99	\N	0
+3276	Sympton of the Universe	256	2	1	\N	340890	5489313	0.99	\N	0
+3277	Snowblind	256	2	1	\N	295960	4773171	0.99	\N	0
+3278	Black Sabbath	256	2	1	\N	364180	5860455	0.99	\N	0
+3279	Fairies Wear Boots	256	2	1	\N	392764	6315916	0.99	\N	0
+3280	War Pigs	256	2	1	\N	515435	8270194	0.99	\N	0
+3281	The Wizard	256	2	1	\N	282678	4561796	0.99	\N	0
+3282	N.I.B.	256	2	1	\N	335248	5399456	0.99	\N	0
+3283	Sweet Leaf	256	2	1	\N	354706	5709700	0.99	\N	0
+3284	Never Say Die	256	2	1	\N	258343	4173799	0.99	\N	0
+3285	Sabbath, Bloody Sabbath	256	2	1	\N	333622	5373633	0.99	\N	0
+3286	Iron Man/Children of the Grave	256	2	1	\N	552308	8858616	0.99	\N	0
+3287	Paranoid	256	2	1	\N	189171	3071042	0.99	\N	0
+3288	Rock You Like a Hurricane	257	2	1	\N	255766	4300973	0.99	\N	0
+3289	No One Like You	257	2	1	\N	240325	4050259	0.99	\N	0
+3290	The Zoo	257	2	1	\N	332740	5550779	0.99	\N	0
+3291	Loving You Sunday Morning	257	2	1	\N	339125	5654493	0.99	\N	0
+3292	Still Loving You	257	2	1	\N	390674	6491444	0.99	\N	0
+3293	Big City Nights	257	2	1	\N	251865	4237651	0.99	\N	0
+3294	Believe in Love	257	2	1	\N	325774	5437651	0.99	\N	0
+3295	Rhythm of Love	257	2	1	\N	231246	3902834	0.99	\N	0
+3296	I Can't Explain	257	2	1	\N	205332	3482099	0.99	\N	0
+3297	Tease Me Please Me	257	2	1	\N	287229	4811894	0.99	\N	0
+3298	Wind of Change	257	2	1	\N	315325	5268002	0.99	\N	0
+3299	Send Me an Angel	257	2	1	\N	273041	4581492	0.99	\N	0
+3300	Jump Around	258	1	17	E. Schrody/L. Muggerud	217835	8715653	0.99	\N	0
+3301	Salutations	258	1	17	E. Schrody/L. Dimant	69120	2767047	0.99	\N	0
+3302	Put Your Head Out	258	1	17	E. Schrody/L. Freese/L. Muggerud	182230	7291473	0.99	\N	0
+3303	Top O' The Morning To Ya	258	1	17	E. Schrody/L. Dimant	216633	8667599	0.99	\N	0
+3304	Commercial 1	258	1	17	L. Muggerud	7941	319888	0.99	\N	0
+3305	House And The Rising Sun	258	1	17	E. Schrody/J. Vasquez/L. Dimant	219402	8778369	0.99	\N	0
+3306	Shamrocks And Shenanigans	258	1	17	E. Schrody/L. Dimant	218331	8735518	0.99	\N	0
+3307	House Of Pain Anthem	258	1	17	E. Schrody/L. Dimant	155611	6226713	0.99	\N	0
+3308	Danny Boy, Danny Boy	258	1	17	E. Schrody/L. Muggerud	114520	4583091	0.99	\N	0
+3309	Guess Who's Back	258	1	17	E. Schrody/L. Muggerud	238393	9537994	0.99	\N	0
+3310	Commercial 2	258	1	17	L. Muggerud	21211	850698	0.99	\N	0
+3311	Put On Your Shit Kickers	258	1	17	E. Schrody/L. Muggerud	190432	7619569	0.99	\N	0
+3312	Come And Get Some Of This	258	1	17	E. Schrody/L. Muggerud/R. Medrano	170475	6821279	0.99	\N	0
+3313	Life Goes On	258	1	17	E. Schrody/R. Medrano	163030	6523458	0.99	\N	0
+3314	One For The Road	258	1	17	E. Schrody/L. Dimant/L. Muggerud	170213	6810820	0.99	\N	0
+3315	Feel It	258	1	17	E. Schrody/R. Medrano	239908	9598588	0.99	\N	0
+3316	All My Love	258	1	17	E. Schrody/L. Dimant	200620	8027065	0.99	\N	0
+3317	Jump Around (Pete Rock Remix)	258	1	17	E. Schrody/L. Muggerud	236120	9447101	0.99	\N	0
+3318	Shamrocks And Shenanigans (Boom Shalock Lock Boom/Butch Vig Mix)	258	1	17	E. Schrody/L. Dimant	237035	9483705	0.99	\N	0
+3319	Instinto Colectivo	259	1	15	\N	300564	12024875	0.99	\N	0
+3320	Chapa o Coco	259	1	15	\N	143830	5755478	0.99	\N	0
+3321	Prostituta	259	1	15	\N	359000	14362307	0.99	\N	0
+3322	Eu So Queria Sumir	259	1	15	\N	269740	10791921	0.99	\N	0
+3323	Tres Reis	259	1	15	\N	304143	12168015	0.99	\N	0
+3324	Um Lugar ao Sol	259	1	15	\N	212323	8495217	0.99	\N	0
+3325	Batalha Naval	259	1	15	\N	285727	11431382	0.99	\N	0
+3326	Todo o Carnaval tem seu Fim	259	1	15	\N	237426	9499371	0.99	\N	0
+3327	O Misterio do Samba	259	1	15	\N	226142	9047970	0.99	\N	0
+3328	Armadura	259	1	15	\N	232881	9317533	0.99	\N	0
+3329	Na Ladeira	259	1	15	\N	221570	8865099	0.99	\N	0
+3330	Carimbo	259	1	15	\N	328751	13152314	0.99	\N	0
+3331	Catimbo	259	1	15	\N	254484	10181692	0.99	\N	0
+3332	Funk de Bamba	259	1	15	\N	237322	9495184	0.99	\N	0
+3333	Chega no Suingue	259	1	15	\N	221805	8874509	0.99	\N	0
+3334	Mun-Ra	259	1	15	\N	274651	10988338	0.99	\N	0
+3335	Freestyle Love	259	1	15	\N	318484	12741680	0.99	\N	0
+3336	War Pigs	260	4	23	\N	234013	8052374	0.99	\N	0
+3337	Past, Present, and Future	261	3	21	\N	2492867	490796184	1.99	\N	0
+3338	The Beginning of the End	261	3	21	\N	2611903	526865050	1.99	\N	0
+3339	LOST Season 4 Trailer	261	3	21	\N	112712	20831818	1.99	\N	0
+3340	LOST In 8:15	261	3	21	\N	497163	98460675	1.99	\N	0
+3341	Confirmed Dead	261	3	21	\N	2611986	512168460	1.99	\N	0
+3342	The Economist	261	3	21	\N	2609025	516934914	1.99	\N	0
+3343	Eggtown	261	3	19	\N	2608817	501061240	1.99	\N	0
+3344	The Constant	261	3	21	\N	2611569	520209363	1.99	\N	0
+3345	The Other Woman	261	3	21	\N	2605021	513246663	1.99	\N	0
+3346	Ji Yeon	261	3	19	\N	2588797	506458858	1.99	\N	0
+3347	Meet Kevin Johnson	261	3	19	\N	2612028	504132981	1.99	\N	0
+3348	The Shape of Things to Come	261	3	21	\N	2591299	502284266	1.99	\N	0
+3349	Amanda	262	5	2	Luca Gusella	246503	4011615	0.99	\N	0
+3350	Despertar	262	5	2	Andrea Dulbecco	307385	4821485	0.99	\N	0
+3351	Din Din Wo (Little Child)	263	5	16	Habib KoitÃ©	285837	4615841	0.99	\N	0
+3352	Distance	264	5	15	Karsh Kale/Vishal Vaid	327122	5327463	0.99	\N	0
+3353	I Guess You're Right	265	5	1	Darius Take One Minwalla/Jon Auer/Ken Stringfellow/Matt Harris	212044	3453849	0.99	\N	0
+3354	I Ka Barra (Your Work)	263	5	16	Habib KoitÃ©	300605	4855457	0.99	\N	0
+3355	Love Comes	265	5	1	Darius Take One Minwalla/Jon Auer/Ken Stringfellow/Matt Harris	199923	3240609	0.99	\N	0
+3356	Muita Bobeira	266	5	7	Luciana Souza	172710	2775071	0.99	\N	0
+3357	OAM's Blues	267	5	2	Aaron Goldberg	266936	4292028	0.99	\N	0
+3358	One Step Beyond	264	5	15	Karsh Kale	366085	6034098	0.99	\N	0
+3359	Symphony No. 3 in E-flat major, Op. 55, Eroica - Scherzo: Allegro Vivace	268	5	24	Ludwig van Beethoven	356426	5817216	0.99	\N	0
+3360	Something Nice Back Home	261	3	21	\N	2612779	484711353	1.99	\N	0
+3362	There's No Place Like Home, Pt. 1	261	3	21	\N	2609526	522919189	1.99	\N	0
+3363	There's No Place Like Home, Pt. 2	261	3	21	\N	2497956	523748920	1.99	\N	0
+3364	There's No Place Like Home, Pt. 3	261	3	21	\N	2582957	486161766	1.99	\N	0
+3365	Say Hello 2 Heaven	269	2	23	\N	384497	6477217	0.99	\N	0
+3366	Reach Down	269	2	23	\N	672773	11157785	0.99	\N	0
+3367	Hunger Strike	269	2	23	\N	246292	4233212	0.99	\N	0
+3368	Pushin Forward Back	269	2	23	\N	225278	3892066	0.99	\N	0
+3369	Call Me a Dog	269	2	23	\N	304458	5177612	0.99	\N	0
+3370	Times of Trouble	269	2	23	\N	342539	5795951	0.99	\N	0
+3371	Wooden Jesus	269	2	23	\N	250565	4302603	0.99	\N	0
+3372	Your Savior	269	2	23	\N	244226	4199626	0.99	\N	0
+3373	Four Walled World	269	2	23	\N	414474	6964048	0.99	\N	0
+3374	All Night Thing	269	2	23	\N	231803	3997982	0.99	\N	0
+3375	No Such Thing	270	2	23	Chris Cornell	224837	3691272	0.99	\N	0
+3376	Poison Eye	270	2	23	Chris Cornell	237120	3890037	0.99	\N	0
+3377	Arms Around Your Love	270	2	23	Chris Cornell	214016	3516224	0.99	\N	0
+3378	Safe and Sound	270	2	23	Chris Cornell	256764	4207769	0.99	\N	0
+3379	She'll Never Be Your Man	270	2	23	Chris Cornell	204078	3355715	0.99	\N	0
+3380	Ghosts	270	2	23	Chris Cornell	231547	3799745	0.99	\N	0
+3381	Killing Birds	270	2	23	Chris Cornell	218498	3588776	0.99	\N	0
+3382	Billie Jean	270	2	23	Michael Jackson	281401	4606408	0.99	\N	0
+3383	Scar On the Sky	270	2	23	Chris Cornell	220193	3616618	0.99	\N	0
+3384	Your Soul Today	270	2	23	Chris Cornell	205959	3385722	0.99	\N	0
+3385	Finally Forever	270	2	23	Chris Cornell	217035	3565098	0.99	\N	0
+3386	Silence the Voices	270	2	23	Chris Cornell	267376	4379597	0.99	\N	0
+3387	Disappearing Act	270	2	23	Chris Cornell	273320	4476203	0.99	\N	0
+3388	You Know My Name	270	2	23	Chris Cornell	240255	3940651	0.99	\N	0
+3389	Revelations	271	2	23	\N	252376	4111051	0.99	\N	0
+3390	One and the Same	271	2	23	\N	217732	3559040	0.99	\N	0
+3391	Sound of a Gun	271	2	23	\N	260154	4234990	0.99	\N	0
+3392	Until We Fall	271	2	23	\N	230758	3766605	0.99	\N	0
+3393	Original Fire	271	2	23	\N	218916	3577821	0.99	\N	0
+3394	Broken City	271	2	23	\N	228366	3728955	0.99	\N	0
+3395	Somedays	271	2	23	\N	213831	3497176	0.99	\N	0
+3396	Shape of Things to Come	271	2	23	\N	274597	4465399	0.99	\N	0
+3397	Jewel of the Summertime	271	2	23	\N	233242	3806103	0.99	\N	0
+3398	Wide Awake	271	2	23	\N	266308	4333050	0.99	\N	0
+3399	Nothing Left to Say But Goodbye	271	2	23	\N	213041	3484335	0.99	\N	0
+3400	Moth	271	2	23	\N	298049	4838884	0.99	\N	0
+3401	Show Me How to Live (Live at the Quart Festival)	271	2	23	\N	301974	4901540	0.99	\N	0
+3402	Band Members Discuss Tracks from Revelations	271	3	23	\N	294294	61118891	0.99	\N	0
+3403	Intoitus: Adorate Deum	272	2	24	Anonymous	245317	4123531	0.99	\N	0
+3404	Miserere mei, Deus	273	2	24	Gregorio Allegri	501503	8285941	0.99	\N	0
+3405	Canon and Gigue in D Major: I. Canon	274	2	24	Johann Pachelbel	271788	4438393	0.99	\N	0
+3406	Concerto No. 1 in E Major, RV 269 Spring: I. Allegro	275	2	24	Antonio Vivaldi	199086	3347810	0.99	\N	0
+3407	Concerto for 2 Violins in D Minor, BWV 1043: I. Vivace	276	2	24	Johann Sebastian Bach	193722	3192890	0.99	\N	0
+3408	Aria Mit 30 VerÃ¤nderungen, BWV 988 Goldberg Variations: Aria	277	2	24	Johann Sebastian Bach	120463	2081895	0.99	\N	0
+3409	Suite for Solo Cello No. 1 in G Major, BWV 1007: I. PrÃ©lude	278	2	24	Johann Sebastian Bach	143288	2315495	0.99	\N	0
+3410	The Messiah: Behold, I Tell You a Mystery... The Trumpet Shall Sound	279	2	24	George Frideric Handel	582029	9553140	0.99	\N	0
+3411	Solomon HWV 67: The Arrival of the Queen of Sheba	280	2	24	George Frideric Handel	197135	3247914	0.99	\N	0
+3412	Eine Kleine Nachtmusik Serenade In G, K. 525: I. Allegro	281	2	24	Wolfgang Amadeus Mozart	348971	5760129	0.99	\N	0
+3413	Concerto for Clarinet in A Major, K. 622: II. Adagio	282	2	24	Wolfgang Amadeus Mozart	394482	6474980	0.99	\N	0
+3414	Symphony No. 104 in D Major London: IV. Finale: Spiritoso	283	4	24	Franz Joseph Haydn	306687	10085867	0.99	\N	0
+3415	Symphony No.5 in C Minor: I. Allegro con brio	284	2	24	Ludwig van Beethoven	392462	6419730	0.99	\N	0
+3416	Ave Maria	285	2	24	Franz Schubert	338243	5605648	0.99	\N	0
+3417	Nabucco: Chorus, Va, Pensiero, Sull'ali Dorate	286	2	24	Giuseppe Verdi	274504	4498583	0.99	\N	0
+3418	Die WalkÃ¼re: The Ride of the Valkyries	287	2	24	Richard Wagner	189008	3114209	0.99	\N	0
+3419	Requiem, Op.48: 4. Pie Jesu	288	2	24	Gabriel FaurÃ©	258924	4314850	0.99	\N	0
+3420	The Nutcracker, Op. 71a, Act II: Scene 14: Pas de deux: Dance of the Prince & the Sugar-Plum Fairy	289	2	24	Peter Ilyich Tchaikovsky	304226	5184289	0.99	\N	0
+3421	Nimrod (Adagio) from Variations On an Original Theme, Op. 36 Enigma	290	2	24	Edward Elgar	250031	4124707	0.99	\N	0
+3422	Madama Butterfly: Un Bel DÃ¬ Vedremo	291	2	24	Giacomo Puccini	277639	4588197	0.99	\N	0
+3423	Jupiter, the Bringer of Jollity	292	2	24	Gustav Holst	522099	8547876	0.99	\N	0
+3424	Turandot, Act III, Nessun dorma!	293	2	24	Giacomo Puccini	176911	2920890	0.99	\N	0
+3425	Adagio for Strings from the String Quartet, Op. 11	294	2	24	Samuel Barber	596519	9585597	0.99	\N	0
+3426	Carmina Burana: O Fortuna	295	2	24	Carl Orff	156710	2630293	0.99	\N	0
+3427	Fanfare for the Common Man	296	2	24	Aaron Copland	198064	3211245	0.99	\N	0
+3428	Branch Closing	251	3	22	\N	1814855	360331351	1.99	\N	0
+3429	The Return	251	3	22	\N	1705080	343877320	1.99	\N	0
+3430	Toccata and Fugue in D Minor, BWV 565: I. Toccata	297	2	24	Johann Sebastian Bach	153901	2649938	0.99	\N	0
+3431	Symphony No.1 in D Major, Op.25 Classical, Allegro Con Brio	298	2	24	Sergei Prokofiev	254001	4195542	0.99	\N	0
+3432	Scheherazade, Op. 35: I. The Sea and Sindbad's Ship	299	2	24	Nikolai Rimsky-Korsakov	545203	8916313	0.99	\N	0
+3433	Concerto No.2 in F Major, BWV1047, I. Allegro	300	2	24	Johann Sebastian Bach	307244	5064553	0.99	\N	0
+3434	Concerto for Piano No. 2 in F Minor, Op. 21: II. Larghetto	301	2	24	FrÃ©dÃ©ric Chopin	560342	9160082	0.99	\N	0
+3435	Cavalleria Rusticana \\ Act \\ Intermezzo Sinfonico	302	2	24	Pietro Mascagni	243436	4001276	0.99	\N	0
+3436	Karelia Suite, Op.11: 2. Ballade (Tempo Di Menuetto)	303	2	24	Jean Sibelius	406000	5908455	0.99	\N	0
+3437	Piano Sonata No. 14 in C Sharp Minor, Op. 27, No. 2, Moonlight: I. Adagio sostenuto	304	2	24	Ludwig van Beethoven	391000	6318740	0.99	\N	0
+3438	Fantasia On Greensleeves	280	2	24	Ralph Vaughan Williams	268066	4513190	0.99	\N	0
+3439	Das Lied Von Der Erde, Von Der Jugend	305	2	24	Gustav Mahler	223583	3700206	0.99	\N	0
+3440	Concerto for Cello and Orchestra in E minor, Op. 85: I. Adagio - Moderato	306	2	24	Edward Elgar	483133	7865479	0.99	\N	0
+3441	Two Fanfares for Orchestra: II. Short Ride in a Fast Machine	307	2	24	John Adams	254930	4310896	0.99	\N	0
+3442	Wellington's Victory or the Battle Symphony, Op.91: 2. Symphony of Triumph	308	2	24	Ludwig van Beethoven	412000	6965201	0.99	\N	0
+3443	Missa Papae Marcelli: Kyrie	309	2	24	Giovanni Pierluigi da Palestrina	240666	4244149	0.99	\N	0
+3444	Romeo et Juliette: No. 11 - Danse des Chevaliers	310	2	24	\N	275015	4519239	0.99	\N	0
+3445	On the Beautiful Blue Danube	311	2	24	Johann Strauss II	526696	8610225	0.99	\N	0
+3446	Symphonie Fantastique, Op. 14: V. Songe d'une nuit du sabbat	312	2	24	Hector Berlioz	561967	9173344	0.99	\N	0
+3447	Carmen: Overture	313	2	24	Georges Bizet	132932	2189002	0.99	\N	0
+3448	Lamentations of Jeremiah, First Set \\ Incipit Lamentatio	314	2	24	Thomas Tallis	69194	1208080	0.99	\N	0
+3449	Music for the Royal Fireworks, HWV351 (1749): La RÃ©jouissance	315	2	24	George Frideric Handel	120000	2193734	0.99	\N	0
+3450	Peer Gynt Suite No.1, Op.46: 1. Morning Mood	316	2	24	Edvard Grieg	253422	4298769	0.99	\N	0
+3451	Die ZauberflÃ¶te, K.620: Der HÃ¶lle Rache Kocht in Meinem Herze	317	2	25	Wolfgang Amadeus Mozart	174813	2861468	0.99	\N	0
+3452	SCRIABIN: Prelude in B Major, Op. 11, No. 11	318	4	24	\N	101293	3819535	0.99	\N	0
+3453	Pavan, Lachrimae Antiquae	319	2	24	John Dowland	253281	4211495	0.99	\N	0
+3454	Symphony No. 41 in C Major, K. 551, Jupiter: IV. Molto allegro	320	2	24	Wolfgang Amadeus Mozart	362933	6173269	0.99	\N	0
+3455	Rehab	321	2	14	\N	213240	3416878	0.99	\N	0
+3456	You Know I'm No Good	321	2	14	\N	256946	4133694	0.99	\N	0
+3457	Me & Mr. Jones	321	2	14	\N	151706	2449438	0.99	\N	0
+3458	Just Friends	321	2	14	\N	191933	3098906	0.99	\N	0
+3459	Back to Black	321	2	14	Mark Ronson	240320	3852953	0.99	\N	0
+3460	Love Is a Losing Game	321	2	14	\N	154386	2509409	0.99	\N	0
+3461	Tears Dry On Their Own	321	2	14	Nickolas Ashford & Valerie Simpson	185293	2996598	0.99	\N	0
+3462	Wake Up Alone	321	2	14	Paul O'duffy	221413	3576773	0.99	\N	0
+3463	Some Unholy War	321	2	14	\N	141520	2304465	0.99	\N	0
+3464	He Can Only Hold Her	321	2	14	Richard Poindexter & Robert Poindexter	166680	2666531	0.99	\N	0
+3465	You Know I'm No Good (feat. Ghostface Killah)	321	2	14	\N	202320	3260658	0.99	\N	0
+3466	Rehab (Hot Chip Remix)	321	2	14	\N	418293	6670600	0.99	\N	0
+3467	Intro / Stronger Than Me	322	2	9	\N	234200	3832165	0.99	\N	0
+3468	You Sent Me Flying / Cherry	322	2	9	\N	409906	6657517	0.99	\N	0
+3469	F**k Me Pumps	322	2	9	Salaam Remi	200253	3324343	0.99	\N	0
+3470	I Heard Love Is Blind	322	2	9	\N	129666	2190831	0.99	\N	0
+3471	(There Is) No Greater Love (Teo Licks)	322	2	9	Isham Jones & Marty Symes	167933	2773507	0.99	\N	0
+3472	In My Bed	322	2	9	Salaam Remi	315960	5211774	0.99	\N	0
+3473	Take the Box	322	2	9	Luke Smith	199160	3281526	0.99	\N	0
+3474	October Song	322	2	9	Matt Rowe & Stefan Skarbek	204846	3358125	0.99	\N	0
+3475	What Is It About Men	322	2	9	Delroy Chris Cooper, Donovan Jackson, Earl Chinna Smith, Felix Howard, Gordon Williams, Luke Smith, Paul Watson & Wilburn Squiddley Cole	209573	3426106	0.99	\N	0
+3476	Help Yourself	322	2	9	Freddy James, Jimmy hogarth & Larry Stock	300884	5029266	0.99	\N	0
+3477	Amy Amy Amy (Outro)	322	2	9	Astor Campbell, Delroy Chris Cooper, Donovan Jackson, Dorothy Fields, Earl Chinna Smith, Felix Howard, Gordon Williams, James Moody, Jimmy McHugh, Matt Rowe, Salaam Remi & Stefan Skarbek	663426	10564704	0.99	\N	0
+3478	Slowness	323	2	23	\N	215386	3644793	0.99	\N	0
+3479	Prometheus Overture, Op. 43	324	4	24	Ludwig van Beethoven	339567	10887931	0.99	\N	0
+3480	Sonata for Solo Violin: IV: Presto	325	4	24	BÃ©la BartÃ³k	299350	9785346	0.99	\N	0
+3481	A Midsummer Night's Dream, Op.61 Incidental Music: No.7 Notturno	326	2	24	\N	387826	6497867	0.99	\N	0
+3482	Suite No. 3 in D, BWV 1068: III. Gavotte I & II	327	2	24	Johann Sebastian Bach	225933	3847164	0.99	\N	0
+3483	Concert pour 4 Parties de V**les, H. 545: I. Prelude	328	2	24	Marc-Antoine Charpentier	110266	1973559	0.99	\N	0
+3484	Adios nonino	329	2	24	Astor Piazzolla	289388	4781384	0.99	\N	0
+3485	Symphony No. 3 Op. 36 for Orchestra and Soprano Symfonia Piesni Zalosnych \\ Lento E Largo - Tranquillissimo	330	2	24	Henryk GÃ³recki	567494	9273123	0.99	\N	0
+3486	Act IV, Symphony	331	2	24	Henry Purcell	364296	5987695	0.99	\N	0
+3487	3 GymnopÃ©dies: No.1 - Lent Et Grave, No.3 - Lent Et Douloureux	332	2	24	Erik Satie	385506	6458501	0.99	\N	0
+3488	Music for the Funeral of Queen Mary: VI. Thou Knowest, Lord, the Secrets of Our Hearts	333	2	24	Henry Purcell	142081	2365930	0.99	\N	0
+3489	Symphony No. 2: III. Allegro vivace	334	2	24	Kurt Weill	376510	6129146	0.99	\N	0
+3490	Partita in E Major, BWV 1006A: I. Prelude	335	2	24	Johann Sebastian Bach	285673	4744929	0.99	\N	0
+3491	Le Sacre Du Printemps: I.iv. Spring Rounds	336	2	24	Igor Stravinsky	234746	4072205	0.99	\N	0
+3492	Sing Joyfully	314	2	24	William Byrd	133768	2256484	0.99	\N	0
+3493	Metopes, Op. 29: Calypso	337	2	24	Karol Szymanowski	333669	5548755	0.99	\N	0
+3494	Symphony No. 2, Op. 16 -  The Four Temperaments: II. Allegro Comodo e Flemmatico	338	2	24	Carl Nielsen	286998	4834785	0.99	\N	0
+3495	24 Caprices, Op. 1, No. 24, for Solo Violin, in A Minor	339	2	24	NiccolÃ² Paganini	265541	4371533	0.99	\N	0
+3496	Ã‰tude 1, In C Major - Preludio (Presto) - Liszt	340	4	24	\N	51780	2229617	0.99	\N	0
+3497	Erlkonig, D.328	341	2	24	\N	261849	4307907	0.99	\N	0
+3498	Concerto for Violin, Strings and Continuo in G Major, Op. 3, No. 9: I. Allegro	342	4	24	Pietro Antonio Locatelli	493573	16454937	0.99	\N	0
+3499	Pini Di Roma (Pinien Von Rom) \\ I Pini Della Via Appia	343	2	24	\N	286741	4718950	0.99	\N	0
+3500	String Quartet No. 12 in C Minor, D. 703 Quartettsatz: II. Andante - Allegro assai	344	2	24	Franz Schubert	139200	2283131	0.99	\N	0
+3501	L'orfeo, Act 3, Sinfonia (Orchestra)	345	2	24	Claudio Monteverdi	66639	1189062	0.99	\N	0
+3502	Quintet for Horn, Violin, 2 Violas, and Cello in E Flat Major, K. 407/386c: III. Allegro	346	2	24	Wolfgang Amadeus Mozart	221331	3665114	0.99	\N	0
+3503	Koyaanisqatsi	347	2	10	Philip Glass	206005	3305164	0.99	\N	0
+0e932e5e-557e-4ec1-b9b1-fcf4789c4a2a	Prueba	1	\N	\N	\N	\N	\N	2.00	\N	0
+fab76c97-d92d-4b00-ba94-20f38f7dfb0f	Prueba	1	\N	\N	\N	\N	\N	3.00	dele17822@uvg.edu.gt	0
+1234567asdf	Pruebassssss	1	\N	\N	\N	\N	\N	1.50	\N	1
+ca20b353-e196-4c97-8d72-63aa86831d1d	PruebasModificacion	74	\N	\N	\N	\N	\N	1.00	\N	0
 \.
 
 
@@ -15968,7 +15943,7 @@ CREATE INDEX ifk_trackmediatypeid ON public.track USING btree (mediatypeid);
 --
 
 ALTER TABLE ONLY public.album
-    ADD CONSTRAINT album_artistid_fkey FOREIGN KEY (artistid) REFERENCES public.artist(artistid);
+    ADD CONSTRAINT album_artistid_fkey FOREIGN KEY (artistid) REFERENCES public.artist(artistid) ON DELETE CASCADE;
 
 
 --
@@ -15992,7 +15967,7 @@ ALTER TABLE ONLY public.playlisttrack
 --
 
 ALTER TABLE ONLY public.track
-    ADD CONSTRAINT track_albumid_fkey FOREIGN KEY (albumid) REFERENCES public.album(albumid);
+    ADD CONSTRAINT track_albumid_fkey FOREIGN KEY (albumid) REFERENCES public.album(albumid) ON DELETE CASCADE;
 
 
 --

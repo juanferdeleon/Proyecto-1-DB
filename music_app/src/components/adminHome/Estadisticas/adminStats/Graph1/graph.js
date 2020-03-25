@@ -41,7 +41,7 @@ const Graph1 = ({ stats }) =>{
     }
     
     const series = [{
-        name: "Population",
+        name: "Numero de Albums",
         data: [
             ...info
         ]   

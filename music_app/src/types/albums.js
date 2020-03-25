@@ -1,0 +1,1 @@
+export const ALBUMS_LOADED = 'ALBUMS_LOADED';

@@ -2,11 +2,11 @@ import React from 'react';
 import Chart from 'react-apexcharts';
 import { connect } from 'react-redux';
 
-import * as selectors from '../../../reducers/index';
+import * as selectors from '../../../../../reducers/index';
 // import * as actions from '../../../actions/stats';
 // import makeRequest from '../../requests/index';
 
-const Graph7 = ({ stats }) =>{
+const Graph3 = ({ stats }) =>{
     const cat = [];
     const info = [];
 
@@ -60,6 +60,6 @@ const Graph7 = ({ stats }) =>{
 
 export default connect(
     state => ({
-        stats: selectors.getStats(state, 'graph7'),
+        stats: selectors.getStats(state, 'graph3'),
     })
-)(Graph7)
+)(Graph3)

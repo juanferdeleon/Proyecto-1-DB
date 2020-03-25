@@ -16,11 +16,14 @@ light green: #A3C4BC
     flex-direction: column;
     padding-left: 75px;
     padding-bottom: 75px;
+    padding-top: 75px;
     padding-right: 75px;
 }
 
 .graph-wrapper{
+    margin: 2em;
     background-color: white;
     border-radius: 0.5rem;
     box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.5);
+    padding: 2em;
 }

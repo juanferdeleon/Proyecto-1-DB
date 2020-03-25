@@ -3,10 +3,18 @@ import { reducer as formReducer } from 'redux-form';
 
 import auth, * as authSelectors from './auth';
 import stats, * as statsSelectors from './stats';
+import req, * as reqSelectors from './req';
+import albums, * as albumsSelectors from './albums';
+import artists, * as artistsSelectors from './artists';
+import tracks, * as tracksSelectors from './tracks';
 
 const reducer = combineReducers({
     auth,
     stats,
+    req,
+    albums,
+    artists,
+    tracks,
     form: formReducer,
 })
 
@@ -25,3 +33,17 @@ export const getCreditCard = (state) => authSelectors.getCreditCard(state.auth)
 export const getLoadingStats = state => statsSelectors.getIsLoading(state.stats)
 
 export const getStats = (state, graphNum) => statsSelectors.getStats(state.stats, graphNum)
+
+export const getReqSuccess = (state) => reqSelectors.getReqSuccess(state.req)
+
+export const getReqMsg = (state) => reqSelectors.getReqMsg(state.req)
+
+export const getModSuccess = state => reqSelectors.getModSuccess(state.req)
+
+export const getAlbumsLoaded = state => albumsSelectors.getAlbumsLoaded(state.albums)
+
+export const getArtistsLoaded = state => artistsSelectors.getArtistsLoaded(state.artists)
+
+export const getArtists = state => artistsSelectors.getArtists(state.artists)
+
+export const getTracksLoaded = state => tracksSelectors.getTracksLoaded(state.tracks)

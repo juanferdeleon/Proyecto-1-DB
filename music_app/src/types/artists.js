@@ -1,0 +1,1 @@
+export const ARTISTS_LOADED = 'ARTISTS_LOADED';

@@ -7,6 +7,7 @@
 */
 
 //Todas las variables de entorno se pueden acceder con proces.env.LAVARIABLE
+
 require('dotenv').config();
 
 const Cryptr = require('cryptr');
@@ -27,6 +28,21 @@ const pool = new Pool();
 const getUsers = async (req, res) => {//Esto es para pruebas con el api y ver lo que devuelve
     const response = await pool.query('SELECT * FROM customer ORDER BY email ASC');
     res.status(200).json(response.rows);
+};
+
+const getAlbums = async (req, res) => {//GET ALBUMS
+    const response = await pool.query('SELECT albumid as id, title as name FROM album ORDER BY name ASC');
+    res.json({action: { type: 'ALBUMS_LOADED', payload: response.rows}});
+};
+
+const getTracks = async (req, res) => {//GET TRACKS
+    const response = await pool.query('SELECT trackid as id, name FROM track ORDER BY name ASC');
+    res.json({action: { type: 'TRACKS_LOADED', payload: response.rows}});
+};
+
+const getArtists = async (req, res) => {//GET ARTISTS
+    const response = await pool.query('SELECT artistid as id, name FROM artist ORDER BY name ASC');
+    res.json({action: { type: 'ARTISTS_LOADED', payload: response.rows}});
 };
 
 const getUserById = async (req, res) => {//Accede a la DB y verifica si existe el usuario
@@ -171,17 +187,88 @@ const getStats = async (req, res) => {//Hace consultas de estadisticas
     //const graph5 = await pool.query('');
     const graph6 = await pool.query('SELECT genre.name, SUM(track.milliseconds)/COUNT(*) as count FROM track INNER JOIN genre ON track.genreid = genre.genreid GROUP BY genre.genreid;');
     const graph7 = await pool.query('SELECT playlist1.name, COUNT(artist1.artistid) FROM playlist playlist1 JOIN playlisttrack playlisttrack1 ON playlist1.playlistid = playlisttrack1.playlistid JOIN track track1 ON track1.trackid = playlisttrack1.trackid JOIN album album1 ON album1.albumid = track1.albumid JOIN artist artist1 ON artist1.artistid = album1.artistid GROUP BY playlist1.name ORDER BY COUNT(artist1.name) DESC;');
-    // const graph8 = await pool.query('');
-    res.json({ action: {type: 'STATS_LOADED', payload: { graph1:graph1.rows, graph2: graph2.rows, graph3: graph3.rows, graph4: graph4.rows, graph6: graph6.rows, graph7: graph7.rows }} })
+    const graph8 = await pool.query('SELECT artist1.name, count(DISTINCT track1.genreid) as count from genre genre1 join track track1 on genre1.genreid = track1.genreid join album album1 on album1.albumid = track1.albumid join artist artist1 on artist1.artistid = album1.artistid group by artist1.name order by count(genre1.genreid) desc LIMIT 5;');
+    res.json({ action: {type: 'STATS_LOADED', payload: { graph1:graph1.rows, graph2: graph2.rows, graph3: graph3.rows, graph4: graph4.rows, graph6: graph6.rows, graph7: graph7.rows, graph8: graph8.rows }} })
     res.status(200);
     
 };
 
+const newArtist = async (req, res) => {
+
+    const { artistname, artistid } = req.body;
+
+    await pool.query('SELECT * FROM artist WHERE name=$1', [artistname])
+        .then(response => {//Se recibe informacion de PostgreSQL
+
+            //En caso no existe
+            if(response.rows.length == 0){
+
+                pool.query('INSERT INTO artist VALUES($1, $2)', [artistid, artistname])//Insertamos a la base de datos
+                    .then(() => {
+
+                        res.json({
+                            action: { type: 'REQUEST_SUCCESS', payload: { msg: 'Artist Added successfully'} }
+                        })
+
+                    })
+                    .catch(() => {//En caso hay algun inconveniente con PostgreSQL
+                        
+                        res.json({
+                            action: { type: 'REQUEST_FAIL', payload: { msg: 'Server Issues. Try again later.' } }
+                        })
+
+                    })
+            } else {//En caso el artista ya existe
+
+                res.json({
+                    action: { type: 'REQUEST_FAIL', payload: { msg: 'Artist already exists' }}
+                })
+
+            }
+
+        })
+        .catch(() => {
+
+            res.json({
+                action: { type: 'REQUEST_FAIL', payload: { msg: 'Server Issues. Try again later.' } }
+            }) 
+
+        });
+
+}
+
+const newAlbum = async (req, res) => {
+
+    const { albumname, albumid, artistid } = req.body;
+
+    await pool.query('INSERT INTO album VALUES($1, $2, $3)', [albumid, albumname, artistid])//Insertamos a la base de datos
+        .then(() => {
+
+            res.json({
+                action: { type: 'REQUEST_SUCCESS', payload: { msg: 'Album Added successfully'} }
+            })
+
+        })
+        .catch(e => {//En caso hay algun inconveniente con PostgreSQL
+            console.log(e)
+            res.json({
+                action: { type: 'REQUEST_FAIL', payload: { msg: 'Server Issues. Try again later.' } }
+            })
+
+        });
+
+}
+
 module.exports = {
     getUsers,
+    getAlbums,
+    getArtists,
+    getTracks,
     getUserById,
     createUser,
     updateUser,
     deleteUser,
     getStats,
+    newArtist,
+    newAlbum,
 };

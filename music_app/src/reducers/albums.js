@@ -26,3 +26,5 @@ const albums = combineReducers({
 export default albums;
 
 export const getAlbumsLoaded = (state) => state.albumsLoaded
+
+export const getAlbums = state => state.albumsInfo

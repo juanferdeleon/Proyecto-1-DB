@@ -42,6 +42,8 @@ export const getModSuccess = state => reqSelectors.getModSuccess(state.req)
 
 export const getAlbumsLoaded = state => albumsSelectors.getAlbumsLoaded(state.albums)
 
+export const getAlbums = state => albumsSelectors.getAlbums(state.albums)
+
 export const getArtistsLoaded = state => artistsSelectors.getArtistsLoaded(state.artists)
 
 export const getArtists = state => artistsSelectors.getArtists(state.artists)

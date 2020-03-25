@@ -8,6 +8,8 @@ const success = (state = false, action) => {
             return true
         case types.REMOVE_REQINFO:
             return false
+        case types.LOGOUT_SUCCESS:
+            return false
         default:
             return state
     }
@@ -18,6 +20,8 @@ const mod = (state= false, action) => {
         case types.REQUEST_SUCCESS:
             return true
         case types.REMOVE_REQINFO:
+            return false
+        case types.LOGOUT_SUCCESS:
             return false
         default:
             return state
@@ -32,6 +36,8 @@ const msg = (state = '', action) => {
         case types.REQUEST_SUCCESS:
             return {...action.payload}
         case types.REMOVE_REQINFO:
+            return ''
+        case types.LOGOUT_SUCCESS:
             return ''
         default:
             return state

@@ -19,3 +19,7 @@ export const addCreditCard = () => ({
 export const clearError = () => ({
     type: types.CLEAR_ERRORS
 })
+
+export const logout = () => ({
+    type: types.LOGOUT_SUCCESS
+})

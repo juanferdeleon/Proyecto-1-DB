@@ -9,6 +9,8 @@ const isLoading = (state = false, action) => {
             return false
         case types.STATS_ERROR:
             return false
+        case types.LOGOUT_SUCCESS:
+            return false
         default:
             return state
     }
@@ -21,6 +23,8 @@ const statsInfo = (state = {}, action) => {
                 ...state,
                 ...action.payload,
             }
+        case types.LOGOUT_SUCCESS:
+            return {}
         default:
             return state
     }

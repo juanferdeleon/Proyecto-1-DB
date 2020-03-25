@@ -312,11 +312,11 @@ const getStats = async (req, res) => {//Hace consultas de estadisticas
     const graph2 = await pool.query('SELECT COUNT(genre.genreid), genre.name FROM genre INNER JOIN track ON genre.genreid = track.genreid GROUP BY genre.genreid ORDER BY COUNT(genre.genreid) DESC LIMIT 5;');
     const graph3 = await pool.query('SELECT playlist.playlistid, playlist.name, SUM(track.milliseconds/1000) AS Count FROM playlist LEFT JOIN playlisttrack ON playlisttrack.playlistid = playlist.playlistid LEFT JOIN track ON track.trackid = playlisttrack.trackid WHERE track.milliseconds IS NOT NULL GROUP BY playlist.playlistid ORDER BY Count DESC;');
     const graph4 = await pool.query('SELECT artist1.name, track1.name, (track1.milliseconds/1000) As Count FROM album album1 join artist artist1 on album1.artistid = artist1.artistid join track track1 on track1.albumid = album1.albumid  WHERE track1.mediatypeid = 2 OR track1.mediatypeid = 1 OR track1.mediatypeid = 4 OR track1.mediatypeid = 5 ORDER BY (track1.milliseconds) DESC LIMIT 5;');
-    //const graph5 = await pool.query('');
+    const graph5 = await pool.query('SELECT employee1.email as name, COUNT (track1.employeeid) AS count FROM track track1 JOIN employee employee1 ON employee1.email = track1.employeeid GROUP BY employee1.email ORDER BY count DESC LIMIT 5;');
     const graph6 = await pool.query('SELECT genre.name, SUM(track.milliseconds)/COUNT(*) as count FROM track INNER JOIN genre ON track.genreid = genre.genreid GROUP BY genre.genreid;');
     const graph7 = await pool.query('SELECT playlist1.name, COUNT(artist1.artistid) FROM playlist playlist1 JOIN playlisttrack playlisttrack1 ON playlist1.playlistid = playlisttrack1.playlistid JOIN track track1 ON track1.trackid = playlisttrack1.trackid JOIN album album1 ON album1.albumid = track1.albumid JOIN artist artist1 ON artist1.artistid = album1.artistid GROUP BY playlist1.name ORDER BY COUNT(artist1.name) DESC;');
     const graph8 = await pool.query('SELECT artist1.name, count(DISTINCT track1.genreid) as count from genre genre1 join track track1 on genre1.genreid = track1.genreid join album album1 on album1.albumid = track1.albumid join artist artist1 on artist1.artistid = album1.artistid group by artist1.name order by count(genre1.genreid) desc LIMIT 5;');
-    res.json({ action: {type: 'STATS_LOADED', payload: { graph1:graph1.rows, graph2: graph2.rows, graph3: graph3.rows, graph4: graph4.rows, graph6: graph6.rows, graph7: graph7.rows, graph8: graph8.rows }} })
+    res.json({ action: {type: 'STATS_LOADED', payload: { graph1:graph1.rows, graph2: graph2.rows, graph3: graph3.rows, graph4: graph4.rows, graph5: graph5.rows,graph6: graph6.rows, graph7: graph7.rows, graph8: graph8.rows }} })
     res.status(200);
     
 };

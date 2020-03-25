@@ -28,6 +28,14 @@ light green: #A3C4BC
     padding: 2em;
 }
 
+h4{
+    flex-wrap: wrap;
+}
+
+a :hover{
+    transform: scale(1.05, 1.05);
+}
+
 .options{
     color: black;
 }

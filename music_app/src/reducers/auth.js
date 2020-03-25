@@ -38,6 +38,14 @@ const authInfo = (state = {user: null, isAuthenticated: false, isLoading: false,
                 ...state,
                 msg: null
             }
+        case types.LOGOUT_SUCCESS:
+            return{
+                user: null,
+                isAuthenticated: false, 
+                isLoading: false, 
+                msg: '', 
+                isAdminUser: false,
+            }
         default: return state;
     }
 }
@@ -46,6 +54,8 @@ const creditCard = (state = false, action) => {
     switch(action.type){
         case types.CREDITCARD_ADDED:
             return true
+        case types.LOGOUT_SUCCESS:
+            return false
         default:
             return state
     }

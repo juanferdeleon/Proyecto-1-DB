@@ -2,7 +2,7 @@ import React from 'react';
 import Chart from 'react-apexcharts';
 import { connect } from 'react-redux';
 
-import * as selectors from '../../../reducers/index';
+import * as selectors from '../../../../../reducers/index';
 // import * as actions from '../../../actions/stats';
 // import makeRequest from '../../requests/index';
 

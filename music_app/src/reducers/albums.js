@@ -5,6 +5,8 @@ const albumsLoaded = (state = false, action) => {
     switch(action.type){
         case types.ALBUMS_LOADED:
             return true
+        case types.LOGOUT_SUCCESS:
+            return false
         default:
             return state
     }
@@ -13,6 +15,8 @@ const albumsInfo = (state = {}, action) => {
     switch(action.type){
         case types.ALBUMS_LOADED:
             return {...action.payload}
+            case types.LOGOUT_SUCCESS:
+                return {}
         default:
             return state
     }

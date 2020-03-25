@@ -4,7 +4,7 @@ import Graph1 from './Graph1/graph';
 import Graph2 from './Graph2/graph';
 import Graph3 from './Graph3/graph';
 import Graph4 from './Graph4/graph';
-// import Graph5 from './Graph5/graph';
+import Graph5 from './Graph5/graph';
 import Graph6 from './Graph6/graph';
 import Graph7 from './Graph7/graph';
 import Graph8 from './Graph8/graph';
@@ -37,6 +37,12 @@ const Graphs = () => {
                 <h4>4. Canciones de mayor duración con la información de sus artistas (mostrar cinco resultados)</h4>
                 <div>
                     <Graph4/>
+                </div>
+            </div>
+            <div className='graph-wrapper'>
+                <h4>5. Usuarios que han registrado más canciones</h4>
+                <div>
+                    <Graph5/>
                 </div>
             </div>
             <div className='graph-wrapper'>

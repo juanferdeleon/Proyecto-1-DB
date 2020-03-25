@@ -41,7 +41,7 @@ const Login = ({ handleSubmit, submitting, error, onClick, isAdminUser, isAuthen
                 </div>
             </form>
             { isAdminUser && isAuthenticated && !isLoadingStats && albumsLoaded && artistsLoaded && tracksLoaded ? <Redirect to='/admin-home'/> : null}
-            { !isAdminUser && isAuthenticated && albumsLoaded && artistsLoaded && tracksLoaded ? <Redirect to='/user-home'/> : null}
+            { !isAdminUser && isAuthenticated ? <Redirect to='/user-home'/> : null}
         </div>
     </div>
     )

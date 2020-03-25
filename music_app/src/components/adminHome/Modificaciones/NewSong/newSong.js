@@ -36,7 +36,7 @@ const NewSong = ({ handleSubmit, submitting, reqSuccess, reqMsg, modSuccess, alb
                     </div>
                 </form>
                 {
-                    modSuccess ? <Redirect to='/user-home'/> : null
+                    modSuccess ? <Redirect to='/admin-home'/> : null
                 }
             </div>
         </div>   

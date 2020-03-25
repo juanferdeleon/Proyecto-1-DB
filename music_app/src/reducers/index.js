@@ -49,3 +49,5 @@ export const getArtistsLoaded = state => artistsSelectors.getArtistsLoaded(state
 export const getArtists = state => artistsSelectors.getArtists(state.artists)
 
 export const getTracksLoaded = state => tracksSelectors.getTracksLoaded(state.tracks)
+
+export const getTracks = state => tracksSelectors.getTracks(state.tracks)

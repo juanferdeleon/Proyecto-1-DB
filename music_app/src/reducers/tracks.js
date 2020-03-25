@@ -26,3 +26,5 @@ const tracks = combineReducers({
 export default tracks;
 
 export const getTracksLoaded = (state) => state.tracksLoaded
+
+export const getTracks = state => state.tracksInfo

@@ -6,18 +6,17 @@ import { v4 as uuid } from 'uuid';
 import { Alert } from 'reactstrap';
 import { Redirect } from 'react-router-dom';
 
-import * as actions from '../../../../actions/req';
-import * as selectors from '../../../../reducers/index';
-import makeRequest from '../../../requests';
+import * as actions from '../../../../../actions/req';
+import * as selectors from '../../../../../reducers/index';
+import makeRequest from '../../../../requests';
 
-const NewAlbum = ({ handleSubmit, submitting, reqSuccess, reqMsg, modSuccess, artists }) => {
+const DeleteArtist = ({ handleSubmit, submitting, reqSuccess, reqMsg, modSuccess, artists }) => {
 
     return (
         <div className = "wrapper">
             <div className = "form-wrapper">
-                <h1>Ingresa un Album Nuevo</h1>
+                <h1>Elimina un Artista</h1>
                 <form onSubmit={handleSubmit}>
-                    <Field name="albumname" className="firstName" label="Nombre de Album" component={renderInput}/>
                     <Field name="artistid" className="firsname" label="Artista" component={renderSelect}>
                         {
                             Object.values(artists).map( artist => 
@@ -31,7 +30,7 @@ const NewAlbum = ({ handleSubmit, submitting, reqSuccess, reqMsg, modSuccess, ar
                         reqSuccess ? <div  className="alert" ><Alert color="danger">Ups! {reqMsg.msg}</Alert></div> : null
                     }
                     <div className="createAccount">
-                        <button type="submit" disabled={submitting}>Agregar Album</button>
+                        <button type="submit" disabled={submitting}>Eliminar Artista</button>
                     </div>
                 </form>
                 {
@@ -59,19 +58,11 @@ const renderSelect = ({ input, label, children }) =>
         <select {...input}>{children}</select>        
     </div>
 
-const renderInput = ({ input, meta, label }) =>
-    <div className="field" >
-        <label>{label}</label>
-        <input {...input} className={[meta.active ? 'active' : '', meta.error && meta.touched ? 'error' : '', meta.active && meta.error ? 'active' : ''].join('')} placeholder={label}/>
-        {meta.error && meta.touched && <span className="errorMessage">{meta.error}</span>}
-    </div>
-
 export default reduxForm({
-    form: 'newAlbumForm',
+    form: 'deleteArtistForm',
     destroyOnUnmount: false,
     onSubmit(values, dispatch){
-        values.albumid = uuid();
-        const requestInfo = { uri: `http://localhost:8000/new-album`, type: 'POST' };
+        const requestInfo = { uri: `http://localhost:8000/artist/delete/${values.artistid}`, type: 'DELETE' };
         makeRequest(values, requestInfo, (res) => {
             dispatch(actions.doRequest(res.action));
         })
@@ -84,5 +75,5 @@ export default reduxForm({
         modSuccess: selectors.getModSuccess(state),
         artists: selectors.getArtists(state),
     }),
-)(NewAlbum))
+)(DeleteArtist))
 

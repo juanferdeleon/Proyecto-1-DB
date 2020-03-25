@@ -29,7 +29,7 @@ const Mods = ({ onClick }) => {
                         <h4>Inactivación de una canción del cátalogo</h4>                    
                     </div>
                 </Link>
-                <Link to="/admin-home/mods/modify" className="options" onClick={onClick}>
+                <Link to="/admin-home/mods/update" className="options" onClick={onClick}>
                     <div className="mod-wrapper">
                         <h4>Modificación de la información de una canción, album y artista de la base de datos</h4>                    
                     </div>

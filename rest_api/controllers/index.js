@@ -170,12 +170,140 @@ const updateUser = async (req, res) => {
 
 };
 
+const inacTrack = async (req, res) => {
+
+    const { trackid } = req.body;
+
+    await pool.query('UPDATE track SET inactive = 1 WHERE trackid = $1', [trackid])
+        .then(() => {
+            res.json({
+                action: { type: 'REQUEST_SUCCESS', payload: { msg: 'Track Inactivated successfully' } }
+            })
+        })
+        .catch(() => {
+            res.json({
+                action: { type: 'REQUEST_FAIL', payload: { msg: 'Server Issues. Try again later.' } }
+            }) 
+        });
+
+}
+
+const updateTrack = async (req, res) => {
+
+    const { trackid, newtrackname, newalbumid, newunitprice } = req.body;
+
+    await pool.query('UPDATE track SET name = $1, albumid = $2, unitprice = $3 WHERE trackid = $4', [newtrackname, newalbumid, newunitprice, trackid])
+        .then(() => {
+            res.json({
+                action: { type: 'REQUEST_SUCCESS', payload: { msg: 'Track Updated successfully' } }
+            })
+        })
+        .catch(() => {
+            res.json({
+                action: { type: 'REQUEST_FAIL', payload: { msg: 'Server Issues. Try again later.' } }
+            }) 
+        });
+
+}
+
+
+const updateArtist = async (req, res) => {
+
+    const { artistid, newartistname } = req.body;
+
+    await pool.query('UPDATE artist SET name = $1 WHERE artistid = $2', [newartistname, artistid])
+        .then(() => {
+            res.json({
+                action: { type: 'REQUEST_SUCCESS', payload: { msg: 'Artist Updated successfully' } }
+            })
+        })
+        .catch(() => {
+            res.json({
+                action: { type: 'REQUEST_FAIL', payload: { msg: 'Server Issues. Try again later.' } }
+            }) 
+        });
+
+}
+
+const updateAlbum = async (req, res) => {
+
+    const { albumid, newalbumname, newartistid } = req.body;
+
+    await pool.query('UPDATE album SET title = $1, artistid = $2 WHERE albumid = $3', [newalbumname, newartistid, albumid])
+        .then(() => {
+            res.json({
+                action: { type: 'REQUEST_SUCCESS', payload: { msg: 'Album Updated successfully' } }
+            })
+        })
+        .catch(() => {
+            res.json({
+                action: { type: 'REQUEST_FAIL', payload: { msg: 'Server Issues. Try again later.' } }
+            }) 
+        });
+
+}
+
+
 const deleteUser = async (req, res) => {
     const id = parseInt(req.params.id);
     await pool.query('DELETE FROM users where id = $1', [
         id
     ]);
     res.json(`User ${id} deleted Successfully`);
+};
+
+const deleteTrack = async (req, res) => {
+    
+    const { trackid } = req.params
+
+    await pool.query('DELETE FROM track where trackid = $1', [trackid])
+        .then(() => {
+            res.json({
+                action: { type: 'REQUEST_SUCCESS', payload: { msg: 'Track Deleted successfully' } }
+            })
+        })
+        .catch(() => {
+            res.json({
+                action: { type: 'REQUEST_FAIL', payload: { msg: 'Server Issues. Try again later.' } }
+            }) 
+        });
+
+};
+
+const deleteArtist = async (req, res) => {
+    
+    const { artistid } = req.params
+
+    await pool.query('DELETE FROM artist where artistid = $1', [artistid])
+        .then(() => {
+            res.json({
+                action: { type: 'REQUEST_SUCCESS', payload: { msg: 'Artist Deleted successfully' } }
+            })
+        })
+        .catch(() => {
+            res.json({
+                action: { type: 'REQUEST_FAIL', payload: { msg: 'Server Issues. Try again later.' } }
+            }) 
+        });
+
+};
+
+const deleteAlbum = async (req, res) => {
+    
+    const { albumid } = req.params
+
+    await pool.query('DELETE FROM album where albumid = $1', [albumid])
+        .then(() => {
+            res.json({
+                action: { type: 'REQUEST_SUCCESS', payload: { msg: 'Album Deleted successfully' } }
+            })
+        })
+        .catch(() => {
+            res.json({
+                action: { type: 'REQUEST_FAIL', payload: { msg: 'Server Issues. Try again later.' } }
+            }) 
+        });
+
 };
 
 const getStats = async (req, res) => {//Hace consultas de estadisticas
@@ -270,8 +398,7 @@ const newTrack = async (req, res) => {
             })
 
         })
-        .catch(e => {//En caso hay algun inconveniente con PostgreSQL
-            console.log(e)
+        .catch(() => {//En caso hay algun inconveniente con PostgreSQL
             res.json({
                 action: { type: 'REQUEST_FAIL', payload: { msg: 'Server Issues. Try again later.' } }
             })
@@ -288,7 +415,14 @@ module.exports = {
     getUserById,
     createUser,
     updateUser,
+    updateTrack,
+    updateArtist,
+    updateAlbum,
+    inacTrack,
     deleteUser,
+    deleteTrack,
+    deleteArtist,
+    deleteAlbum,
     getStats,
     newArtist,
     newAlbum,

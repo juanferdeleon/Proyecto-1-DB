@@ -13,7 +13,27 @@
 const { Router } = require('express');
 const router = Router();
 
-const { getUsers, getAlbums, getArtists, getTracks, getUserById, createUser, updateUser, deleteUser, getStats, newArtist, newAlbum, newTrack } = require('../controllers/index');
+const { 
+    getUsers,
+    getAlbums, 
+    getArtists, 
+    getTracks, 
+    getUserById, 
+    createUser, 
+    updateUser, 
+    deleteUser, 
+    deleteTrack,
+    deleteArtist,
+    deleteAlbum,
+    getStats, 
+    newArtist, 
+    newAlbum, 
+    newTrack, 
+    inacTrack, 
+    updateTrack, 
+    updateArtist, 
+    updateAlbum 
+} = require('../controllers/index');
 
 //Aqui van todas las rutas para hacer las requests al API de Postgres
 //Mediante router se define que tipo de REQUEST es .get, .post, .put, .delete, etc.
@@ -29,8 +49,15 @@ router.post('/new-artist', newArtist);
 router.post('/new-album', newAlbum);
 router.post('/new-track', newTrack);
 // router.put('/users/:id', updateUser)
-router.put('/user/:emailAddress', updateUser)
+router.put('/user/:emailAddress', updateUser);
+router.put('/track/inactivate', inacTrack);
+router.put('/track/update', updateTrack);
+router.put('/artist/update', updateArtist);
+router.put('/album/update', updateAlbum);
 router.delete('/users/:id', deleteUser);
+router.delete('/track/delete/:trackid', deleteTrack);
+router.delete('/artist/delete/:artistid', deleteArtist);
+router.delete('/album/delete/:albumid', deleteAlbum);
 
 //
 module.exports = router;

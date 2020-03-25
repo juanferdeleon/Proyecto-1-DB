@@ -41,7 +41,7 @@ const makeRequest = (values, requestInfo, res) => {
             break;
             
         case 'DELETE':
-            axios.delete(requestInfo.uri, values)
+            axios.delete(requestInfo.uri)
                 .then(function (response) {
                     res(response.data)
                 })

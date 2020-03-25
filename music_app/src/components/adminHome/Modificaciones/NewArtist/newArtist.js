@@ -26,7 +26,7 @@ const NewArtist = ({ handleSubmit, submitting, reqSuccess, reqMsg, modSuccess })
                     </div>
                 </form>
                 {
-                    modSuccess ? <Redirect to='/user-home'/> : null
+                    modSuccess ? <Redirect to='/admin-home'/> : null
                 }
             </div>
         </div>   

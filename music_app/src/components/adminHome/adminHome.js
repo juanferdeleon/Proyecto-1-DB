@@ -5,6 +5,7 @@ import Mods from './Modificaciones/modificaciones';
 import NewArtist from './Modificaciones/NewArtist/newArtist';
 import NewAlbum from './Modificaciones/NewAlbum/newAlbum';
 import Stats from './Estadisticas/estadisticas';
+import NewSong from './Modificaciones/NewSong/newSong';
 
 const AdminHome = () => {
     return (
@@ -15,6 +16,7 @@ const AdminHome = () => {
             <Route path='/admin-home/mods' exact component={Mods}/>
             <Route path='/admin-home/mods/new-artist' component={NewArtist}/>
             <Route path='/admin-home/mods/new-album' component={NewAlbum}/>
+            <Route path='/admin-home/mods/new-song' component={NewSong}/>
             <Route path='/admin-home/stats' component={Stats}/>
         </div>
     </Router>

@@ -181,7 +181,7 @@ const deleteUser = async (req, res) => {
 const getStats = async (req, res) => {//Hace consultas de estadisticas
 
     const graph1 = await pool.query('SELECT artist1.name, count(artist1.name) from album album1 join artist artist1 on album1.artistid = artist1.artistid group by artist1.name order by count(artist1.name) desc LIMIT 5;');
-    const graph2 = await pool.query('SELECT COUNT(genre.genreid), genre.name FROM genre INNER JOIN track ON genre.genreid = track.genreid GROUP BY genre.genreid ORDER BY COUNT(genre.genreid) DESC LIMIT 5');
+    const graph2 = await pool.query('SELECT COUNT(genre.genreid), genre.name FROM genre INNER JOIN track ON genre.genreid = track.genreid GROUP BY genre.genreid ORDER BY COUNT(genre.genreid) DESC LIMIT 5;');
     const graph3 = await pool.query('SELECT playlist.playlistid, playlist.name, SUM(track.milliseconds/1000) AS Count FROM playlist LEFT JOIN playlisttrack ON playlisttrack.playlistid = playlist.playlistid LEFT JOIN track ON track.trackid = playlisttrack.trackid WHERE track.milliseconds IS NOT NULL GROUP BY playlist.playlistid ORDER BY Count DESC;');
     const graph4 = await pool.query('SELECT artist1.name, track1.name, (track1.milliseconds/1000) As Count FROM album album1 join artist artist1 on album1.artistid = artist1.artistid join track track1 on track1.albumid = album1.albumid  WHERE track1.mediatypeid = 2 OR track1.mediatypeid = 1 OR track1.mediatypeid = 4 OR track1.mediatypeid = 5 ORDER BY (track1.milliseconds) DESC LIMIT 5;');
     //const graph5 = await pool.query('');
@@ -249,6 +249,27 @@ const newAlbum = async (req, res) => {
             })
 
         })
+        .catch(() => {//En caso hay algun inconveniente con PostgreSQL
+            res.json({
+                action: { type: 'REQUEST_FAIL', payload: { msg: 'Server Issues. Try again later.' } }
+            })
+
+        });
+
+}
+
+const newTrack = async (req, res) => {
+
+    const { trackid, trackname, albumid, unitprice, adminUser } = req.body;
+
+    await pool.query('INSERT INTO track(trackid, name, albumid, unitprice, employeeid) VALUES($1, $2, $3, $4, $5)', [trackid, trackname, albumid, unitprice, adminUser])//Insertamos a la base de datos
+        .then(() => {
+
+            res.json({
+                action: { type: 'REQUEST_SUCCESS', payload: { msg: 'Track Added successfully'} }
+            })
+
+        })
         .catch(e => {//En caso hay algun inconveniente con PostgreSQL
             console.log(e)
             res.json({
@@ -271,4 +292,5 @@ module.exports = {
     getStats,
     newArtist,
     newAlbum,
+    newTrack,
 };

@@ -23,3 +23,8 @@ ALTER TABLE track ALTER COLUMN albumid TYPE TEXT;
 ALTER TABLE album ADD PRIMARY KEY (albumid):
 ALTER TABLE track ALTER COLUMN albumid TYPE TEXT:
 ALTER TABLE track ADD FOREIGN KEY (albumin) REFERENCES album(albumid); 
+
+
+ALTER TABLE track ALTER COLUMN milliseconds DROP NOT NULL;
+
+ALTER TABLE track ADD inactive BIT(1)

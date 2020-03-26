@@ -19,7 +19,8 @@ const itemStyle = {
     background: '#ACC5EB'    
 }
 const containerStyles = {
-    display: 'flex'
+    display: 'flex',
+    flexWrap: 'wrap'
 }
 const SongsFound = ({ albumByArtist, albumByAlbumName, trackByTrackName, trackByGenre }) => {
     return(
@@ -31,7 +32,7 @@ const SongsFound = ({ albumByArtist, albumByAlbumName, trackByTrackName, trackBy
                         Object.values(albumByArtist).map(album => {
                             console.log(album)
                             return (
-                                <div className="jumbotron media"> 
+                                <div className="jumbotron media" style={itemStyle}> 
                                     <img classname="" src="https://cdn.onlinewebfonts.com/svg/img_375331.png"/>
                                     <div className="media-body">
                                         <h5 className="mt-0">{album.name}</h5>

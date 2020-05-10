@@ -9,57 +9,62 @@
 
 */
 
-
-const { Router } = require('express');
+const { Router } = require("express");
 const router = Router();
 
-const { 
-    getUsers,
-    getAlbums, 
-    getArtists, 
-    getTracks, 
-    getUserById, 
-    createUser, 
-    updateUser, 
-    deleteUser, 
-    deleteTrack,
-    deleteArtist,
-    deleteAlbum,
-    getStats, 
-    newArtist, 
-    newAlbum, 
-    newTrack, 
-    inacTrack, 
-    updateTrack, 
-    updateArtist, 
-    updateAlbum,
-    search
-} = require('../controllers/index');
+const {
+  getUsers,
+  getAlbums,
+  getArtists,
+  getTracks,
+  getUserById,
+  createUser,
+  updateUser,
+  deleteUser,
+  deleteTrack,
+  deleteArtist,
+  deleteAlbum,
+  getStats,
+  newArtist,
+  newAlbum,
+  newTrack,
+  inacTrack,
+  updateTrack,
+  updateArtist,
+  updateAlbum,
+  search,
+  dSales,
+  wSales,
+  wArtistSales,
+} = require("../controllers/index");
 
 //Aqui van todas las rutas para hacer las requests al API de Postgres
 //Mediante router se define que tipo de REQUEST es .get, .post, .put, .delete, etc.
 
-router.get('/users', getUsers);
-router.get('/stats', getStats);
-router.get('/albums', getAlbums);
-router.get('/artists', getArtists);
-router.get('/tracks', getTracks);
-router.get('/user/:emailAddress/:password', getUserById);
-router.get('/search/:searchValue', search)
-router.post('/users', createUser);
-router.post('/new-artist', newArtist);
-router.post('/new-album', newAlbum);
-router.post('/new-track', newTrack);
+router.get("/users", getUsers);
+router.get("/stats", getStats);
+router.get("/albums", getAlbums);
+router.get("/artists", getArtists);
+router.get("/tracks", getTracks);
+router.get("/user/:emailAddress/:password", getUserById);
+router.get("/search/:searchValue", search);
+router.get("/wstats/:day1/:day2", wSales);
+router.get("/wstats/:day1/:day2/:limit", wArtistSales);
+router.post("/users", createUser);
+router.post("/new-artist", newArtist);
+router.post("/new-album", newAlbum);
+router.post("/new-track", newTrack);
+router.post("/sales", dSales);
 // router.put('/users/:id', updateUser)
-router.put('/user/:emailAddress', updateUser);
-router.put('/track/inactivate', inacTrack);
-router.put('/track/update', updateTrack);
-router.put('/artist/update', updateArtist);
-router.put('/album/update', updateAlbum);
-router.delete('/users/:id', deleteUser);
-router.delete('/track/delete/:trackid', deleteTrack);
-router.delete('/artist/delete/:artistid', deleteArtist);
-router.delete('/album/delete/:albumid', deleteAlbum);
+router.put("/user/:emailAddress", updateUser);
+router.put("/track/inactivate", inacTrack);
+router.put("/track/update", updateTrack);
+router.put("/artist/update", updateArtist);
+router.put("/album/update", updateAlbum);
+router.delete("/users/:id", deleteUser);
+router.delete("/track/delete/:trackid", deleteTrack);
+router.delete("/artist/delete/:artistid", deleteArtist);
+router.delete("/album/delete/:albumid", deleteAlbum);
 
 //
 module.exports = router;

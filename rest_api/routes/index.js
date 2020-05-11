@@ -33,9 +33,10 @@ const {
   updateArtist,
   updateAlbum,
   search,
-  dSales,
-  wSales,
-  wArtistSales,
+  dailySales,
+  totalWeeklySales,
+  totalWeeklyArtistSales,
+  totalWeeklyGenreSales,
 } = require("../controllers/index");
 
 //Aqui van todas las rutas para hacer las requests al API de Postgres
@@ -48,13 +49,17 @@ router.get("/artists", getArtists);
 router.get("/tracks", getTracks);
 router.get("/user/:emailAddress/:password", getUserById);
 router.get("/search/:searchValue", search);
-router.get("/wstats/:day1/:day2", wSales);
-router.get("/wstats/:day1/:day2/:limit", wArtistSales);
+router.get("/weekly-sales-stats/:day1/:day2", totalWeeklySales);
+router.get(
+  "/weekly-artists-sales-stats/:day1/:day2/:limit",
+  totalWeeklyArtistSales
+);
+router.get("/weekly-genre-sales-stats/:day1/:day2", totalWeeklyGenreSales);
 router.post("/users", createUser);
 router.post("/new-artist", newArtist);
 router.post("/new-album", newAlbum);
 router.post("/new-track", newTrack);
-router.post("/sales", dSales);
+router.post("/sales", dailySales);
 // router.put('/users/:id', updateUser)
 router.put("/user/:emailAddress", updateUser);
 router.put("/track/inactivate", inacTrack);

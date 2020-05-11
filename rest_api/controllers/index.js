@@ -610,7 +610,7 @@ const search = async (req, res) => {
   });
 };
 
-const dSales = async (req, res) => {
+const dailySales = async (req, res) => {
   //Perfilamiento y promoción con uso de DBs no relacionales
 
   const { date } = req.body;
@@ -646,10 +646,10 @@ const dSales = async (req, res) => {
     });
 };
 
-const wSales = async (req, res) => {
+const totalWeeklySales = async (req, res) => {
   const { day1, day2 } = req.params;
 
-  //Devuelve las ventas por dia dentro del rango seleccionado
+  //Devuelve las ventas totales por dia dentro del rango seleccionado
   const graph9 = await pool.query(
     "SELECT * FROM dailysales WHERE date > $1 and date < $2",
     [day1, day2]
@@ -665,7 +665,7 @@ const wSales = async (req, res) => {
   });
 };
 
-const wArtistSales = async (req, res) => {
+const totalWeeklyArtistSales = async (req, res) => {
   const { day1, day2, limit } = req.params;
 
   //Devuelve las ventas por dia dentro del rango seleccionado
@@ -679,6 +679,25 @@ const wArtistSales = async (req, res) => {
       type: "WEEKLY_STATS_LOADED",
       payload: {
         graph10: graph10.rows,
+      },
+    },
+  });
+};
+
+const totalWeeklyGenreSales = async (req, res) => {
+  const { day1, day2 } = req.params;
+
+  //Devuelve las ventas totales por genero por dia dentro del rango seleccionado
+  const graph11 = await pool.query(
+    "SELECT * FROM dailygenresales WHERE date > $1 and date < $2",
+    [day1, day2]
+  );
+
+  res.json({
+    action: {
+      type: "WEEKLY_STATS_LOADED",
+      payload: {
+        graph11: graph11.rows,
       },
     },
   });
@@ -705,7 +724,8 @@ module.exports = {
   newAlbum,
   newTrack,
   search,
-  dSales,
-  wSales,
-  wArtistSales,
+  dailySales,
+  totalWeeklySales,
+  totalWeeklyArtistSales,
+  totalWeeklyGenreSales,
 };

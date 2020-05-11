@@ -703,6 +703,26 @@ const totalWeeklyGenreSales = async (req, res) => {
   });
 };
 
+const songRepsPerArtist = (req, res) => {
+  const { artist, limit } = req.params;
+
+  //Devuelve las ventas totales por genero por dia dentro del rango seleccionado
+  const graph12 = await pool.query(
+    "SELECT name as track, reproductions from track where composer = $1 ORDER BY reproductions DESC LIMIT $2",
+    [artist, limit]
+  );
+
+  res.json({
+    action: {
+      type: "WEEKLY_STATS_LOADED",
+      payload: {
+        graph12: graph12.rows,
+      },
+    },
+  });
+
+}
+
 module.exports = {
   getUsers,
   getAlbums,
@@ -728,4 +748,5 @@ module.exports = {
   totalWeeklySales,
   totalWeeklyArtistSales,
   totalWeeklyGenreSales,
+  songRepsPerArtist
 };

@@ -37,6 +37,7 @@ const {
   totalWeeklySales,
   totalWeeklyArtistSales,
   totalWeeklyGenreSales,
+  songRepsPerArtist,
 } = require("../controllers/index");
 
 //Aqui van todas las rutas para hacer las requests al API de Postgres
@@ -55,6 +56,7 @@ router.get(
   totalWeeklyArtistSales
 );
 router.get("/weekly-genre-sales-stats/:day1/:day2", totalWeeklyGenreSales);
+router.get("/song-reps-per-artist/:artist/:limit", songRepsPerArtist);
 router.post("/users", createUser);
 router.post("/new-artist", newArtist);
 router.post("/new-album", newAlbum);

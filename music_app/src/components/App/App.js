@@ -24,7 +24,12 @@ import DeleteTables from "../adminHome/Modificaciones/Delete/deleteTables";
 import DeleteTrack from "../adminHome/Modificaciones/Delete/DeleteTrack/deleteTrack";
 import DeleteArtist from "../adminHome/Modificaciones/Delete/DeleteArtist/deleteArtist";
 import DeleteAlbum from "../adminHome/Modificaciones/Delete/DeleteAlbum/deleteAlbum";
+import NewStats from "../adminHome/NewStats/newstats";
 import MongoForm from "../adminHome/Mongodb/mongo";
+import WeeklySales from "../adminHome/NewStats/WeeklySales/weeklysales";
+import WeeklyArtistsSales from "../adminHome/NewStats/WeeklyArtistsSales/weeklyartistssales";
+import WeeklyGenreSales from "../adminHome/NewStats/WeeklyGenreSales/weeklygenresales";
+import SongsRepsPerArtist from "../adminHome/NewStats/SongsRepsPerArtist/songsrepsperartist";
 
 const store = configureStore();
 
@@ -50,6 +55,23 @@ const App = () => (
       <Route path="/admin-home/mods/delete/artist" component={DeleteArtist} />
       <Route path="/admin-home/mods/delete/album" component={DeleteAlbum} />
       <Route path="/admin-home/stats" component={Stats} />
+      <Route path="/admin-home/new-stats" exact component={NewStats} />
+      <Route
+        path="/admin-home/new-stats/weekly-sales-stats"
+        component={WeeklySales}
+      />
+      <Route
+        path="/admin-home/new-stats/weekly-artists-sales-stats"
+        component={WeeklyArtistsSales}
+      />
+      <Route
+        path="/admin-home/new-stats/weekly-genre-sales-stats"
+        component={WeeklyGenreSales}
+      />
+      <Route
+        path="/admin-home/new-stats/song-reps-per-artist"
+        component={SongsRepsPerArtist}
+      />
       <Route path="/admin-home/mongo" component={MongoForm} />
       <Route path="/user-home" component={UserHome} />
     </Router>

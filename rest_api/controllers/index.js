@@ -18,9 +18,21 @@ const salesSchemaJSON = {
   date: String,
   users: {},
 };
-
 const salesSchema = new Schema(salesSchemaJSON);
 const Sales = mongoose.model("DailySale", salesSchema);
+
+const recomendationsSchemaJSON = {
+  user: String,
+  recomendation: {
+    trackId: String,
+    trackComposer: String,
+    trackName: String,
+    genreId: Number,
+    releaseDate: String,
+  },
+};
+const recomendationsSchema = new Schema(recomendationsSchemaJSON);
+const Recomendation = mongoose.model("Recomendation", recomendationsSchema);
 
 const Cryptr = require("cryptr");
 cryptr = new Cryptr(process.env.CRYPTRKEY);
@@ -624,17 +636,7 @@ const dailySales = async (req, res) => {
       //Crea un diccionario con la informacion de los usuarios que realizaron compras N dia
       const dailySales = new Sales({ date: date, users: response.rows });
       //Guarda el diccionario en MONGODB
-      dailySales.save(() => {
-        //Devuelve a la app
-        res.json({
-          action: {
-            type: "REQUEST_SUCCESS",
-            payload: {
-              msg: `Se ha generado el reporte de la fecha ${date} con exito`,
-            },
-          },
-        });
-      });
+      dailySales.save();
     })
     .catch(() => {
       res.json({
@@ -644,6 +646,33 @@ const dailySales = async (req, res) => {
         },
       });
     });
+
+  await pool
+    .query(
+      "SELECT email, trackid, name, track.genreid, composer, addeddate FROM track, genreperuser WHERE track.genreid = genreperuser.genreid GROUP BY trackid, email, genreperuser.genreid ORDER BY addeddate DESC LIMIT 10"
+    )
+    .then((response) => {
+      response.rows.map((rec) => {
+        const recomendation = new Recomendation({
+          user: rec.email,
+          recomendation: {
+            trackId: rec.trackid,
+            trackComposer: rec.composer,
+            trackName: rec.name,
+            genreId: rec.genreid,
+            releaseDate: rec.addeddate,
+          },
+        });
+        recomendation.save();
+      });
+    });
+
+  res.json({
+    action: {
+      type: "REQUEST_SUCCESS",
+      payload: { msg: "Your stats are in MongoDB" },
+    },
+  });
 };
 
 const totalWeeklySales = async (req, res) => {

@@ -18,9 +18,21 @@ const salesSchemaJSON = {
   date: String,
   users: {},
 };
-
 const salesSchema = new Schema(salesSchemaJSON);
 const Sales = mongoose.model("DailySale", salesSchema);
+
+const recomendationsSchemaJSON = {
+  user: String,
+  recomendation: {
+    trackId: String,
+    trackComposer: String,
+    trackName: String,
+    genreId: Number,
+    releaseDate: String,
+  },
+};
+const recomendationsSchema = new Schema(recomendationsSchemaJSON);
+const Recomendation = mongoose.model("Recomendation", recomendationsSchema);
 
 const Cryptr = require("cryptr");
 cryptr = new Cryptr(process.env.CRYPTRKEY);
@@ -624,17 +636,7 @@ const dailySales = async (req, res) => {
       //Crea un diccionario con la informacion de los usuarios que realizaron compras N dia
       const dailySales = new Sales({ date: date, users: response.rows });
       //Guarda el diccionario en MONGODB
-      dailySales.save(() => {
-        //Devuelve a la app
-        res.json({
-          action: {
-            type: "REQUEST_SUCCESS",
-            payload: {
-              msg: `Se ha generado el reporte de la fecha ${date} con exito`,
-            },
-          },
-        });
-      });
+      dailySales.save();
     })
     .catch(() => {
       res.json({
@@ -644,6 +646,33 @@ const dailySales = async (req, res) => {
         },
       });
     });
+
+  await pool
+    .query(
+      "SELECT email, trackid, name, track.genreid, composer, addeddate FROM track, genreperuser WHERE track.genreid = genreperuser.genreid GROUP BY trackid, email, genreperuser.genreid ORDER BY addeddate DESC LIMIT 10"
+    )
+    .then((response) => {
+      response.rows.map((rec) => {
+        const recomendation = new Recomendation({
+          user: rec.email,
+          recomendation: {
+            trackId: rec.trackid,
+            trackComposer: rec.composer,
+            trackName: rec.name,
+            genreId: rec.genreid,
+            releaseDate: rec.addeddate,
+          },
+        });
+        recomendation.save();
+      });
+    });
+
+  res.json({
+    action: {
+      type: "REQUEST_SUCCESS",
+      payload: { msg: "Your stats are in MongoDB" },
+    },
+  });
 };
 
 const totalWeeklySales = async (req, res) => {
@@ -651,13 +680,13 @@ const totalWeeklySales = async (req, res) => {
 
   //Devuelve las ventas totales por dia dentro del rango seleccionado
   const graph9 = await pool.query(
-    "SELECT * FROM dailysales WHERE date > $1 and date < $2",
+    "SELECT * FROM dailysales WHERE date > $1 and date < $2 ORDER BY date ASC",
     [day1, day2]
   );
 
   res.json({
     action: {
-      type: "WEEKLY_STATS_LOADED",
+      type: "STATS_LOADED",
       payload: {
         graph9: graph9.rows,
       },
@@ -676,7 +705,7 @@ const totalWeeklyArtistSales = async (req, res) => {
 
   res.json({
     action: {
-      type: "WEEKLY_STATS_LOADED",
+      type: "STATS_LOADED",
       payload: {
         graph10: graph10.rows,
       },
@@ -689,13 +718,13 @@ const totalWeeklyGenreSales = async (req, res) => {
 
   //Devuelve las ventas totales por genero por dia dentro del rango seleccionado
   const graph11 = await pool.query(
-    "SELECT * FROM dailygenresales WHERE date > $1 and date < $2",
+    "SELECT genre, sum(total) as total FROM dailygenresales WHERE date > $1 and date < $2 GROUP BY genre ORDER BY genre ASC",
     [day1, day2]
   );
 
   res.json({
     action: {
-      type: "WEEKLY_STATS_LOADED",
+      type: "STATS_LOADED",
       payload: {
         graph11: graph11.rows,
       },
@@ -703,25 +732,25 @@ const totalWeeklyGenreSales = async (req, res) => {
   });
 };
 
-const songRepsPerArtist = (req, res) => {
-  const { artist, limit } = req.params;
+const songRepsPerArtist = async (req, res) => {
+  const { artistname, limit } = req.body;
 
+  console.log("BODY", req.body);
   //Devuelve las ventas totales por genero por dia dentro del rango seleccionado
   const graph12 = await pool.query(
     "SELECT name as track, reproductions from track where composer = $1 ORDER BY reproductions DESC LIMIT $2",
-    [artist, limit]
+    [artistname, limit]
   );
 
   res.json({
     action: {
-      type: "WEEKLY_STATS_LOADED",
+      type: "STATS_LOADED",
       payload: {
         graph12: graph12.rows,
       },
     },
   });
-
-}
+};
 
 module.exports = {
   getUsers,
@@ -748,5 +777,5 @@ module.exports = {
   totalWeeklySales,
   totalWeeklyArtistSales,
   totalWeeklyGenreSales,
-  songRepsPerArtist
+  songRepsPerArtist,
 };

@@ -94,6 +94,11 @@ const Nav = ({ onClick, isLoggedIn, isAdminUser }) => {
           </Link>
         ) : null}
         {isLoggedIn && isAdminUser ? (
+          <Link to="/admin-home/new-stats">
+            <li>New Stats</li>
+          </Link>
+        ) : null}
+        {isLoggedIn && isAdminUser ? (
           <Link to="/admin-home/mongo">
             <li>MongoDB</li>
           </Link>

@@ -56,7 +56,7 @@ router.get(
   totalWeeklyArtistSales
 );
 router.get("/weekly-genre-sales-stats/:day1/:day2", totalWeeklyGenreSales);
-router.get("/song-reps-per-artist/:artist/:limit", songRepsPerArtist);
+router.post("/song-reps-per-artist", songRepsPerArtist);
 router.post("/users", createUser);
 router.post("/new-artist", newArtist);
 router.post("/new-album", newAlbum);

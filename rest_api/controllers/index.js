@@ -590,8 +590,6 @@ const search = async (req, res) => {
   search = search + searchValue;
   search = search + "%";
 
-  console.log("SEARCH VALUE: ", search);
-
   const albumByArtist = await pool.query(
     "SELECT album.title AS name, artist.name AS artist FROM artist INNER JOIN album ON artist.artistid = album.artistid WHERE artist.name LIKE $1;",
     [search]
@@ -735,7 +733,6 @@ const totalWeeklyGenreSales = async (req, res) => {
 const songRepsPerArtist = async (req, res) => {
   const { artistname, limit } = req.body;
 
-  console.log("BODY", req.body);
   //Devuelve las ventas totales por genero por dia dentro del rango seleccionado
   const graph12 = await pool.query(
     "SELECT name as track, reproductions from track where composer = $1 ORDER BY reproductions DESC LIMIT $2",

@@ -79,7 +79,7 @@ export default reduxForm({
   form: "mongoForm",
   destroyOnUnmount: false,
   onSubmit(values, dispatch) {
-    const requestInfo = { uri: `http://localhost:8000/test`, type: "POST" };
+    const requestInfo = { uri: `http://localhost:8000/sales`, type: "POST" };
     makeRequest(values, requestInfo, (res) => {
       dispatch(actions.doRequest(res.action));
     });

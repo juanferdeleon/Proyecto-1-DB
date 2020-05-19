@@ -1,17 +1,29 @@
-CREATE OR REPLACE FUNCTION registro_bitacora()
+CREATE OR REPLACE FUNCTION bitacora_insertupdate()
 RETURNS trigger as
 $BODY$
 begin
-    INSERT INTO bitacora(date, time, usuario)
-    VALUES(default current_date, default current_time, NEW.modified_by);
+    INSERT INTO bitacora(date, modified_table,time, usuario, tipo, modified_field)
+    VALUES(current_date, TG_TABLE_NAME,current_time, NEW.modified_by, TG_OP, NEW.modified_field);
 	RETURN NEW;
 END;
 $BODY$
 LANGUAGE 'plpgsql'
 ;
 
-CREATE TRIGGER registrar
-AFTER INSERT or UPDATE OR DELETE
-ON track
+CREATE OR REPLACE FUNCTION bitacora_delete()
+RETURNS trigger as
+$BODY$
+begin
+    INSERT INTO bitacora(date, modified_table,time, usuario, tipo, modified_field)
+    VALUES(current_date, TG_TABLE_NAME,current_time, OLD.modified_by, TG_OP, NULL);
+	RETURN NEW;
+END;
+$BODY$
+LANGUAGE 'plpgsql'
+;
+
+CREATE TRIGGER insert_bitacora
+AFTER INSERT
+ON artist
 FOR EACH ROW
-EXECUTE PROCEDURE registro_bitacora();
+EXECUTE PROCEDURE bitacora_insertupdate();

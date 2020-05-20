@@ -279,12 +279,18 @@ const inacTrack = async (req, res) => {
 };
 
 const updateTrack = async (req, res) => {
-  const { trackid, newtrackname, newalbumid, newunitprice } = req.body;
+  const {
+    trackid,
+    newtrackname,
+    newalbumid,
+    newunitprice,
+    modifiedBy,
+  } = req.body;
 
   await pool
     .query(
-      "UPDATE track SET name = $1, albumid = $2, unitprice = $3 WHERE trackid = $4",
-      [newtrackname, newalbumid, newunitprice, trackid]
+      "UPDATE track SET name = $1, albumid = $2, unitprice = $3, modified_by = $5 WHERE trackid = $4",
+      [newtrackname, newalbumid, newunitprice, trackid, modifiedBy]
     )
     .then(() => {
       res.json({
@@ -305,13 +311,13 @@ const updateTrack = async (req, res) => {
 };
 
 const updateArtist = async (req, res) => {
-  const { artistid, newartistname } = req.body;
+  const { artistid, newartistname, modifiedBy } = req.body;
 
   await pool
-    .query("UPDATE artist SET name = $1 WHERE artistid = $2", [
-      newartistname,
-      artistid,
-    ])
+    .query(
+      "UPDATE artist SET name = $1, modified_by = $3, modified_field = $4 WHERE artistid = $2",
+      [newartistname, artistid, modifiedBy, "name"]
+    )
     .then(() => {
       res.json({
         action: {
@@ -331,14 +337,15 @@ const updateArtist = async (req, res) => {
 };
 
 const updateAlbum = async (req, res) => {
-  const { albumid, newalbumname, newartistid } = req.body;
+  const { albumid, newalbumname, newartistid, modifiedBy } = req.body;
+
+  //
 
   await pool
-    .query("UPDATE album SET title = $1, artistid = $2 WHERE albumid = $3", [
-      newalbumname,
-      newartistid,
-      albumid,
-    ])
+    .query(
+      "UPDATE album SET title = $1, artistid = $2, modified_by = $4 WHERE albumid = $3",
+      [newalbumname, newartistid, albumid, modifiedBy]
+    )
     .then(() => {
       res.json({
         action: {
@@ -365,6 +372,8 @@ const deleteUser = async (req, res) => {
 
 const deleteTrack = async (req, res) => {
   const { trackid } = req.params;
+
+  //TODO HACER UPDATE PARA USUARIO QUE MODIFICA
 
   await pool
     .query("DELETE FROM track where trackid = $1", [trackid])
@@ -399,7 +408,8 @@ const deleteArtist = async (req, res) => {
         },
       });
     })
-    .catch(() => {
+    .catch((e) => {
+      console.log(e);
       res.json({
         action: {
           type: "REQUEST_FAIL",
@@ -411,6 +421,8 @@ const deleteArtist = async (req, res) => {
 
 const deleteAlbum = async (req, res) => {
   const { albumid } = req.params;
+
+  //TODO UPDATE ANTES DE DELETE
 
   await pool
     .query("DELETE FROM album where albumid = $1", [albumid])
@@ -478,7 +490,7 @@ const getStats = async (req, res) => {
 };
 
 const newArtist = async (req, res) => {
-  const { artistname, artistid } = req.body;
+  const { artistname, artistid, modifiedBy } = req.body;
 
   await pool
     .query("SELECT * FROM artist WHERE name=$1", [artistname])
@@ -488,7 +500,10 @@ const newArtist = async (req, res) => {
       //En caso no existe
       if (response.rows.length == 0) {
         pool
-          .query("INSERT INTO artist VALUES($1, $2)", [artistid, artistname]) //Insertamos a la base de datos
+          .query(
+            "INSERT INTO artist(artistid, name, modified_by) VALUES($1, $2, $3)",
+            [artistid, artistname, modifiedBy]
+          ) //Insertamos a la base de datos
           .then(() => {
             res.json({
               action: {
@@ -529,13 +544,14 @@ const newArtist = async (req, res) => {
 };
 
 const newAlbum = async (req, res) => {
-  const { albumname, albumid, artistid } = req.body;
+  const { albumname, albumid, artistid, modifiedBy } = req.body;
 
   await pool
-    .query("INSERT INTO album VALUES($1, $2, $3)", [
+    .query("INSERT INTO album VALUES($1, $2, $3, $4)", [
       albumid,
       albumname,
       artistid,
+      modifiedBy,
     ]) //Insertamos a la base de datos
     .then(() => {
       res.json({
@@ -561,7 +577,7 @@ const newTrack = async (req, res) => {
 
   await pool
     .query(
-      "INSERT INTO track(trackid, name, albumid, unitprice, employeeid) VALUES($1, $2, $3, $4, $5)",
+      "INSERT INTO track(trackid, name, albumid, unitprice, employeeid, modified_by) VALUES($1, $2, $3, $4, $5, $5)",
       [trackid, trackname, albumid, unitprice, adminUser]
     ) //Insertamos a la base de datos
     .then(() => {

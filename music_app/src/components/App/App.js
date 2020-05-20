@@ -72,7 +72,7 @@ const App = () => (
         path="/admin-home/new-stats/song-reps-per-artist"
         component={SongsRepsPerArtist}
       />
-      <Route path="/admin-home/mongo" component={MongoForm} />
+      <Route path="/admin-home/mongo" exact component={MongoForm} />
       <Route path="/user-home" component={UserHome} />
     </Router>
   </Provider>

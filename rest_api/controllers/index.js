@@ -599,6 +599,14 @@ const newTrack = async (req, res) => {
     });
 };
 
+const searchAlbumTracks = async (album) => {
+  const albumTracks = await pool.query(
+    "SELECT trackid, name FROM albumsongs WHERE albumid = $1",
+    [album.albumid]
+  );
+  return { ...albumTracks.rows };
+};
+
 const search = async (req, res) => {
   const { searchValue } = req.params;
 
@@ -607,19 +615,37 @@ const search = async (req, res) => {
   search = search + "%";
 
   const albumByArtist = await pool.query(
-    "SELECT album.title AS name, artist.name AS artist FROM artist INNER JOIN album ON artist.artistid = album.artistid WHERE artist.name LIKE $1;",
+    "SELECT album.albumid, album.title AS name, artist.name AS artist FROM artist INNER JOIN album ON artist.artistid = album.artistid WHERE artist.name LIKE $1;",
     [search]
   );
+
+  albumByArtist.rows.map(async (album) => {
+    const albumTracks = await searchAlbumTracks(album);
+    album["tracks"] = {};
+    Object.values(albumTracks).map((track) => {
+      album["tracks"][track.trackid] = { ...track };
+    });
+  });
+
   const albumByAlbum = await pool.query(
-    "SELECT  album.title AS name, artist.name AS artist FROM album INNER JOIN artist ON album.artistid = artist.artistid WHERE album.title LIKE $1;",
+    "SELECT * FROM albumprice WHERE name LIKE $1;",
     [search]
   );
+
+  albumByAlbum.rows.map(async (album) => {
+    const albumTracks = await searchAlbumTracks(album);
+    album["tracks"] = {};
+    Object.values(albumTracks).map((track) => {
+      album["tracks"][track.trackid] = { ...track };
+    });
+  });
+
   const trackByName = await pool.query(
-    "SELECT track1.name AS name, artist1.name AS artist FROM track track1 JOIN album album1 ON track1.albumid = album1.albumid JOIN artist artist1 ON artist1.artistid = album1.artistid WHERE track1.name LIKE $1 ORDER BY (track1.name)",
+    "SELECT track1.trackid as id, track1.unitprice as price, track1.name AS name, artist1.name AS artist FROM track track1 JOIN album album1 ON track1.albumid = album1.albumid JOIN artist artist1 ON artist1.artistid = album1.artistid WHERE track1.name LIKE $1 ORDER BY (track1.name)",
     [search]
   );
   const trackByGenre = await pool.query(
-    "SELECT track1.name AS name, artist1.name AS artist FROM track track1 JOIN genre genre1 ON track1.genreid = genre1.genreid  JOIN album album1 on album1.albumid = track1.albumid JOIN artist artist1 ON artist1.artistid = album1.artistid WHERE genre1.name LIKE $1 ORDER BY (track1.name)",
+    "SELECT track1.trackid as id, track1.unitprice as price, track1.name AS name, artist1.name AS artist FROM track track1 JOIN genre genre1 ON track1.genreid = genre1.genreid  JOIN album album1 on album1.albumid = track1.albumid JOIN artist artist1 ON artist1.artistid = album1.artistid WHERE genre1.name LIKE $1 ORDER BY (track1.name)",
     [search]
   );
 

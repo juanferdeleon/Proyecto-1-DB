@@ -49,8 +49,6 @@ const SearchBox = reduxForm({
   form: "searchForm",
   destroyOnUnmount: false,
   onSubmit(values, dispatch) {
-    console.log("Input", values.searchValue);
-
     //CARCARG BUSQUEDA DE CANCION, ALBUM, ETC.
     const requestInfo = {
       uri: `http://localhost:8000/search/${values.searchValue}`,

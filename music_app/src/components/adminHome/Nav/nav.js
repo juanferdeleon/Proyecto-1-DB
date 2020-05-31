@@ -4,6 +4,7 @@ import { reduxForm, Field } from "redux-form";
 import { connect } from "react-redux";
 import * as actions from "../../../actions/auth";
 import * as actions2 from "../../../actions/searchSong";
+import * as myTracksActions from "../../../actions/mytracks";
 import * as selectors from "../../../reducers/index";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart, faPlay } from "@fortawesome/free-solid-svg-icons";
@@ -63,7 +64,7 @@ const SearchBox = reduxForm({
   validate,
 })(Search);
 
-const Nav = ({ onClick, isLoggedIn, isAdminUser }) => {
+const Nav = ({ onClick, isLoggedIn, isAdminUser, currentUser, onSubmit }) => {
   return (
     <nav>
       {!isLoggedIn ? <h2>Proyecto 1 DB</h2> : null}
@@ -104,7 +105,7 @@ const Nav = ({ onClick, isLoggedIn, isAdminUser }) => {
           </Link>
         ) : null}
         {isLoggedIn && !isAdminUser ? (
-          <Link to="/my-songs">
+          <Link to="/my-songs" onClick={() => onSubmit(currentUser)}>
             <FontAwesomeIcon icon={faPlay} />
           </Link>
         ) : null}
@@ -127,10 +128,21 @@ export default connect(
   (state) => ({
     isLoggedIn: selectors.getIsAuth(state),
     isAdminUser: selectors.getIsAdminUser(state),
+    currentUser: selectors.getUser(state),
   }),
   (dispatch) => ({
     onClick() {
       dispatch(actions.logout());
+      dispatch(myTracksActions.removeMyTracks());
+    },
+    onSubmit(currentUser) {
+      const requestInfo = {
+        uri: `http://localhost:8000/get-my-songs/${currentUser}`,
+        type: "GET",
+      };
+      makeRequest(null, requestInfo, (res) => {
+        dispatch(myTracksActions.getMyTracks(res.action));
+      });
     },
   })
 )(Nav);

@@ -9,6 +9,7 @@ import artists, * as artistsSelectors from "./artists";
 import tracks, * as tracksSelectors from "./tracks";
 import searchSongs, * as searchSongsSelectors from "./searchSongs";
 import shoppingCart, * as shoppingCartSelectors from "./shoppingcart";
+import myTracksInfo, * as myTracksSelectors from "./mytracks";
 
 const reducer = combineReducers({
   auth,
@@ -19,6 +20,7 @@ const reducer = combineReducers({
   tracks,
   searchSongs,
   shoppingCart,
+  myTracksInfo,
   form: formReducer,
 });
 
@@ -82,3 +84,6 @@ export const getShoppingCartAlbums = (state) =>
 
 export const getShoppingCartTracks = (state) =>
   shoppingCartSelectors.getTracks(state.shoppingCart);
+
+export const getMyTracks = (state) =>
+  myTracksSelectors.getMyTracks(state.myTracksInfo);

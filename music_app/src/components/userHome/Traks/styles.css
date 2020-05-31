@@ -18,3 +18,9 @@
   background-color: #0059ff;
   transition: 0.3s;
 }
+
+.add-shopping-cart:active {
+  color: #0059ff;
+  background-color: #9fc1ff;
+  transition: 0.02s;
+}

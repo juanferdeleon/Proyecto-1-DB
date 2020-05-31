@@ -8,6 +8,7 @@
 
 //Todas las variables de entorno se pueden acceder con proces.env.LAVARIABLE
 
+import { v4 as uuid } from "uuid";
 require("dotenv").config();
 
 const mongoose = require("mongoose");
@@ -793,8 +794,10 @@ const songRepsPerArtist = async (req, res) => {
 
 const buySongs = async (req, res) => {
   const { fullTracksList, currentUser } = req.body;
+  const invoiceId = uuid();
   Object.keys(fullTracksList).map(async (trackId) => {
-    await pool.query("", [trackId, currentUser]);
+    console.log(currentUser, trackId);
+    // await pool.query("", [trackId, currentUser]);
   });
 
   res.json({
@@ -806,13 +809,14 @@ const buySongs = async (req, res) => {
 
 const getMySongs = async (req, res) => {
   const { user } = req.params;
+  console.log(user);
   const mySongs = await pool.query(
     "SELECT track1.trackid AS id, track1.name, composer AS artist FROM invoice invoice1 JOIN invoiceline invoiceline1 ON invoice1.invoiceid = invoiceline1.invoiceid JOIN track track1 ON track1.trackid = invoiceline1.trackid WHERE invoice1.email = $1",
     [user]
   );
   res.json({
     action: {
-      type: "MY_SONGS_LOADED",
+      type: "GET_MY_SONGS",
       payload: {
         mySongs: mySongs.rows,
       },

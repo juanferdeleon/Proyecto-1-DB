@@ -9,6 +9,8 @@ const albums = (state = null, action) => {
         ...action.payload.albumInfo,
       };
       return newState;
+    case types.SONGS_BOUGHT:
+      return null;
     default:
       return state;
   }
@@ -19,6 +21,8 @@ const tracks = (state = null, action) => {
       const newState = { ...state };
       newState[action.payload.trackInfo.id] = { ...action.payload.trackInfo };
       return newState;
+    case types.SONGS_BOUGHT:
+      return null;
     default:
       return state;
   }

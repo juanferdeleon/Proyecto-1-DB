@@ -7,14 +7,23 @@ import { connect } from "react-redux";
 
 const MySongs = ({ myTracks }) => {
   return (
-    <div className="my-songs-main-container">
-      {myTracks
-        ? Object.values(myTracks).map((track) => <Traks track={track} />)
-        : null}
+    <div className="songs-main-container">
+      <div className="my-songs-title">
+        <h2>Mis Canciones</h2>
+      </div>
+      <div className="my-songs-container">
+        {myTracks ? (
+          Object.values(myTracks).map((track) => (
+            <Traks key={track.id} myTrack={track} />
+          ))
+        ) : (
+          <div>Aun no tienes canciones.</div>
+        )}
+      </div>
     </div>
   );
 };
 
 export default connect((state) => ({
-  myTracks: selectors.getShoppingCartTracks(state),
+  myTracks: selectors.getMyTracks(state),
 }))(MySongs);

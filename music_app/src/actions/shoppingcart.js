@@ -9,3 +9,7 @@ export const addTrack = (trackInfo) => ({
   type: types.TRACK_ADDED_SHOPPING_CART,
   payload: { trackInfo },
 });
+
+export const songsBought = (action) => ({
+  ...action,
+});

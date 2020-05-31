@@ -30,6 +30,7 @@ import WeeklySales from "../adminHome/NewStats/WeeklySales/weeklysales";
 import WeeklyArtistsSales from "../adminHome/NewStats/WeeklyArtistsSales/weeklyartistssales";
 import WeeklyGenreSales from "../adminHome/NewStats/WeeklyGenreSales/weeklygenresales";
 import SongsRepsPerArtist from "../adminHome/NewStats/SongsRepsPerArtist/songsrepsperartist";
+import ShoppingCart from "../ShoppingCart/shoppingcart";
 
 const store = configureStore();
 
@@ -73,7 +74,8 @@ const App = () => (
         component={SongsRepsPerArtist}
       />
       <Route path="/admin-home/mongo" exact component={MongoForm} />
-      <Route path="/user-home" component={UserHome} />
+      <Route path="/user-home" exact component={UserHome} />
+      <Route path="/shopping-cart" component={ShoppingCart} />
     </Router>
   </Provider>
 );

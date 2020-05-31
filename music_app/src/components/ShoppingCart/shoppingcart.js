@@ -5,8 +5,9 @@ import { connect } from "react-redux";
 import * as selectors from "../../reducers";
 
 import "./styles.css";
+import makeRequest from "../requests";
 
-const ShoppingCart = ({ tracks, albums, onClick }) => {
+const ShoppingCart = ({ tracks, albums, onClick, currentUser }) => {
   return (
     <div className="shopping-cart-main-container">
       <div className="receipt-container">
@@ -34,7 +35,7 @@ const ShoppingCart = ({ tracks, albums, onClick }) => {
         </div>
         <div
           className="shopping-cart-btn"
-          onClick={() => onClick(tracks, albums)}
+          onClick={() => onClick(tracks, albums, currentUser)}
         >
           Comprar
         </div>
@@ -47,9 +48,10 @@ export default connect(
   (state) => ({
     tracks: selectors.getShoppingCartTracks(state),
     albums: selectors.getShoppingCartAlbums(state),
+    currentUser: selectors.getUser(state),
   }),
   (dispatch) => ({
-    onClick(tracks, albums) {
+    onClick(tracks, albums, currentUser) {
       let fullTracksList = {};
       fullTracksList = { ...tracks };
       Object.values(albums).map((album) => {
@@ -57,7 +59,19 @@ export default connect(
           fullTracksList[track.trackid] = { ...track };
         });
       });
-      console.log(fullTracksList);
+
+      const values = {
+        fullTracksList,
+        currentUser,
+      };
+
+      const requestInfo = {
+        uri: `http://localhost:8000/buy-songs`,
+        type: "POST",
+      };
+      makeRequest(values, requestInfo, (res) => {
+        console.log(res);
+      });
     },
   })
 )(ShoppingCart);

@@ -6,7 +6,7 @@ import * as actions from "../../../actions/auth";
 import * as actions2 from "../../../actions/searchSong";
 import * as selectors from "../../../reducers/index";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { faShoppingCart, faPlay } from "@fortawesome/free-solid-svg-icons";
 import "./styles.css";
 import makeRequest from "../../requests";
 
@@ -101,6 +101,11 @@ const Nav = ({ onClick, isLoggedIn, isAdminUser }) => {
         {isLoggedIn && isAdminUser ? (
           <Link to="/admin-home/mongo">
             <li>MongoDB</li>
+          </Link>
+        ) : null}
+        {isLoggedIn && !isAdminUser ? (
+          <Link to="/my-songs">
+            <FontAwesomeIcon icon={faPlay} />
           </Link>
         ) : null}
         {isLoggedIn && !isAdminUser ? (

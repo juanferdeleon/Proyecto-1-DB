@@ -791,6 +791,35 @@ const songRepsPerArtist = async (req, res) => {
   });
 };
 
+const buySongs = async (req, res) => {
+  const { fullTracksList, currentUser } = req.body;
+  Object.keys(fullTracksList).map(async (trackId) => {
+    await pool.query("", [trackId, currentUser]);
+  });
+
+  res.json({
+    action: {
+      type: "SONGS_BOUGHT",
+    },
+  });
+};
+
+const getMySongs = async (req, res) => {
+  const { user } = req.params;
+  const mySongs = await pool.query(
+    "SELECT track1.trackid AS id, track1.name, composer AS artist FROM invoice invoice1 JOIN invoiceline invoiceline1 ON invoice1.invoiceid = invoiceline1.invoiceid JOIN track track1 ON track1.trackid = invoiceline1.trackid WHERE invoice1.email = $1",
+    [user]
+  );
+  res.json({
+    action: {
+      type: "MY_SONGS_LOADED",
+      payload: {
+        mySongs: mySongs.rows,
+      },
+    },
+  });
+};
+
 module.exports = {
   getUsers,
   getAlbums,
@@ -817,4 +846,6 @@ module.exports = {
   totalWeeklyArtistSales,
   totalWeeklyGenreSales,
   songRepsPerArtist,
+  buySongs,
+  getMySongs,
 };

@@ -13,3 +13,7 @@ export const addTrack = (trackInfo) => ({
 export const songsBought = (action) => ({
   ...action,
 });
+
+export const removeShoppingcartList = () => ({
+  type: types.REMOVE_SHOPPING_CART_SONGS,
+});

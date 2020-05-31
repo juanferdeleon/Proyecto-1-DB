@@ -21,7 +21,8 @@ const WeeklyGenreSales = ({
   return (
     <div className="wrapper">
       <div className="form-wrapper">
-        <h1>Ingresa una fecha a consultar</h1>
+        <h1>Ventas por Genero</h1>
+        <h4>Ingresa una fecha a consultar</h4>
         <form onSubmit={handleSubmit}>
           <Field
             name="day1"

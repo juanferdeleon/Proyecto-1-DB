@@ -19,7 +19,8 @@ const MongoForm = ({
   return (
     <div className="wrapper">
       <div className="form-wrapper">
-        <h1>Ingresa una fecha a consultar</h1>
+        <h1>Recomendaciones y Tracks Mas Recientes</h1>
+        <h4>Ingresa una fecha a consultar</h4>
         <form onSubmit={handleSubmit}>
           <Field
             name="date"

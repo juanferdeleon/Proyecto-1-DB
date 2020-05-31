@@ -60,3 +60,23 @@
   border: 0.5px solid #519e8a;
   color: black;
 }
+
+.shopping-cart-total {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin: 2rem;
+  margin-left: 0;
+}
+
+.shopping-cart-total .total {
+  width: 50%;
+}
+.shopping-cart-total .amount {
+  width: 50%;
+}
+
+.pdf-container {
+  width: 100%;
+  padding: 2rem;
+}

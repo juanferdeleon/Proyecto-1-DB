@@ -87,3 +87,6 @@ export const getShoppingCartTracks = (state) =>
 
 export const getMyTracks = (state) =>
   myTracksSelectors.getMyTracks(state.myTracksInfo);
+
+export const getTotal = (state) =>
+  shoppingCartSelectors.getTotal(state.shoppingCart);

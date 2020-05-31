@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import * as actions from "../../../actions/auth";
 import * as actions2 from "../../../actions/searchSong";
 import * as myTracksActions from "../../../actions/mytracks";
+import * as shoppingCartActions from "../../../actions/shoppingcart";
 import * as selectors from "../../../reducers/index";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart, faPlay } from "@fortawesome/free-solid-svg-icons";
@@ -134,6 +135,7 @@ export default connect(
     onClick() {
       dispatch(actions.logout());
       dispatch(myTracksActions.removeMyTracks());
+      dispatch(shoppingCartActions.removeShoppingcartList());
     },
     onSubmit(currentUser) {
       const requestInfo = {

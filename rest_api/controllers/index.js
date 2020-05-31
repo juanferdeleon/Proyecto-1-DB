@@ -8,7 +8,10 @@
 
 //Todas las variables de entorno se pueden acceder con proces.env.LAVARIABLE
 
-import { v4 as uuid } from "uuid";
+const { v4: uuid } = require("uuid");
+
+const dateFormat = require("dateformat");
+
 require("dotenv").config();
 
 const mongoose = require("mongoose");
@@ -410,7 +413,6 @@ const deleteArtist = async (req, res) => {
       });
     })
     .catch((e) => {
-      console.log(e);
       res.json({
         action: {
           type: "REQUEST_FAIL",
@@ -574,12 +576,12 @@ const newAlbum = async (req, res) => {
 };
 
 const newTrack = async (req, res) => {
-  const { trackid, trackname, albumid, unitprice, adminUser } = req.body;
+  const { trackid, trackname, albumid, unitprice, adminUser, url } = req.body;
 
   await pool
     .query(
-      "INSERT INTO track(trackid, name, albumid, unitprice, employeeid, modified_by) VALUES($1, $2, $3, $4, $5, $5)",
-      [trackid, trackname, albumid, unitprice, adminUser]
+      "INSERT INTO track(trackid, name, albumid, unitprice, employeeid, modified_by, url) VALUES($1, $2, $3, $4, $5, $5, $6)",
+      [trackid, trackname, albumid, unitprice, adminUser, url]
     ) //Insertamos a la base de datos
     .then(() => {
       res.json({
@@ -602,7 +604,7 @@ const newTrack = async (req, res) => {
 
 const searchAlbumTracks = async (album) => {
   const albumTracks = await pool.query(
-    "SELECT trackid, name FROM albumsongs WHERE albumid = $1",
+    "SELECT trackid as id, name, unitprice as price FROM albumsongs WHERE albumid = $1",
     [album.albumid]
   );
   return { ...albumTracks.rows };
@@ -624,7 +626,7 @@ const search = async (req, res) => {
     const albumTracks = await searchAlbumTracks(album);
     album["tracks"] = {};
     Object.values(albumTracks).map((track) => {
-      album["tracks"][track.trackid] = { ...track };
+      album["tracks"][track.id] = { ...track };
     });
   });
 
@@ -637,7 +639,7 @@ const search = async (req, res) => {
     const albumTracks = await searchAlbumTracks(album);
     album["tracks"] = {};
     Object.values(albumTracks).map((track) => {
-      album["tracks"][track.trackid] = { ...track };
+      album["tracks"][track.id] = { ...track };
     });
   });
 
@@ -793,12 +795,24 @@ const songRepsPerArtist = async (req, res) => {
 };
 
 const buySongs = async (req, res) => {
-  const { fullTracksList, currentUser } = req.body;
+  const { fullTracksList, currentUser, total } = req.body;
   const invoiceId = uuid();
-  Object.keys(fullTracksList).map(async (trackId) => {
-    console.log(currentUser, trackId);
-    // await pool.query("", [trackId, currentUser]);
-  });
+  const date = dateFormat(new Date(), "yyyy-mm-dd h:MM:ss");
+
+  await pool
+    .query(
+      "INSERT INTO invoice(invoiceid, invoicedate, total, email) VALUES($1, $2, $3, $4);",
+      [invoiceId, date, total, currentUser]
+    )
+    .then(() => {
+      Object.values(fullTracksList).map(async (track) => {
+        const invoicelineId = uuid();
+        await pool.query(
+          "INSERT INTO invoiceline(invoicelineid, invoiceid, trackid, unitprice, quantity) values($1, $2, $3, $4, 1)",
+          [invoicelineId, invoiceId, track.id, track.price]
+        );
+      });
+    });
 
   res.json({
     action: {
@@ -809,9 +823,8 @@ const buySongs = async (req, res) => {
 
 const getMySongs = async (req, res) => {
   const { user } = req.params;
-  console.log(user);
   const mySongs = await pool.query(
-    "SELECT track1.trackid AS id, track1.name, composer AS artist FROM invoice invoice1 JOIN invoiceline invoiceline1 ON invoice1.invoiceid = invoiceline1.invoiceid JOIN track track1 ON track1.trackid = invoiceline1.trackid WHERE invoice1.email = $1",
+    "SELECT track1.trackid AS id, track1.name, composer AS artist, track1.url FROM invoice invoice1 JOIN invoiceline invoiceline1 ON invoice1.invoiceid = invoiceline1.invoiceid JOIN track track1 ON track1.trackid = invoiceline1.trackid WHERE invoice1.email = $1",
     [user]
   );
   res.json({

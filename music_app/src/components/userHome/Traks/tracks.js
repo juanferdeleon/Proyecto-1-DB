@@ -44,7 +44,7 @@ const Track = ({ track, onClick, myTrack }) => {
   }
   if (myTrack) {
     return (
-      <a href="https://www.youtube.com/" target="_blank">
+      <a href={myTrack.url} target="_blank">
         <div className="" style={itemStyle}>
           <img
             classname=""
@@ -55,8 +55,12 @@ const Track = ({ track, onClick, myTrack }) => {
             <hr></hr>
             <div className="info">
               <div className="">
-                <div className="">Aritsta:</div>
-                <div className="">{myTrack.artist}</div>
+                {myTrack.artist ? (
+                  <div>
+                    <div className="">Aritsta:</div>
+                    <div className="">{myTrack.artist}</div>
+                  </div>
+                ) : null}
               </div>
             </div>
             <hr></hr>

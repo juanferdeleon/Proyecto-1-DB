@@ -22,7 +22,8 @@ const WeeklySales = ({
   return (
     <div className="wrapper">
       <div className="form-wrapper">
-        <h1>Ingresa una fecha a consultar</h1>
+        <h1>Ventas</h1>
+        <h4>Ingresa una fecha a consultar</h4>
         <form onSubmit={handleSubmit}>
           <Field
             name="day1"
@@ -43,7 +44,7 @@ const WeeklySales = ({
           ) : null}
           <div className="createAccount">
             <button type="submit" disabled={submitting}>
-              Guardar
+              Consultar
             </button>
           </div>
         </form>

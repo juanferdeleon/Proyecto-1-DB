@@ -4,10 +4,11 @@ import { Link, Redirect } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
-// import * as selectors from "../../../reducers";
+import * as selectors from "../../../reducers";
 import * as actions from "../../../actions/shoppingcart";
 
 import "./styles.css";
+import makeRequest from "../../requests";
 
 const itemStyle = {
   padding: "20px",
@@ -17,7 +18,7 @@ const itemStyle = {
   background: "#ACC5EB",
 };
 
-const Track = ({ track, onClick, myTrack }) => {
+const Track = ({ track, onClick, myTrack, onPlay, currentUser }) => {
   if (track) {
     return (
       <div className="" style={itemStyle}>
@@ -44,7 +45,11 @@ const Track = ({ track, onClick, myTrack }) => {
   }
   if (myTrack) {
     return (
-      <a href={myTrack.url} target="_blank">
+      <a
+        href={myTrack.url}
+        target="_blank"
+        onClick={() => onPlay(myTrack.id, currentUser)}
+      >
         <div className="" style={itemStyle}>
           <img
             classname=""
@@ -71,8 +76,23 @@ const Track = ({ track, onClick, myTrack }) => {
   }
 };
 
-export default connect(undefined, (dispatch) => ({
-  onClick(track) {
-    dispatch(actions.addTrack(track));
-  },
-}))(Track);
+export default connect(
+  (state) => ({
+    currentUser: selectors.getUser(state),
+  }),
+  (dispatch) => ({
+    onClick(track) {
+      dispatch(actions.addTrack(track));
+    },
+    onPlay(trackId, currentUser) {
+      const values = { trackId, currentUser };
+      const requestInfo = {
+        uri: `http://localhost:8000/add-rep`,
+        type: "PUT",
+      };
+      makeRequest(values, requestInfo, (res) => {
+        console.log(res);
+      });
+    },
+  })
+)(Track);

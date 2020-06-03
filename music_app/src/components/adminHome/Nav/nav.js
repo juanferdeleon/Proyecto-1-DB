@@ -6,6 +6,7 @@ import * as actions from "../../../actions/auth";
 import * as actions2 from "../../../actions/searchSong";
 import * as myTracksActions from "../../../actions/mytracks";
 import * as shoppingCartActions from "../../../actions/shoppingcart";
+import * as binnacleActions from "../../../actions/bitacora";
 import * as selectors from "../../../reducers/index";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart, faPlay } from "@fortawesome/free-solid-svg-icons";
@@ -65,7 +66,14 @@ const SearchBox = reduxForm({
   validate,
 })(Search);
 
-const Nav = ({ onClick, isLoggedIn, isAdminUser, currentUser, onSubmit }) => {
+const Nav = ({
+  onClick,
+  isLoggedIn,
+  isAdminUser,
+  currentUser,
+  onSubmit,
+  getBinnacle,
+}) => {
   return (
     <nav>
       {!isLoggedIn ? <h2>Proyecto 1 DB</h2> : null}
@@ -93,6 +101,11 @@ const Nav = ({ onClick, isLoggedIn, isAdminUser, currentUser, onSubmit }) => {
         {isLoggedIn && isAdminUser ? (
           <Link to="/admin-home/stats">
             <li>Estadisticas</li>
+          </Link>
+        ) : null}
+        {isLoggedIn && isAdminUser ? (
+          <Link to="/admin-home/binnacle" onClick={getBinnacle}>
+            <li>Bitacora</li>
           </Link>
         ) : null}
         {isLoggedIn && isAdminUser ? (
@@ -144,6 +157,15 @@ export default connect(
       };
       makeRequest(null, requestInfo, (res) => {
         dispatch(myTracksActions.getMyTracks(res.action));
+      });
+    },
+    getBinnacle() {
+      const requestInfo = {
+        uri: "http://localhost:8000/binnacle",
+        type: "GET",
+      };
+      makeRequest(null, requestInfo, async (res) => {
+        dispatch(binnacleActions.getBinnacle(res.action.payload.binnacle));
       });
     },
   })

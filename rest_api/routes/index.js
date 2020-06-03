@@ -40,6 +40,8 @@ const {
   songRepsPerArtist,
   buySongs,
   getMySongs,
+  getBinnacle,
+  addReproduction,
 } = require("../controllers/index");
 
 //Aqui van todas las rutas para hacer las requests al API de Postgres
@@ -59,6 +61,7 @@ router.get(
 );
 router.get("/get-my-songs/:user", getMySongs);
 router.get("/weekly-genre-sales-stats/:day1/:day2", totalWeeklyGenreSales);
+router.get("/binnacle", getBinnacle);
 router.post("/song-reps-per-artist", songRepsPerArtist);
 router.post("/users", createUser);
 router.post("/new-artist", newArtist);
@@ -72,6 +75,7 @@ router.put("/track/inactivate", inacTrack);
 router.put("/track/update", updateTrack);
 router.put("/artist/update", updateArtist);
 router.put("/album/update", updateAlbum);
+router.put("/add-rep", addReproduction);
 router.delete("/users/:id", deleteUser);
 router.delete("/track/delete/:trackid", deleteTrack);
 router.delete("/artist/delete/:artistid", deleteArtist);

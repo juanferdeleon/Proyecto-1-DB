@@ -10,6 +10,7 @@ import tracks, * as tracksSelectors from "./tracks";
 import searchSongs, * as searchSongsSelectors from "./searchSongs";
 import shoppingCart, * as shoppingCartSelectors from "./shoppingcart";
 import myTracksInfo, * as myTracksSelectors from "./mytracks";
+import binnacleStats, * as binnacleSelectors from "./bitacora";
 
 const reducer = combineReducers({
   auth,
@@ -21,6 +22,7 @@ const reducer = combineReducers({
   searchSongs,
   shoppingCart,
   myTracksInfo,
+  binnacleStats,
   form: formReducer,
 });
 
@@ -90,3 +92,6 @@ export const getMyTracks = (state) =>
 
 export const getTotal = (state) =>
   shoppingCartSelectors.getTotal(state.shoppingCart);
+
+export const getBinnacle = (state) =>
+  binnacleSelectors.getBinnacle(state.binnacleStats);

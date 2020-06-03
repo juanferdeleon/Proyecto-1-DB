@@ -32,6 +32,7 @@ import WeeklyGenreSales from "../adminHome/NewStats/WeeklyGenreSales/weeklygenre
 import SongsRepsPerArtist from "../adminHome/NewStats/SongsRepsPerArtist/songsrepsperartist";
 import ShoppingCart from "../ShoppingCart/shoppingcart";
 import MySongs from "../MySongs/mysongs";
+import Bitacora from "../adminHome/Bitacora/bitacora";
 
 const store = configureStore();
 
@@ -57,6 +58,7 @@ const App = () => (
       <Route path="/admin-home/mods/delete/artist" component={DeleteArtist} />
       <Route path="/admin-home/mods/delete/album" component={DeleteAlbum} />
       <Route path="/admin-home/stats" component={Stats} />
+      <Route path="/admin-home/binnacle" component={Bitacora} />
       <Route path="/admin-home/new-stats" exact component={NewStats} />
       <Route
         path="/admin-home/new-stats/weekly-sales-stats"

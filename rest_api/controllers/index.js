@@ -580,7 +580,7 @@ const newTrack = async (req, res) => {
 
   await pool
     .query(
-      "INSERT INTO track(trackid, name, albumid, unitprice, employeeid, modified_by, url) VALUES($1, $2, $3, $4, $5, $5, $6)",
+      "INSERT INTO track(trackid, name, albumid, unitprice, employeeid, reproductions, modified_by, url) VALUES($1, $2, $3, $4, $5, 0, $5, $6)",
       [trackid, trackname, albumid, unitprice, adminUser, url]
     ) //Insertamos a la base de datos
     .then(() => {
@@ -837,6 +837,33 @@ const getMySongs = async (req, res) => {
   });
 };
 
+const getBinnacle = async (req, res) => {
+  const binnacle = await pool.query(
+    "SELECT date, time, usuario, tipo, modified_table FROM bitacora ORDER BY date DESC, time DESC"
+  );
+  res.json({
+    action: {
+      type: "GET_BINNACLE",
+      payload: { binnacle: { ...binnacle.rows } },
+    },
+  });
+};
+
+const addReproduction = async (req, res) => {
+  const { trackId, currentUser } = req.body;
+
+  await pool.query(
+    "UPDATE track SET reproductions = reproductions + 1 WHERE trackid = $1",
+    [trackId]
+  );
+  await pool.query("INSERT INTO reproductions VALUES($1, $2)", [
+    trackId,
+    currentUser,
+  ]);
+
+  res.json({ msg: "Song reproduced" });
+};
+
 module.exports = {
   getUsers,
   getAlbums,
@@ -865,4 +892,6 @@ module.exports = {
   songRepsPerArtist,
   buySongs,
   getMySongs,
+  getBinnacle,
+  addReproduction,
 };
